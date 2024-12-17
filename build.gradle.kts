@@ -12,12 +12,29 @@ version = "0.1.0"
 description = "A simple Kotlin wrapper for the Hypixel API, including a cache."
 
 repositories {
+    maven {
+        url = uri("https://repo.hypixel.net/repository/Hypixel/")
+        name = "Hypixel Repository"
+    }
+
     mavenCentral()
 }
 
 dependencies {
-    api("com.google.code.gson:gson:2.11.0")
+    //Functionality
+    api("org.jsoup:jsoup:1.15.3")
+    api("net.hypixel:hypixel-api-core:4.4")
+    api("me.nullicorn:Nedit:2.2.0")
 
+    //HTTP Client
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    api("io.ktor:ktor-client-okhttp:3.0.0")
+
+    //Logging
+    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0")
+
+    //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
 }
