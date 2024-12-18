@@ -27,7 +27,7 @@ dependencies {
     api("me.nullicorn:Nedit:2.2.0")
 
     //HTTP Client
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     api("io.ktor:ktor-client-okhttp:3.0.0")
 
     //Logging
@@ -37,6 +37,8 @@ dependencies {
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
 }
 
 centralPortal {

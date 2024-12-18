@@ -16,4 +16,6 @@ interface Cache<T, K> {
     fun retrieveAllElements(): List<CacheElement<T>>
 
     fun store(value: T)
+
+    fun invalidateEntry(key: K)
 }

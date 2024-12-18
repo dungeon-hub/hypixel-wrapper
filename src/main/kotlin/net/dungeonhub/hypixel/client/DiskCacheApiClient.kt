@@ -1,11 +1,11 @@
-package net.dungeonhub.client
+package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.cache.Cache
-import net.dungeonhub.entities.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.hypixel.api.reply.PlayerReply
 import java.util.*
 
-object DatabaseCacheApiClient : ApiClientWithCache {
+object DiskCacheApiClient : ApiClientWithCache {
     override val playerDataCache: Cache<PlayerReply.Player, UUID>
         get() = TODO("Not yet implemented")
     override val skyblockProfilesCache: Cache<SkyblockProfiles, UUID>

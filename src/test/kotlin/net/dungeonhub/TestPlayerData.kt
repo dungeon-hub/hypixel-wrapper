@@ -2,9 +2,9 @@ package net.dungeonhub
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import net.dungeonhub.client.MemoryCacheApiClient
-import net.dungeonhub.connection.HypixelApiConnection
-import net.dungeonhub.provider.CacheApiClientProvider
+import net.dungeonhub.hypixel.client.MemoryCacheApiClient
+import net.dungeonhub.hypixel.connection.HypixelApiConnection
+import net.dungeonhub.hypixel.provider.CacheApiClientProvider
 import net.dungeonhub.strategy.ApiClientStrategy
 import net.hypixel.api.reply.PlayerReply.Player
 import java.util.*

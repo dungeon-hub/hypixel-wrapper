@@ -1,7 +1,7 @@
-package net.dungeonhub.connection
+package net.dungeonhub.hypixel.connection
 
-import net.dungeonhub.client.ApiClient
-import net.dungeonhub.entities.SkyblockProfiles
+import net.dungeonhub.hypixel.client.ApiClient
+import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.dungeonhub.strategy.ApiClientStrategy
 import net.hypixel.api.reply.PlayerReply
 import java.util.*

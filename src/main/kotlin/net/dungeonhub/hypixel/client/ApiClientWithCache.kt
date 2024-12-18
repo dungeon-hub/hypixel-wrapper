@@ -1,10 +1,9 @@
-package net.dungeonhub.client
+package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.cache.Cache
-import net.dungeonhub.entities.SkyblockProfile
-import net.dungeonhub.entities.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.hypixel.api.reply.PlayerReply
-import java.util.UUID
+import java.util.*
 
 interface ApiClientWithCache : ApiClient {
     val playerDataCache : Cache<PlayerReply.Player, UUID>

@@ -1,4 +1,4 @@
-package net.dungeonhub.connection
+package net.dungeonhub.hypixel.connection
 
 import com.google.gson.*
 import io.ktor.client.*
@@ -40,6 +40,7 @@ object HypixelConnection : HypixelHttpClient {
         453559640, 569809640
     )
 
+    //TODO provider
     private val httpClient: OkHttpClient = OkHttpClient.Builder()
         .retryOnConnectionFailure(true)
         .connectTimeout(Duration.ofSeconds(30))

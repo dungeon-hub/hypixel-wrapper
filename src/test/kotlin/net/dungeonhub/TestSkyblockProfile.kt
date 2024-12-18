@@ -1,8 +1,9 @@
 package net.dungeonhub
 
 import com.google.gson.JsonArray
-import net.dungeonhub.entities.toSkyblockProfile
+import net.dungeonhub.hypixel.entities.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
+import net.dungeonhub.service.TestHelper
 import java.nio.charset.StandardCharsets
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -16,7 +17,7 @@ class TestSkyblockProfile {
             "529bddd9-3d7a-4277-9fe7-4e6aae86813d" to "Blueberry"
         )
 
-        val exampleProfile = javaClass.classLoader.getResourceAsStream("example_skyblock_profiles.json")!!.reader(StandardCharsets.UTF_8).readText()
+        val exampleProfile = TestHelper.readFile("example_skyblock_profiles.json")
 
         val profiles = GsonProvider.gson.fromJson(exampleProfile, JsonArray::class.java).asList()
 

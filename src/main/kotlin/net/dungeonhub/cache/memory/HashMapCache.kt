@@ -17,4 +17,8 @@ class HashMapCache<T, K>(val keyFunction: (T) -> K) : Cache<T, K> {
     override fun store(value: T) {
         cache[keyFunction(value)] = CacheElement(timeAdded = Instant.now(), value = value)
     }
+
+    override fun invalidateEntry(key: K) {
+        cache.remove(key)
+    }
 }

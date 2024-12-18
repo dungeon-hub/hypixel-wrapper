@@ -1,10 +1,10 @@
 package net.dungeonhub.strategy
 
-import net.dungeonhub.provider.CacheApiClientProvider
-import net.dungeonhub.client.FallbackApiClient
-import net.dungeonhub.client.RestApiClient
-import net.dungeonhub.client.StoringApiClient
-import net.dungeonhub.client.ApiClient
+import net.dungeonhub.hypixel.provider.CacheApiClientProvider
+import net.dungeonhub.hypixel.client.FallbackApiClient
+import net.dungeonhub.hypixel.client.RestApiClient
+import net.dungeonhub.hypixel.client.StoringApiClient
+import net.dungeonhub.hypixel.client.ApiClient
 
 enum class ApiClientStrategy(val client: ApiClient) {
     Rest(RestApiClient),

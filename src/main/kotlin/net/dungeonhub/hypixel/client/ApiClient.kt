@@ -1,11 +1,8 @@
-package net.dungeonhub.client
+package net.dungeonhub.hypixel.client
 
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import net.dungeonhub.entities.SkyblockProfile
-import net.dungeonhub.entities.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.hypixel.api.reply.PlayerReply
-import net.hypixel.api.reply.skyblock.SkyBlockProfilesReply
 import java.util.*
 
 interface ApiClient {
