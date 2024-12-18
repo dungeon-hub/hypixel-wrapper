@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
-class TestCache {
+class TestPlayerData {
     @Test
     fun testPlayerDataCache() {
         val rawData = listOf(

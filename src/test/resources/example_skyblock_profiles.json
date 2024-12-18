@@ -1,0 +1,75 @@
+[
+  {
+    "profile_id": "c028e7cc-708f-4f53-b835-9c681c61cd1c",
+    "members": {
+      "39642ffca7fb4d24a1d4916f4cad1d98": {
+      }
+    },
+    "banking": {
+      "balance": 0.0
+    },
+    "cute_name": "Pomegranate",
+    "selected": false
+  },
+  {
+    "profile_id": "529bddd9-3d7a-4277-9fe7-4e6aae86813d",
+    "members": {
+      "39642ffca7fb4d24a1d4916f4cad1d98": {
+        "player_data": {
+          "experience": {
+            "SKILL_FISHING": 5.6476139903183915E7,
+            "SKILL_ALCHEMY": 5.531865989418524E7,
+            "SKILL_RUNECRAFTING": 1904879.6430099956,
+            "SKILL_MINING": 1.7721990090176147E8,
+            "SKILL_FARMING": 1.2313109886223345E8,
+            "SKILL_ENCHANTING": 1.0206709791978209E9,
+            "SKILL_TAMING": 6.16597691852819E8,
+            "SKILL_FORAGING": 3.383608787522166E7,
+            "SKILL_SOCIAL": 29948.446249999684,
+            "SKILL_CARPENTRY": 1.0211683929176171E8,
+            "SKILL_COMBAT": 4.3057844337098557E8
+          }
+        },
+        "leveling": {
+          "experience": 41883
+        },
+        "currencies": {
+          "coin_purse": 3156396.849999819,
+          "motes_purse": 1080694.0
+        },
+        "dungeons": {
+          "player_classes": {
+            "healer": {
+              "experience": 1.4048999513966406E7
+            },
+            "mage": {
+              "experience": 4.005057608466432E7
+            },
+            "berserk": {
+              "experience": 2.3546182810434967E7
+            },
+            "archer": {
+              "experience": 4.190850983516069E7
+            },
+            "tank": {
+              "experience": 1.4710038376690079E7
+            }
+          },
+          "dungeons_blah_blah": [
+            "ophelia_first_talk",
+            "malik_first_talk",
+            "gatekeeper_first_talk"
+          ],
+          "selected_dungeon_class": "archer",
+          "last_dungeon_run": "MASTER_CATACOMBS_FLOOR_FOUR",
+          "secrets": 35537
+        }
+      }
+    },
+    "banking": {
+      "balance": 4.000000004304111E8
+    },
+    "cute_name": "Blueberry",
+    "selected": true
+  }
+]

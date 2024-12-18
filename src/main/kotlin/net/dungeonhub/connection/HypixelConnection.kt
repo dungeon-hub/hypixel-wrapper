@@ -157,10 +157,6 @@ object HypixelConnection : HypixelHttpClient {
         return result
     }
 
-    fun getHypixelLinkedDiscord(uuid: UUID?): Optional<String> {
-        return Optional.ofNullable(HypixelApiConnection().getHypixelLinkedDiscord(uuid!!))
-    }
-
     fun getOnlineStatus(uuid: UUID): StatusReply.Session {
         return hypixelApi.getStatus(uuid).join().session
     }
