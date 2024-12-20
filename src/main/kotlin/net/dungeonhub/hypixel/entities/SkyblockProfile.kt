@@ -2,24 +2,28 @@ package net.dungeonhub.hypixel.entities
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import net.dungeonhub.provider.getAsJsonObjectOrNull
+import net.dungeonhub.provider.getOrNull
 import java.util.UUID
 
 class SkyblockProfile(
     val profileId: UUID,
-    val cuteName: String,
-    val selected: Boolean,
-    val members: JsonObject,
-    val banking: JsonObject,
+    val members: List<SkyblockProfileMember>,
+    val banking: JsonObject?,
+    val communityUpgrades: JsonObject?,
+    val cuteName: String?,
+    val selected: Boolean?,
     var raw: JsonElement
 )
 
 fun JsonElement.toSkyblockProfile(): SkyblockProfile {
     return SkyblockProfile(
         UUID.fromString(asJsonObject["profile_id"].asString),
-        asJsonObject["cute_name"].asString,
-        asJsonObject["selected"].asBoolean,
-        asJsonObject["members"].asJsonObject,
-        asJsonObject["banking"].asJsonObject,
+        asJsonObject["members"].asJsonObject.loadProfileMembers(),
+        asJsonObject.getAsJsonObjectOrNull("banking"),
+        asJsonObject.getAsJsonObjectOrNull("community_upgrades"),
+        asJsonObject.getOrNull("cute_name")?.asString,
+        asJsonObject.getOrNull("selected")?.asBoolean,
         this
     )
 }

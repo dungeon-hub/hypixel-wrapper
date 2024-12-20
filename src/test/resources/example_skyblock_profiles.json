@@ -3,7 +3,16 @@
     "profile_id": "c028e7cc-708f-4f53-b835-9c681c61cd1c",
     "members": {
       "39642ffca7fb4d24a1d4916f4cad1d98": {
+        "player_data": {
+
+        },
+        "leveling": {
+          "experience": 0
+        }
       }
+    },
+    "community_upgrades": {
+
     },
     "banking": {
       "balance": 0.0
@@ -69,7 +78,79 @@
     "banking": {
       "balance": 4.000000004304111E8
     },
+    "community_upgrades": {
+
+    },
     "cute_name": "Blueberry",
     "selected": true
+  },
+  {
+    "profile_id": "8c725818-6504-4989-9c54-5834e670eec9",
+    "community_upgrades": {
+      "upgrade_states": []
+    },
+    "created_at": 1734615537092,
+    "members": {
+      "f5aa958268624b94a2cb9ee288ee0f9a": {
+        "events": {
+          "easter": {
+            "rabbit_hitmen": {},
+            "rabbits": {
+              "collected_locations": {},
+              "collected_eggs": {}
+            },
+            "time_tower": {},
+            "shop": {},
+            "employees": {},
+            "chocolate": 0,
+            "total_chocolate": 0,
+            "chocolate_since_prestige": 0
+          }
+        },
+        "player_data": {
+          "perks": {},
+          "active_effects": [],
+          "visited_modes": [
+            "dynamic"
+          ]
+        },
+        "leveling": {
+          "completions": {},
+          "experience": 0
+        },
+        "profile": {
+          "first_join": 1734615537540,
+          "cookie_buff_active": false
+        },
+        "pets_data": {
+          "autopet": {},
+          "pets": []
+        },
+        "player_id": "f5aa9582-6862-4b94-a2cb-9ee288ee0f9a",
+        "quests": {
+          "harp_quest": {}
+        },
+        "objectives": {
+          "collect_log": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_guide": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "public_island": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "tutorial": [
+            "first_join"
+          ]
+        }
+      }
+    }
   }
 ]

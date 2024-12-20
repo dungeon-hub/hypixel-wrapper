@@ -4,7 +4,6 @@ import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.entities.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
-import java.nio.charset.StandardCharsets
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -29,6 +28,18 @@ class TestSkyblockProfile {
             assertEquals(profile.cuteName, profileNames[profile.profileId.toString()])
         }
 
-        assertEquals(profiles.size, 2)
+        assertEquals(profiles.size, 3)
+
+        val fullProfilesJson = TestHelper.readFile("full_skyblock_profiles.json")
+
+        val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+
+        for(fullProfileJson in fullProfiles) {
+            val fullProfile = fullProfileJson.toSkyblockProfile()
+
+            assertNotNull(fullProfile)
+
+            assertNotNull(fullProfile.cuteName)
+        }
     }
 }

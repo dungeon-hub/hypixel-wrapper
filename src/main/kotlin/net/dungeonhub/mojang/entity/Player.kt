@@ -7,12 +7,13 @@ class Player(val id: UUID, val name: String)
 
 fun JsonObject.toPlayer(): Player {
     return Player(
-        getAsJsonPrimitive("id").asString.toUUID(),
+        getAsJsonPrimitive("id").asString.toUUIDUnsafe(),
         getAsJsonPrimitive("name").asString
     )
 }
 
-private fun String.toUUID(): UUID {
+//TODO make safe -> check for format
+fun String.toUUIDUnsafe(): UUID {
     return UUID.fromString(
         replaceFirst(
             "(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)".toRegex(),
