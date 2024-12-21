@@ -1,9 +1,11 @@
 package net.dungeonhub
 
 import com.google.gson.JsonArray
+import net.dungeonhub.hypixel.entities.fromSkyblockTime
 import net.dungeonhub.hypixel.entities.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
+import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -41,5 +43,7 @@ class TestSkyblockProfile {
 
             assertNotNull(fullProfile.cuteName)
         }
+
+        assertEquals(Instant.ofEpochSecond(1560275700L + 174463288), 174463288L.fromSkyblockTime())
     }
 }
