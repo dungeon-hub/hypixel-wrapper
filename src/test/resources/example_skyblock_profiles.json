@@ -8,6 +8,17 @@
         },
         "leveling": {
           "experience": 0
+        },
+        "profile": {
+          "first_join": 1587250616074,
+          "coop_invitation": {
+            "timestamp": 1587250609426,
+            "invited_by": "39642ffca7fb4d24a1d4916f4cad1d98",
+            "confirmed": true,
+            "confirmed_timestamp": 1587250615529
+          },
+          "bank_account": 5000000.0,
+          "cookie_buff_active": false
         }
       }
     },
@@ -72,6 +83,12 @@
           "selected_dungeon_class": "archer",
           "last_dungeon_run": "MASTER_CATACOMBS_FLOOR_FOUR",
           "secrets": 35537
+        },
+        "profile": {
+          "first_join": 1567783918449,
+          "personal_bank_upgrade": 3,
+          "bank_account": 0.0,
+          "cookie_buff_active": true
         }
       }
     },
