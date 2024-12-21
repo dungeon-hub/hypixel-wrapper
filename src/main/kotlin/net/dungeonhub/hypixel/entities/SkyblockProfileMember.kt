@@ -12,6 +12,9 @@ import java.util.*
 abstract class SkyblockProfileMember(
     open val uuid: UUID,
     open val profile: JsonObject,
+    open val leveling: MemberLeveling,
+    open val playerData: MemberPlayerData?,
+    open val slayer: MemberSlayerData?,
     open val raw: JsonObject
 )
 
@@ -28,6 +31,10 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             return@map PastMember(
                 uuid,
                 profileData,
+                it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
+                    ?: defaultLeveling,
+                it.value.asJsonObject.getAsJsonObject("player_data").toPlayerData(),
+                it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
                 this
             )
         }
@@ -38,6 +45,9 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             return@map PendingMember(
                 uuid,
                 profileData,
+                it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
+                    ?: defaultLeveling,
+                it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
                 this
             )
         }
@@ -45,9 +55,10 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
         return@map CurrentMember(
             uuid,
             profileData,
-            it.value.asJsonObject.getAsJsonObject("player_data").toPlayerData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
                 ?: defaultLeveling,
+            it.value.asJsonObject.getAsJsonObject("player_data").toPlayerData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.filter { currency -> currency.key != "essence" }?.map { currency ->
                 currency.key.toCurrencyType() to currency.value.asBigDecimal
