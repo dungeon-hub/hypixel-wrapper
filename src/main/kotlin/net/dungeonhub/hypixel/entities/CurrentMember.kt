@@ -13,7 +13,7 @@ class CurrentMember(
     override val slayer: MemberSlayerData?,
     val currencies: List<Pair<CurrencyType, BigDecimal>>,
     val essence: JsonObject?,
-    val dungeons: JsonObject?,
+    val dungeons: MemberDungeonsData?,
     override val raw: JsonObject
 ) : SkyblockProfileMember(uuid, profile, leveling, playerData, slayer, raw) {
     val coins

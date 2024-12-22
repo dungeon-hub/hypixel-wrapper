@@ -65,7 +65,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             } ?: listOf(KnownCurrencyTypes.Coins to BigDecimal.ZERO),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.firstOrNull { currency -> currency.key == "essence" }?.value?.asJsonObject,
-            it.value.asJsonObject.getAsJsonObjectOrNull("dungeons"),
+            it.value.asJsonObject.getAsJsonObjectOrNull("dungeons")?.toDungeonsData(),
             this
         )
     }
