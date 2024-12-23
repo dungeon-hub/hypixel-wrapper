@@ -22,7 +22,7 @@ class SkyblockProfile(
 }
 
 fun JsonElement.toSkyblockProfile(): SkyblockProfile {
-    return SkyblockProfile(
+    val profile = SkyblockProfile(
         UUID.fromString(asJsonObject["profile_id"].asString),
         asJsonObject["members"].asJsonObject.loadProfileMembers(),
         asJsonObject.getAsJsonObjectOrNull("banking"),
@@ -32,4 +32,14 @@ fun JsonElement.toSkyblockProfile(): SkyblockProfile {
         ProfileGameMode.fromApiName(asJsonObject.getAsJsonPrimitiveOrNull("game_mode")?.asString),
         this
     )
+
+    val totalSocialExperience = profile.members.sumOf { it.playerData?.experience?.get(KnownSkill.Social) ?: 0.0 }
+
+    for(member in profile.members) {
+        if(member.playerData?.experience?.containsKey(KnownSkill.Social) == true) {
+            member.playerData!!.experience?.put(KnownSkill.Social, totalSocialExperience)
+        }
+    }
+
+    return profile
 }

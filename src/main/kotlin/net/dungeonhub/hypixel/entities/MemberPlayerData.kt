@@ -6,22 +6,45 @@ import net.dungeonhub.provider.getAsJsonArrayOrNull
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.math.BigDecimal
+import java.math.RoundingMode
 import java.time.Instant
 
 class MemberPlayerData(
-    val experience: List<Pair<String, BigDecimal>>?,
+    val experience: MutableMap<Skill, Double>?,
     val visitedZones: JsonArray?,
     val lastDeath: Instant?,
     val raw: JsonObject
-)
+) {
+    val nonCosmeticExperience: Map<KnownSkill, Double>?
+        get() {
+            return experience?.filter { it.key is KnownSkill }?.mapKeys { it.key as KnownSkill }
+                ?.filter { !it.key.cosmetic }
+        }
+
+    val skillAverage: Double
+        get() {
+            return BigDecimal(
+                nonCosmeticExperience?.mapValues { it.key.calculateLevel(it.value) }?.values?.average() ?: 0.0
+            ).setScale(2, RoundingMode.HALF_UP).toDouble()
+        }
+
+    fun adjustSocialSkill(actual: Double) {
+        if (experience?.containsKey(KnownSkill.Social) == true) {
+            experience[KnownSkill.Social] = actual
+        }
+    }
+}
 
 fun JsonObject.toPlayerData(): MemberPlayerData {
-    return MemberPlayerData(
-        getAsJsonObjectOrNull("experience")?.entrySet()?.map { it.key to it.value.asBigDecimal },
+    val memberData = MemberPlayerData(
+        getAsJsonObjectOrNull("experience")?.entrySet()
+            ?.associate { KnownSkill.fromApiName(it.key) to it.value.asDouble }?.toMutableMap(),
         getAsJsonArrayOrNull("visited_zones"),
         getAsJsonPrimitiveOrNull("last_death")?.asLong?.fromSkyblockTime(),
         this
     )
+
+    return memberData
 }
 
 /**

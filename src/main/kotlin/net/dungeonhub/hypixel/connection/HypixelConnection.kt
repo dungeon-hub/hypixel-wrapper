@@ -162,32 +162,6 @@ object HypixelConnection : HypixelHttpClient {
         return hypixelApi.getStatus(uuid).join().session
     }
 
-    //This is a request on the Hypixel API, and therefore unneccessary calls should be avoided
-    fun getCataLevelByUUID(uuid: UUID): Int {
-        val profiles = getProfiles(uuid) ?: return 0
-
-        //Highest cata xp of all profiles
-        var highestXP = 0.0
-
-        for (i in 0 until profiles.size()) {
-            try {
-                val thisXP = profiles[i].asJsonObject
-                    .getAsJsonObject("members")[uuid.toString().replace("-", "")]
-                    .asJsonObject
-                    .getAsJsonObject("dungeons")
-                    .getAsJsonObject("dungeon_types")
-                    .getAsJsonObject("catacombs")["experience"]
-                    .asDouble
-                highestXP = max(highestXP, thisXP)
-                // null if profile hasn't entered dungeons
-            } catch (ignored: NullPointerException) {
-                return 0
-            }
-        }
-
-        return cataXPToLevel(highestXP)
-    }
-
     fun getProfiles(uuid: UUID): JsonArray? {
         val request: Request = Request.Builder()
             .addHeader("API-Key", apiKey!!)
@@ -246,14 +220,5 @@ object HypixelConnection : HypixelHttpClient {
             logger.error("Skyblock level couldn't be loaded for user with UUID `$uuid`.", nullPointerException)
             return OptionalInt.empty()
         }
-    }
-
-    private fun cataXPToLevel(xp: Double): Int {
-        for (i in requiredXp.indices) {
-            if (requiredXp[i] > xp) return i
-        }
-
-        // 50 and everything higher is returned as 50
-        return 50
     }
 }

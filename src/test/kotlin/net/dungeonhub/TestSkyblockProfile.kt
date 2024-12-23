@@ -5,9 +5,11 @@ import net.dungeonhub.hypixel.entities.*
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import java.time.Instant
+import java.util.UUID
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class TestSkyblockProfile {
     @Test
@@ -99,5 +101,61 @@ class TestSkyblockProfile {
             assertEquals(pastMembers[fullProfile.profileId.toString()], fullProfile.members.filterIsInstance<PastMember>().size)
             assertEquals(pendingMembers[fullProfile.profileId.toString()], fullProfile.members.filterIsInstance<PendingMember>().size)
         }
+    }
+
+    @Test
+    fun testSkillLevels() {
+        //only check blueberry profile, as there the skill levels are known
+        val profileToCheck = UUID.fromString("529bddd9-3d7a-4277-9fe7-4e6aae86813d")
+
+        val memberToCheck = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
+
+        val levels = mapOf(
+            KnownSkill.Alchemy to 50,
+            KnownSkill.Carpentry to 50,
+            KnownSkill.Combat to 60,
+            KnownSkill.Enchanting to 60,
+            KnownSkill.Farming to 60,
+            KnownSkill.Fishing to 50,
+            KnownSkill.Foraging to 43,
+            KnownSkill.Mining to 60,
+            KnownSkill.Runecrafting to 25,
+            KnownSkill.Taming to 60,
+            KnownSkill.Social to 16
+        )
+
+        val fullProfilesJson = TestHelper.readFile("full_skyblock_profiles.json")
+
+        val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+
+        var checkHappened = false
+
+        for(fullProfileJson in fullProfiles) {
+            val fullProfile = fullProfileJson.toSkyblockProfile()
+
+            if(fullProfile.profileId == profileToCheck) {
+                for(member in fullProfile.members) {
+                    if(member.uuid == memberToCheck) {
+                        checkHappened = true
+
+                        assertTrue(member.playerData != null && member.playerData!!.experience != null)
+
+                        for (skillExperience in member.playerData!!.experience!!.entries) {
+                            assertTrue(skillExperience.key is KnownSkill)
+
+                            val skill = skillExperience.key as KnownSkill
+
+                            val level = skill.calculateLevel(skillExperience.value)
+
+                            assertEquals(levels[skill], level)
+                        }
+
+                        assertEquals(54.78, member.playerData?.skillAverage)
+                    }
+                }
+            }
+        }
+
+        assertTrue(checkHappened)
     }
 }
