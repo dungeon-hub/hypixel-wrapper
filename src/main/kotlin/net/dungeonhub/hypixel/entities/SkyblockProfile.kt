@@ -19,6 +19,10 @@ class SkyblockProfile(
 ) {
     val currentMembers
         get() = members.filterIsInstance<CurrentMember>()
+
+    fun getCurrentMember(uuid: UUID): CurrentMember? {
+        return currentMembers.firstOrNull { it.uuid == uuid }
+    }
 }
 
 fun JsonElement.toSkyblockProfile(): SkyblockProfile {
