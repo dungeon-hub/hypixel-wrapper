@@ -2,9 +2,12 @@ package net.dungeonhub
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
 import net.hypixel.api.reply.PlayerReply.Player
 import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
+import java.io.File
 import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -35,7 +38,7 @@ class TestDiskCache {
             assertNull(apiClient.getHypixelLinkedDiscord(pair.first))
         }
 
-        assertEquals(apiClient.playerDataCache.retrieveAllElements().count(), 0)
+        assertEquals(0, apiClient.playerDataCache.retrieveAllElements().count())
 
         //Store example data in cache
         for (pair in rawData) {
@@ -57,6 +60,12 @@ class TestDiskCache {
     }
 
     companion object {
+        @JvmStatic
+        @BeforeAll
+        fun build() {
+            DiskHistoryCache.cacheDirectory = "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-test"
+        }
+
         @JvmStatic
         @AfterAll
         fun tearDown() {

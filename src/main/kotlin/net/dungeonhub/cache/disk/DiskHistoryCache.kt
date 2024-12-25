@@ -49,7 +49,7 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
     }
 
     fun getHistoryFile(uuid: UUID, instant: Instant): Path {
-        return getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString())
+        return getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString() + ".json")
     }
 
     override fun retrieveElement(key: UUID): CacheElement<T>? {
