@@ -1,21 +1,23 @@
 package net.dungeonhub.hypixel.client
 
-import net.dungeonhub.cache.Cache
+import com.google.gson.reflect.TypeToken
+import net.dungeonhub.cache.disk.DiskHistoryCache
+import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.hypixel.api.reply.PlayerReply
-import java.util.*
+import java.nio.file.Path
+import kotlin.io.path.exists
 
 object DiskCacheApiClient : ApiClientWithCache {
-    override val playerDataCache: Cache<PlayerReply.Player, UUID>
-        get() = TODO("Not yet implemented")
-    override val skyblockProfilesCache: Cache<SkyblockProfiles, UUID>
-        get() = TODO("Not yet implemented")
+    override val playerDataCache =
+        DiskHistoryCache(object : TypeToken<CacheElement<PlayerReply.Player>>() {}) { it.uuid }
+    override val skyblockProfilesCache =
+        DiskHistoryCache(object : TypeToken<CacheElement<SkyblockProfiles>>() {}) { it.owner }
 
-    override fun getPlayerData(uuid: UUID): PlayerReply.Player? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
-        TODO("Not yet implemented")
+    fun clearCache() {
+        val cacheDirectory = Path.of(DiskHistoryCache.cacheDirectory)
+        if(cacheDirectory.exists()) {
+            DiskHistoryCache.deleteDirectoryWithContents(cacheDirectory)
+        }
     }
 }

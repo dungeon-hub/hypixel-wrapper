@@ -1,15 +1,38 @@
 package net.dungeonhub.provider
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import com.google.gson.JsonPrimitive
+import com.google.gson.*
+import com.google.gson.stream.JsonReader
+import com.google.gson.stream.JsonToken
+import com.google.gson.stream.JsonWriter
+import java.io.IOException
+import java.time.Instant
 
 object GsonProvider {
     val gson: Gson = GsonBuilder()
+        .registerTypeAdapter(Instant::class.java, InstantTypeAdapter())
         .create()
+
+    private class InstantTypeAdapter : TypeAdapter<Instant>() {
+        @Throws(IOException::class)
+        override fun write(jsonWriter: JsonWriter, instant: Instant?) {
+            if (instant == null) {
+                jsonWriter.nullValue()
+                return
+            }
+
+            jsonWriter.value(instant.toEpochMilli())
+        }
+
+        @Throws(IOException::class)
+        override fun read(jsonReader: JsonReader): Instant? {
+            if (jsonReader.peek() == JsonToken.NULL) {
+                jsonReader.nextNull()
+                return null
+            }
+
+            return Instant.ofEpochMilli(jsonReader.nextLong())
+        }
+    }
 }
 
 fun JsonObject.getAsJsonObjectOrNull(memberName: String): JsonObject? {
