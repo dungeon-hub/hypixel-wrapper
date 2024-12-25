@@ -17,14 +17,9 @@ import kotlin.io.path.name
 
 class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction: (T) -> UUID) : Cache<T, UUID> {
     fun getDirectory(uuid: UUID): Path {
-        val root = Path.of(cacheDirectory)
-        if (!root.exists()) {
-            Files.createDirectory(root)
-        }
-
-        val directory = root.resolve(uuid.toString())
+        val directory = Path.of(cacheDirectory, uuid.toString())
         if (!directory.exists()) {
-            Files.createDirectory(directory)
+            Files.createDirectories(directory)
         }
         return directory
     }
@@ -57,8 +52,8 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
         return getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString())
     }
 
-    override fun retrieveElement(uuid: UUID): CacheElement<T>? {
-        val dataFile = getDataFile(uuid)
+    override fun retrieveElement(key: UUID): CacheElement<T>? {
+        val dataFile = getDataFile(key)
 
         if (dataFile.isRegularFile()) {
             val json = Files.readString(dataFile)
@@ -91,12 +86,12 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
         }.toList().filterNotNull()
     }
 
-    override fun invalidateEntry(uuid: UUID) {
-        val cacheElement = retrieveElement(uuid)
-        val dataFile = getDataFile(uuid)
+    override fun invalidateEntry(key: UUID) {
+        val cacheElement = retrieveElement(key)
+        val dataFile = getDataFile(key)
 
         if (cacheElement != null && dataFile.isRegularFile()) {
-            Files.move(dataFile, getHistoryFile(uuid, cacheElement.timeAdded))
+            Files.move(dataFile, getHistoryFile(key, cacheElement.timeAdded))
         }
     }
 
