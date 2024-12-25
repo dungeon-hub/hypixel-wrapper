@@ -63,8 +63,6 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
         if (dataFile.isRegularFile()) {
             val json = Files.readString(dataFile)
 
-            //val typeToken = object : TypeToken<CacheElement<T>>() {}.type
-
             return GsonProvider.gson.fromJson(json, type.type)
         }
 
@@ -94,10 +92,11 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
     }
 
     override fun invalidateEntry(uuid: UUID) {
+        val cacheElement = retrieveElement(uuid)
         val dataFile = getDataFile(uuid)
 
-        if (dataFile.isRegularFile()) {
-            Files.move(dataFile, getHistoryFile(uuid, Instant.now()))
+        if (cacheElement != null && dataFile.isRegularFile()) {
+            Files.move(dataFile, getHistoryFile(uuid, cacheElement.timeAdded))
         }
     }
 
