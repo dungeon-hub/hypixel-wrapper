@@ -15,9 +15,9 @@ import kotlin.io.path.isRegularFile
 import kotlin.io.path.name
 
 
-class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction: (T) -> UUID) : Cache<T, UUID> {
+class DiskHistoryCache<T>(val name: String, val type: TypeToken<CacheElement<T>>, val keyFunction: (T) -> UUID) : Cache<T, UUID> {
     fun getDirectory(uuid: UUID): Path {
-        val directory = Path.of(cacheDirectory, uuid.toString())
+        val directory = Path.of(cacheDirectory, name, uuid.toString())
         if (!directory.exists()) {
             Files.createDirectories(directory)
         }
@@ -33,7 +33,7 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
     }
 
     fun getHistoryDirectory(): Path {
-        val historyDirectory = Path.of(cacheDirectory, "history")
+        val historyDirectory = Path.of(cacheDirectory, "history", name)
         if (!historyDirectory.exists()) {
             Files.createDirectory(historyDirectory)
         }
@@ -65,7 +65,7 @@ class DiskHistoryCache<T>(val type: TypeToken<CacheElement<T>>, val keyFunction:
     }
 
     override fun retrieveAllElements(): List<CacheElement<T>> {
-        val cacheDirectory = Path.of(cacheDirectory)
+        val cacheDirectory = Path.of(cacheDirectory, name)
 
         if (!cacheDirectory.exists()) {
             return emptyList()
