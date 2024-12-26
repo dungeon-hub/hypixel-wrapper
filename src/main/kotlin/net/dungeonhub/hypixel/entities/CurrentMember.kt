@@ -15,7 +15,7 @@ class CurrentMember(
     val essence: JsonObject?,
     val dungeons: MemberDungeonsData?,
     override val raw: JsonObject
-) : SkyblockProfileMember(uuid, profile, leveling, playerData, slayer, raw) {
+) : SkyblockProfileMember(uuid, "current", profile, leveling, playerData, slayer, raw) {
     val coins
         get() = currencies.first { it.first == KnownCurrencyTypes.Coins }.second
 

@@ -4,13 +4,22 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import net.dungeonhub.hypixel.entities.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.mojang.entity.toUUIDUnsafe
+import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.math.BigDecimal
 import java.util.*
 
+@GsonProvider.JsonType(
+    "type", subtypes = [
+        GsonProvider.JsonSubtype(CurrentMember::class, "current"),
+        GsonProvider.JsonSubtype(PastMember::class, "past"),
+        GsonProvider.JsonSubtype(PendingMember::class, "pending")
+    ]
+)
 abstract class SkyblockProfileMember(
     open val uuid: UUID,
+    val type: String,
     open val profile: JsonObject,
     open val leveling: MemberLeveling,
     open val playerData: MemberPlayerData?,
@@ -27,7 +36,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
         }
         val profileData = it.value.asJsonObject.getAsJsonObject("profile")
 
-        if(profileData.getAsJsonObjectOrNull("deletion_notice") != null) {
+        if (profileData.getAsJsonObjectOrNull("deletion_notice") != null) {
             return@map PastMember(
                 uuid,
                 profileData,
@@ -39,9 +48,10 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             )
         }
 
-        val invitationConfirmation = profileData.getAsJsonObjectOrNull("coop_invitation")?.getAsJsonPrimitiveOrNull("confirmed")?.asBoolean
+        val invitationConfirmation =
+            profileData.getAsJsonObjectOrNull("coop_invitation")?.getAsJsonPrimitiveOrNull("confirmed")?.asBoolean
 
-        if(invitationConfirmation == false) {
+        if (invitationConfirmation == false) {
             return@map PendingMember(
                 uuid,
                 profileData,
@@ -61,8 +71,8 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.filter { currency -> currency.key != "essence" }?.map { currency ->
-                currency.key.toCurrencyType() to currency.value.asBigDecimal
-            } ?: listOf(KnownCurrencyTypes.Coins to BigDecimal.ZERO),
+                    currency.key.toCurrencyType() to currency.value.asBigDecimal
+                } ?: listOf(KnownCurrencyTypes.Coins to BigDecimal.ZERO),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.firstOrNull { currency -> currency.key == "essence" }?.value?.asJsonObject,
             it.value.asJsonObject.getAsJsonObjectOrNull("dungeons")?.toDungeonsData(),
