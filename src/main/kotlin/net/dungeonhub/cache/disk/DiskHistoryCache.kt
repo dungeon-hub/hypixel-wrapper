@@ -35,7 +35,7 @@ class DiskHistoryCache<T>(val name: String, val type: TypeToken<CacheElement<T>>
     fun getHistoryDirectory(): Path {
         val historyDirectory = Path.of(cacheDirectory, "history", name)
         if (!historyDirectory.exists()) {
-            Files.createDirectory(historyDirectory)
+            Files.createDirectories(historyDirectory)
         }
         return historyDirectory
     }
