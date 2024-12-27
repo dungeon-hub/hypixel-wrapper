@@ -42,7 +42,8 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                 profileData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
                     ?: defaultLeveling,
-                it.value.asJsonObject.getAsJsonObject("player_data").toPlayerData(),
+                it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData()
+                    ?: MemberPlayerData(null, null, null, JsonObject()),
                 it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
                 this
             )
