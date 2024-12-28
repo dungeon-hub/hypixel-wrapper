@@ -8,7 +8,7 @@ plugins {
 
 group = "net.dungeon-hub"
 val artifactId = "hypixel-wrapper"
-version = "0.3.5"
+version = "0.3.6"
 description = "A simple Kotlin wrapper for the Hypixel API, including a cache."
 
 repositories {
