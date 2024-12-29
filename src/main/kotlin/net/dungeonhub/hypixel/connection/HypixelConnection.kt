@@ -25,20 +25,11 @@ import java.io.InputStreamReader
 import java.time.Duration
 import java.util.*
 import java.util.concurrent.CompletableFuture
-import kotlin.math.max
 
 object HypixelConnection : HypixelHttpClient {
     var apiKey: String? = System.getenv("HYPIXEL_API_KEY")
 
     private val logger: Logger = LoggerFactory.getLogger(HypixelConnection::class.java)
-
-    private val requiredXp: IntArray = intArrayOf(
-        50, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 8940, 12700,
-        17960, 25340, 35640, 50040, 70040, 97640, 135640, 188140, 259640, 356640, 488640, 668640, 911640, 1239640,
-        1684640, 2284640, 3084640, 4149640, 5559640, 7459640, 9959640, 13259640, 17559640, 23159640, 30359640,
-        39559640, 51559640, 66559640, 85559640, 109559640, 139559640, 177559640, 225559640, 285559640, 360559640,
-        453559640, 569809640
-    )
 
     //TODO provider
     private val httpClient: OkHttpClient = OkHttpClient.Builder()
@@ -160,65 +151,5 @@ object HypixelConnection : HypixelHttpClient {
 
     fun getOnlineStatus(uuid: UUID): StatusReply.Session {
         return hypixelApi.getStatus(uuid).join().session
-    }
-
-    fun getProfiles(uuid: UUID): JsonArray? {
-        val request: Request = Request.Builder()
-            .addHeader("API-Key", apiKey!!)
-            .url("https://api.hypixel.net/v2/skyblock/profiles?uuid=$uuid")
-            .get()
-            .build()
-        try {
-            httpClient.newCall(request).execute().use { response ->
-                if (!response.isSuccessful || response.body == null) {
-                    logger.error("Unsuccessful profile request for UUID {}", uuid)
-                    return null
-                }
-                val parsed =
-                    JsonParser.parseString(response.body!!.string())
-
-                if (parsed == null || parsed.isJsonNull) {
-                    return null
-                }
-
-                val root = parsed.asJsonObject
-
-                if (root == null || root.isJsonNull || root["profiles"].isJsonNull) {
-                    return null
-                }
-                return root.getAsJsonArray("profiles")
-            }
-        } catch (ioException: IOException) {
-            logger.error("Profile request for UUID threw an error.", ioException)
-        }
-
-        return null
-    }
-
-    fun getSkyblockLevelByUUID(uuid: UUID): OptionalInt {
-        val profiles = getProfiles(uuid)
-
-        if (profiles == null || profiles.isEmpty) {
-            return OptionalInt.empty()
-        }
-
-        try {
-            return profiles.asList().stream()
-                .map { obj: JsonElement -> obj.asJsonObject }
-                .map { jsonObject -> jsonObject.getAsJsonObject("members") }
-                .filter { Objects.nonNull(it) }
-                .map { jsonObject -> jsonObject.getAsJsonObject(uuid.toString().replace("-", "")) }
-                .filter { Objects.nonNull(it) }
-                .map { jsonObject -> jsonObject.getAsJsonObject("leveling") }
-                .filter { Objects.nonNull(it) }
-                .map { jsonObject -> jsonObject.getAsJsonPrimitive("experience") }
-                .filter { Objects.nonNull(it) }
-                .mapToInt { it.asInt }
-                .map { operand: Int -> operand / 100 }
-                .max()
-        } catch (nullPointerException: NullPointerException) {
-            logger.error("Skyblock level couldn't be loaded for user with UUID `$uuid`.", nullPointerException)
-            return OptionalInt.empty()
-        }
     }
 }

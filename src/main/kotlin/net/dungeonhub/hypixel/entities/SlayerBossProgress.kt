@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities
 
 import com.google.gson.JsonObject
+import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
 class SlayerBossProgress(
@@ -11,7 +12,7 @@ class SlayerBossProgress(
 
 fun JsonObject.toSlayerProgress(): SlayerBossProgress {
     return SlayerBossProgress(
-        getAsJsonObject("claimed_levels"),
+        getAsJsonObjectOrNull("claimed_levels") ?: JsonObject(),
         getAsJsonPrimitiveOrNull("xp")?.asInt,
         this
     )

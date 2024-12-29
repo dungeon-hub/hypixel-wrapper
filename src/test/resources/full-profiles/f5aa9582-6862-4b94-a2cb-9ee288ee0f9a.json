@@ -1,0 +1,200 @@
+[
+  {
+    "profile_id": "8c725818-6504-4989-9c54-5834e670eec9",
+    "community_upgrades": {
+      "upgrade_states": []
+    },
+    "created_at": 1734615537092,
+    "members": {
+      "f5aa958268624b94a2cb9ee288ee0f9a": {
+        "player_data": {
+          "visited_zones": [
+            "dungeon_hub",
+            "dynamic_portal_island",
+            "village"
+          ],
+          "perks": {},
+          "active_effects": [],
+          "visited_modes": [
+            "dungeon_hub",
+            "hub",
+            "dynamic"
+          ],
+          "experience": {
+            "SKILL_FORAGING": 1.05
+          }
+        },
+        "events": {
+          "easter": {
+            "rabbit_hitmen": {},
+            "rabbits": {
+              "collected_locations": {},
+              "collected_eggs": {}
+            },
+            "time_tower": {},
+            "shop": {},
+            "employees": {},
+            "chocolate": 0,
+            "total_chocolate": 0,
+            "chocolate_since_prestige": 0
+          }
+        },
+        "leveling": {
+          "completions": {},
+          "experience": 0
+        },
+        "currencies": {
+          "coin_purse": 25.0,
+          "essence": {
+            "UNDEAD": {},
+            "WITHER": {}
+          }
+        },
+        "profile": {
+          "first_join": 1734615537540,
+          "cookie_buff_active": false
+        },
+        "pets_data": {
+          "autopet": {},
+          "pets": []
+        },
+        "player_id": "f5aa9582-6862-4b94-a2cb-9ee288ee0f9a",
+        "quests": {
+          "harp_quest": {}
+        },
+        "objectives": {
+          "collect_log": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_guide": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "public_island": {
+            "status": "COMPLETE",
+            "progress": 0,
+            "completed_at": 1734917222339
+          },
+          "tutorial": [
+            "first_join",
+            "togglerds"
+          ],
+          "talk_to_guildford_1": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "explore_hub": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "explore_village": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "hub_talk_to_wizard": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "paint_canvas": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_artist_1": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_auction_master": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_banker": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_blacksmith": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_carpenter": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_fairy": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_farmer": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_fisherman_1": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_librarian": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_lumberjack": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_pet_collector": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          },
+          "talk_to_pet_sitter": {
+            "status": "ACTIVE",
+            "progress": 0,
+            "completed_at": 0
+          }
+        },
+        "inventory": {
+          "inv_contents": {
+            "type": 0,
+            "data": "H4sIAAAAAAAA/32Qy0rDUBCGJ71oEhBx4crNKYgodO/axorQG1gUXMkxGcPQyTnhXNA8RR8j75EHE0+Luuy/nPn4P2ZSgAQiSgHgEn7Tgx4V0TaCYaa9clEKfSfLPiSPVOADy9IG6DuF44JszbJJYDDXBuMwHcJV196+EH4KySz0h2i0N2K9aSas842ojS4NWjvec6Ry9gWp8o8iZjsWmWbG3JFWgTsP3BPmVGPYSFWIKqhGQXXWtZgxhVKnha5RjWIYLGWFcNG18t+4QOVF6LjeszeQwun0yxl555yhd+/Qxrtz4WQ9e53MV9nsbTFdPu+ecHQvK1kiHM4PoEne8UEBAAA="
+          },
+          "inv_armor": {
+            "type": 0,
+            "data": "H4sIAAAAAAAA/+NiYOBkYMzkYmBgYGEAAQCp5xppEQAAAA=="
+          },
+          "equipment_contents": {
+            "type": 0,
+            "data": "H4sIAAAAAAAA/+NiYOBkYMzkYmBgYGEAAQCp5xppEQAAAA=="
+          },
+          "personal_vault_contents": {
+            "type": 0,
+            "data": "H4sIAAAAAAAA/+NiYOBkYMzkYmBgkGbAAwDRO+YPKAAAAA=="
+          },
+          "wardrobe_equipped_slot": -1,
+          "sacks_counts": {},
+          "wardrobe_contents": {
+            "type": 0,
+            "data": "H4sIAAAAAAAA/+NiYOBkYMzkYmBg8GCgFgAArkGN1lUAAAA="
+          }
+        }
+      }
+    },
+    "cute_name": "Raspberry",
+    "selected": true
+  }
+]

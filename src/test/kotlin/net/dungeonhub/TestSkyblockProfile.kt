@@ -4,8 +4,11 @@ import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.entities.*
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.time.Instant
-import java.util.UUID
+import java.util.*
+import kotlin.io.path.name
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -41,7 +44,7 @@ class TestSkyblockProfile {
 
     @Test
     fun testProfileGameModes() {
-        val fullProfilesJson = TestHelper.readFile("full_skyblock_profiles.json")
+        val fullProfilesJson = TestHelper.readFile("full-profiles/full_skyblock_profiles.json")
 
         val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
 
@@ -54,16 +57,20 @@ class TestSkyblockProfile {
 
     @Test
     fun testFullProfile() {
-        val fullProfilesJson = TestHelper.readFile("full_skyblock_profiles.json")
+        val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
 
-        val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+        for (file in Files.list(Paths.get(profilesDirectory))) {
+            val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
 
-        for(fullProfileJson in fullProfiles) {
-            val fullProfile = fullProfileJson.toSkyblockProfile()
+            val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
 
-            assertNotNull(fullProfile)
+            for (fullProfileJson in fullProfiles) {
+                val fullProfile = fullProfileJson.toSkyblockProfile()
 
-            assertNotNull(fullProfile.cuteName)
+                assertNotNull(fullProfile)
+
+                assertNotNull(fullProfile.cuteName)
+            }
         }
     }
 
@@ -90,16 +97,22 @@ class TestSkyblockProfile {
             "c028e7cc-708f-4f53-b835-9c681c61cd1c" to 0
         )
 
-        val fullProfilesJson = TestHelper.readFile("full_skyblock_profiles.json")
+        val fullProfilesJson = TestHelper.readFile("full-profiles/full_skyblock_profiles.json")
 
         val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
 
-        for(fullProfileJson in fullProfiles) {
+        for (fullProfileJson in fullProfiles) {
             val fullProfile = fullProfileJson.toSkyblockProfile()
 
             assertEquals(currentMembers[fullProfile.profileId.toString()], fullProfile.currentMembers.size)
-            assertEquals(pastMembers[fullProfile.profileId.toString()], fullProfile.members.filterIsInstance<PastMember>().size)
-            assertEquals(pendingMembers[fullProfile.profileId.toString()], fullProfile.members.filterIsInstance<PendingMember>().size)
+            assertEquals(
+                pastMembers[fullProfile.profileId.toString()],
+                fullProfile.members.filterIsInstance<PastMember>().size
+            )
+            assertEquals(
+                pendingMembers[fullProfile.profileId.toString()],
+                fullProfile.members.filterIsInstance<PendingMember>().size
+            )
         }
     }
 
@@ -124,18 +137,18 @@ class TestSkyblockProfile {
             KnownSkill.Social to 16
         )
 
-        val fullProfilesJson = TestHelper.readFile("full_skyblock_profiles.json")
+        val fullProfilesJson = TestHelper.readFile("full-profiles/full_skyblock_profiles.json")
 
         val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
 
         var checkHappened = false
 
-        for(fullProfileJson in fullProfiles) {
+        for (fullProfileJson in fullProfiles) {
             val fullProfile = fullProfileJson.toSkyblockProfile()
 
-            if(fullProfile.profileId == profileToCheck) {
-                for(member in fullProfile.members) {
-                    if(member.uuid == memberToCheck) {
+            if (fullProfile.profileId == profileToCheck) {
+                for (member in fullProfile.members) {
+                    if (member.uuid == memberToCheck) {
                         checkHappened = true
 
                         assertTrue(member.playerData != null && member.playerData!!.experience != null)

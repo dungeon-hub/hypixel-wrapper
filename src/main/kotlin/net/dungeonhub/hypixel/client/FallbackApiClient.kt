@@ -5,8 +5,7 @@ import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.hypixel.api.reply.PlayerReply
 import java.util.*
 
-//TODO add tests if values expire correctly
-class FallbackApiClient(val first: ApiClientWithCache, val second: ApiClient, var expiresAfterMinutes: Int = 5) :
+class FallbackApiClient(val first: ApiClientWithCache, val second: ApiClient, val expiresAfterMinutes: Int = 5) :
     ApiClient {
     override fun getPlayerData(uuid: UUID): PlayerReply.Player? =
         (if (first.playerDataCache.isExpired(uuid)) null else first.getPlayerData(uuid)) ?: second.getPlayerData(uuid)
@@ -14,6 +13,10 @@ class FallbackApiClient(val first: ApiClientWithCache, val second: ApiClient, va
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? =
         (if (first.skyblockProfilesCache.isExpired(uuid)) null else first.getSkyblockProfiles(uuid))
             ?: second.getSkyblockProfiles(uuid)
+
+    fun withCacheExpiration(minutes: Int): FallbackApiClient {
+        return FallbackApiClient(first, second, minutes)
+    }
 
     private fun <T : Any> Cache<T, UUID>.isExpired(uuid: UUID): Boolean {
         return first.isExpired(this, uuid, expiresAfterMinutes)

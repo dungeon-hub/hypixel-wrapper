@@ -9,4 +9,4 @@ class PendingMember(
     override val leveling: MemberLeveling,
     override val slayer: MemberSlayerData?,
     override val raw: JsonObject
-) : SkyblockProfileMember(uuid, profile, leveling, null, slayer, raw)
+) : SkyblockProfileMember(uuid, "pending", profile, leveling, null, slayer, raw)

@@ -10,9 +10,9 @@ import kotlin.io.path.exists
 
 object DiskCacheApiClient : ApiClientWithCache {
     override val playerDataCache =
-        DiskHistoryCache(object : TypeToken<CacheElement<PlayerReply.Player>>() {}) { it.uuid }
+        DiskHistoryCache("player-data", object : TypeToken<CacheElement<PlayerReply.Player>>() {}) { it.uuid }
     override val skyblockProfilesCache =
-        DiskHistoryCache(object : TypeToken<CacheElement<SkyblockProfiles>>() {}) { it.owner }
+        DiskHistoryCache("skyblock-profiles", object : TypeToken<CacheElement<SkyblockProfiles>>() {}) { it.owner }
 
     fun clearCache() {
         val cacheDirectory = Path.of(DiskHistoryCache.cacheDirectory)
