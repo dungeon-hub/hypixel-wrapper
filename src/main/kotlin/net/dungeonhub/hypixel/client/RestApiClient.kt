@@ -8,7 +8,13 @@ import java.util.*
 
 object RestApiClient : ApiClient {
     override fun getPlayerData(uuid: UUID): PlayerReply.Player? {
-        return HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
+        val player = HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
+
+        if(player?.uuid == null) {
+            return null
+        }
+
+        return player
     }
 
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles {
