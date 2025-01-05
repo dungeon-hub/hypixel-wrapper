@@ -6,12 +6,15 @@ import me.nullicorn.nedit.type.NBTCompound
 
 class InventoryContent(
     val type: Int,
+    val data: String
+) {
     val items: List<InventoryItemStack?>
-)
+        get() = NBTReader.readBase64(data).getList("i").map { (it as NBTCompound).toInventoryItem() }
+}
 
 fun JsonObject.toInventoryContentData(): InventoryContent {
     return InventoryContent(
         getAsJsonPrimitive("type").asInt,
-        NBTReader.readBase64(getAsJsonPrimitive("data").asString).getList("i").map { (it as NBTCompound).toInventoryItem() }
+        getAsJsonPrimitive("data").asString
     )
 }

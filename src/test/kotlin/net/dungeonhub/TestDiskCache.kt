@@ -4,6 +4,9 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
+import net.dungeonhub.hypixel.entities.SkyblockProfile
+import net.dungeonhub.provider.GsonProvider
+import net.dungeonhub.service.TestHelper
 import net.hypixel.api.reply.PlayerReply.Player
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -34,7 +37,7 @@ class TestDiskCache {
             assertNull(apiClient.getPlayerData(pair.first))
         }
 
-        for(pair in links) {
+        for (pair in links) {
             assertNull(apiClient.getHypixelLinkedDiscord(pair.first))
         }
 
@@ -52,18 +55,32 @@ class TestDiskCache {
             assertNotNull(apiClient.getPlayerData(pair.first))
         }
 
-        for(pair in links) {
+        for (pair in links) {
             assertEquals(apiClient.getHypixelLinkedDiscord(pair.first), pair.second)
         }
 
         assertEquals(apiClient.playerDataCache.retrieveAllElements().count(), 2)
     }
 
+    @Test
+    fun testSerialization() {
+        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
+            for (profile in skyblockProfiles) {
+                val profileJson = GsonProvider.gson.toJson(profile)
+
+                val profileFromJson = GsonProvider.gson.fromJson(profileJson, SkyblockProfile::class.java)
+
+                assertNotNull(profileFromJson)
+            }
+        }
+    }
+
     companion object {
         @JvmStatic
         @BeforeAll
         fun build() {
-            DiskHistoryCache.cacheDirectory = "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-test"
+            DiskHistoryCache.cacheDirectory =
+                "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-test"
         }
 
         @JvmStatic

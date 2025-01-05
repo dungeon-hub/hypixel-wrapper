@@ -3,7 +3,6 @@ package net.dungeonhub.hypixel.entities
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import net.dungeonhub.hypixel.entities.KnownCurrencyTypes.Companion.toCurrencyType
-import net.dungeonhub.hypixel.entities.KnownEssenceType.Companion.toEssenceType
 import net.dungeonhub.hypixel.entities.inventory.toMemberInventoryData
 import net.dungeonhub.mojang.entity.toUUIDUnsafe
 import net.dungeonhub.provider.GsonProvider
@@ -78,7 +77,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.firstOrNull { currency -> currency.key == "essence" }?.value?.asJsonObject?.entrySet()
                 ?.associate { essence ->
-                    essence.key.toEssenceType() to (essence.value.asJsonObject.getAsJsonPrimitiveOrNull("current")?.asInt
+                    KnownEssenceType.fromApiName(essence.key) to (essence.value.asJsonObject.getAsJsonPrimitiveOrNull("current")?.asInt
                         ?: 0)
                 } ?: emptyMap(),
             it.value.asJsonObject.getAsJsonObjectOrNull("dungeons")?.toDungeonsData(),

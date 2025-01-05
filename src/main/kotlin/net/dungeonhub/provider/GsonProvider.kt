@@ -21,6 +21,7 @@ object GsonProvider {
         .registerTypeAdapter(Skill::class.java, SkillDeserializer())
         .registerTypeAdapter(CurrencyType::class.java, CurrencyDeserializer())
         .registerTypeAdapter(DungeonType::class.java, DungeonTypeDeserializer())
+        .registerTypeAdapter(EssenceType::class.java, EssenceTypeDeserializer())
         .setExclusionStrategies(SuperClassExclusionStrategies(SkyblockProfileMember::class.java))
         .create()
 
@@ -58,6 +59,12 @@ object GsonProvider {
     private class DungeonTypeDeserializer : JsonDeserializer<DungeonType> {
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): DungeonType {
             return KnownDungeonType.fromApiName(json!!.asString)
+        }
+    }
+
+    private class EssenceTypeDeserializer : JsonDeserializer<EssenceType> {
+        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): EssenceType {
+            return KnownEssenceType.fromApiName(json!!.asString)
         }
     }
 
