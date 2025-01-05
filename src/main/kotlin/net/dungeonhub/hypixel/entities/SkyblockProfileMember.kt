@@ -3,6 +3,7 @@ package net.dungeonhub.hypixel.entities
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import net.dungeonhub.hypixel.entities.KnownCurrencyTypes.Companion.toCurrencyType
+import net.dungeonhub.hypixel.entities.KnownEssenceType.Companion.toEssenceType
 import net.dungeonhub.mojang.entity.toUUIDUnsafe
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
@@ -70,12 +71,17 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
             it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
-                ?.filter { currency -> currency.key != "essence" }?.map { currency ->
+                ?.filter { currency -> currency.key != "essence" }?.associate { currency ->
                     currency.key.toCurrencyType() to currency.value.asBigDecimal
-                } ?: listOf(KnownCurrencyTypes.Coins to BigDecimal.ZERO),
+                } ?: mapOf(KnownCurrencyTypes.Coins to BigDecimal.ZERO),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
-                ?.firstOrNull { currency -> currency.key == "essence" }?.value?.asJsonObject,
+                ?.firstOrNull { currency -> currency.key == "essence" }?.value?.asJsonObject?.entrySet()
+                ?.associate { essence ->
+                    essence.key.toEssenceType() to (essence.value.asJsonObject.getAsJsonPrimitiveOrNull("current")?.asInt
+                        ?: 0)
+                } ?: emptyMap(),
             it.value.asJsonObject.getAsJsonObjectOrNull("dungeons")?.toDungeonsData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("fairy_soul")?.toFairySoulData(),
             this
         )
     }
