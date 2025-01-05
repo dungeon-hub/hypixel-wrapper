@@ -42,8 +42,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                 profileData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
                     ?: defaultLeveling,
-                it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData()
-                    ?: MemberPlayerData(null, null, null, JsonObject()),
+                it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
                 this
             )
@@ -68,7 +67,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             profileData,
             it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
                 ?: defaultLeveling,
-            it.value.asJsonObject.getAsJsonObject("player_data").toPlayerData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
             it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.filter { currency -> currency.key != "essence" }?.map { currency ->
@@ -86,3 +85,4 @@ private val defaultLeveling = MemberLeveling(
     0,
     JsonParser.parseString("{\"experience\":0}").asJsonObject
 )
+private val defaultPlayerData = MemberPlayerData(null, null, null, JsonObject())
