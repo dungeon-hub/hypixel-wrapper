@@ -4,6 +4,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import net.dungeonhub.hypixel.entities.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.hypixel.entities.KnownEssenceType.Companion.toEssenceType
+import net.dungeonhub.hypixel.entities.inventory.toMemberInventoryData
 import net.dungeonhub.mojang.entity.toUUIDUnsafe
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
@@ -81,7 +82,9 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                         ?: 0)
                 } ?: emptyMap(),
             it.value.asJsonObject.getAsJsonObjectOrNull("dungeons")?.toDungeonsData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("accessory_bag_storage")?.toAccessoryBagStorage(),
             it.value.asJsonObject.getAsJsonObjectOrNull("fairy_soul")?.toFairySoulData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("inventory")?.toMemberInventoryData(),
             this
         )
     }

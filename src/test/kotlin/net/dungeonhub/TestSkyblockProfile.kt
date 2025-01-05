@@ -2,6 +2,7 @@ package net.dungeonhub
 
 import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.entities.*
+import net.dungeonhub.hypixel.entities.inventory.InventoryItemStack
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import java.nio.file.Files
@@ -170,5 +171,122 @@ class TestSkyblockProfile {
         }
 
         assertTrue(checkHappened)
+    }
+
+    @Test
+    fun testMagicalPower() {
+        val memberToCheck = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
+
+        val fullProfilesJson = TestHelper.readFile("full-profiles/full_skyblock_profiles.json")
+
+        val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+
+        val highestMagicalPower = fullProfiles.map { it.toSkyblockProfile() }
+            .maxOf { it.getCurrentMember(memberToCheck)!!.accessoryBag?.highestMagicalPower ?: 0 }
+
+        assertEquals(1469, highestMagicalPower)
+    }
+
+    @Test
+    fun testFairySouls() {
+        val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
+
+        for (file in Files.list(Paths.get(profilesDirectory))) {
+            val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
+
+            val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+
+            for (fullProfileJson in fullProfiles) {
+                val fullProfile = fullProfileJson.toSkyblockProfile()
+
+                fullProfile.members.filterIsInstance<CurrentMember>().mapNotNull { it.fairySoulData }.forEach {
+                    assertEquals(it.unspentSouls, it.totalCollected - it.totalExchanged)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun testNbtParsing() {
+        val profileToCheck = UUID.fromString("529bddd9-3d7a-4277-9fe7-4e6aae86813d")
+
+        val memberToCheck = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
+
+        val fullProfilesJson = TestHelper.readFile("full-profiles/full_skyblock_profiles.json")
+
+        val fullProfiles =
+            GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList().map { it.toSkyblockProfile() }
+
+        val member = fullProfiles.first { it.profileId == profileToCheck }.getCurrentMember(memberToCheck)
+
+        assertNotNull(member)
+        assertNotNull(member.inventory)
+        assertNotNull(member.inventory!!.enderChestContent)
+        assertNotNull(member.inventory!!.armor)
+        assertNotNull(member.inventory!!.equipment)
+        assertNotNull(member.inventory!!.personalVault)
+        assertNotNull(member.inventory!!.equippedWardrobeSlot)
+        assertNotNull(member.inventory!!.wardrobeContents)
+
+        assertEquals("Heroic Hyperion ✪✪✪✪✪➌", member.inventory!!.inventoryContents.items.filterNotNull().first().rawName)
+        assertEquals("Abiphone XII Mega", member.inventory!!.inventoryContents.items.filterNotNull().last().rawName)
+    }
+
+    @Test
+    fun testItemNameParsing() {
+        for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
+            for (fullProfile in fullProfiles) {
+                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
+                    if(member.inventory != null) {
+                        val inventory = member.inventory!!
+
+                        checkItems(inventory.inventoryContents.items.filterNotNull())
+                        checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
+                        inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                    }
+                }
+            }
+        }
+    }
+
+    fun checkItems(items: List<InventoryItemStack>) {
+        for (item in items) {
+            assertNotNull(item.name)
+            assertNotNull(item.rawName)
+        }
+    }
+
+    @Test
+    fun checkSkyblockMenuPresence() {
+        val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
+
+        for (file in Files.list(Paths.get(profilesDirectory))) {
+            val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
+
+            val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+
+            for (fullProfileJson in fullProfiles) {
+                val fullProfile = fullProfileJson.toSkyblockProfile()
+
+                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
+                    if(member.inventory != null) {
+                        val inventoryContent = member.inventory!!.inventoryContents.items
+
+                        val skyblockMenu = inventoryContent[8]
+
+                        if(skyblockMenu != null) {
+                            assertEquals("§aSkyBlock Menu §7(Click)", skyblockMenu.name)
+                            assertEquals("SkyBlock Menu (Click)", skyblockMenu.rawName)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
