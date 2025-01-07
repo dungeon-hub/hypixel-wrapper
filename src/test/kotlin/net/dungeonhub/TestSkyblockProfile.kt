@@ -1,19 +1,18 @@
 package net.dungeonhub
 
 import com.google.gson.JsonArray
+import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.entities.*
 import net.dungeonhub.hypixel.entities.inventory.InventoryItemStack
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
+import org.mockito.kotlin.*
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.time.Instant
 import java.util.*
 import kotlin.io.path.name
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class TestSkyblockProfile {
     @Test
@@ -228,7 +227,10 @@ class TestSkyblockProfile {
         assertNotNull(member.inventory!!.equippedWardrobeSlot)
         assertNotNull(member.inventory!!.wardrobeContents)
 
-        assertEquals("Heroic Hyperion ✪✪✪✪✪➌", member.inventory!!.inventoryContents!!.items.filterNotNull().first().rawName)
+        assertEquals(
+            "Heroic Hyperion ✪✪✪✪✪➌",
+            member.inventory!!.inventoryContents!!.items.filterNotNull().first().rawName
+        )
         assertEquals("Abiphone XII Mega", member.inventory!!.inventoryContents!!.items.filterNotNull().last().rawName)
     }
 
@@ -237,7 +239,7 @@ class TestSkyblockProfile {
         for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (fullProfile in fullProfiles) {
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if(member.inventory != null) {
+                    if (member.inventory != null) {
                         val inventory = member.inventory!!
 
                         checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
@@ -275,18 +277,46 @@ class TestSkyblockProfile {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if(member.inventory != null) {
+                    if (member.inventory != null && member.inventory?.inventoryContents != null) {
                         val inventoryContent = member.inventory!!.inventoryContents?.items!!
 
                         val skyblockMenu = inventoryContent[8]
 
-                        if(skyblockMenu != null) {
-                            assertEquals("§aSkyBlock Menu §7(Click)", skyblockMenu.name)
-                            assertEquals("SkyBlock Menu (Click)", skyblockMenu.rawName)
+                        if (skyblockMenu != null) {
+                            //apparently some profiles still exist with this outdated item name :/
+                            if(skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
+                                assertEquals("§aSkyBlock Menu §7(Right Click)", skyblockMenu.name)
+                                assertEquals("SkyBlock Menu (Right Click)", skyblockMenu.rawName)
+                            } else {
+                                assertEquals("§aSkyBlock Menu §7(Click)", skyblockMenu.name)
+                                assertEquals("SkyBlock Menu (Click)", skyblockMenu.rawName)
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    @Test
+    fun testNullResponse() {
+        val uuid = UUID.fromString("4f326809-7578-47e3-bd75-a21b9470d333")
+
+        assertNull(nullResponseClient.fetchSkyblockProfiles(uuid))
+
+        val profiles = nullResponseClient.getSkyblockProfiles(uuid)
+
+        assertNotNull(profiles)
+        assertEquals(uuid, profiles.owner)
+        assertEquals(0, profiles.profiles.size)
+    }
+
+    companion object {
+        private val nullResponseClient: RestApiClient
+            get() {
+                val client = spy(RestApiClient)
+                doReturn(null).whenever(client).fetchSkyblockProfiles(any())
+                return client
+            }
     }
 }

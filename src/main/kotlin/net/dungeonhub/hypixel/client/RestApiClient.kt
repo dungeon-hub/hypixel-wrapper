@@ -1,5 +1,6 @@
 package net.dungeonhub.hypixel.client
 
+import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.connection.HypixelConnection
 import net.dungeonhub.hypixel.entities.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.toSkyblockProfile
@@ -21,9 +22,13 @@ object RestApiClient : ApiClient {
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles {
         return SkyblockProfiles(
             uuid,
-            HypixelConnection.hypixelApi.getSkyBlockProfiles(uuid).join().profiles?.asList()?.map {
+            fetchSkyblockProfiles(uuid)?.asList()?.map {
                 it.toSkyblockProfile()
             } ?: emptyList()
         )
+    }
+
+    fun fetchSkyblockProfiles(uuid: UUID): JsonArray? {
+        return HypixelConnection.hypixelApi.getSkyBlockProfiles(uuid).join().profiles
     }
 }
