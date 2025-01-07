@@ -228,8 +228,8 @@ class TestSkyblockProfile {
         assertNotNull(member.inventory!!.equippedWardrobeSlot)
         assertNotNull(member.inventory!!.wardrobeContents)
 
-        assertEquals("Heroic Hyperion ✪✪✪✪✪➌", member.inventory!!.inventoryContents.items.filterNotNull().first().rawName)
-        assertEquals("Abiphone XII Mega", member.inventory!!.inventoryContents.items.filterNotNull().last().rawName)
+        assertEquals("Heroic Hyperion ✪✪✪✪✪➌", member.inventory!!.inventoryContents!!.items.filterNotNull().first().rawName)
+        assertEquals("Abiphone XII Mega", member.inventory!!.inventoryContents!!.items.filterNotNull().last().rawName)
     }
 
     @Test
@@ -240,7 +240,7 @@ class TestSkyblockProfile {
                     if(member.inventory != null) {
                         val inventory = member.inventory!!
 
-                        checkItems(inventory.inventoryContents.items.filterNotNull())
+                        checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
                         checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
                         inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
                         inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
@@ -276,7 +276,7 @@ class TestSkyblockProfile {
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
                     if(member.inventory != null) {
-                        val inventoryContent = member.inventory!!.inventoryContents.items
+                        val inventoryContent = member.inventory!!.inventoryContents?.items!!
 
                         val skyblockMenu = inventoryContent[8]
 
