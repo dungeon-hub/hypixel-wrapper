@@ -29,7 +29,7 @@ fun JsonObject.toMemberInventoryData(): MemberInventory {
             ?.associate { it.key to it.value.asJsonObject.toInventoryContentData() } ?: emptyMap(),
         getAsJsonObjectOrNull("inv_armor")?.toInventoryContentData(),
         getAsJsonObjectOrNull("equipment_contents")?.toInventoryContentData(),
-        getAsJsonObject("personal_vault_contents").toInventoryContentData(),
+        getAsJsonObjectOrNull("personal_vault_contents")?.toInventoryContentData(),
         getAsJsonPrimitiveOrNull("wardrobe_equipped_slot")?.asInt,
         getAsJsonObject("backpack_contents")?.entrySet()
             ?.associate { it.key.toInt() to it.value.asJsonObject.toInventoryContentData() } ?: emptyMap(),
