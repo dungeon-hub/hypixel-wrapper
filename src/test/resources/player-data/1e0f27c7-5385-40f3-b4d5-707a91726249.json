@@ -1,0 +1,110 @@
+{
+  "_id": "641c8f79ed1b1f213d897a6a",
+  "uuid": "1e0f27c7538540f3b4d5707a91726249",
+  "displayname": "DHBridge",
+  "firstLogin": 1679593337048,
+  "lastLogin": 1719845573701,
+  "playername": "dhbridge",
+  "achievementsOneTime": [
+    "general_first_join",
+    "general_first_chat",
+    "general_first_party",
+    "general_first_friend",
+    "skyblock_your_big_break",
+    "skyblock_your_adventure_begins",
+    "general_youtuber",
+    "easter_happy_easter_2024"
+  ],
+  "stats": {
+    "HungerGames": {
+      "lastTourneyAd": 1679593338412
+    },
+    "SkyBlock": {
+      "profiles": {
+        "b3e8eafdd19a486284ae943a4bff3468": {
+          "profile_id": "b3e8eafdd19a486284ae943a4bff3468",
+          "cute_name": "Cucumber"
+        }
+      }
+    },
+    "Arcade": {
+      "coins": 10000
+    },
+    "Walls3": {
+      "classes": {
+        "enderman": {
+          "skill_level_d": 1,
+          "unlocked": false,
+          "skill_level_dChecked5": true,
+          "checked4": true
+        },
+        "zombie": {
+          "skill_level_d": 1,
+          "unlocked": false,
+          "skill_level_dChecked5": true,
+          "checked4": true
+        },
+        "skeleton": {
+          "skill_level_d": 1,
+          "skill_level_dChecked5": true,
+          "checked4": true,
+          "unlocked": false
+        },
+        "herobrine": {
+          "skill_level_d": 1,
+          "unlocked": false,
+          "checked4": true,
+          "skill_level_dChecked5": true
+        }
+      },
+      "packages": [
+        "legacy_achievement_a",
+        "cakes_fix_flag_2",
+        "achievement_fix_flag",
+        "cakes_count_fix_flag",
+        "convertedstats"
+      ]
+    },
+    "WoolGames": {
+      "lastTourneyAd": 1694188977850
+    },
+    "Bedwars": {
+      "lastTourneyAd": 1698006042112
+    },
+    "TNTGames": {
+      "lastTourneyAd": 1710710198926
+    },
+    "SkyWars": {
+      "lastTourneyAd": 1719030470412
+    }
+  },
+  "lastLogout": 1719845576210,
+  "achievementPoints": 50,
+  "mostRecentGameType": "PROTOTYPE",
+  "achievementTracking": [],
+  "achievements": {
+    "skyblock_minion_lover": 1,
+    "walls3_jack_of_all_trades": 3
+  },
+  "leveling": {
+    "claimedRewards": [
+      0
+    ]
+  },
+  "petConsumables": {
+    "APPLE": 1,
+    "BAKED_POTATO": 1,
+    "BREAD": 1,
+    "CARROT_ITEM": 1,
+    "FEATHER": 1,
+    "GOLD_RECORD": 1,
+    "LAVA_BUCKET": 5,
+    "MILK_BUCKET": 2,
+    "PUMPKIN_PIE": 1,
+    "RED_ROSE": 3,
+    "SLIME_BALL": 4,
+    "STICK": 2,
+    "WATER_BUCKET": 2,
+    "WOOD_SWORD": 2
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "_id": "6682e5d0d908bd58096d2289",
+  "uuid": "b1109faf72254f0b8e42e4d1ed3bdada",
+  "displayname": "DHMain",
+  "firstLogin": 1719854544015,
+  "lastLogin": 1736556972054,
+  "playername": "dhmain",
+  "achievementsOneTime": [
+    "general_first_join",
+    "general_first_friend",
+    "general_youtuber",
+    "general_vip"
+  ],
+  "lastLogout": 1736556583809,
+  "newPackageRank": "VIP"
+}

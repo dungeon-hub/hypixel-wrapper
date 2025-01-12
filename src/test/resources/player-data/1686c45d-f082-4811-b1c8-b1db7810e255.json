@@ -1,0 +1,519 @@
+{
+  "_id": "65849f16ed1b1f213d3d3ec9",
+  "uuid": "1686c45df0824811b1c8b1db7810e255",
+  "displayname": "SirDowntime",
+  "firstLogin": 1703190294281,
+  "lastLogin": 1729659396301,
+  "playername": "sirdowntime",
+  "achievementsOneTime": [
+    "general_first_join",
+    "skyblock_your_adventure_begins",
+    "general_first_chat",
+    "general_first_friend",
+    "general_first_party",
+    "skyblock_businessman",
+    "skyblock_combined_efforts",
+    "skyblock_production_expanded",
+    "skyblock_accessories_galore",
+    "skyblock_deep_storage",
+    "skyblock_cleanup_crew",
+    "skyblock_time_to_go_on_vacation",
+    "skyblock_super_fuel",
+    "skyblock_advanced_transportation",
+    "skyblock_quite_the_crowd",
+    "skyblock_your_big_break",
+    "skyblock_fully_evolved",
+    "skyblock_heart_of_the_end",
+    "duels_trial_by_combat",
+    "duels_one_v_one_me",
+    "general_first_game",
+    "arcade_dropper_fast_way_down",
+    "arcade_trampolinio_red_wool",
+    "buildbattle_over_99",
+    "buildbattle_teamwork",
+    "murdermystery_win_survivor_due_to_time",
+    "easter_happy_easter_2024",
+    "skyblock_fancy_farming",
+    "skyblock_mass_production"
+  ],
+  "karma": 91050,
+  "stats": {
+    "Arcade": {
+      "coins": 67398,
+      "dropper": {
+        "fails": 20,
+        "games_played": 1,
+        "map_stats": {
+          "launchzone": {
+            "best_time": 59640,
+            "completions": 1
+          },
+          "sewer": {
+            "best_time": 18425,
+            "completions": 1
+          },
+          "space": {
+            "best_time": 8226,
+            "completions": 1
+          }
+        },
+        "maps_completed": 3
+      },
+      "anvil_spleef_best_time_party": 35759,
+      "bombardment_best_time_party": 46259,
+      "hoe_hoe_hoe_best_score_party": 59,
+      "hoe_hoe_hoe_total_score_party": 59,
+      "minecart_racing_best_time_party": 28009,
+      "minecart_racing_round_wins_party": 1,
+      "round_wins_party": 3,
+      "total_stars_party": 10,
+      "trampolinio_round_wins_party": 1,
+      "volcano_round_wins_party": 1,
+      "pixel_party": {
+        "games_played": 1,
+        "games_played_hyper": 1,
+        "highest_round": 15,
+        "rounds_completed": 15,
+        "rounds_completed_hyper": 15
+      }
+    },
+    "MCGO": {
+      "coins": 1245
+    },
+    "Battleground": {
+      "coins": 1185
+    },
+    "SkyWars": {
+      "coins": 2340,
+      "lucky_explained": 2,
+      "lucky_explained_last": 1710001867067,
+      "levelFormattedWithBrackets": "§7[1⋆] ",
+      "levelFormatted": "§71⋆",
+      "games_played_skywars": 2,
+      "blocks_broken_lab": 18,
+      "blocks_placed_lab": 22,
+      "chests_opened_lab": 4,
+      "chests_opened_lab_kit_mining_team_default": 4,
+      "chests_opened_lab_team": 4,
+      "coins_gained_lab": 810,
+      "deaths_lab": 2,
+      "deaths_lab_kit_mining_team_default": 2,
+      "deaths_lab_team": 2,
+      "games_lab": 2,
+      "games_lab_kit_mining_team_default": 2,
+      "games_lab_team": 2,
+      "lastMode": "TEAMS",
+      "losses_lab": 2,
+      "losses_lab_kit_mining_team_default": 2,
+      "losses_lab_team": 2,
+      "survived_players_lab": 9,
+      "survived_players_lab_kit_mining_team_default": 9,
+      "survived_players_lab_team": 9,
+      "time_played_lab": 166,
+      "time_played_lab_kit_mining_team_default": 166,
+      "time_played_lab_team": 166,
+      "win_streak_lab": 0,
+      "perkslot": {
+        "normal": {
+          "3": "solo_fat",
+          "2": "solo_savior",
+          "1": "solo_resistance_boost"
+        },
+        "insane": {
+          "1": "team_resistance_boost",
+          "2": "team_savior",
+          "3": "team_fat"
+        }
+      },
+      "toggle_solo_frost": false,
+      "toggle_solo_lucky_charm": false,
+      "solo_fat": 0,
+      "solo_savior": 0,
+      "toggle_solo_annoy-o-mite": false,
+      "toggle_solo_knowledge": false,
+      "toggle_solo_resistance_boost": true,
+      "toggle_solo_mining_expertise": false,
+      "souls": 10,
+      "toggle_solo_blazing_arrows": false,
+      "toggle_solo_arrow_recovery": false,
+      "toggle_mega_black_magic": false,
+      "toggle_mega_lucky_charm": false,
+      "packages": [
+        "update_solo_team_kits_and_perks",
+        "update_solo_team_kits2",
+        "update_solo_team_perk_levels",
+        "update_opals_prestige",
+        "update_shard_removal",
+        "update_shard_removal_bedrock",
+        "angels_descent_tree_2022"
+      ],
+      "toggle_mega_nourishment": false,
+      "toggle_mega_notoriety": false,
+      "toggle_mega_tank": false,
+      "toggle_mega_mining_expertise": false,
+      "toggle_team_diamondpiercer": false,
+      "toggle_ranked_armorer_perk": false,
+      "toggle_team_necromancer": false,
+      "toggle_ranked_bowman_perk": false,
+      "toggle_team_fat": true,
+      "team_fat": 0,
+      "toggle_team_marksmanship": false,
+      "toggle_ranked_champion_perk": false,
+      "toggle_team_savior": true,
+      "toggle_ranked_magician_perk": false,
+      "toggle_team_annoy-o-mite": false,
+      "toggle_ranked_scout_perk": false,
+      "toggle_team_speed_boost": false,
+      "toggle_team_resistance_boost": true,
+      "team_resistance_boost": 0,
+      "toggle_team_blazing_arrows": false,
+      "toggle_ranked_athlete_perk": false,
+      "toggle_ranked_blacksmith_perk": false,
+      "toggle_ranked_healer_perk": false,
+      "toggle_ranked_tough_skin": false,
+      "toggle_ranked_rusher": false,
+      "toggle_ranked_mining_expertise": false,
+      "toggle_ranked_pyromancer_perk": false,
+      "toggle_ranked_hound_perk": false,
+      "toggle_ranked_paladin_perk": false,
+      "toggle_ranked_arrow_recovery": false,
+      "toggle_ranked_blazing_arrows": false,
+      "toggle_ranked_last_stand": false,
+      "toggle_ranked_bridger": false,
+      "toggle_ranked_environmental_expert": false,
+      "toggle_team_arrow_recovery": false,
+      "toggle_team_mining_expertise": false,
+      "toggle_team_knowledge": false,
+      "team_savior": 0,
+      "toggle_team_nourishment": false,
+      "toggle_team_bridger": false,
+      "toggle_team_environmental_expert": false,
+      "toggle_team_lucky_charm": false,
+      "toggle_team_black_magic": false,
+      "toggle_team_robbery": false,
+      "toggle_team_frost": false,
+      "toggle_team_barbarian": false,
+      "toggle_mega_arrow_recovery": false,
+      "toggle_mega_blazing_arrows": false,
+      "toggle_mega_rusher": false,
+      "toggle_mega_marksmanship": false,
+      "toggle_mega_bridger": false,
+      "toggle_mega_environmental_expert": false,
+      "toggle_mega_necromancer": false,
+      "toggle_solo_marksmanship": false,
+      "solo_resistance_boost": 0,
+      "toggle_solo_speed_boost": false,
+      "toggle_solo_savior": true,
+      "toggle_solo_nourishment": false,
+      "toggle_solo_revenge": false,
+      "toggle_solo_fat": true,
+      "toggle_solo_bridger": false,
+      "toggle_solo_environmental_expert": false,
+      "toggle_solo_necromancer": false,
+      "toggle_solo_black_magic": false,
+      "toggle_solo_robbery": false,
+      "toggle_solo_barbarian": false,
+      "arrows_hit_lab": 1,
+      "arrows_hit_lab_kit_mining_team_default": 1,
+      "arrows_hit_lab_team": 1,
+      "arrows_shot_lab": 3,
+      "arrows_shot_lab_kit_mining_team_default": 3,
+      "arrows_shot_lab_team": 3,
+      "longest_bow_shot_lab": 15,
+      "longest_bow_shot_lab_kit_mining_team_default": 15,
+      "longest_bow_shot_lab_team": 15
+    },
+    "UHC": {
+      "coins": 1320
+    },
+    "HungerGames": {
+      "coins": 1245
+    },
+    "Walls3": {
+      "coins": 1530
+    },
+    "TNTGames": {
+      "coins": 1350,
+      "lastTourneyAd": 1709997538473
+    },
+    "SuperSmash": {
+      "coins": 1200
+    },
+    "Arena": {
+      "coins": 1485
+    },
+    "GingerBread": {
+      "coins": 1485
+    },
+    "Paintball": {
+      "coins": 1485
+    },
+    "Quake": {
+      "coins": 1485
+    },
+    "VampireZ": {
+      "coins": 1485
+    },
+    "Walls": {
+      "coins": 1485
+    },
+    "SkyBlock": {
+      "profiles": {
+        "1291a129709648488bc21043ece743e7": {
+          "profile_id": "1291a129-7096-4848-8bc2-1043ece743e7",
+          "cute_name": "Zucchini"
+        },
+        "c028e7cc708f4f53b8359c681c61cd1c": {
+          "profile_id": "c028e7cc-708f-4f53-b835-9c681c61cd1c",
+          "cute_name": "Pomegranate"
+        }
+      }
+    },
+    "Bedwars": {
+      "bedwars_christmas_boxes": 0,
+      "packages": [
+        "islandtopper_flame",
+        "killmessages_festive",
+        "glyph_lol",
+        "glyph_candy_cane",
+        "sprays_hypixel_logo_default"
+      ],
+      "coins": 500
+    },
+    "Duels": {
+      "moved_to_redis_3": true,
+      "show_lb_option": "on",
+      "chat_enabled": "on",
+      "games_played_duels": 4,
+      "rematch_option_1": "default",
+      "blocks_placed": 103,
+      "bow_hits": 11,
+      "bow_shots": 17,
+      "bridge_duel_blocks_placed": 103,
+      "bridge_duel_bow_hits": 11,
+      "bridge_duel_bow_shots": 17,
+      "bridge_duel_damage_dealt": 254,
+      "bridge_duel_golden_apples_eaten": 7,
+      "bridge_duel_melee_swings": 85,
+      "bridge_duel_rounds_played": 4,
+      "damage_dealt": 254,
+      "golden_apples_eaten": 7,
+      "melee_swings": 85,
+      "rounds_played": 4,
+      "parkour_rookie_title_prestige": 1,
+      "combo_rookie_title_prestige": 1,
+      "bow_rookie_title_prestige": 1,
+      "classic_rookie_title_prestige": 1,
+      "op_rookie_title_prestige": 1,
+      "mega_walls_rookie_title_prestige": 1,
+      "all_modes_rookie_title_prestige": 1,
+      "uhc_rookie_title_prestige": 1,
+      "skywars_rookie_title_prestige": 1,
+      "blitz_rookie_title_prestige": 1,
+      "no_debuff_rookie_title_prestige": 1,
+      "tnt_games_rookie_title_prestige": 1,
+      "sumo_rookie_title_prestige": 1,
+      "bridge_rookie_title_prestige": 1,
+      "boxing_rookie_title_prestige": 1,
+      "selected_1_new": "sumo",
+      "selected_2_new": "blitz",
+      "bridge_duel_melee_hits": 43,
+      "melee_hits": 43,
+      "bridge_deaths": 1,
+      "bridge_duel_bridge_deaths": 1,
+      "bridge_duel_losses": 1,
+      "losses": 1
+    },
+    "BuildBattle": {
+      "coins": 592,
+      "games_played": 2,
+      "monthly_coins_b": 592,
+      "score": 50,
+      "teams_most_points": 189,
+      "total_votes": 26,
+      "weekly_coins_a": 592,
+      "wins": 1,
+      "wins_teams_normal": 1
+    },
+    "MurderMystery": {
+      "murdermystery_books": [
+        "innocent"
+      ],
+      "detective_chance": 2,
+      "murderer_chance": 2,
+      "coins": 3810,
+      "coins_pickedup": 18,
+      "coins_pickedup_MURDER_DOUBLE_UP": 18,
+      "coins_pickedup_subway": 18,
+      "coins_pickedup_subway_MURDER_DOUBLE_UP": 18,
+      "games": 2,
+      "games_MURDER_DOUBLE_UP": 2,
+      "games_subway": 1,
+      "games_subway_MURDER_DOUBLE_UP": 1,
+      "wins": 2,
+      "wins_MURDER_DOUBLE_UP": 2,
+      "wins_subway": 1,
+      "wins_subway_MURDER_DOUBLE_UP": 1,
+      "deaths": 1,
+      "deaths_MURDER_DOUBLE_UP": 1,
+      "deaths_ancient_tomb": 1,
+      "deaths_ancient_tomb_MURDER_DOUBLE_UP": 1,
+      "games_ancient_tomb": 1,
+      "games_ancient_tomb_MURDER_DOUBLE_UP": 1,
+      "wins_ancient_tomb": 1,
+      "wins_ancient_tomb_MURDER_DOUBLE_UP": 1,
+      "packages": [
+        "sep2021achievementsync"
+      ]
+    }
+  },
+  "networkExp": 145397,
+  "seasonal": {
+    "christmas": {
+      "2023": {
+        "levelling": {
+          "experience": 1779
+        },
+        "adventRewards": {
+          "day22": 1703249533559
+        }
+      }
+    },
+    "easter": {
+      "2024": {
+        "levelling": {
+          "experience": 5938
+        }
+      }
+    },
+    "summer": {
+      "2024": {
+        "levelling": {
+          "experience": 98
+        }
+      }
+    }
+  },
+  "achievementPoints": 485,
+  "socialMedia": {
+    "links": {
+      "DISCORD": "sirdowntime"
+    },
+    "prompt": true
+  },
+  "eugene": {
+    "dailyTwoKExp": 1729659695071
+  },
+  "lastAdsenseGenerateTime": 1729659698075,
+  "lastClaimedReward": 1729659698072,
+  "rewardHighScore": 1,
+  "rewardScore": 1,
+  "rewardStreak": 1,
+  "totalDailyRewards": 3,
+  "totalRewards": 3,
+  "lastLogout": 1729659947166,
+  "achievementTracking": [],
+  "achievements": {
+    "christmas2017_advent_2023": 1,
+    "skyblock_minion_lover": 377,
+    "skyblock_treasury": 72,
+    "skyblock_gatherer": 10,
+    "skyblock_sb_levels": 31,
+    "skyblock_excavator": 21,
+    "skyblock_harvester": 19,
+    "skyblock_concoctor": 3,
+    "skyblock_combat": 16,
+    "skyblock_angler": 14,
+    "skyblock_augmentation": 2,
+    "skyblock_people_pleaser": 20,
+    "skyblock_domesticator": 19,
+    "arcade_party_super_star": 10,
+    "general_challenger": 2,
+    "arcade_arcade_banker": 446,
+    "general_coins": 446,
+    "buildbattle_build_battle_voter": 26,
+    "buildbattle_build_battle_points": 189,
+    "buildbattle_build_battle_score": 50,
+    "murdermystery_hoarder": 18,
+    "general_wins": 1,
+    "murdermystery_wins_as_survivor": 1,
+    "skywars_you_re_a_star": 1,
+    "arcade_pixel_party_color_coordinated": 15
+  },
+  "leveling": {
+    "claimedRewards": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "achievementRewardsNew": {
+    "for_points_200": 1706759712204,
+    "for_points_300": 1709283509015,
+    "for_points_400": 1710001817659
+  },
+  "petConsumables": {
+    "CARROT_ITEM": 2,
+    "FEATHER": 8,
+    "GOLD_RECORD": 7,
+    "LAVA_BUCKET": 19,
+    "LEASH": 11,
+    "MELON": 7,
+    "MILK_BUCKET": 24,
+    "PORK": 5,
+    "RAW_FISH": 2,
+    "ROTTEN_FLESH": 3,
+    "SLIME_BALL": 14,
+    "WATER_BUCKET": 19,
+    "WHEAT": 2,
+    "WOOD_SWORD": 14,
+    "BONE": 4,
+    "PUMPKIN_PIE": 4,
+    "RED_ROSE": 5,
+    "STICK": 8,
+    "APPLE": 1,
+    "CAKE": 5,
+    "COOKIE": 2,
+    "MUSHROOM_SOUP": 4,
+    "BREAD": 5,
+    "BAKED_POTATO": 2,
+    "HAY_BLOCK": 2,
+    "MAGMA_CREAM": 2
+  },
+  "channel": "PARTY",
+  "monthlycrates": {
+    "3-2024": {
+      "NORMAL": true
+    },
+    "4-2024": {
+      "NORMAL": true
+    },
+    "5-2024": {
+      "NORMAL": true
+    },
+    "7-2024": {
+      "NORMAL": true
+    },
+    "10-2024": {
+      "NORMAL": true
+    }
+  },
+  "challenges": {
+    "all_time": {
+      "ARCADE__party_games_challenge": 1,
+      "BUILD_BATTLE__top_3_challenge": 1
+    }
+  },
+  "mostRecentGameType": "PROTOTYPE",
+  "newPackageRank": "VIP_PLUS",
+  "housingMeta": {
+    "packages": [
+      "specialoccasion_reward_card_skull_mana_potion"
+    ]
+  }
+}

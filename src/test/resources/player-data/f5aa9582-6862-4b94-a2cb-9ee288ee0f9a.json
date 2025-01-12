@@ -1,0 +1,74 @@
+{
+  "_id": "676421e7941308034e8e995d",
+  "uuid": "f5aa958268624b94a2cb9ee288ee0f9a",
+  "displayname": "DungeonHubTestin",
+  "firstLogin": 1734615527610,
+  "lastLogin": 1734917312696,
+  "playername": "dungeonhubtestin",
+  "achievementsOneTime": [
+    "general_first_join",
+    "skyblock_your_adventure_begins"
+  ],
+  "karma": 3600,
+  "stats": {
+    "UHC": {
+      "coins": 60
+    },
+    "MCGO": {
+      "coins": 60
+    },
+    "SuperSmash": {
+      "coins": 60
+    },
+    "SkyBlock": {
+      "profiles": {
+        "8c725818650449899c545834e670eec9": {
+          "profile_id": "8c725818650449899c545834e670eec9",
+          "cute_name": "Raspberry"
+        }
+      }
+    },
+    "HungerGames": {
+      "coins": 75
+    },
+    "Walls3": {
+      "coins": 60
+    },
+    "Arena": {
+      "coins": 45
+    },
+    "GingerBread": {
+      "coins": 45
+    },
+    "Paintball": {
+      "coins": 45
+    },
+    "Quake": {
+      "coins": 45
+    },
+    "VampireZ": {
+      "coins": 45
+    },
+    "Walls": {
+      "coins": 45
+    },
+    "Battleground": {
+      "coins": 30
+    },
+    "TNTGames": {
+      "coins": 60
+    },
+    "SkyWars": {
+      "coins": 45
+    },
+    "Arcade": {
+      "coins": 114
+    }
+  },
+  "networkExp": 1800,
+  "lastLogout": 1734917343238,
+  "achievementTracking": [],
+  "achievements": {
+    "skyblock_minion_lover": 1
+  }
+}
