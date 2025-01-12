@@ -1,0 +1,93 @@
+{
+  "_id": "5fc6804b67657b214deba819",
+  "uuid": "f58debd59f5042228f6022211d4c140c",
+  "displayname": "unventivetalent",
+  "firstLogin": 1606844491000,
+  "lastLogin": 1700602896516,
+  "playername": "unventivetalent",
+  "achievementsOneTime": [
+    "general_first_join",
+    "general_creeperbook",
+    "general_first_friend",
+    "skyblock_combined_efforts",
+    "general_first_chat",
+    "general_youtuber"
+  ],
+  "lastLogout": 1700603198216,
+  "rank": "GAME_MASTER",
+  "karma": 14500,
+  "stats": {
+    "UHC": {
+      "coins": 30
+    },
+    "Battleground": {
+      "coins": 30
+    },
+    "TNTGames": {
+      "coins": 45
+    },
+    "SuperSmash": {
+      "coins": 45
+    },
+    "HungerGames": {
+      "coins": 30
+    },
+    "Walls3": {
+      "coins": 45
+    },
+    "MCGO": {
+      "coins": 45
+    },
+    "Arena": {
+      "coins": 45
+    },
+    "GingerBread": {
+      "coins": 45
+    },
+    "Paintball": {
+      "coins": 45
+    },
+    "Quake": {
+      "coins": 45
+    },
+    "VampireZ": {
+      "coins": 45
+    },
+    "Walls": {
+      "coins": 45
+    },
+    "Arcade": {
+      "coins": 152
+    },
+    "SkyWars": {
+      "coins": 60
+    },
+    "SkyBlock": {
+      "profiles": {
+        "4435f7a010e444babe3ec0a261804b58": {
+          "profile_id": "4435f7a010e444babe3ec0a261804b58",
+          "cute_name": "Pear"
+        },
+        "2c58097ce4a24cc0a8482549b0a621ef": {
+          "profile_id": "2c58097c-e4a2-4cc0-a848-2549b0a621ef",
+          "cute_name": "Lime"
+        },
+        "559261dd202d4609974e40fdd999a6e3": {
+          "cute_name": "Mango",
+          "profile_id": "559261dd-202d-4609-974e-40fdd999a6e3"
+        },
+        "879394799cae4479a08510a381146557": {
+          "cute_name": "Tomato",
+          "profile_id": "87939479-9cae-4479-a085-10a381146557"
+        }
+      }
+    }
+  },
+  "networkExp": 16558,
+  "achievementTracking": [],
+  "achievements": {
+    "skyblock_minion_lover": 1,
+    "skyblock_treasury": 1
+  },
+  "achievementPoints": 25
+}
