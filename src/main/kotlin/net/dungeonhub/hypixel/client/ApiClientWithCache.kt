@@ -2,12 +2,12 @@ package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.cache.Cache
 import net.dungeonhub.hypixel.entities.SkyblockProfiles
-import net.hypixel.api.reply.PlayerReply
+import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import java.time.Instant
 import java.util.*
 
 interface ApiClientWithCache : ApiClient {
-    val playerDataCache: Cache<PlayerReply.Player, UUID>
+    val playerDataCache: Cache<HypixelPlayer, UUID>
     val skyblockProfilesCache: Cache<SkyblockProfiles, UUID>
 
     fun <T : Any> isExpired(cache: Cache<T, UUID>, uuid: UUID, expiresAfterMinutes: Int = 5): Boolean {
@@ -15,7 +15,7 @@ interface ApiClientWithCache : ApiClient {
             ?: true
     }
 
-    override fun getPlayerData(uuid: UUID): PlayerReply.Player? {
+    override fun getPlayerData(uuid: UUID): HypixelPlayer? {
         return playerDataCache.retrieve(uuid)
     }
 

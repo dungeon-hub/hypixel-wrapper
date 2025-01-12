@@ -5,9 +5,9 @@ import com.google.gson.JsonObject
 import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
 import net.dungeonhub.hypixel.entities.SkyblockProfile
+import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
-import net.hypixel.api.reply.PlayerReply.Player
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import java.io.File
@@ -23,8 +23,8 @@ class TestDiskCache {
         val apiClient = DiskCacheApiClient
 
         val rawData = listOf(
-            UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to "{\"uuid\": \"1686c45df0824811b1c8b1db7810e255\",\"playername\": \"sirdowntime\",\"displayname\": \"SirDowntime\",\"socialMedia\": {\"links\": {\"DISCORD\": \"sirdowntime\"},\"prompt\": true}}",
-            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to "{\"uuid\": \"39642ffca7fb4d24a1d4916f4cad1d98\",\"playername\": \"taubsie\",\"displayname\": \"Taubsie\",\"socialMedia\": {\"links\": {\"DISCORD\": \"taubsie\"},\"prompt\": true}}"
+            UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
+            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to TestHelper.readFile("player-data/39642ffc-a7fb-4d24-a1d4-916f4cad1d98.json")
         )
 
         val links = listOf(
@@ -47,7 +47,7 @@ class TestDiskCache {
         for (pair in rawData) {
             val player = Gson().fromJson(pair.second, JsonObject::class.java)
 
-            apiClient.playerDataCache.store(Player(player))
+            apiClient.playerDataCache.store(player.toHypixelPlayer())
         }
 
         //Check if cache is filled

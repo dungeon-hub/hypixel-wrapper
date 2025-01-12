@@ -1,8 +1,10 @@
 package net.dungeonhub.service
 
 import com.google.gson.JsonArray
-import net.dungeonhub.hypixel.entities.CurrentMember
+import com.google.gson.JsonObject
 import net.dungeonhub.hypixel.entities.SkyblockProfile
+import net.dungeonhub.hypixel.entities.player.HypixelPlayer
+import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -14,7 +16,6 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.io.path.name
-
 
 object TestHelper {
     fun readFile(fileName: String): String {
@@ -46,6 +47,16 @@ object TestHelper {
             val fullProfilesJson = readFile("full-profiles/${file.name}")
 
             GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
+        }.toList()
+    }
+
+    fun readAllHypixelPlayers(): List<HypixelPlayer> {
+        val profilesDirectory = javaClass.classLoader.getResource("player-data/")!!.toURI()
+
+        return Files.list(Paths.get(profilesDirectory)).map { file ->
+            val hypixelPlayerJson = readFile("player-data/${file.name}")
+
+            GsonProvider.gson.fromJson(hypixelPlayerJson, JsonObject::class.java).toHypixelPlayer()
         }.toList()
     }
 }

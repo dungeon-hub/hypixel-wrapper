@@ -7,6 +7,10 @@ import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
 import net.dungeonhub.hypixel.entities.*
 import net.dungeonhub.hypixel.entities.KnownCurrencyTypes.Companion.toCurrencyType
+import net.dungeonhub.hypixel.entities.player.KnownRank
+import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
+import net.dungeonhub.hypixel.entities.player.Rank
+import net.dungeonhub.hypixel.entities.player.SocialMediaType
 import java.io.IOException
 import java.lang.reflect.Type
 import java.time.Instant
@@ -23,6 +27,8 @@ object GsonProvider {
         .registerTypeAdapter(DungeonType::class.java, DungeonTypeDeserializer())
         .registerTypeAdapter(EssenceType::class.java, EssenceTypeDeserializer())
         .registerTypeAdapter(SlayerType::class.java, SlayerTypeDeserializer())
+        .registerTypeAdapter(SocialMediaType::class.java, SocialMediaTypeDeserializer())
+        .registerTypeAdapter(Rank::class.java, RankDeserializer())
         .setExclusionStrategies(SuperClassExclusionStrategies(SkyblockProfileMember::class.java))
         .create()
 
@@ -45,6 +51,22 @@ object GsonProvider {
         }
     }
 
+    private class RankDeserializer : JsonDeserializer<Rank> {
+        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Rank {
+            return KnownRank.fromApiName(json!!.asString)
+        }
+    }
+
+    private class SocialMediaTypeDeserializer : JsonDeserializer<SocialMediaType> {
+        override fun deserialize(
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): SocialMediaType {
+            return KnownSocialMediaType.fromApiName(json!!.asString)
+        }
+    }
+
     private class SkillDeserializer : JsonDeserializer<Skill> {
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Skill {
             return KnownSkill.fromApiName(json!!.asString)
@@ -58,19 +80,31 @@ object GsonProvider {
     }
 
     private class CurrencyDeserializer : JsonDeserializer<CurrencyType> {
-        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): CurrencyType {
+        override fun deserialize(
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): CurrencyType {
             return json!!.asString.toCurrencyType()
         }
     }
 
     private class DungeonTypeDeserializer : JsonDeserializer<DungeonType> {
-        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): DungeonType {
+        override fun deserialize(
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): DungeonType {
             return KnownDungeonType.fromApiName(json!!.asString)
         }
     }
 
     private class EssenceTypeDeserializer : JsonDeserializer<EssenceType> {
-        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): EssenceType {
+        override fun deserialize(
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): EssenceType {
             return KnownEssenceType.fromApiName(json!!.asString)
         }
     }
@@ -81,7 +115,7 @@ object GsonProvider {
 
     annotation class JsonSubtype(val clazz: KClass<*>, val name: String)
 
-    private class SuperClassExclusionStrategies (private val typeToSkip: Class<*>) : ExclusionStrategy {
+    private class SuperClassExclusionStrategies(private val typeToSkip: Class<*>) : ExclusionStrategy {
         override fun shouldSkipClass(clazz: Class<*>): Boolean {
             return false
         }
@@ -115,7 +149,7 @@ object GsonProvider {
 }
 
 fun JsonObject.getAsJsonObjectOrNull(memberName: String): JsonObject? {
-    return if(has(memberName)) {
+    return if (has(memberName)) {
         getAsJsonObject(memberName)
     } else {
         null
@@ -123,7 +157,7 @@ fun JsonObject.getAsJsonObjectOrNull(memberName: String): JsonObject? {
 }
 
 fun JsonObject.getAsJsonArrayOrNull(memberName: String): JsonArray? {
-    return if(has(memberName)) {
+    return if (has(memberName)) {
         getAsJsonArray(memberName)
     } else {
         null
@@ -131,7 +165,7 @@ fun JsonObject.getAsJsonArrayOrNull(memberName: String): JsonArray? {
 }
 
 fun JsonObject.getOrNull(memberName: String): JsonElement? {
-    return if(has(memberName)) {
+    return if (has(memberName)) {
         get(memberName)
     } else {
         null
@@ -139,7 +173,7 @@ fun JsonObject.getOrNull(memberName: String): JsonElement? {
 }
 
 fun JsonObject.getAsJsonPrimitiveOrNull(memberName: String): JsonPrimitive? {
-    return if(has(memberName)) {
+    return if (has(memberName)) {
         getAsJsonPrimitive(memberName)
     } else {
         null
