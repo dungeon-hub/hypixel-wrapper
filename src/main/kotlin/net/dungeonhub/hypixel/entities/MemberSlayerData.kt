@@ -13,7 +13,7 @@ fun JsonObject.toSlayerData(): MemberSlayerData {
     return MemberSlayerData(
         getAsJsonObjectOrNull("slayer_quest")?.toSlayerQuest(),
         getAsJsonObject("slayer_bosses").entrySet().associate {
-            SlayerType.fromApiName(it.key) to it.value.asJsonObject.toSlayerProgress()
+            KnownSlayerType.fromApiName(it.key) to it.value.asJsonObject.toSlayerProgress()
         },
         this
     )

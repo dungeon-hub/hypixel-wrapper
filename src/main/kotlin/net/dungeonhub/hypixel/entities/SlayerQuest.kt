@@ -13,7 +13,7 @@ class SlayerQuest(
 
 fun JsonObject.toSlayerQuest(): SlayerQuest {
     return SlayerQuest(
-        SlayerType.fromApiName(getAsJsonPrimitive("type").asString),
+        KnownSlayerType.fromApiName(getAsJsonPrimitive("type").asString),
         getAsJsonPrimitive("tier").asInt,
         Instant.ofEpochMilli(getAsJsonPrimitive("start_timestamp").asLong),
         getAsJsonPrimitive("completion_state").asInt,

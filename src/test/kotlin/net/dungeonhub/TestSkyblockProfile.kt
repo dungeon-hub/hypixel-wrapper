@@ -284,7 +284,7 @@ class TestSkyblockProfile {
 
                         if (skyblockMenu != null) {
                             //apparently some profiles still exist with this outdated item name :/
-                            if(skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
+                            if (skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
                                 assertEquals("§aSkyBlock Menu §7(Right Click)", skyblockMenu.name)
                                 assertEquals("SkyBlock Menu (Right Click)", skyblockMenu.rawName)
                             } else {
@@ -309,6 +309,39 @@ class TestSkyblockProfile {
         assertNotNull(profiles)
         assertEquals(uuid, profiles.owner)
         assertEquals(0, profiles.profiles.size)
+    }
+
+    @Test
+    fun testNoUnknownDataTypes() {
+        for(skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
+            for(skyblockProfile in skyblockProfiles) {
+                for(member in skyblockProfile.members) {
+                    member.slayer?.slayerProgress?.keys?.forEach {
+                        assertIsNot<KnownSlayerType.UnknownSlayerType>(it)
+                    }
+
+                    assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
+
+                    if(member is CurrentMember) {
+                        member.playerData.experience?.keys?.forEach {
+                            assertIsNot<KnownSkill.UnknownSkill>(it)
+                        }
+
+                        member.essence.keys.forEach {
+                            assertIsNot<KnownEssenceType.UnknownEssenceType>(it)
+                        }
+
+                        member.currencies.keys.forEach {
+                            assertIsNot<KnownCurrencyTypes.UnknownCurrencyType>(it)
+                        }
+
+                        member.dungeons?.dungeonTypes?.keys?.forEach {
+                            assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     companion object {
