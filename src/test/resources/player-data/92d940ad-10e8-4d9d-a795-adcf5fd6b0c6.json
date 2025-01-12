@@ -1,0 +1,5207 @@
+{
+  "_id": "5d5becbca7b1d2d9e6e3b870",
+  "uuid": "92d940ad10e84d9da795adcf5fd6b0c6",
+  "displayname": "Medua",
+  "firstLogin": 1566305468272,
+  "lastLogin": 1736692393702,
+  "playername": "medua",
+  "achievementsOneTime": [
+    "general_first_join",
+    "skyblock_your_adventure_begins",
+    "skyblock_quest_complete",
+    "general_first_chat",
+    "general_first_party",
+    "skyblock_lost_soul",
+    "skyblock_production_expanded",
+    "skyblock_into_the_deep",
+    "general_first_friend",
+    "general_vip",
+    "skyblock_mass_production",
+    "skyblock_super_fuel",
+    "skyblock_happy_new_year",
+    "skyblock_explorer",
+    "skyblock_your_big_break",
+    "skyblock_soul_hunter",
+    "skyblock_a_challenging_climb",
+    "skyblock_heart_of_the_end",
+    "skyblock_oh_shiny",
+    "general_vip_plus",
+    "skyblock_master_enchanter",
+    "skyblock_sirius_business",
+    "skyblock_time_to_go_on_vacation",
+    "skyblock_cute_little_cube",
+    "skyblock_accessories_galore",
+    "skyblock_dragon_slayer",
+    "general_youtuber",
+    "skyblock_watch_me_shine",
+    "skyblock_overkill",
+    "skyblock_higher_than_a_rabbit",
+    "skyblock_animal_fishing",
+    "skyblock_treasure_fishing",
+    "skyblock_death_from_above",
+    "skyblock_three_birds_one_arrow",
+    "skyblock_a_good_spider_is_a_dead_spider",
+    "skyblock_it_never_ends",
+    "skyblock_king_of_the_sea",
+    "general_friends_25",
+    "skyblock_explosive_ending",
+    "general_creeperbook",
+    "general_achievement_npc",
+    "skyblock_more_space",
+    "skyblock_the_flint_bros",
+    "skyblock_safety_first",
+    "skyblock_spiky",
+    "halloween2017_spooky_looks",
+    "skyblock_higher_enchants",
+    "skyblock_combined_efforts",
+    "skyblock_speed_of_light",
+    "skyblock_dullahan",
+    "skyblock_i_am_superior",
+    "skyblock_sweet_tooth",
+    "skyblock_bat_pinata",
+    "skyblock_bigger_storage_is_seeded",
+    "skyblock_friar_lawrence",
+    "skyblock_welcome_to_my_factory",
+    "skyblock_advanced_transportation",
+    "skyblock_empty_flower_pot",
+    "christmas2017_hunt_begins_2019",
+    "christmas2017_to_war",
+    "skywars_max_perk",
+    "skywars_legendary",
+    "tntgames_bow_spleef_first_double_jump",
+    "christmas2017_real_santa_2019",
+    "skyblock_brain_power",
+    "skyblock_worth_it",
+    "skyblock_flamin_hot",
+    "skyblock_supreme_farmer",
+    "skyblock_second_chance",
+    "skyblock_end_race",
+    "skyblock_promised_fulfilled",
+    "skyblock_water_sword",
+    "skyblock_this_is_fair",
+    "skyblock_agile",
+    "skyblock_expensive_brew",
+    "skyblock_saddle_up",
+    "skyblock_the_one_bottle",
+    "bedwars_its_dark_down_there",
+    "bedwars_first_blood",
+    "bedwars_team_player",
+    "bedwars_minefield",
+    "bedwars_thats_a_first",
+    "bedwars_super_looter",
+    "bedwars_already_over",
+    "general_a_long_journey_begins",
+    "bedwars_first",
+    "christmas2017_holidays_ruined",
+    "duels_trial_by_combat",
+    "duels_rematch",
+    "skyblock_deep_storage",
+    "christmas2017_todays_the_day",
+    "skyblock_fortunate",
+    "skyblock_time_to_start_fishing",
+    "skyblock_i_am_groot",
+    "skyblock_night_eyes",
+    "arcade_hide_and_seek_prop",
+    "housing_join_guild",
+    "housing_recieve_cookie",
+    "housing_make_resident",
+    "housing_grand_opening",
+    "skyblock_true_alchemist",
+    "skyblock_king_of_the_chicks",
+    "skyblock_no_enchants_needed",
+    "buildbattle_mobster",
+    "bedwars_builder",
+    "bedwars_strategist",
+    "bedwars_geared_up",
+    "bedwars_diamond_hoarder",
+    "bedwars_buggy_beds",
+    "bedwars_out_of_stock",
+    "skywars_gapple",
+    "skywars_open_chest",
+    "murdermystery_be_the_hero",
+    "murdermystery_first_shot_hit",
+    "skyblock_sea_monster",
+    "skyblock_hsssss",
+    "skyblock_i_knew_it",
+    "skyblock_stubborn_giver",
+    "skyblock_the_real_zoo_shady",
+    "skyblock_baited",
+    "skyblock_caretaker",
+    "easter_happy_easter_2020",
+    "skyblock_friend_for_life",
+    "skyblock_businessman",
+    "skyblock_happy_holidays",
+    "skyblock_i_believe_i_can_fly",
+    "skyblock_storage_forever",
+    "skyblock_every_little_bit_helps",
+    "skyblock_im_fast_as_heck_boy",
+    "skyblock_fully_evolved",
+    "skyblock_though_choice",
+    "skyblock_speedrunner",
+    "skyblock_wonderful_treasures",
+    "skyblock_sacrifices_must_be_made",
+    "skyblock_king_of_the_pets",
+    "skyblock_upgrades_people_upgrades",
+    "skyblock_next_level",
+    "skyblock_indiana_bones",
+    "skyblock_flawless",
+    "skyblock_rebirth",
+    "skywars_mob_spawner",
+    "general_first_game",
+    "skyblock_big_game_fisher",
+    "skyblock_existential_revelations",
+    "skyblock_dungeon_explorer",
+    "skyblock_s_plus_squad",
+    "skyblock_the_flash",
+    "skyblock_jerry",
+    "bedwars_distraction",
+    "general_gifting",
+    "bedwars_destroy_beds",
+    "bedwars_shear_luck",
+    "skywars_gotcha",
+    "skywars_rng",
+    "skywars_touch_of_death",
+    "skyblock_rough_deal",
+    "bedwars_sneaky_rusher",
+    "bedwars_revenge",
+    "skyblock_smell_like_roses",
+    "skyblock_united_in_blood",
+    "bedwars_savvy_shopper",
+    "bedwars_survivor",
+    "bedwars_emerald_hoarder",
+    "bedwars_cutting_it_close",
+    "general_use_portal",
+    "skyblock_knowledge_is_power",
+    "skyblock_mystical",
+    "skyblock_infinite_darkness",
+    "skyblock_frozen_monster",
+    "skyblock_glass_cannon",
+    "skyblock_caught_the_grinch",
+    "skyblock_absorb_it_all",
+    "skyblock_defeating_death",
+    "christmas2017_new_years_celebrations",
+    "skyblock_librarian",
+    "skyblock_resourceful",
+    "skyblock_goblin_slayer",
+    "skyblock_royal_meeting",
+    "skyblock_zookeeper",
+    "skyblock_a_good_review",
+    "summer_cool_off",
+    "skyblock_lifelong_contract",
+    "skyblock_hidden_secrets",
+    "skyblock_royal_resident_dialogue",
+    "skyblock_do_you_even_voodoo",
+    "skyblock_rainbow",
+    "skyblock_arcadia",
+    "skyblock_beaconator_two",
+    "skyblock_peak_of_the_mountain",
+    "skyblock_prepare_for_trouble",
+    "skyblock_magical_place",
+    "skyblock_smells_better",
+    "skyblock_i_call_that_mercy",
+    "easter_first_egg_2022",
+    "easter_egg_layer",
+    "skyblock_declaring_allegiance",
+    "skyblock_kuudra_conundrum",
+    "skyblock_scam",
+    "skyblock_suited_up",
+    "skyblock_this_is_the_way",
+    "skyblock_amalgamation",
+    "skyblock_shining_scales",
+    "skyblock_vanquished",
+    "skyblock_geronimo",
+    "skyblock_i_own_this_place",
+    "skyblock_the_itsy_bitsy_spider",
+    "skyblock_helpful_hand",
+    "summer_ocean_in_a_bucket",
+    "skyblock_ring_ring_whos_this",
+    "skyblock_next_generation",
+    "skyblock_how_to_train_your_dragon",
+    "skyblock_dragons_egg",
+    "skyblock_ghost_buster",
+    "woolgames_keystone",
+    "woolgames_survivor",
+    "murdermystery_pickup_gold",
+    "skyblock_dojo_master",
+    "skyblock_the_prodigy",
+    "skyblock_lapidarist",
+    "skyblock_dojo_grand_master",
+    "skyblock_precious_minerals",
+    "skyblock_gottagofast",
+    "skyblock_gotta_go_fast",
+    "skyblock_seriously",
+    "skyblock_to_space_we_go",
+    "skyblock_blaze_wrangler",
+    "skyblock_should_have_stayed_cool",
+    "skyblock_legendary_rod",
+    "skyblock_didnt_mean_to",
+    "skyblock_meal_fit_for_a_king",
+    "skyblock_wasted_potential",
+    "skyblock_shrimp",
+    "skyblock_nightmare",
+    "copsandcrims_fancy_new_toys",
+    "skyblock_fallen_star_cult",
+    "skyblock_cleanup_crew",
+    "skyblock_humble_beginnings",
+    "skyblock_only_be_one",
+    "skyblock_balrog_memories",
+    "skyblock_put_spell",
+    "skyblock_wow_useful",
+    "skyblock_player_of_the_people",
+    "skyblock_forbidden_fruit",
+    "skyblock_always_sunny_in_sb",
+    "skyblock_compost_collector",
+    "skyblock_fancy_farming",
+    "skyblock_perfect_heist",
+    "skyblock_quite_the_crowd",
+    "skyblock_bountiful_harvest",
+    "easter_happy_easter_2023",
+    "skyblock_jakes_mystery",
+    "easter_first_egg_2023",
+    "easter_all_eggs_2023",
+    "general_doing_my_part",
+    "general_fishing_hobbyist",
+    "easter_spring_fishing",
+    "general_deep_sea_expert",
+    "general_old_farmers_almanac",
+    "general_tips_and_tricks",
+    "easter_egg_assault",
+    "easter_egg_betrayer",
+    "general_hot_potato",
+    "skyblock_secret_end_place",
+    "skyblock_true_adventurer",
+    "summer_drought",
+    "skyblock_eternal_flame_ring",
+    "skyblock_im_not_dead",
+    "skyblock_long_way_gone",
+    "skyblock_a_face_to_remember",
+    "skyblock_two_out_of_nine",
+    "skyblock_eye_for_an_i",
+    "skyblock_swaying_the_vote",
+    "skyblock_long_way_down",
+    "skyblock_no_other_choice",
+    "skyblock_see_ya_later",
+    "skyblock_multidimensional_slayer",
+    "skyblock_buzzkill",
+    "skyblock_diverse_destruction",
+    "skyblock_inner_machinations",
+    "skyblock_still_sad",
+    "skyblock_end_credits",
+    "skyblock_yucky",
+    "skyblock_snake_charmer",
+    "skyblock_hes_bac",
+    "skyblock_not_worth_it_bro",
+    "skyblock_it_worked",
+    "skyblock_six_star_meal",
+    "halloween2017_hi_there",
+    "skyblock_responsible_pet_owner",
+    "christmas2017_merry_christmas",
+    "housing_join_friend",
+    "housing_give_cookie",
+    "easter_first_egg_2024",
+    "general_keep_quiet",
+    "general_code_breaker",
+    "easter_all_eggs_2024",
+    "easter_happy_easter_2024",
+    "skyblock_defeat_sun_gecko",
+    "skyblock_not_the_exit",
+    "skyblock_zoop",
+    "skyblock_watchful_presence",
+    "skyblock_wizard_food_chain",
+    "skyblock_return_from_breach",
+    "skyblock_tragedy_reversed",
+    "skyblock_genius",
+    "skyblock_hasta_la_vista"
+  ],
+  "lastLogout": 1736654895522,
+  "stats": {
+    "SkyBlock": {
+      "profiles": {
+        "92d940ad10e84d9da795adcf5fd6b0c6": {
+          "profile_id": "92d940ad10e84d9da795adcf5fd6b0c6",
+          "cute_name": "Mango"
+        },
+        "c6741299fd894c20be06100c8ac8c6aa": {
+          "profile_id": "c6741299fd894c20be06100c8ac8c6aa",
+          "cute_name": "Zucchini"
+        },
+        "31639bc589d1454ba02284d0c6257422": {
+          "profile_id": "31639bc589d1454ba02284d0c6257422",
+          "cute_name": "Banana"
+        },
+        "4e4fe6d7f62c4b91b60d79bbab54ae3b": {
+          "profile_id": "4e4fe6d7f62c4b91b60d79bbab54ae3b",
+          "cute_name": "Pomegranate"
+        },
+        "c1a4ddc417fa46bc8893ccbeade05376": {
+          "profile_id": "c1a4ddc4-17fa-46bc-8893-ccbeade05376",
+          "cute_name": "Coconut"
+        }
+      }
+    },
+    "SkyWars": {
+      "skywars_chests": 0,
+      "coins": 581787,
+      "souls": 1514,
+      "levelFormatted": "§72⋆",
+      "packages": [
+        "update_solo_team_kits_and_perks",
+        "update_solo_team_perk_levels",
+        "update_solo_team_kits2",
+        "convertedstatstoexp",
+        "update_opals_prestige",
+        "kit_advanced_solo_jester",
+        "update_shard_removal",
+        "update_shard_removal_bedrock",
+        "angels_descent_tree_2022",
+        "killeffect_raining_eggs",
+        "deathcry_plop",
+        "sprays_angry_turkey",
+        "projectiletrail_firework",
+        "projectiletrail_blue_dust",
+        "sprays_egg_splat",
+        "cage_house",
+        "balloon_creeper_egg",
+        "balloon_hearts",
+        "killeffect_firework",
+        "balloon_ox",
+        "deathcry_slimy",
+        "cage_easter_basket",
+        "victorydance_exploding_bunnies",
+        "cage_ice-cage",
+        "sprays_egg_gunner",
+        "killmessages_oxed",
+        "cage_nether-cage",
+        "balloon_clouds",
+        "sprays_essentials",
+        "deathcry_squeak",
+        "victorydance_chicken_rider",
+        "sprays_gg_wp",
+        "deathcry_squeal",
+        "killmessages_pirate",
+        "balloon_floyd",
+        "cage_green-cage",
+        "deathcry_villain",
+        "projectiletrail_crayon",
+        "killeffect_magnolia",
+        "sprays_rabbit_costume",
+        "killmessages_fire",
+        "killeffect_tnt",
+        "deathcry_deleted",
+        "cage_angel-cage",
+        "killeffect_burning_shoes",
+        "deathcry_splash",
+        "balloon_gooey",
+        "balloon_bright_tiger",
+        "deathcry_dinosaur",
+        "sprays_bye_bye",
+        "cage_lime-cage",
+        "cage_premium-cage",
+        "projectiletrail_potion",
+        "sprays_easter_creeper",
+        "victorydance_twerk_apocalypse",
+        "balloon_gold_tiger",
+        "deathcry_energy",
+        "sprays_reveillon",
+        "deathcry_sniff",
+        "deathcry_aww",
+        "balloon_fusion",
+        "cage_basket-cage",
+        "sprays_great_egg_hunt",
+        "cage_golden_egg",
+        "sprays_lion_dancer",
+        "cage_rainbow-cage",
+        "sprays_bunny_parkour",
+        "cage_notch-apple-cage",
+        "cage_splendent",
+        "deathcry_arcade",
+        "sprays_i_love_you",
+        "deathcry_fireball",
+        "killeffect_piñata",
+        "cage_blazing-cage",
+        "cage_privacy-cage",
+        "deathcry_pig",
+        "victorydance_rainbow_dolly",
+        "projectiletrail_spring_ribbons",
+        "sprays_creeper",
+        "sprays_rabbit_celebration",
+        "killeffect_squid_missile",
+        "killeffect_smiley",
+        "cage_royal-cage",
+        "sprays_egg_hit",
+        "sprays_christmas_tree",
+        "balloon_red_skull",
+        "deathcry_disintegrated",
+        "cage_easter_bell",
+        "balloon_sacred_cattle",
+        "cage_tree-cage",
+        "victorydance_rabbit_meteors",
+        "sprays_sorry",
+        "victorydance_dab",
+        "killmessages_galactic",
+        "balloon_funkube",
+        "killeffect_cookie_fountain",
+        "sprays_santa",
+        "balloon_bee",
+        "sprays_easter_basket",
+        "sprays_angry_cow",
+        "killmessages_to_the_moon",
+        "sprays_snowball_fight",
+        "victorydance_yeehaw",
+        "victorydance_wither_rider",
+        "deathcry_punked",
+        "projectiletrail_ender",
+        "sprays_bunny_lantern",
+        "projectiletrail_red_dust",
+        "deathcry_ding",
+        "cage_redstone-master-cage",
+        "cage_rabbit",
+        "balloon_relic",
+        "cage_plasma-cage",
+        "deathcry_fragile",
+        "sprays_footfall",
+        "deathcry_dry_bones",
+        "deathcry_horse",
+        "sprays_soul_harvest",
+        "cage_sky-cage",
+        "cage_candy_cane",
+        "sprays_year_of_the_tiger",
+        "victorydance_cold_snap",
+        "balloon_lava",
+        "killeffect_lighting_strike",
+        "victorydance_easter_bunnies",
+        "killmessages_medieval",
+        "balloon_medkit",
+        "sprays_tranquility",
+        "projectiletrail_rocket",
+        "balloon_globe",
+        "sprays_angel_of_death",
+        "balloon_purple_egg",
+        "projectiletrail_snowball",
+        "sprays_santa_slips",
+        "killmessages_memed",
+        "sprays_wrong_eggs",
+        "projectiletrail_snowball_rain",
+        "balloon_bookworm",
+        "cage_tiger",
+        "sprays_sleeps_and_treats",
+        "deathcry_sad_moo",
+        "sprays_pyro",
+        "balloon_chick",
+        "deathcry_bat",
+        "killmessages_eggy",
+        "balloon_blue_egg",
+        "cage_nicolas-cage",
+        "sprays_egg_hunt",
+        "deathcry_enderman",
+        "deathcry_deflated_toy",
+        "cage_prison-cage",
+        "killmessages_bbq",
+        "killmessages_christmas",
+        "sprays_lucky_rabbit",
+        "projectiletrail_purple_dust",
+        "cage_mist-cage",
+        "sprays_snowball_spammer",
+        "projectiletrail_fire",
+        "sprays_madness",
+        "projectiletrail_let_there_be_leather",
+        "balloon_green_fractal",
+        "killeffect_egg_theft",
+        "killmessages_roar",
+        "balloon_molten_reactor",
+        "sprays_easter_eggs",
+        "cage_blue-cage",
+        "killeffect_campfire",
+        "sprays_rabbits_in_basket",
+        "killeffect_rain_on_my_parade",
+        "cage_cloud-cage",
+        "balloon_fat_chicken",
+        "deathcry_wither",
+        "projectiletrail_black_smoke",
+        "victorydance_flower_bed",
+        "deathcry_robot_mouse",
+        "cage_toffee-cage",
+        "sprays_lucky_start",
+        "cage_diamond-cage",
+        "killmessages_boxing",
+        "sprays_good_fortune",
+        "balloon_easter_basket",
+        "killeffect_jazz",
+        "cage_shine_bright",
+        "projectiletrail_bee",
+        "projectiletrail_white_smoke",
+        "balloon_tire",
+        "killeffect_holiday_fireworks",
+        "cage_orange-cage",
+        "balloon_magic_carp",
+        "killmessages_love",
+        "killeffect_hatching_eggs",
+        "balloon_painted_egg",
+        "killeffect_xp_orb",
+        "killeffect_sword",
+        "sprays_golden_egg",
+        "sprays_year_of_the_rabbit",
+        "deathcry_wow",
+        "victorydance_night_shift",
+        "cage_winter-cage",
+        "balloon_mistletoe",
+        "deathcry_badum_chi",
+        "sprays_egg_surprise",
+        "balloon_disco",
+        "killeffect_rainbow",
+        "killmessages_insectoid",
+        "deathcry_grumble",
+        "victorydance_slimester",
+        "balloon_rabbit",
+        "sprays_cute_bunny",
+        "projectiletrail_rainy",
+        "sprays_surprise_snowball",
+        "cage_easter_egg",
+        "killeffect_bunny_explosion",
+        "cage_bubblegum-cage",
+        "cage_bee",
+        "victorydance_special_fireworks",
+        "cage_rage-cage",
+        "victorydance_meteor_shower",
+        "killmessages_woof",
+        "balloon_carrot",
+        "victorydance_cownado",
+        "cage_faded-cage",
+        "cage_banana-cage",
+        "balloon_beach_ball",
+        "balloon_rubix_cube",
+        "cage_dark-cage",
+        "balloon_polka_dots",
+        "killmessages_computer",
+        "deathcry_sploosh",
+        "victorydance_anvil_rain",
+        "sprays_thanks",
+        "killeffect_beef_everywhere",
+        "sprays_snowballed",
+        "sprays_fishin_noobs",
+        "sprays_year_of_the_ox",
+        "killeffect_rising_dragon",
+        "victorydance_festive_music",
+        "cage_slime-cage",
+        "sprays_bunny_gg",
+        "balloon_rainbowest",
+        "killmessages_western",
+        "projectiletrail_magic",
+        "deathcry_doused_lantern",
+        "cage_void-cage",
+        "killmessages_buzz",
+        "sprays_lazy_bunnies",
+        "cage_farm-hunt-cage",
+        "deathcry_big_baby",
+        "balloon_rainbow",
+        "cage_domino-cage",
+        "projectiletrail_angry_villager",
+        "killmessages_banana",
+        "sprays_one_of_us",
+        "sprays_buff_chicken",
+        "sprays_golem_picnic",
+        "sprays_sabeetage"
+      ],
+      "skywars_christmas_boxes": 0,
+      "games_played_skywars": 32,
+      "blocks_broken": 9,
+      "chests_opened": 46,
+      "chests_opened_kit_basic_solo_default": 46,
+      "chests_opened_solo": 39,
+      "deaths": 18,
+      "deaths_kit_basic_solo_default": 18,
+      "deaths_solo": 14,
+      "deaths_solo_normal": 14,
+      "lastMode": "TEAMS",
+      "losses": 18,
+      "losses_kit_basic_solo_default": 18,
+      "losses_solo": 14,
+      "losses_solo_normal": 14,
+      "quits": 17,
+      "survived_players": 132,
+      "survived_players_kit_basic_solo_default": 132,
+      "survived_players_solo": 79,
+      "time_played": 1283,
+      "time_played_kit_basic_solo_default": 1283,
+      "time_played_solo": 849,
+      "win_streak": 1,
+      "activeKit_SOLO": "kit_basic_solo_default",
+      "activeKit_SOLO_random": true,
+      "blocks_placed": 193,
+      "skywars_experience": 20,
+      "items_enchanted": 4,
+      "kills": 10,
+      "kills_kit_basic_solo_default": 10,
+      "kills_monthly_b": 10,
+      "kills_solo": 3,
+      "kills_solo_normal": 3,
+      "kills_weekly_b": 3,
+      "longest_bow_kill": 3,
+      "longest_bow_kill_kit_basic_solo_default": 3,
+      "longest_bow_kill_solo": 3,
+      "melee_kills": 5,
+      "melee_kills_kit_basic_solo_default": 5,
+      "melee_kills_solo": 2,
+      "most_kills_game": 4,
+      "most_kills_game_kit_basic_solo_default": 4,
+      "most_kills_game_solo": 1,
+      "souls_gathered": 3,
+      "egg_thrown": 33,
+      "games": 2,
+      "games_kit_basic_solo_default": 2,
+      "games_solo": 1,
+      "arrows_hit": 5,
+      "arrows_hit_kit_basic_solo_default": 5,
+      "arrows_hit_solo": 5,
+      "arrows_shot": 10,
+      "arrows_shot_kit_basic_solo_default": 10,
+      "arrows_shot_solo": 10,
+      "longest_bow_shot": 3,
+      "longest_bow_shot_kit_basic_solo_default": 3,
+      "longest_bow_shot_solo": 3,
+      "void_kills": 5,
+      "void_kills_kit_basic_solo_default": 5,
+      "void_kills_solo": 1,
+      "assists": 2,
+      "assists_kit_basic_solo_default": 2,
+      "assists_solo": 1,
+      "lucky_explained": 2,
+      "lucky_explained_last": 1660838933858,
+      "tnt_madness_explained_last": 1580246456506,
+      "tnt_madness_explained": 1,
+      "blocks_broken_lab": 33,
+      "blocks_placed_lab": 46,
+      "chests_opened_lab": 6,
+      "chests_opened_lab_kit_mining_team_default": 6,
+      "chests_opened_lab_solo": 6,
+      "coins_gained_lab": 2016,
+      "deaths_lab": 3,
+      "deaths_lab_kit_mining_team_default": 3,
+      "deaths_lab_solo": 3,
+      "games_lab": 2,
+      "games_lab_kit_mining_team_default": 2,
+      "games_lab_solo": 2,
+      "losses_lab": 3,
+      "losses_lab_kit_mining_team_default": 3,
+      "losses_lab_solo": 3,
+      "survived_players_lab": 17,
+      "survived_players_lab_kit_mining_team_default": 17,
+      "survived_players_lab_solo": 17,
+      "time_played_lab": 282,
+      "time_played_lab_kit_mining_team_default": 282,
+      "time_played_lab_solo": 282,
+      "win_streak_lab": 0,
+      "quits_lab": 1,
+      "chests_opened_team": 7,
+      "deaths_team": 4,
+      "deaths_team_normal": 4,
+      "kills_team": 7,
+      "kills_team_normal": 7,
+      "kills_weekly_a": 7,
+      "losses_team": 4,
+      "losses_team_normal": 4,
+      "survived_players_team": 53,
+      "time_played_team": 434,
+      "void_kills_team": 4,
+      "assists_team": 1,
+      "longest_bow_kill_team": 3,
+      "melee_kills_team": 3,
+      "fastest_win": 229,
+      "fastest_win_kit_basic_solo_default": 229,
+      "fastest_win_team": 229,
+      "games_team": 1,
+      "killstreak": 4,
+      "killstreak_kit_basic_solo_default": 4,
+      "killstreak_team": 4,
+      "most_kills_game_team": 4,
+      "wins": 1,
+      "wins_kit_basic_solo_default": 1,
+      "wins_team": 1,
+      "wins_team_normal": 1,
+      "lastTourneyAd": 1634504749912,
+      "slime_explained": 1,
+      "slime_explained_last": 1650398693702,
+      "skywars_easter_boxes": 0,
+      "perkslot": {
+        "normal": {
+          "5": "solo_fat",
+          "4": "solo_savior",
+          "1": "solo_bulldozer",
+          "3": "solo_resistance_boost",
+          "2": "solo_juggernaut"
+        },
+        "insane": {
+          "1": "team_bulldozer",
+          "2": "team_juggernaut",
+          "3": "team_resistance_boost",
+          "4": "team_savior",
+          "5": "team_fat"
+        }
+      },
+      "toggle_mega_arrow_recovery": false,
+      "toggle_mega_blazing_arrows": false,
+      "toggle_mega_juggernaut": false,
+      "toggle_mega_rusher": false,
+      "toggle_mega_notoriety": false,
+      "toggle_mega_tank": false,
+      "toggle_mega_nourishment": false,
+      "toggle_mega_marksmanship": false,
+      "toggle_mega_bridger": false,
+      "toggle_mega_environmental_expert": false,
+      "toggle_mega_lucky_charm": false,
+      "toggle_ranked_bowman_perk": false,
+      "toggle_ranked_champion_perk": false,
+      "toggle_ranked_scout_perk": false,
+      "toggle_ranked_magician_perk": false,
+      "toggle_ranked_blacksmith_perk": false,
+      "toggle_ranked_healer_perk": false,
+      "toggle_ranked_pyromancer_perk": false,
+      "toggle_ranked_armorer_perk": false,
+      "toggle_mega_black_magic": false,
+      "toggle_ranked_hound_perk": false,
+      "toggle_ranked_paladin_perk": false,
+      "toggle_ranked_blazing_arrows": false,
+      "toggle_ranked_arrow_recovery": false,
+      "toggle_ranked_juggernaut": false,
+      "toggle_mega_necromancer": false,
+      "toggle_ranked_last_stand": false,
+      "toggle_ranked_tough_skin": false,
+      "toggle_ranked_rusher": false,
+      "toggle_ranked_athlete_perk": false,
+      "toggle_ranked_bridger": false,
+      "toggle_solo_arrow_recovery": false,
+      "toggle_ranked_environmental_expert": false,
+      "toggle_solo_blazing_arrows": false,
+      "toggle_solo_juggernaut": true,
+      "solo_juggernaut": 0,
+      "toggle_solo_mining_expertise": false,
+      "toggle_solo_marksmanship": false,
+      "solo_resistance_boost": 0,
+      "toggle_solo_resistance_boost": true,
+      "toggle_ranked_mining_expertise": false,
+      "toggle_solo_knowledge": false,
+      "solo_savior": 0,
+      "toggle_solo_savior": true,
+      "toggle_solo_annoy-o-mite": false,
+      "toggle_solo_bulldozer": true,
+      "toggle_solo_nourishment": false,
+      "toggle_solo_revenge": false,
+      "solo_fat": 0,
+      "toggle_solo_fat": true,
+      "toggle_solo_environmental_expert": false,
+      "toggle_solo_bridger": false,
+      "toggle_solo_black_magic": false,
+      "toggle_solo_frost": false,
+      "toggle_solo_lucky_charm": false,
+      "toggle_solo_necromancer": false,
+      "toggle_team_arrow_recovery": false,
+      "toggle_solo_barbarian": false,
+      "toggle_team_bulldozer": true,
+      "team_juggernaut": 0,
+      "toggle_solo_speed_boost": false,
+      "toggle_team_mining_expertise": false,
+      "toggle_team_juggernaut": true,
+      "team_resistance_boost": 0,
+      "toggle_team_resistance_boost": true,
+      "toggle_team_speed_boost": false,
+      "team_bulldozer": 0,
+      "toggle_solo_robbery": false,
+      "team_savior": 0,
+      "toggle_team_annoy-o-mite": false,
+      "toggle_team_nourishment": false,
+      "toggle_mega_mining_expertise": false,
+      "toggle_team_marksmanship": false,
+      "team_fat": 0,
+      "toggle_team_blazing_arrows": false,
+      "toggle_team_necromancer": false,
+      "toggle_team_bridger": false,
+      "toggle_team_knowledge": false,
+      "toggle_team_environmental_expert": false,
+      "toggle_team_robbery": false,
+      "toggle_team_frost": false,
+      "toggle_team_black_magic": false,
+      "toggle_team_savior": true,
+      "toggle_team_barbarian": false,
+      "toggle_team_diamondpiercer": false,
+      "toggle_team_lucky_charm": false,
+      "toggle_team_fat": true,
+      "solo_bulldozer": 0,
+      "cosmetic_tokens": 1771000
+    },
+    "Bedwars": {
+      "bedwars_boxes": 0,
+      "Experience": 11395,
+      "first_join_7": true,
+      "bedwars_christmas_boxes": 0,
+      "coins": 1546860,
+      "games_played_bedwars_1": 36,
+      "four_three_winstreak": 0,
+      "winstreak": 0,
+      "_items_purchased_bedwars": 850,
+      "deaths_bedwars": 112,
+      "diamond_resources_collected_bedwars": 458,
+      "emerald_resources_collected_bedwars": 91,
+      "entity_attack_deaths_bedwars": 47,
+      "entity_attack_final_kills_bedwars": 22,
+      "entity_attack_kills_bedwars": 51,
+      "final_kills_bedwars": 32,
+      "four_three__items_purchased_bedwars": 199,
+      "four_three_deaths_bedwars": 26,
+      "four_three_diamond_resources_collected_bedwars": 95,
+      "four_three_emerald_resources_collected_bedwars": 16,
+      "four_three_entity_attack_deaths_bedwars": 13,
+      "four_three_entity_attack_final_kills_bedwars": 8,
+      "four_three_entity_attack_kills_bedwars": 22,
+      "four_three_final_kills_bedwars": 11,
+      "four_three_games_played_bedwars": 7,
+      "four_three_gold_resources_collected_bedwars": 314,
+      "four_three_iron_resources_collected_bedwars": 2027,
+      "four_three_items_purchased_bedwars": 223,
+      "four_three_kills_bedwars": 42,
+      "four_three_resources_collected_bedwars": 2452,
+      "four_three_void_deaths_bedwars": 13,
+      "four_three_void_kills_bedwars": 20,
+      "four_three_wins_bedwars": 4,
+      "games_played_bedwars": 36,
+      "gold_resources_collected_bedwars": 1431,
+      "iron_resources_collected_bedwars": 9767,
+      "items_purchased_bedwars": 956,
+      "kills_bedwars": 91,
+      "resources_collected_bedwars": 11747,
+      "void_deaths_bedwars": 61,
+      "void_kills_bedwars": 39,
+      "wins_bedwars": 11,
+      "four_three_void_final_kills_bedwars": 3,
+      "void_final_kills_bedwars": 9,
+      "four_four_winstreak": 0,
+      "four_four__items_purchased_bedwars": 324,
+      "four_four_deaths_bedwars": 49,
+      "four_four_diamond_resources_collected_bedwars": 223,
+      "four_four_entity_attack_final_kills_bedwars": 8,
+      "four_four_final_kills_bedwars": 9,
+      "four_four_games_played_bedwars": 15,
+      "four_four_gold_resources_collected_bedwars": 575,
+      "four_four_iron_resources_collected_bedwars": 3860,
+      "four_four_items_purchased_bedwars": 362,
+      "four_four_permanent _items_purchased_bedwars": 19,
+      "four_four_resources_collected_bedwars": 4702,
+      "four_four_void_deaths_bedwars": 30,
+      "four_four_wins_bedwars": 5,
+      "permanent _items_purchased_bedwars": 31,
+      "entity_explosion_kills_bedwars": 1,
+      "four_four_emerald_resources_collected_bedwars": 44,
+      "four_four_entity_attack_deaths_bedwars": 17,
+      "four_four_entity_attack_kills_bedwars": 11,
+      "four_four_entity_explosion_kills_bedwars": 1,
+      "four_four_kills_bedwars": 19,
+      "beds_lost_bedwars": 27,
+      "entity_attack_final_deaths_bedwars": 14,
+      "fall_deaths_bedwars": 2,
+      "final_deaths_bedwars": 25,
+      "four_four_beds_lost_bedwars": 11,
+      "four_four_entity_attack_final_deaths_bedwars": 8,
+      "four_four_fall_deaths_bedwars": 1,
+      "four_four_final_deaths_bedwars": 10,
+      "four_four_losses_bedwars": 10,
+      "losses_bedwars": 25,
+      "four_four_void_final_deaths_bedwars": 2,
+      "void_final_deaths_bedwars": 10,
+      "eight_two_winstreak": 0,
+      "eight_two__items_purchased_bedwars": 295,
+      "eight_two_beds_lost_bedwars": 11,
+      "eight_two_diamond_resources_collected_bedwars": 129,
+      "eight_two_entity_attack_kills_bedwars": 18,
+      "eight_two_final_deaths_bedwars": 11,
+      "eight_two_games_played_bedwars": 13,
+      "eight_two_gold_resources_collected_bedwars": 467,
+      "eight_two_iron_resources_collected_bedwars": 3576,
+      "eight_two_items_purchased_bedwars": 336,
+      "eight_two_kills_bedwars": 29,
+      "eight_two_losses_bedwars": 11,
+      "eight_two_resources_collected_bedwars": 4197,
+      "eight_two_void_final_deaths_bedwars": 7,
+      "beds_broken_bedwars": 16,
+      "eight_two_beds_broken_bedwars": 6,
+      "eight_two_deaths_bedwars": 36,
+      "eight_two_emerald_resources_collected_bedwars": 25,
+      "eight_two_entity_attack_deaths_bedwars": 17,
+      "eight_two_entity_attack_final_kills_bedwars": 5,
+      "eight_two_entity_explosion_deaths_bedwars": 1,
+      "eight_two_final_kills_bedwars": 9,
+      "eight_two_permanent _items_purchased_bedwars": 12,
+      "eight_two_void_deaths_bedwars": 17,
+      "eight_two_void_kills_bedwars": 11,
+      "eight_two_wins_bedwars": 2,
+      "entity_explosion_deaths_bedwars": 2,
+      "bedwars_lunar_boxes": 0,
+      "four_four_void_kills_bedwars": 7,
+      "eight_two_entity_attack_final_deaths_bedwars": 4,
+      "eight_two_void_final_kills_bedwars": 3,
+      "eight_two_fall_deaths_bedwars": 1,
+      "eight_two_permanent_items_purchased_bedwars": 29,
+      "permanent_items_purchased_bedwars": 75,
+      "eight_two_fall_final_kills_bedwars": 1,
+      "fall_final_kills_bedwars": 1,
+      "four_three_beds_broken_bedwars": 4,
+      "four_three_permanent_items_purchased_bedwars": 24,
+      "four_four_beds_broken_bedwars": 3,
+      "four_four_permanent_items_purchased_bedwars": 19,
+      "four_three_beds_lost_bedwars": 4,
+      "four_three_final_deaths_bedwars": 3,
+      "four_three_losses_bedwars": 3,
+      "four_three_void_final_deaths_bedwars": 1,
+      "four_three_entity_attack_final_deaths_bedwars": 2,
+      "eight_one_winstreak": 0,
+      "eight_one__items_purchased_bedwars": 32,
+      "eight_one_beds_broken_bedwars": 3,
+      "eight_one_beds_lost_bedwars": 1,
+      "eight_one_deaths_bedwars": 1,
+      "eight_one_diamond_resources_collected_bedwars": 11,
+      "eight_one_emerald_resources_collected_bedwars": 6,
+      "eight_one_entity_attack_final_kills_bedwars": 1,
+      "eight_one_entity_explosion_final_deaths_bedwars": 1,
+      "eight_one_final_deaths_bedwars": 1,
+      "eight_one_final_kills_bedwars": 3,
+      "eight_one_games_played_bedwars": 1,
+      "eight_one_gold_resources_collected_bedwars": 75,
+      "eight_one_iron_resources_collected_bedwars": 304,
+      "eight_one_items_purchased_bedwars": 35,
+      "eight_one_kills_bedwars": 1,
+      "eight_one_losses_bedwars": 1,
+      "eight_one_permanent_items_purchased_bedwars": 3,
+      "eight_one_resources_collected_bedwars": 396,
+      "eight_one_void_deaths_bedwars": 1,
+      "eight_one_void_final_kills_bedwars": 2,
+      "eight_one_void_kills_bedwars": 1,
+      "entity_explosion_final_deaths_bedwars": 1,
+      "packages": [
+        "npcskin_skeleton",
+        "glyph_yes",
+        "deathcry_ding",
+        "glyph_gold_shield",
+        "islandtopper_bomb",
+        "glyph_diamond",
+        "killeffect_firework",
+        "npcskin_bed_salesman",
+        "projectiletrail_purple_dust",
+        "islandtopper_angel",
+        "beddestroy_firework",
+        "glyph_gift",
+        "glyph_heart",
+        "sprays_snowball_fight",
+        "npcskin_villager_zombie",
+        "deathcry_dinosaur",
+        "killeffect_head_rocket",
+        "killeffect_burning_shoes",
+        "glyph_star",
+        "glyph_christmas_tree",
+        "victorydance_rainbow_dolly",
+        "killeffect_candle",
+        "glyph_bed",
+        "projectiletrail_potion",
+        "killeffect_squid_missile",
+        "sprays_bed_breaker",
+        "islandtopper_heart",
+        "deathcry_monster_burp",
+        "deathcry_bazinga",
+        "sprays_bed_shield",
+        "npcskin_creeper",
+        "leaderboards_resync_mar_2021",
+        "killeffect_raining_eggs",
+        "deathcry_plop",
+        "npcskin_ender_pulse",
+        "sprays_boo",
+        "islandtopper_ox",
+        "sprays_angry_turkey",
+        "islandtopper_carrot",
+        "glyph_chocolate_egg",
+        "projectileTrail_purple_dust",
+        "killeffect_cow_rocket",
+        "islandtopper_robin",
+        "sprays_menorah",
+        "glyph_storm",
+        "glyph_chick",
+        "glyph_cat",
+        "islandtopper_basket",
+        "islandtopper_thunder",
+        "islandtopper_new_ghost",
+        "islandtopper_flame",
+        "glyph_shock_face",
+        "killmessages_oxed",
+        "glyph_bloom",
+        "sprays_ghost",
+        "islandtopper_bluebird",
+        "projectileTrail_black_smoke",
+        "deathcry_squeak",
+        "glyph_witch_hat",
+        "islandtopper_penjing",
+        "deathcry_squeal",
+        "sprays_gg_wp",
+        "npcskin_wither_skeleton",
+        "victorydance_haunted",
+        "killmessages_pirate",
+        "islandtopper_sword",
+        "islandtopper_bell",
+        "islandtopper_rainbow_sheep",
+        "sprays_rabbit_costume",
+        "killeffect_magnolia",
+        "sprays_faboolous",
+        "glyph_no",
+        "npcskin_king_of_beds",
+        "killmessages_fire",
+        "killeffect_tnt",
+        "glyph_spider",
+        "killeffect_blood_explosion",
+        "deathcry_splash",
+        "islandtopper_the_l",
+        "npcskin_bed_researcher",
+        "sprays_bye_bye",
+        "npcskin_gold_tiger",
+        "projectileTrail_hearts",
+        "npcskin_bright_tiger",
+        "islandtopper_leaf",
+        "beddestroy_lighting_strike",
+        "deathcry_grumpy_villager",
+        "sprays_easter_creeper",
+        "glyph_lion_dancer",
+        "victorydance_twerk_apocalypse",
+        "npcskin_zombie_pigman",
+        "deathcry_energy",
+        "sprays_reveillon",
+        "projectileTrail_magic",
+        "deathcry_aww",
+        "glyph_easter_flower",
+        "glyph_burn",
+        "glyph_pumpkin_2",
+        "islandtopper_presents",
+        "glyph_bronze_shield",
+        "glyph_candy_cane",
+        "sprays_leaping_potion",
+        "sprays_lion_dancer",
+        "npcskin_snowman",
+        "sprays_grudge",
+        "sprays_bunny_parkour",
+        "beddestroy_thief",
+        "projectileTrail_fire",
+        "projectileTrail_water",
+        "sprays_i_love_you",
+        "deathcry_fireball",
+        "killeffect_piñata",
+        "glyph_iron",
+        "glyph_skull",
+        "islandtopper_candy_corn",
+        "sprays_puppy_surprise",
+        "beddestroy_ghosts",
+        "sprays_snow_angel",
+        "deathcry_pig",
+        "glyph_thumbs_up",
+        "glyph_silver_shield",
+        "npcskin_killer",
+        "sprays_creeper",
+        "npcskin_you",
+        "islandtopper_tree",
+        "sprays_sniper_snowball",
+        "sprays_found_u",
+        "sprays_rabbit_celebration",
+        "glyph_thumbs_down",
+        "glyph_angry_face",
+        "islandtopper_small_rabbit",
+        "sprays_enderman",
+        "killeffect_smiley",
+        "npcskin_quack",
+        "sprays_egg_hit",
+        "sprays_christmas_tree",
+        "islandtopper_smiley_face",
+        "killmessages_primal",
+        "glyph_candy",
+        "beddestroy_bedbugs",
+        "islandtopper_witch_house",
+        "victorydance_rabbit_meteors",
+        "killeffect_gift_explosion",
+        "sprays_sorry",
+        "sprays_perfect_sword_throw",
+        "islandtopper_wicked_zombie",
+        "npcskin_scarecrow",
+        "killeffect_cookie_fountain",
+        "sprays_santa",
+        "islandtopper_note",
+        "beddestroy_lava_explosion",
+        "sprays_easter_basket",
+        "sprays_angry_cow",
+        "npcskin_holiday_tree",
+        "killmessages_to_the_moon",
+        "glyph_big_smile",
+        "sprays_golem_riding",
+        "glyph_emerald",
+        "deathcry_sad_puppy",
+        "victorydance_yeehaw",
+        "sprays_candy_king",
+        "islandtopper_firecracker",
+        "glyph_holly",
+        "islandtopper_frankenstein",
+        "islandtopper_bunny",
+        "sprays_garlic",
+        "projectileTrail_snowball_rain",
+        "projectileTrail_twisted_trail",
+        "glyph_bat",
+        "npcskin_present_man",
+        "glyph_ghost",
+        "glyph_gold",
+        "deathcry_dragon_roar",
+        "projectileTrail_slime",
+        "deathcry_dry_bones",
+        "sprays_egg_time",
+        "islandtopper_tiger",
+        "victorydance_cold_snap",
+        "sprays_year_of_the_tiger",
+        "killeffect_black_mark",
+        "killeffect_lighting_strike",
+        "victorydance_easter_bunnies",
+        "islandtopper_witchs_potion",
+        "sprays_decorative_island",
+        "islandtopper_snowflake",
+        "victorydance_abominable_snowman",
+        "sprays_cat_graffiti",
+        "sprays_easter_sweater",
+        "glyph_quack",
+        "islandtopper_slime",
+        "islandtopper_werewolf",
+        "sprays_santa_slips",
+        "islandtopper_brick_house",
+        "glyph_cry_face",
+        "islandtopper_devil",
+        "islandtopper_sapling",
+        "npcskin_grinch",
+        "projectileTrail_hanukkah",
+        "sprays_wrong_eggs",
+        "sprays_sleeps_and_treats",
+        "npcskin_witch",
+        "glyph_cute_pumpkin",
+        "glyph_chicken",
+        "islandtopper_monocle",
+        "deathcry_sad_moo",
+        "sprays_diamond",
+        "deathcry_bat",
+        "sprays_pumpkinz",
+        "sprays_witch_please",
+        "sprays_egg_hunt",
+        "killeffect_tornado",
+        "glyph_spectrum",
+        "deathcry_enderman",
+        "islandtopper_easter_bell",
+        "glyph_snowflake",
+        "deathcry_deflated_toy",
+        "npcskin_zombie",
+        "glyph_sword",
+        "npcskin_purple_pig_pajamas",
+        "npcskin_blaze",
+        "killmessages_bbq",
+        "sprays_lucky_rabbit",
+        "glyph_daisy",
+        "sprays_snowball_spammer",
+        "beddestroy_squid_missile",
+        "projectileTrail_spring_ribbons",
+        "killeffect_egg_theft",
+        "projectileTrail_bee",
+        "sprays_watcher",
+        "sprays_easter_eggs",
+        "islandtopper_rubix_cube",
+        "killeffect_campfire",
+        "killmessages_santa_workshop",
+        "sprays_rabbits_in_basket",
+        "projectileTrail_blue_dust",
+        "glyph_smiley_face",
+        "islandtopper_penguin",
+        "glyph_creeper_scream",
+        "glyph_fai_chun",
+        "glyph_snowman",
+        "killeffect_heart_aura",
+        "killeffect_pumpkin_rocket",
+        "deathcry_robot_mouse",
+        "sprays_sweets",
+        "sprays_choc_feast",
+        "beddestroy_tornado",
+        "islandtopper_whale",
+        "glyph_gg",
+        "deathcry_ghosts_cry",
+        "projectileTrail_lava",
+        "sprays_good_fortune",
+        "islandtopper_large_rabbit",
+        "projectileTrail_notes",
+        "sprays_hypixel_logo_default",
+        "projectileTrail_rainy",
+        "killmessages_love",
+        "glyph_reindeer",
+        "projectileTrail_present",
+        "projectileTrail_red_dust",
+        "projectileTrail_rainbow",
+        "killeffect_xp_orb",
+        "glyph_hi",
+        "sprays_year_of_the_rabbit",
+        "npcskin_egg_delivery",
+        "npcskin_astronaut",
+        "killeffect_final_smash",
+        "glyph_bunny_guy",
+        "sprays_tnt_drop",
+        "islandtopper_reindeer",
+        "victorydance_night_shift",
+        "islandtopper_candle",
+        "killeffect_lantern_spiral",
+        "islandtopper_sun_glasses",
+        "sprays_egg_surprise",
+        "projectileTrail_green_star",
+        "islandtopper_ghost",
+        "killeffect_haunted",
+        "sprays_fake_vampire",
+        "islandtopper_christmas_hat",
+        "islandtopper_gong",
+        "projectileTrail_meteorblaze",
+        "glyph_gold_lunar",
+        "sprays_curled_ox",
+        "islandtopper_sheep",
+        "islandtopper_clown",
+        "glyph_hot_cross_bun",
+        "projectileTrail_potion",
+        "glyph_red_envelope",
+        "islandtopper_treasure_chest",
+        "sprays_surprise_snowball",
+        "npcskin_red_frog_pajamas",
+        "killeffect_bunny_explosion",
+        "glyph_bunny",
+        "victorydance_special_fireworks",
+        "islandtopper_chicken",
+        "victorydance_meteor_shower",
+        "npcskin_green_cow_pajamas",
+        "islandtopper_tnt",
+        "islandtopper_gravestone",
+        "glyph_gingerbread_man",
+        "projectileTrail_white_smoke",
+        "npcskin_evil_eye",
+        "victorydance_anvil_rain",
+        "npcskin_watcher",
+        "sprays_thanks",
+        "glyph_party",
+        "victorydance_pumpkin_patch",
+        "killeffect_beef_everywhere",
+        "islandtopper_dead_tree",
+        "projectileTrail_angry_villager",
+        "glyph_wreath",
+        "sprays_year_of_the_ox",
+        "victorydance_festive_music",
+        "sprays_bunny_gg",
+        "sprays_carried",
+        "killmessages_western",
+        "islandtopper_mummy",
+        "deathcry_doused_lantern",
+        "killmessages_buzz",
+        "sprays_lazy_bunnies",
+        "projectileTrail_random",
+        "projectileTrail_ender",
+        "sprays_pumpkin",
+        "npcskin_holiday_bartender",
+        "npcskin_magic_vendor",
+        "glyph_lol",
+        "npcskin_bunny_costume",
+        "islandtopper_witch_hat",
+        "islandtopper_tall_carrot",
+        "sprays_disco_pumpkin",
+        "glyph_lucky_rabbit",
+        "killeffect_lit",
+        "killmessages_counter",
+        "islandtopper_candy_cane",
+        "glyph_tnt",
+        "beddestroy_glyph",
+        "islandtopper_snowglobe",
+        "sprays_sabeetage",
+        "sprays_one_of_us",
+        "sprays_golem_picnic",
+        "sprays_buff_chicken"
+      ],
+      "Bedwars_openedChests": 35,
+      "Bedwars_openedCommons": 21,
+      "Bedwars_openedRares": 12,
+      "chest_history_new": [
+        "npcskin_creeper",
+        "sprays_bed_shield",
+        "deathcry_bazinga",
+        "deathcry_monster_burp",
+        "islandtopper_heart"
+      ],
+      "activeIslandTopper": "islandtopper_bomb",
+      "Bedwars_openedEpics": 3,
+      "activeGlyph": "glyph_diamond",
+      "four_four_void_final_kills_bedwars": 1,
+      "four_four_entity_explosion_deaths_bedwars": 1,
+      "lastTourneyAd": 1697455881830,
+      "selected_challenge_type": "NONE",
+      "bedwars_golden_boxes": 0
+    },
+    "Duels": {
+      "duels_chests": 0,
+      "coins": 869500,
+      "no_debuff_rookie_title_prestige": 1,
+      "combo_rookie_title_prestige": 1,
+      "skywars_rookie_title_prestige": 1,
+      "sumo_rookie_title_prestige": 1,
+      "op_rookie_title_prestige": 1,
+      "blitz_rookie_title_prestige": 1,
+      "uhc_rookie_title_prestige": 1,
+      "tnt_games_rookie_title_prestige": 1,
+      "bow_rookie_title_prestige": 1,
+      "bridge_rookie_title_prestige": 1,
+      "classic_rookie_title_prestige": 1,
+      "all_modes_rookie_title_prestige": 1,
+      "mega_walls_rookie_title_prestige": 1,
+      "selected_2_new": "blitz",
+      "selected_1_new": "sumo",
+      "show_lb_option": "on",
+      "games_played_duels": 21,
+      "chat_enabled": "on",
+      "bow_hits": 36,
+      "bow_shots": 89,
+      "damage_dealt": 877,
+      "golden_apples_eaten": 30,
+      "health_regenerated": 537,
+      "melee_hits": 447,
+      "melee_swings": 1338,
+      "rounds_played": 20,
+      "uhc_duel_bow_hits": 20,
+      "uhc_duel_bow_shots": 61,
+      "uhc_duel_damage_dealt": 170,
+      "uhc_duel_golden_apples_eaten": 27,
+      "uhc_duel_health_regenerated": 328,
+      "uhc_duel_melee_hits": 176,
+      "uhc_duel_melee_swings": 592,
+      "uhc_duel_rounds_played": 11,
+      "combo_duel_golden_apples_eaten": 3,
+      "combo_duel_health_regenerated": 148,
+      "combo_duel_melee_hits": 112,
+      "combo_duel_melee_swings": 285,
+      "combo_duel_rounds_played": 1,
+      "sw_duels_kit_new3": "kit_ranked_ranked_armorer",
+      "blocks_placed": 460,
+      "sw_duel_blocks_placed": 11,
+      "sw_duel_bow_hits": 7,
+      "sw_duel_bow_shots": 8,
+      "sw_duel_damage_dealt": 31,
+      "sw_duel_health_regenerated": 8,
+      "sw_duel_melee_hits": 24,
+      "sw_duel_melee_swings": 58,
+      "sw_duel_rounds_played": 2,
+      "duels_recently_played2": "BRIDGE_DUEL##",
+      "bridge_duel_blocks_placed": 262,
+      "bridge_duel_bow_hits": 8,
+      "bridge_duel_bow_shots": 16,
+      "bridge_duel_damage_dealt": 451,
+      "bridge_duel_health_regenerated": 38,
+      "bridge_duel_melee_hits": 80,
+      "bridge_duel_melee_swings": 251,
+      "bridge_duel_rounds_played": 1,
+      "bridge_doubles_blocks_placed": 110,
+      "bridge_doubles_bow_hits": 1,
+      "bridge_doubles_bow_shots": 4,
+      "bridge_doubles_damage_dealt": 213,
+      "bridge_doubles_health_regenerated": 11,
+      "bridge_doubles_melee_hits": 45,
+      "bridge_doubles_melee_swings": 129,
+      "bridge_doubles_rounds_played": 1,
+      "sw_doubles_damage_dealt": 12,
+      "sw_doubles_health_regenerated": 4,
+      "sw_doubles_melee_hits": 10,
+      "sw_doubles_melee_swings": 23,
+      "sw_doubles_rounds_played": 3,
+      "sw_doubles_blocks_placed": 7,
+      "uhc_duel_blocks_placed": 70,
+      "moved_to_redis_3": true,
+      "parkour_rookie_title_prestige": 1,
+      "boxing_rookie_title_prestige": 1,
+      "classic_duel_rounds_played": 1,
+      "kit_menu_option": "on",
+      "rematch_option_1": "default",
+      "packages": [
+        "projectile_trail_red_dust",
+        "kill_effect_tnt",
+        "projectile_trail_lava",
+        "cosmetictitle_the_skilful",
+        "projectile_trail_notes",
+        "killmessages_memed",
+        "victory_dance_special_fireworks",
+        "emblem_skull",
+        "projectile_trail_blue_dust",
+        "auras_slime_particle",
+        "cosmetictitle_the_warrior",
+        "kill_effect_raining_eggs",
+        "emblem_rock_hand",
+        "kill_effect_blood_explosion",
+        "cosmetictitle_veteran",
+        "kill_effect_piñata",
+        "projectile_trail_potion_spiral",
+        "killmessages_bbq",
+        "victory_dance_earth",
+        "cosmetictitle_the_awesome",
+        "killmessages_pirate",
+        "projectile_trail_white_smoke",
+        "cosmetictitle_athlete",
+        "emblem_gg",
+        "emblem_red_shield",
+        "projectile_trail_magic",
+        "emblem_hype",
+        "cosmetictitle_op",
+        "cosmetictitle_the_undefeated",
+        "projectile_trail_water",
+        "cosmetictitle_admiral",
+        "killmessages_fire",
+        "kill_effect_smiley",
+        "emblem_blue_flag",
+        "auras_portal_particle",
+        "emblem_venom",
+        "kill_effect_head_rocket",
+        "emblem_bomb",
+        "cosmetictitle_salty",
+        "emblem_wings",
+        "victory_dance_meteor_shower",
+        "weaponpacks_soldier",
+        "kill_effect_lighting_strike",
+        "auras_dust_particle",
+        "projectile_trail_potion",
+        "auras_tron_rainbow_trail",
+        "weaponpacks_knight",
+        "projectile_trail_green_spiral",
+        "emblem_frog",
+        "projectile_trail_black_potion_spiral",
+        "emblem_pepe",
+        "kill_effect_cookie_fountain",
+        "emblem_sword",
+        "projectile_trail_angry_villager",
+        "weaponpacks_police",
+        "auras_lava_particle",
+        "projectile_trail_firework",
+        "killmessages_love",
+        "cosmetictitle_lazy",
+        "cosmetictitle_supervillain",
+        "emblem_music_notes",
+        "auras_tron_red_trail",
+        "emblem_target_board",
+        "weaponpacks_pirate",
+        "projectile_trail_blood",
+        "auras_tron_green_trail",
+        "projectile_trail_purple_dust",
+        "projectile_trail_ender",
+        "victory_dance_daredevil",
+        "emblem_yin_yang",
+        "kill_effect_heart_aura",
+        "cosmetictitle_assassin",
+        "auras_daylight_particle",
+        "auras_rainbow_wool_particle",
+        "victory_dance_blazing_speed",
+        "projectile_trail_black_smoke",
+        "cosmetictitle_the_stylish",
+        "auras_tron_blue_trail",
+        "emblem_laugh",
+        "killmessages_insectoid",
+        "weaponpacks_viking",
+        "victory_dance_anvil_rain",
+        "victory_dance_rainbow_dolly",
+        "weaponpacks_warrior",
+        "emblem_eight_ball",
+        "emblem_dynamite",
+        "emblem_star",
+        "auras_bedrock_trail",
+        "auras_dark_potion_particle",
+        "projectile_trail_Jack_O_Lantern_Trail",
+        "weaponpacks_clown",
+        "kill_effect_campfire",
+        "kill_effect_burning_shoes",
+        "weaponpacks_hiker",
+        "emblem_salt",
+        "weaponpacks_star_wars",
+        "cosmetictitle_the_mysterious",
+        "cosmetictitle_the_untouchable",
+        "emblem_heart",
+        "auras_netherrack_trail",
+        "auras_water_particle",
+        "killmessages_woof",
+        "emblem_the_l",
+        "projectile_trail_slime",
+        "killmessages_galactic",
+        "victory_dance_twerk_apocalypse",
+        "killmessages_computer",
+        "kill_effect_xp_orb",
+        "emblem_thinking",
+        "kill_effect_squid_missile",
+        "emblem_fire",
+        "auras_diamond_ore_trail",
+        "auras_angry_villager_particle",
+        "emblem_acorn",
+        "killmessages_western",
+        "cosmetictitle_sneaky",
+        "cosmetictitle_astronaut",
+        "cosmetictitle_general",
+        "victory_dance_yeehaw",
+        "emblem_pizza",
+        "emblem_okay",
+        "emblem_whale",
+        "auras_enchanting_particle",
+        "auras_snow_particle",
+        "killmessages_medieval",
+        "emblem_blue_shield",
+        "projectile_trail_bone",
+        "emblem_red_flag",
+        "cosmetictitle_overlord",
+        "emblem_money",
+        "weaponpacks_ninja",
+        "weaponpacks_caveman",
+        "cosmetictitle_captain",
+        "killmessages_banana",
+        "auras_heart_particle",
+        "kill_effect_firework",
+        "projectile_trail_green_star"
+      ]
+    },
+    "MurderMystery": {
+      "mm_chests": 0,
+      "mm_christmas_chests": 0,
+      "coins": 1417210,
+      "murdermystery_books": [
+        "detective",
+        "murderer",
+        "innocent"
+      ],
+      "showqueuebook": false,
+      "detective_chance": 8,
+      "murderer_chance": 11,
+      "coins_pickedup": 118,
+      "coins_pickedup_MURDER_CLASSIC": 110,
+      "coins_pickedup_towerfall": 11,
+      "coins_pickedup_towerfall_MURDER_CLASSIC": 11,
+      "deaths": 11,
+      "deaths_MURDER_CLASSIC": 10,
+      "deaths_towerfall": 2,
+      "deaths_towerfall_MURDER_CLASSIC": 2,
+      "games": 21,
+      "games_MURDER_CLASSIC": 20,
+      "games_towerfall": 2,
+      "games_towerfall_MURDER_CLASSIC": 2,
+      "coins_pickedup_transport": 13,
+      "coins_pickedup_transport_MURDER_CLASSIC": 13,
+      "games_transport": 2,
+      "games_transport_MURDER_CLASSIC": 2,
+      "wins": 10,
+      "wins_MURDER_CLASSIC": 10,
+      "wins_transport": 2,
+      "wins_transport_MURDER_CLASSIC": 2,
+      "bow_kills": 3,
+      "bow_kills_MURDER_CLASSIC": 3,
+      "bow_kills_ancient_tomb": 1,
+      "bow_kills_ancient_tomb_MURDER_CLASSIC": 1,
+      "coins_pickedup_ancient_tomb": 19,
+      "coins_pickedup_ancient_tomb_MURDER_CLASSIC": 11,
+      "deaths_ancient_tomb": 2,
+      "deaths_ancient_tomb_MURDER_CLASSIC": 1,
+      "games_ancient_tomb": 2,
+      "games_ancient_tomb_MURDER_CLASSIC": 1,
+      "kills": 8,
+      "kills_MURDER_CLASSIC": 8,
+      "kills_ancient_tomb": 1,
+      "kills_ancient_tomb_MURDER_CLASSIC": 1,
+      "wins_ancient_tomb": 1,
+      "wins_ancient_tomb_MURDER_CLASSIC": 1,
+      "coins_pickedup_gold_rush": 14,
+      "coins_pickedup_gold_rush_MURDER_CLASSIC": 14,
+      "deaths_gold_rush": 1,
+      "deaths_gold_rush_MURDER_CLASSIC": 1,
+      "games_gold_rush": 1,
+      "games_gold_rush_MURDER_CLASSIC": 1,
+      "wins_gold_rush": 1,
+      "wins_gold_rush_MURDER_CLASSIC": 1,
+      "bow_kills_darkfall": 1,
+      "bow_kills_darkfall_MURDER_CLASSIC": 1,
+      "coins_pickedup_darkfall": 10,
+      "coins_pickedup_darkfall_MURDER_CLASSIC": 10,
+      "games_darkfall": 1,
+      "games_darkfall_MURDER_CLASSIC": 1,
+      "kills_darkfall": 1,
+      "kills_darkfall_MURDER_CLASSIC": 1,
+      "was_hero": 2,
+      "was_hero_MURDER_CLASSIC": 2,
+      "was_hero_darkfall": 1,
+      "was_hero_darkfall_MURDER_CLASSIC": 1,
+      "wins_darkfall": 1,
+      "wins_darkfall_MURDER_CLASSIC": 1,
+      "coins_pickedup_san_peratico_v2": 13,
+      "coins_pickedup_san_peratico_v2_MURDER_CLASSIC": 13,
+      "deaths_san_peratico_v2": 2,
+      "deaths_san_peratico_v2_MURDER_CLASSIC": 2,
+      "games_san_peratico_v2": 2,
+      "games_san_peratico_v2_MURDER_CLASSIC": 2,
+      "coins_pickedup_MURDER_DOUBLE_UP": 8,
+      "coins_pickedup_ancient_tomb_MURDER_DOUBLE_UP": 8,
+      "deaths_MURDER_DOUBLE_UP": 1,
+      "deaths_ancient_tomb_MURDER_DOUBLE_UP": 1,
+      "games_MURDER_DOUBLE_UP": 1,
+      "games_ancient_tomb_MURDER_DOUBLE_UP": 1,
+      "packages": [
+        "sep2021achievementsync",
+        "victory_dance_raining_swords",
+        "projectile_trail_red_dust",
+        "kill_note_big_brother",
+        "animated_hat_shining_tiger",
+        "projectile_trail_lava",
+        "kill_note_gradient",
+        "gesture_cool_dance",
+        "projectile_trail_notes",
+        "last_words_dontcare",
+        "kill_note_year_of_the_tiger",
+        "kill_note_ox_costume",
+        "knife_skin_cheese",
+        "kill_note_gas",
+        "projectile_trail_blue_dust",
+        "last_words_crybaby",
+        "kill_note_year_of_the_rabbit",
+        "deathcry_sad_moo",
+        "gesture_hype_dance",
+        "gesture_sun",
+        "last_words_reindeer",
+        "kill_note_poison",
+        "knife_skin_timber",
+        "last_words_meow",
+        "projectile_trail_rainbow",
+        "kill_note_split_personality",
+        "animated_hat_herobrine",
+        "kill_note_skull",
+        "projectile_trail_white_smoke",
+        "kill_note_hide_and_seek",
+        "kill_note_santa",
+        "projectile_trail_water",
+        "last_words_mrobvious",
+        "victory_dance_night_shift",
+        "knife_skin_blaze_stick",
+        "victory_dance_love_aura",
+        "last_words_woof",
+        "knife_skin_bone",
+        "kill_note_boom",
+        "animated_hat_flower_crown",
+        "victory_dance_meteor_shower",
+        "knife_skin_gold_digger",
+        "kill_note_snowman_surprise",
+        "knife_skin_feather",
+        "projectile_trail_potion",
+        "projectile_trail_snowball_rain",
+        "kill_note_good_fortune",
+        "projectile_trail_bubbles",
+        "animated_hat_cyborg",
+        "gesture_goodbye",
+        "kill_note_self_portrait",
+        "deathcry_grumpy_villager",
+        "knife_skin_stick_with_hat",
+        "projectile_trail_twin_dragon",
+        "gesture_can_can",
+        "kill_note_bye",
+        "gesture_possessed",
+        "kill_note_curled_ox",
+        "projectile_trail_angry_villager",
+        "last_words_protips",
+        "knife_skin_shears",
+        "kill_note_shh",
+        "kill_note_master_sword",
+        "animated_hat_ender_pulse",
+        "kill_note_masks_power",
+        "projectile_trail_firework",
+        "projectile_trail_fire",
+        "victory_dance_pumpkin_laser",
+        "victory_dance_cold_snap",
+        "gesture_wave_dance",
+        "knife_skin_frisbee",
+        "kill_note_sleeps_and_treats",
+        "victory_dance_toy_stick",
+        "kill_note_puppy_surprise",
+        "projectile_trail_purple_dust",
+        "kill_note_ghosts",
+        "projectile_trail_ender",
+        "animated_hat_blushy",
+        "gesture_mind_blown",
+        "knife_skin_grilled_steak",
+        "kill_note_chalk_outline",
+        "last_words_fashion",
+        "animated_hat_sacred_cattle",
+        "projectile_trail_black_smoke",
+        "knife_skin_shovel",
+        "last_words_glutton",
+        "gesture_hula",
+        "kill_note_angry_cow",
+        "kill_note_game_over",
+        "last_words_philosoph",
+        "kill_note_gift_spray",
+        "kill_note_rose",
+        "gesture_high_five",
+        "kill_note_dice_roll",
+        "kill_note_super_effective",
+        "kill_note_bad_time",
+        "projectile_trail_slime",
+        "kill_note_bowtie",
+        "projectile_trail_let_there_be_leather",
+        "kill_note_soulless",
+        "knife_skin_stick",
+        "victory_dance_twerk_apocalypse",
+        "projectile_trail_random",
+        "kill_note_derailed",
+        "gesture_clapping",
+        "knife_skin_carrot_on_stick",
+        "kill_note_big_skull",
+        "kill_note_lucky_rabbit",
+        "last_words_pirate",
+        "victory_dance_rabbit_meteors",
+        "kill_note_ace",
+        "last_words_meme",
+        "kill_note_lion_dancer",
+        "gesture_karaoke",
+        "animated_hat_eye",
+        "kill_note_im",
+        "gesture_ballet",
+        "deathcry_doused_lantern",
+        "knife_skin_cheapo",
+        "kill_note_christmas_tree",
+        "last_words_hypixel_fan",
+        "knife_skin_shiny_snack",
+        "knife_skin_wood_axe",
+        "victory_dance_yeehaw",
+        "last_words_rage",
+        "gesture_graduation",
+        "kill_note_selfie",
+        "animated_hat_happy_dude",
+        "kill_note_year_of_the_ox",
+        "last_words_oxymorons",
+        "projectile_trail_snowball",
+        "projectile_trail_rocket",
+        "animated_hat_chroma_slime",
+        "gesture_treasure",
+        "gesture_victory",
+        "last_words_condescending",
+        "kill_note_sabeetage",
+        "kill_note_one_of_us",
+        "kill_note_golem_picnic",
+        "kill_note_buff_chicken"
+      ],
+      "coins_pickedup_aquarium": 3,
+      "coins_pickedup_aquarium_MURDER_CLASSIC": 3,
+      "deaths_aquarium": 1,
+      "deaths_aquarium_MURDER_CLASSIC": 1,
+      "games_aquarium": 3,
+      "games_aquarium_MURDER_CLASSIC": 3,
+      "kills_aquarium": 5,
+      "kills_aquarium_MURDER_CLASSIC": 5,
+      "kills_as_murderer": 5,
+      "kills_as_murderer_MURDER_CLASSIC": 5,
+      "kills_as_murderer_aquarium": 5,
+      "kills_as_murderer_aquarium_MURDER_CLASSIC": 5,
+      "knife_kills": 5,
+      "knife_kills_MURDER_CLASSIC": 5,
+      "knife_kills_aquarium": 5,
+      "knife_kills_aquarium_MURDER_CLASSIC": 5,
+      "games_subway": 2,
+      "games_subway_MURDER_CLASSIC": 2,
+      "coins_pickedup_snowfall": 4,
+      "coins_pickedup_snowfall_MURDER_CLASSIC": 4,
+      "deaths_snowfall": 2,
+      "deaths_snowfall_MURDER_CLASSIC": 2,
+      "games_snowfall": 2,
+      "games_snowfall_MURDER_CLASSIC": 2,
+      "wins_snowfall": 1,
+      "wins_snowfall_MURDER_CLASSIC": 1,
+      "coins_pickedup_villa": 1,
+      "coins_pickedup_villa_MURDER_CLASSIC": 1,
+      "games_villa": 1,
+      "games_villa_MURDER_CLASSIC": 1,
+      "wins_villa": 1,
+      "wins_villa_MURDER_CLASSIC": 1,
+      "coins_pickedup_headquarters": 20,
+      "coins_pickedup_headquarters_MURDER_CLASSIC": 20,
+      "deaths_headquarters": 1,
+      "deaths_headquarters_MURDER_CLASSIC": 1,
+      "games_headquarters": 1,
+      "games_headquarters_MURDER_CLASSIC": 1,
+      "wins_headquarters": 1,
+      "wins_headquarters_MURDER_CLASSIC": 1,
+      "games_library": 1,
+      "games_library_MURDER_CLASSIC": 1,
+      "bow_kills_cruise_ship": 1,
+      "bow_kills_cruise_ship_MURDER_CLASSIC": 1,
+      "coins_pickedup_cruise_ship": 10,
+      "coins_pickedup_cruise_ship_MURDER_CLASSIC": 10,
+      "games_cruise_ship": 1,
+      "games_cruise_ship_MURDER_CLASSIC": 1,
+      "kills_cruise_ship": 1,
+      "kills_cruise_ship_MURDER_CLASSIC": 1,
+      "was_hero_cruise_ship": 1,
+      "was_hero_cruise_ship_MURDER_CLASSIC": 1,
+      "wins_cruise_ship": 1,
+      "wins_cruise_ship_MURDER_CLASSIC": 1,
+      "wins_towerfall": 1,
+      "wins_towerfall_MURDER_CLASSIC": 1
+    },
+    "Arcade": {
+      "coins": 4603603.0,
+      "hider_wins_hide_and_seek": 2,
+      "prop_hunt_hider_wins_hide_and_seek": 2,
+      "showinfobook": false,
+      "eggs_found_easter_simulator": 145,
+      "wins_easter_simulator": 1,
+      "arrows_shot_mini_walls": 26,
+      "deaths_mini_walls": 17,
+      "final_kills_mini_walls": 5,
+      "kills_mini_walls": 25,
+      "wither_damage_mini_walls": 60,
+      "wither_kills_mini_walls": 2,
+      "miniwalls_activeKit": "soldier",
+      "arrows_hit_mini_walls": 6,
+      "wins_mini_walls": 1,
+      "lastTourneyAd": 1702849189815,
+      "pixel_party": {
+        "games_played": 2,
+        "games_played_normal": 2,
+        "highest_round": 7,
+        "rounds_completed": 8,
+        "rounds_completed_normal": 8
+      },
+      "dropper": {
+        "games_played": 2
+      }
+    },
+    "UHC": {
+      "coins": 992899,
+      "saved_stats": true,
+      "clearup_achievement": true
+    },
+    "Walls3": {
+      "coins": 1006527,
+      "classes": {
+        "zombie": {
+          "skill_level_dChecked5": true,
+          "skill_level_d": 1,
+          "checked4": true,
+          "unlocked": false
+        },
+        "skeleton": {
+          "skill_level_dChecked5": true,
+          "skill_level_d": 1,
+          "unlocked": false,
+          "checked4": true
+        },
+        "herobrine": {
+          "unlocked": false,
+          "skill_level_dChecked5": true,
+          "skill_level_d": 1,
+          "checked4": true
+        },
+        "enderman": {
+          "skill_level_d": 1,
+          "checked4": true,
+          "skill_level_dChecked5": true,
+          "unlocked": false
+        }
+      },
+      "packages": [
+        "cakes_fix_flag_2",
+        "achievement_fix_flag",
+        "legacy_achievement_a",
+        "ACHIEVEMENT_FIX_FLAG",
+        "CAKES_FIX_FLAG_2",
+        "CAKES_COUNT_FIX_FLAG",
+        "convertedStats"
+      ],
+      "chosen_class": "Shark",
+      "class_points_version": 1
+    },
+    "Arena": {
+      "coins": 987738
+    },
+    "GingerBread": {
+      "coins": 995738,
+      "packages": [
+        "achievementsupdatedd",
+        "helmet_1_3_unlocked",
+        "achievementsupdatedc"
+      ],
+      "frame_active": "{GingerbreadPart:{PartType:FRAME,PartRarity:BASIC}}",
+      "engine_active": "{GingerbreadPart:{PartType:ENGINE,PartRarity:BASIC}}",
+      "shoes_active": "GOLD_SHOES",
+      "helmet_active": "HELMET_1_3",
+      "skin_active": "RED_KART;DEFAULT",
+      "booster_active": "{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:BASIC}}",
+      "jacket_active": "GOLD_JACKET",
+      "pants_active": "GOLD_PANTS",
+      "lastTourneyAd": 1667163149000
+    },
+    "Paintball": {
+      "coins": 997738,
+      "packages": [
+        "achievement_flag_2"
+      ]
+    },
+    "Quake": {
+      "coins": 1001738,
+      "packages": [
+        "achievement_flag_3"
+      ],
+      "lastTourneyAd": 1639949964977
+    },
+    "VampireZ": {
+      "coins": 994738,
+      "updated_stats": true,
+      "most_vampire_kills_new": 0
+    },
+    "Walls": {
+      "coins": 998738
+    },
+    "HungerGames": {
+      "coins": 616857,
+      "wins": 0,
+      "packages": [
+        "fixachievements3",
+        "new_stats_02_2019"
+      ],
+      "autoarmor": true,
+      "wins_teams_normal": 0,
+      "wins_backup": 0,
+      "wins_solo_normal": 0,
+      "lastTourneyAd": 1679854855403
+    },
+    "TNTGames": {
+      "coins": 1027630,
+      "new_witherwizard_explode": 1,
+      "new_tntrun_double_jumps": 1,
+      "new_firewizard_explode": 1,
+      "new_spleef_tripleshot": 1,
+      "packages": [
+        "tiered_achievement_flag_3",
+        "shop_2018",
+        "clicked_tnt_run_npc",
+        "clicked_tnt_tag_npc",
+        "clicked_pvp_run_npc"
+      ],
+      "wins": 0,
+      "new_spleef_double_jumps": 1,
+      "new_spleef_repulsor": 1,
+      "new_icewizard_explode": 1,
+      "new_witherwizard_regen": 1,
+      "new_firewizard_regen": 1,
+      "new_kineticwizard_explode": 1,
+      "new_bloodwizard_regen": 1,
+      "new_bloodwizard_explode": 1,
+      "new_pvprun_double_jumps": 1,
+      "new_tntag_speedy": 1,
+      "new_icewizard_regen": 1,
+      "new_kineticwizard_regen": 1,
+      "run_potions_splashed_on_players": 0,
+      "record_tntrun": 211,
+      "winstreak": 0,
+      "deaths_tntrun": 3,
+      "record_pvprun": 56,
+      "deaths_pvprun": 1,
+      "lastTourneyAd": 1710682591392
+    },
+    "MCGO": {
+      "coins": 1005178,
+      "lastTourneyAd": 1614965990778,
+      "bombs_defused": 0,
+      "game_wins_deathmatch": 0,
+      "pocket_change": 0,
+      "bombs_planted": 0,
+      "packages": [
+        "achievement_flag_7",
+        "achievement_flag_8"
+      ],
+      "grenadeKills": 0,
+      "kills": 0,
+      "grenade_kills": 0,
+      "kills_deathmatch": 0,
+      "game_wins": 0,
+      "headshot_kills": 0,
+      "shotgunHeadshots": 0,
+      "scopedRifleHeadshots": 0,
+      "carbineKills": 0,
+      "handgunKills": 0,
+      "pistolKills": 0,
+      "kills_gungame": 0,
+      "game_wins_gungame": 0,
+      "autoShotgunKills": 0
+    },
+    "Battleground": {
+      "coins": 988358,
+      "shaman_spec": "thunderlord",
+      "packages": [
+        "legacyachievement8",
+        "legacyachievement9",
+        "legacyachievement2",
+        "legacyachievement10"
+      ],
+      "warrior_spec": "berserker",
+      "mage_spec": "pyromancer",
+      "selected_mount": "noble_steed",
+      "paladin_spec": "avenger",
+      "chosen_class": "mage"
+    },
+    "SuperSmash": {
+      "coins": 968895,
+      "lastLevel_THE_BULK": 0
+    },
+    "TrueCombat": {
+      "coins": 166300,
+      "packages": [
+        "cw_ach_flag1",
+        "cw_ach_flag2",
+        "cw_ach_flag3",
+        "cw_ach_flag4"
+      ]
+    },
+    "Pit": {
+      "pit_stats_ptl": {
+        "joins": 28,
+        "arrows_fired": 336,
+        "assists": 141,
+        "cash_earned": 4697,
+        "damage_dealt": 1810,
+        "damage_received": 2146,
+        "deaths": 93,
+        "jumped_into_pit": 79,
+        "left_clicks": 913,
+        "melee_damage_dealt": 1551,
+        "melee_damage_received": 1991,
+        "playtime_minutes": 45,
+        "sword_hits": 517,
+        "arrow_hits": 124,
+        "bow_damage_dealt": 259,
+        "bow_damage_received": 136,
+        "kills": 50,
+        "max_streak": 5,
+        "gapple_eaten": 13,
+        "launched_by_launchers": 14,
+        "ingots_cash": 11,
+        "ingots_picked_up": 7,
+        "contracts_completed": 1,
+        "contracts_started": 1
+      },
+      "profile": {
+        "moved_achievements_1": true,
+        "outgoing_offers": [],
+        "moved_achievements_2": true,
+        "items_last_buy": {},
+        "contract_choices": null,
+        "leaderboard_stats": {},
+        "last_save": 1705843631809,
+        "king_quest": {
+          "kills": 50
+        },
+        "inv_armor": {
+          "type": 0,
+          "data": [
+            31,
+            -117,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -29,
+            98,
+            96,
+            -32,
+            100,
+            96,
+            -52,
+            -28,
+            98,
+            96,
+            96,
+            96,
+            97,
+            98,
+            96,
+            -54,
+            76,
+            97,
+            52,
+            101,
+            100,
+            96,
+            117,
+            -50,
+            47,
+            -51,
+            43,
+            97,
+            -28,
+            98,
+            96,
+            46,
+            73,
+            76,
+            103,
+            100,
+            -32,
+            14,
+            -51,
+            75,
+            42,
+            74,
+            77,
+            -52,
+            78,
+            76,
+            -54,
+            73,
+            101,
+            100,
+            96,
+            98,
+            96,
+            115,
+            73,
+            -52,
+            77,
+            76,
+            79,
+            5,
+            106,
+            -127,
+            -24,
+            48,
+            32,
+            89,
+            -121,
+            62,
+            9,
+            58,
+            24,
+            24,
+            0,
+            -84,
+            32,
+            -32,
+            30,
+            -92,
+            0,
+            0,
+            0
+          ]
+        },
+        "last_contract": 1600199058528,
+        "item_stash": {
+          "type": 0,
+          "data": [
+            31,
+            -117,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -29,
+            98,
+            96,
+            -32,
+            100,
+            96,
+            -52,
+            100,
+            0,
+            3,
+            0,
+            -58,
+            2,
+            -70,
+            27,
+            13,
+            0,
+            0,
+            0
+          ]
+        },
+        "login_messages": [],
+        "spire_stash_inv": {
+          "type": 0,
+          "data": [
+            31,
+            -117,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -29,
+            98,
+            96,
+            -32,
+            100,
+            96,
+            -52,
+            100,
+            0,
+            3,
+            0,
+            -58,
+            2,
+            -70,
+            27,
+            13,
+            0,
+            0,
+            0
+          ]
+        },
+        "inv_contents": {
+          "type": 0,
+          "data": [
+            31,
+            -117,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -29,
+            98,
+            96,
+            -32,
+            100,
+            96,
+            -52,
+            -28,
+            98,
+            96,
+            96,
+            80,
+            97,
+            98,
+            96,
+            -54,
+            76,
+            97,
+            -28,
+            102,
+            100,
+            96,
+            117,
+            -50,
+            47,
+            -51,
+            43,
+            97,
+            -28,
+            98,
+            96,
+            46,
+            73,
+            76,
+            103,
+            100,
+            -32,
+            14,
+            -51,
+            75,
+            42,
+            74,
+            77,
+            -52,
+            78,
+            76,
+            -54,
+            73,
+            101,
+            100,
+            96,
+            98,
+            96,
+            115,
+            73,
+            -52,
+            77,
+            76,
+            79,
+            5,
+            106,
+            -127,
+            -24,
+            96,
+            37,
+            65,
+            7,
+            4,
+            64,
+            -12,
+            -79,
+            -63,
+            -12,
+            41,
+            96,
+            -86,
+            -64,
+            14,
+            0,
+            -127,
+            123,
+            -123,
+            -107,
+            -82,
+            0,
+            0,
+            0
+          ]
+        },
+        "xp": 1469,
+        "zero_point_three_gold_transfer": true,
+        "ended_contracts": [
+          {
+            "difficulty": "EASY",
+            "gold_reward": 500,
+            "requirements": {
+              "kills": 3
+            },
+            "progress": {
+              "kills": 3
+            },
+            "chunk_of_viles_reward": 0,
+            "completion_date": 1600199237946,
+            "remaining_ticks": 2480,
+            "key": "shoot_then_talk"
+          }
+        ],
+        "bounties": [],
+        "unlocks": [
+          {
+            "tier": 0,
+            "acquireDate": 1587424643931,
+            "key": "xp_boost"
+          },
+          {
+            "tier": 0,
+            "acquireDate": 1600198903859,
+            "key": "cash_boost"
+          },
+          {
+            "tier": 1,
+            "acquireDate": 1600199290384,
+            "key": "xp_boost"
+          }
+        ],
+        "spire_stash_armor": {
+          "type": 0,
+          "data": [
+            31,
+            -117,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -29,
+            98,
+            96,
+            -32,
+            100,
+            96,
+            -52,
+            100,
+            0,
+            3,
+            0,
+            -58,
+            2,
+            -70,
+            27,
+            13,
+            0,
+            0,
+            0
+          ]
+        },
+        "cash": 448.2989999999999,
+        "cash_during_prestige_0": 4698.298999999995
+      }
+    },
+    "BuildBattle": {
+      "coins": 16137,
+      "games_played": 3,
+      "monthly_coins_b": 1137,
+      "score": 70,
+      "teams_most_points": 147,
+      "total_votes": 32,
+      "weekly_coins_a": 1137,
+      "packages": [
+        "buildbattlesuit"
+      ]
+    },
+    "SpeedUHC": {
+      "coins": 119575
+    },
+    "Legacy": {
+      "tokens": 20,
+      "next_tokens_seconds": 120
+    },
+    "Housing": {
+      "packages": [
+        "skull_pack_holiday"
+      ]
+    },
+    "MainLobby": {
+      "questNPCTutorials": {
+        "summer_guide_2022": true,
+        "easter_guide_2023": true,
+        "zone_fishing_hut": true,
+        "dockmaster": true,
+        "lava_fisherman": true,
+        "halloween_guide_2023": true,
+        "christmas_guide_2023": true,
+        "easter_guide_2024": true,
+        "summer_guide_2024": true,
+        "halloween_guide_2024": true,
+        "christmas_guide_2024": true
+      },
+      "discoveredZones": {
+        "fishing_hut": true
+      },
+      "packages": [
+        "apr_5_23_ench_reset"
+      ],
+      "fishing": {
+        "stats": {
+          "2023": {
+            "easter": {
+              "water": {
+                "junk": 11,
+                "fish": 58,
+                "treasure": 7
+              }
+            }
+          },
+          "permanent": {
+            "individual": {
+              "junk": {
+                "string": 4,
+                "ink_sac": 1,
+                "soggy_paper": 2,
+                "rabbit_hide": 3,
+                "water_bottle": 3,
+                "tripwire_hook": 1,
+                "bone": 4,
+                "bowl": 4,
+                "leather": 2,
+                "lily_pad": 4,
+                "stick": 2,
+                "rotten_flesh": 2,
+                "broken_fishing_rod": 2
+              },
+              "fish": {
+                "clownfish": 40,
+                "pufferfish": 46,
+                "cod": 42,
+                "salmon": 40
+              },
+              "treasure": {
+                "saddle": 1,
+                "enchanted_fishing_rod": 4,
+                "gold_pickaxe": 3,
+                "diamond_sword": 1,
+                "diamond": 2,
+                "enchanted_bow": 2,
+                "emerald": 2
+              }
+            },
+            "water": {
+              "junk": 34,
+              "fish": 168,
+              "treasure": 20
+            }
+          }
+        },
+        "settings": {
+          "fishCollectorShowCaught": false,
+          "simplifiedIcons": false
+        },
+        "fireproofing": {
+          "scales": 10,
+          "flame": 1,
+          "sealant": 1
+        },
+        "orbs": {
+          "aphrodite": 4,
+          "helios": 4,
+          "selene": 2,
+          "zeus": 1,
+          "nyx": 2
+        },
+        "special_fish": {
+          "egg_the_fish": true,
+          "hot_potato": true
+        },
+        "enchants": {
+          "dumpster_diver": {
+            "level": 2,
+            "toggle": true
+          },
+          "luck": {
+            "toggle": true
+          },
+          "lure": {
+            "toggle": true
+          },
+          "vulcans_blessing": {
+            "level": 1
+          }
+        }
+      }
+    },
+    "WoolGames": {
+      "progression": {
+        "available_layers": 5,
+        "experience": 737.5
+      },
+      "wool_wars": {
+        "selected_class": "SWORDSMAN",
+        "stats": {
+          "assists": 12,
+          "blocks_broken": 20,
+          "classes": {
+            "archer": {
+              "assists": 2,
+              "blocks_broken": 11,
+              "powerups_gotten": 1
+            },
+            "assault": {
+              "assists": 7,
+              "blocks_broken": 7,
+              "deaths": 3,
+              "powerups_gotten": 2,
+              "kills": 1
+            },
+            "engineer": {
+              "assists": 1,
+              "blocks_broken": 2,
+              "powerups_gotten": 2
+            },
+            "golem": {
+              "deaths": 1,
+              "powerups_gotten": 1
+            },
+            "swordsman": {
+              "assists": 2,
+              "deaths": 1
+            }
+          },
+          "deaths": 5,
+          "games_played": 4,
+          "powerups_gotten": 6,
+          "wins": 3,
+          "kills": 1
+        }
+      },
+      "coins": 30,
+      "lastTourneyAd": 1694378494976,
+      "data_migration_version": 13
+    }
+  },
+  "achievementTracking": [],
+  "achievements": {
+    "skyblock_treasury": 77,
+    "skyblock_minion_lover": 684,
+    "skyblock_excavator": 60,
+    "skyblock_gatherer": 50,
+    "skyblock_combat": 60,
+    "skyblock_harvester": 60,
+    "skyblock_augmentation": 60,
+    "skyblock_concoctor": 50,
+    "skyblock_angler": 50,
+    "bedwars_level": 4,
+    "christmas2017_advent_2019": 22,
+    "skywars_cages": 0,
+    "arena_climb_the_ranks": 2000,
+    "gingerbread_banker": 934493,
+    "walls3_jack_of_all_trades": 6,
+    "christmas2017_present_collector": 39,
+    "bedwars_bedwars_killer": 63,
+    "general_challenger": 27,
+    "bedwars_wins": 11,
+    "general_quest_master": 23,
+    "skyblock_unique_gifts": 100,
+    "arcade_arcade_banker": 8251,
+    "arcade_arcade_winner": 4,
+    "general_coins": 9350,
+    "general_wins": 15,
+    "buildbattle_build_battle_voter": 32,
+    "buildbattle_build_battle_points": 85,
+    "buildbattle_build_battle_score": 70,
+    "bedwars_beds": 16,
+    "skywars_kills_solo": 3,
+    "murdermystery_hoarder": 120,
+    "murdermystery_wins_as_survivor": 10,
+    "easter_throw_eggs": 5455,
+    "easter_egg_finder": 145,
+    "easter_master_tracker": 1,
+    "pit_gold": 4662,
+    "pit_kills": 50,
+    "skyblock_domesticator": 60,
+    "skyblock_slayer": 7610,
+    "skyblock_treasure_hunter": 16145,
+    "skywars_you_re_a_star": 2,
+    "skyblock_dungeoneer": 41,
+    "tntgames_tnt_banker": 1099,
+    "tntgames_block_runner": 1038,
+    "tntgames_tnt_triathlon": 4,
+    "pit_events": 1,
+    "pit_contracts": 1,
+    "skywars_kills_team": 7,
+    "skywars_wins_team": 1,
+    "skywars_kits_solo": 1,
+    "arcade_miniwalls_winner": 1,
+    "bedwars_loot_box": 12,
+    "christmas2017_advent_2020": 24,
+    "skyblock_hard_working_miner": 5382,
+    "skyblock_goblin_killer": 1763,
+    "skyblock_divans_treasures": 3939,
+    "skyblock_crystal_nucleus": 134,
+    "murdermystery_countermeasures": 3,
+    "murdermystery_kills_as_murderer": 5,
+    "bedwars_collectors_edition": 2,
+    "christmas2017_advent_2022": 23,
+    "arcade_pixel_party_color_coordinated": 8,
+    "skyblock_curator": 352,
+    "skyblock_sb_levels": 454,
+    "skyblock_people_pleaser": 10002,
+    "general_trashiest_diver": 34,
+    "general_master_lure": 168,
+    "general_luckiest_of_the_sea": 21,
+    "christmas2017_advent_2023": 22,
+    "woolgames_wool_wars_winner": 3,
+    "woolgames_wool_wars_capturer": 20,
+    "woolgames_wool_wars_slayer": 1,
+    "christmas2017_advent_2024": 24
+  },
+  "networkExp": 8.478055E7,
+  "achievementPoints": 3945,
+  "petConsumables": {
+    "CAKE": 1873,
+    "GOLD_RECORD": 5905,
+    "HAY_BLOCK": 1935,
+    "LAVA_BUCKET": 11932,
+    "LEASH": 5950,
+    "MELON": 1937,
+    "MILK_BUCKET": 11556,
+    "MUSHROOM_SOUP": 1905,
+    "PORK": 1978,
+    "PUMPKIN_PIE": 2030,
+    "SLIME_BALL": 5856,
+    "STICK": 5818,
+    "WATER_BUCKET": 11786,
+    "WHEAT": 1985,
+    "WOOD_SWORD": 5864,
+    "BAKED_POTATO": 1952,
+    "BONE": 1918,
+    "CARROT_ITEM": 1954,
+    "COOKIE": 1995,
+    "FEATHER": 5773,
+    "MAGMA_CREAM": 1919,
+    "RED_ROSE": 1894,
+    "ROTTEN_FLESH": 1933,
+    "COOKED_BEEF": 1993,
+    "APPLE": 1959,
+    "BREAD": 2012,
+    "RAW_FISH": 1961
+  },
+  "vanityMeta": {
+    "packages": [
+      "suit_ghost_boots",
+      "suit_mermaid_boots",
+      "suit_ninja_leggings",
+      "emote_smile",
+      "hat_wood_elf",
+      "pet_wolf",
+      "hat_letter_p",
+      "hat_sandwich",
+      "pet_cow",
+      "hat_cactus",
+      "pet_cat_black",
+      "hat_pug_black",
+      "pet_horse_undead",
+      "suit_disco_boots",
+      "emote_cool",
+      "emote_cheeky",
+      "hat_letter_q",
+      "suit_thor_chestplate",
+      "gadget_fortune_cookie",
+      "hat_number_9",
+      "gadget_ice_cream_stand",
+      "hat_evil_eye",
+      "hat_aqua_orb",
+      "suit_dragon_breath_helmet",
+      "emote_wink",
+      "hat_siren",
+      "emote_relax",
+      "suit_solar_leggings",
+      "suit_soccer_chestplate",
+      "hat_letter_a",
+      "taunt_victory",
+      "emote_sleepy",
+      "hat_mars",
+      "emote_surprised",
+      "suit_fireman_boots",
+      "hat_groopo",
+      "gadget_explosive_bow",
+      "pet_sheep_white",
+      "suit_ninja_boots",
+      "hat_letter_w",
+      "emote_sad",
+      "hat_letter_s",
+      "pet_cat_siamese",
+      "hat_number_8",
+      "gadget_paintball_gun",
+      "hat_white_wizard",
+      "pet_silverfish",
+      "emote_grin",
+      "pet_horse_brown",
+      "pet_sheep_brown",
+      "hat_letter_e",
+      "hat_bird",
+      "pet_chicken",
+      "suit_baker_chestplate",
+      "pet_magma_cube_tiny",
+      "suit_flash_boots",
+      "morph_pig",
+      "morph_cow",
+      "hat_letter_f",
+      "pet_villager_blacksmith",
+      "gadget_rainbow",
+      "hat_letter_question",
+      "hat_polar_bear",
+      "suit_plumber_leggings",
+      "hat_ferret",
+      "rankcolor_gold",
+      "pet_horse_grey",
+      "suit_frog_boots",
+      "suit_thor_boots",
+      "suit_plumber_chestplate",
+      "pet_sheep_gray",
+      "hat_monitor",
+      "pet_zombie",
+      "pet_mule",
+      "hat_number_3",
+      "suit_warrior_boots",
+      "hat_cheese",
+      "gadget_ghosts",
+      "pet_pig",
+      "pet_sheep_pink",
+      "hat_letter_h",
+      "suit_ninja_helmet",
+      "gadget_horror_movie",
+      "gadget_jetpack",
+      "morph_spider",
+      "suit_magma_boss_leggings",
+      "suit_vampire_chestplate",
+      "hat_halloween_evil_pumpkin",
+      "suit_costume_boots",
+      "suit_headless_horseman_chestplate",
+      "taunt_wave_dance",
+      "suit_bumblebee_boots",
+      "hat_clown",
+      "hat_number_4",
+      "hat_letter_i",
+      "hat_letter_n",
+      "hat_number_6",
+      "hat_halloween_marionette",
+      "morph_cave_spider",
+      "cloak_dark_angel",
+      "hat_scarecrow2",
+      "pet_horse_chestnut_baby",
+      "suit_frog_helmet",
+      "suit_vampire_boots",
+      "gadget_pumpkin_cannon",
+      "gadget_secret_service",
+      "hat_halloween_skull",
+      "taunt_possessed",
+      "pet_horse_skeleton",
+      "gadget_creeper_astronaut",
+      "suit_costume_leggings",
+      "hat_clown2",
+      "suit_headless_horseman_leggings",
+      "gadget_treat_fountain",
+      "hat_halloween_pig_zombie",
+      "hat_letter_v",
+      "suit_warrior_leggings",
+      "pet_slime_small",
+      "taunt_cool_dance",
+      "suit_plumber_boots",
+      "rankcolor_green",
+      "hat_letter_b",
+      "gadget_exploding_sheep",
+      "suit_mermaid_leggings",
+      "pet_mooshroom_baby",
+      "taunt_goodbye",
+      "hat_number_2",
+      "pet_sheep_silver",
+      "hat_letter_k",
+      "taunt_hype_dance",
+      "suit_arctic_leggings",
+      "pet_villager_farmer",
+      "hat_turtle",
+      "hat_number_5",
+      "pet_magma_cube_small",
+      "hat_penguin",
+      "pet_sheep_yellow",
+      "pet_brown_horse_baby",
+      "suit_necromancer_leggings",
+      "hat_letter_y",
+      "hat_snowball",
+      "hat_letter_r",
+      "hat_golden_knight",
+      "suit_spiderman_leggings",
+      "suit_mermaid_chestplate",
+      "hat_egg_head",
+      "gadget_firework_launcher",
+      "suit_new_years_boots",
+      "pet_bat",
+      "pet_skeleton",
+      "rankcolor_yellow",
+      "suit_new_years_leggings",
+      "hat_present_hat",
+      "hat_stocking",
+      "hat_ginger_bread",
+      "gadget_christmas_cracker",
+      "suit_yeti_chestplate",
+      "pet_sheep_pink_baby",
+      "pet_villager_butcher",
+      "suit_bumblebee_leggings",
+      "suit_bumblebee_helmet",
+      "suit_bumblebee_chestplate",
+      "hat_derpy_snowman",
+      "hat_snowman",
+      "pet_sheep_black_baby",
+      "suit_yeti_boots",
+      "emote_cry",
+      "morph_chicken",
+      "morph_sheep",
+      "hat_elf_princess",
+      "gadget_advent_proof",
+      "pet_sheep_cyan",
+      "suit_warrior_helmet",
+      "pet_frozen_skeleton",
+      "pet_horse_dark_brown",
+      "hat_letter_u",
+      "suit_grinch_helmet",
+      "particlepack_frozen",
+      "hat_bauble",
+      "hat_gingerbread",
+      "hat_snowglobe",
+      "suit_frog_leggings",
+      "hat_letter_d",
+      "pet_sheep_green_baby",
+      "pet_cat_red",
+      "hat_letter_j",
+      "suit_flash_leggings",
+      "particlepack_tinsel",
+      "hat_dinosaur",
+      "suit_thor_leggings",
+      "suit_grinch_boots",
+      "cloak_candy_spiral",
+      "gadget_rocket",
+      "gadget_let_snow",
+      "hat_elfgirl",
+      "gadget_holiday_choir",
+      "suit_elf_leggings",
+      "gadget_teleporter",
+      "hat_elephant",
+      "gadget_party_popper",
+      "rankcolor_light_purple",
+      "pet_mooshroom",
+      "pet_magma_cube_big",
+      "hat_orc",
+      "suit_death_angel_boots",
+      "hat_bee",
+      "hat_frog",
+      "pet_sheep_blue",
+      "pet_salt_pepper_rabbit",
+      "suit_spiderman_boots",
+      "pet_black_rabbit",
+      "suit_death_angel_leggings",
+      "suit_spiderman_chestplate",
+      "rankcolor_white",
+      "gadget_meteorite",
+      "hat_football_star",
+      "taunt_clapping",
+      "hat_assassin",
+      "gadget_wizardwand",
+      "emote_angry",
+      "hat_clownfish",
+      "hat_number_7",
+      "hat_letter_hashtag",
+      "pet_sheep_red",
+      "hat_koala",
+      "hat_letter_m",
+      "pet_sheep_green",
+      "gadget_paint_trail",
+      "suit_baker_boots",
+      "cloak_clover",
+      "suit_arctic_boots",
+      "gadget_fire_trail",
+      "pet_brown_rabbit",
+      "pet_zombie_baby",
+      "pet_horse_black",
+      "suit_disco_chestplate",
+      "pet_horse_creamy_baby",
+      "rankcolor_blue",
+      "hat_monk",
+      "pet_iron_golem",
+      "hat_duckling",
+      "gadget_grappling_hook",
+      "hat_letter_t",
+      "hat_number_1",
+      "cloak_easter_egg",
+      "hat_easter_egg",
+      "suit_chicken_chestplate",
+      "pet_villager_butcher_baby",
+      "pet_growing_zombie",
+      "suit_chicken_leggings",
+      "suit_easter_egg_leggings",
+      "pet_enderman",
+      "gadget_disco_ball",
+      "hat_scavenger",
+      "hat_lady_bug",
+      "suit_chicken_boots",
+      "pet_sheep_orange",
+      "hat_beach_ball",
+      "hat_letter_o",
+      "hat_chocolate_egg",
+      "suit_necromancer_boots",
+      "gadget_tree_planter",
+      "suit_easter_egg_boots",
+      "particlepack_spring",
+      "hat_rabbit",
+      "suit_easter_egg_chestplate",
+      "suit_baker_helmet",
+      "pet_sheep_lime",
+      "morph_enderman",
+      "hat_letter_exclaimation",
+      "hat_number_0",
+      "suit_fireman_leggings",
+      "suit_baker_leggings",
+      "pet_cat_siamese_baby",
+      "pet_sheep_red_baby",
+      "hat_scarecrow",
+      "pet_sheep_silver_baby",
+      "suit_ghost_chestplate",
+      "suit_fireman_helmet",
+      "emote_spicy",
+      "gadget_dj_booth",
+      "hat_golem",
+      "hat_letter_g",
+      "suit_spiderman_helmet",
+      "suit_wolf_helmet",
+      "pet_sheep_purple_baby",
+      "gadget_water_balloon",
+      "pet_pig_zombie_baby",
+      "hat_walrus",
+      "rankcolor_dark_green",
+      "hat_astronaut",
+      "pet_cat_black_baby",
+      "taunt_crab_dance",
+      "hat_traffic_light",
+      "gadget_dice",
+      "gadget_frisbee",
+      "emote_heart",
+      "pet_sheep_yellow_baby",
+      "emote_sun_tan",
+      "suit_toy_chestplate",
+      "morph_creeper",
+      "gadget_parachute",
+      "pet_villager_priest",
+      "hat_letter_z",
+      "hat_magic_dog",
+      "pet_pig_baby",
+      "gadget_tetherball",
+      "hat_vintage",
+      "hat_letter_l",
+      "hat_skull_king_banner",
+      "pet_sheep_black",
+      "suit_flash_helmet",
+      "hat_parrot",
+      "suit_ninja_chestplate",
+      "rankcolor_dark_red",
+      "rankcolor_dark_aqua",
+      "suit_death_angel_chestplate",
+      "suit_ghost_helmet",
+      "hat_hp8",
+      "hat_letter_x",
+      "pet_white_rabbit",
+      "hat_letter_plus",
+      "pet_donkey",
+      "morph_zombie",
+      "hat_otter",
+      "suit_thor_helmet",
+      "rankcolor_dark_purple",
+      "rankcolor_dark_gray",
+      "suit_mermaid_helmet",
+      "hat_letter_c",
+      "pet_sheep_magenta",
+      "hat_halloween_ghast",
+      "emote_present_unwrap",
+      "pet_smoldering_skeleton",
+      "suit_skeleton_samurai_chestplate",
+      "suit_pumpkin_leggings",
+      "morph_snow_morph",
+      "particlepack_spooky",
+      "emote_face_melter",
+      "hat_werewolf",
+      "suit_skeleton_samurai_leggings",
+      "suit_vampire_leggings",
+      "gadget_scare_crow",
+      "suit_pumpkin_chestplate",
+      "suit_vampire_helmet",
+      "suit_fireman_chestplate",
+      "pet_spider",
+      "gadget_tnt_fountain",
+      "pet_sheep_orange_baby",
+      "hat_pug_white",
+      "pet_sheep_light_blue",
+      "hat_festive_zombie",
+      "hat_festive_skeleton",
+      "suit_santa_boots",
+      "suit_new_years_chestplate",
+      "hat_bell",
+      "pet_sheep_purple",
+      "hat_festive_villager",
+      "gadget_snowman",
+      "suit_new_years_helmet",
+      "pet_creeper",
+      "hat_elfboy",
+      "suit_toy_boots",
+      "pet_red_helper",
+      "particlepack_snow_trail",
+      "hat_festive_squid",
+      "hat_festive_herobrine",
+      "hat_rainbow_present",
+      "suit_elf_chestplate",
+      "suit_toy_helmet",
+      "pet_merry_sheep",
+      "suit_grinch_chestplate",
+      "hat_reindeer",
+      "clickeffects_holiday_firework",
+      "hat_snow_globe",
+      "suit_santa_chestplate",
+      "hat_candy_cane",
+      "suit_toy_leggings",
+      "gadget_ice_skating",
+      "cloak_shimmering_wings",
+      "pet_gold_rabbit",
+      "hat_ghost",
+      "suit_santa_helmet",
+      "pet_frozen_zombie",
+      "gadget_new_year_countdown",
+      "suit_elf_boots",
+      "hat_grinch",
+      "suit_ghost_leggings",
+      "hat_mage",
+      "hat_panda",
+      "hat_space",
+      "cloak_superhero",
+      "suit_grinch_leggings",
+      "hat_santa",
+      "suit_santa_leggings",
+      "suit_arctic_helmet",
+      "cloak_icy_wings",
+      "hat_monkey",
+      "suit_frog_chestplate",
+      "hat_burger",
+      "pet_horse_chestnut",
+      "suit_easter_egg_helmet",
+      "suit_chicken_helmet",
+      "hat_easter_basket",
+      "cloak_egg_scanner",
+      "gadget_flaming_egg_launcher",
+      "pet_horse_creamy",
+      "pet_pig_zombie",
+      "pet_cow_baby",
+      "gadget_pinata",
+      "clickeffects_spout",
+      "hat_jason",
+      "pet_bouncy_spider",
+      "suit_elf_helmet",
+      "gadget_magic_carpet",
+      "suit_wolf_leggings",
+      "morph_blaze",
+      "suit_yeti_leggings",
+      "hat_miner",
+      "pet_sheep_light_blue_baby",
+      "pet_totem",
+      "suit_disco_leggings",
+      "pet_sheep_gray_baby",
+      "hat_horse",
+      "suit_plumber_helmet",
+      "pet_horse_white",
+      "suit_necromancer_helmet",
+      "hat_lucky_dragon",
+      "pet_villager_librarian",
+      "pet_sheep_blue_baby",
+      "suit_flash_chestplate",
+      "pet_sheep_cyan_baby",
+      "hat_mummy",
+      "hat_alien_slug",
+      "cloak_menorah",
+      "cloak_ranks_gifted",
+      "suit_piglin_suit_helmet",
+      "suit_piglin_suit_chestplate",
+      "suit_piglin_suit_leggings",
+      "suit_piglin_suit_boots",
+      "gadget_chicken_cannon",
+      "suit_solar_helmet",
+      "suit_dragon_breath_boots",
+      "clickeffects_easter_egg",
+      "gadget_bbq_grill",
+      "hat_chick",
+      "pet_snowman_jockey",
+      "cloak_blizzard",
+      "gadget_sand_castle",
+      "taunt_ballet",
+      "gadget_witch_cauldron",
+      "morph_skeleton",
+      "hat_duck",
+      "gadget_volleyball",
+      "suit_solar_chestplate",
+      "pet_snowman",
+      "suit_wolf_chestplate",
+      "suit_tnt_boots",
+      "emote_dizzy",
+      "taunt_sun",
+      "emote_deal_with_it",
+      "pet_slime_big",
+      "taunt_mind",
+      "hat_pumpkin",
+      "gadget_holiday_tree",
+      "gadget_bunny_party",
+      "gadget_trick_or_treat",
+      "gadget_tic_tac_toe",
+      "hat_basketball",
+      "clickeffects_blizzard",
+      "gadget_cornucopia",
+      "morph_grinch",
+      "suit_yeti_helmet",
+      "gadget_graveyard",
+      "taunt_snowball_toss",
+      "pet_killer_rabbit",
+      "hat_cauldron",
+      "suit_dragon_breath_leggings",
+      "suit_magma_boss_chestplate",
+      "suit_headless_horseman_boots",
+      "morph_wither_skeleton",
+      "cloak_sweetwings",
+      "taunt_hula",
+      "gadget_poop_bomb",
+      "suit_disco_helmet",
+      "pet_sheep_white_baby",
+      "hat_gorilla",
+      "hat_dead_pirate",
+      "hat_odin",
+      "hat_earth",
+      "pet_black_white_rabbit",
+      "cloak_frozen_dragon_wings",
+      "cloak_comets",
+      "punchmessage_snowball",
+      "gadget_snow_globe",
+      "suit_arctic_chestplate",
+      "hat_squid",
+      "cloak_rose",
+      "hat_toaster",
+      "pet_cat_red_baby",
+      "pet_rabbit_jockey",
+      "gadget_hot_potato",
+      "cloak_face",
+      "gadget_dragon_rider",
+      "suit_skeleton_samurai_boots",
+      "suit_pirate_helmet",
+      "morph_rabbit",
+      "suit_magma_boss_boots",
+      "suit_tnt_chestplate",
+      "suit_pirate_leggings",
+      "pet_green_helper",
+      "gadget_pocket_beach",
+      "gadget_dreidel",
+      "suit_pumpkin_helmet",
+      "hat_ice_mage",
+      "cloak_twisted",
+      "taunt_graduation",
+      "emote_rip",
+      "taunt_can",
+      "clickeffects_skull",
+      "suit_soccer_leggings",
+      "suit_pirate_chestplate",
+      "pet_witch",
+      "suit_soccer_helmet",
+      "pet_sheep_rainbow",
+      "hat_minotaur",
+      "hat_owl",
+      "hat_decoration_ball",
+      "pet_black_pug",
+      "hat_doge",
+      "hat_egyptian_queen",
+      "hat_rainbow_glitch",
+      "hat_fox",
+      "hat_sloth",
+      "hat_hypixel_h",
+      "hat_shibe",
+      "pet_herobrine",
+      "pet_endermite",
+      "pet_creeper_powered",
+      "gadget_rock_paper_shears",
+      "gadget_tennis_ball",
+      "gadget_hype_train",
+      "gadget_radio",
+      "gadget_rush_pearl",
+      "gadget_pong",
+      "gadget_diving_board",
+      "gadget_trampoline",
+      "gadget_swing",
+      "morph_iron_golem",
+      "morph_guardian",
+      "cloak_mystical",
+      "taunt_jump",
+      "cloak_firewings",
+      "cloak_shaman",
+      "cloak_scanner",
+      "cloak_rainy_day",
+      "pet_chicken_baby",
+      "pet_wolf_baby",
+      "pet_villager_blacksmith_baby",
+      "pet_villager_farmer_baby",
+      "pet_zombie_villager",
+      "pet_villager_priest_baby",
+      "pet_villager_librarian_baby",
+      "pet_horse_dark_brown_baby",
+      "pet_horse_gray_baby",
+      "pet_cave_spider",
+      "pet_sheep_magenta_baby",
+      "pet_sheep_brown_baby",
+      "pet_sheep_lime_baby",
+      "pet_slime_tiny",
+      "rankcolor_black"
+    ]
+  },
+  "newPackageRank": "MVP_PLUS",
+  "levelUp_VIP": 1566666585963,
+  "eugene": {
+    "dailyTwoKExp": 1734655244561
+  },
+  "achievementRewardsNew": {
+    "for_points_200": 1566911206313,
+    "for_points_300": 1567372769423,
+    "for_points_400": 1568122577260,
+    "for_points_500": 1569245478920,
+    "for_points_600": 1571033688287,
+    "for_points_700": 1575332169367,
+    "for_points_800": 1575542599183,
+    "for_points_900": 1576162756320,
+    "for_points_1000": 1576546344140,
+    "for_points_1100": 1579653728043,
+    "for_points_1200": 1579821180713,
+    "for_points_1300": 1580121266849,
+    "for_points_1400": 1583173372412,
+    "for_points_1500": 1587776998837,
+    "for_points_1600": 1592390839757,
+    "for_points_1700": 1593210332250,
+    "for_points_1800": 1597256786727,
+    "for_points_1900": 1598708582571,
+    "for_points_2000": 1600214868133,
+    "for_points_2100": 1600796419776,
+    "for_points_2200": 1606227275590,
+    "for_points_2300": 1608061105056,
+    "for_points_2400": 1629182553333,
+    "for_points_2500": 1649195746846,
+    "for_points_2600": 1649620330103,
+    "for_points_2700": 1651764661492,
+    "for_points_2800": 1657461784577,
+    "for_points_2900": 1660159158327,
+    "for_points_3000": 1664574466432,
+    "for_points_3100": 1669966747013,
+    "for_points_3200": 1678406600969,
+    "for_points_3300": 1678406602270,
+    "for_points_3400": 1678406603570,
+    "for_points_3500": 1678406604871,
+    "for_points_3600": 1682867415226,
+    "for_points_3700": 1686602008791,
+    "for_points_3800": 1692911687011,
+    "for_points_3900": 1692911688559,
+    "for_points_4000": 1701860935718,
+    "for_points_4100": 1710946804480,
+    "for_points_4200": 1733698382059,
+    "for_points_4300": 1734903408918
+  },
+  "housingMeta": {
+    "packages": [
+      "sci_fi_theme",
+      "smileys_theme",
+      "warlords_red_theme",
+      "lollipop_theme",
+      "fjord_theme",
+      "flowers_theme",
+      "mushrooms_theme",
+      "painter_studio_theme",
+      "fruit_salad_theme",
+      "vanilla_theme",
+      "gifts_theme",
+      "housing_item_flag_1",
+      "housing_item_flag_3",
+      "nether_theme",
+      "blocking_dead_theme",
+      "goldmine_theme",
+      "future_tech_theme",
+      "specialoccasion_reward_card_skull_pot_o'_gold",
+      "warlords_blue_theme",
+      "specialoccasion_reward_card_skull_pocket_galaxy",
+      "easter_egg_village_theme",
+      "specialoccasion_reward_card_skull_molten_core",
+      "specialoccasion_reward_card_skull_mana_potion",
+      "specialoccasion_reward_card_skull_mystic_pearl",
+      "basic_theme",
+      "day_at_the_beach_theme",
+      "specialoccasion_reward_card_skull_rubik's_cube",
+      "pool_party_bbq_theme",
+      "specialoccasion_summer_2016_skull_beach_ball",
+      "specialoccasion_summer_2016_skull_red_cooler",
+      "space_dock_theme",
+      "town_square_theme",
+      "jungle_theme",
+      "crystals_theme",
+      "specialoccasion_reward_card_skull_agility_potion",
+      "specialoccasion_christmas_skull_red_ornament",
+      "specialoccasion_christmas_skull_holiday_toy",
+      "specialoccasion_christmas_skull_yellow_ornament",
+      "specialoccasion_christmas_skull_blue_present",
+      "fireplace_theme",
+      "snow_globe_theme",
+      "northern_lights_theme",
+      "synced_cookies_v1",
+      "santas_workshop_theme",
+      "specialoccasion_christmas_skull_green_present",
+      "station_theme",
+      "spring_village_theme",
+      "grand_plains_theme",
+      "specialoccasion_summer_2016_skull_ice_cream",
+      "end_theme",
+      "north_pole_theme",
+      "jardin_theme",
+      "skull_pack_spring",
+      "specialoccasion_summer_2016_skull_soda_can",
+      "cathedral_theme",
+      "lonely_lighthouse_theme",
+      "specialoccasion_summer_2016_skull_chocolate_mint_scoop",
+      "specialoccasion_summer_2016_skull_frozen_yogurt",
+      "air_theme",
+      "tenshu_theme"
+    ],
+    "allowedBlocks": [
+      "1:5",
+      "1:6",
+      "35:9",
+      "162:0",
+      "82:0",
+      "1:1",
+      "78:0",
+      "110:0",
+      "86:0",
+      "159:3",
+      "3:0",
+      "1:0",
+      "5:0",
+      "50:0",
+      "98:0",
+      "4:0",
+      "18:0",
+      "35:0",
+      "20:0",
+      "324:0",
+      "13:0",
+      "85:0",
+      "2:0",
+      "31:1",
+      "3:1",
+      "38:0",
+      "37:0",
+      "53:0",
+      "109:0",
+      "44:0",
+      "171:0",
+      "139:0",
+      "17:1",
+      "5:2",
+      "45:0",
+      "5:1",
+      "18:1",
+      "126:0",
+      "44:5",
+      "80:0",
+      "1:3",
+      "12:1",
+      "172:0",
+      "48:0",
+      "12:0",
+      "24:0",
+      "32:0",
+      "65:0",
+      "323:0",
+      "325:0",
+      "87:0",
+      "88:0",
+      "112:0",
+      "155:0",
+      "121:0"
+    ],
+    "firstHouseJoinMs": 1579698043050,
+    "tutorialStep": "FINISH_FINISHED",
+    "playerSettings": {
+      "TIPS": "BooleanState-true"
+    },
+    "plotSize": "LARGE",
+    "given_cookies_105246": [
+      "b2cb2dcc-507f-416a-804b-23f592d151e0"
+    ]
+  },
+  "levelUp_MVP_PLUS": 1567425947767,
+  "monthlyPackageRank": "SUPERSTAR",
+  "mostRecentMonthlyPackageRank": "SUPERSTAR",
+  "karma": 62599695,
+  "lastAdsenseGenerateTime": 1710932832902,
+  "rankPlusColor": "DARK_PURPLE",
+  "parkourCheckpointBests": {
+    "mainLobby2017": {
+      "0": 30681
+    }
+  },
+  "monthlycrates": {
+    "10-2019": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "8-2019": {
+      "REGULAR": true,
+      "VIP": true
+    },
+    "9-2019": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "11-2019": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "12-2019": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "1-2020": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "2-2020": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "3-2020": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "4-2020": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "5-2020": {
+      "MVP": true,
+      "VIP_PLUS": true,
+      "MVP_PLUS": true,
+      "REGULAR": true,
+      "VIP": true
+    },
+    "6-2020": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "7-2020": {
+      "VIP_PLUS": true,
+      "VIP": true,
+      "MVP_PLUS": true,
+      "MVP": true,
+      "REGULAR": true
+    },
+    "8-2020": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "9-2020": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "10-2020": {
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true,
+      "MVP_PLUS": true
+    },
+    "11-2020": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "12-2020": {
+      "REGULAR": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "MVP_PLUS": true,
+      "MVP": true
+    },
+    "1-2021": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "7-2021": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "4-2022": {
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "5-2022": {
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true,
+      "MVP_PLUS": true
+    },
+    "6-2022": {
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true,
+      "MVP_PLUS": true
+    },
+    "7-2022": {
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "9-2022": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "10-2022": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "11-2022": {
+      "MVP_PLUS": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "12-2022": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "1-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "2-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "3-2023": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "4-2023": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "5-2023": {
+      "MVP": true,
+      "MVP_PLUS": true,
+      "VIP_PLUS": true,
+      "REGULAR": true,
+      "VIP": true
+    },
+    "6-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "7-2023": {
+      "REGULAR": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "8-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "9-2023": {
+      "MVP": true,
+      "MVP_PLUS": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "10-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "REGULAR": true,
+      "VIP": true
+    },
+    "11-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "REGULAR": true
+    },
+    "12-2023": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "NORMAL": true
+    },
+    "1-2024": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "NORMAL": true
+    },
+    "2-2024": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "NORMAL": true
+    },
+    "3-2024": {
+      "MVP_PLUS": true,
+      "MVP": true,
+      "VIP_PLUS": true,
+      "VIP": true,
+      "NORMAL": true
+    },
+    "4-2024": {
+      "NORMAL": true,
+      "VIP": true,
+      "VIP_PLUS": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    },
+    "12-2024": {
+      "VIP_PLUS": true,
+      "VIP": true,
+      "NORMAL": true,
+      "MVP": true,
+      "MVP_PLUS": true
+    }
+  },
+  "currentCloak": "RAINY_DAY",
+  "petStats": {
+    "HORSE_UNDEAD": {
+      "HUNGER": {
+        "timestamp": 1570959929009,
+        "value": 100
+      },
+      "THIRST": {
+        "timestamp": 1570959933763,
+        "value": 100
+      },
+      "EXERCISE": {
+        "timestamp": 1570959938473,
+        "value": 100
+      }
+    },
+    "HORSE_SKELETON": {
+      "THIRST": {
+        "timestamp": 1576438005207,
+        "value": 100
+      },
+      "EXERCISE": {
+        "timestamp": 1576438011221,
+        "value": 100
+      },
+      "HUNGER": {
+        "timestamp": 1576438016223,
+        "value": 100
+      }
+    },
+    "MOOSHROOM_BABY": {
+      "THIRST": {
+        "timestamp": 1604446552501,
+        "value": 100
+      },
+      "HUNGER": {
+        "timestamp": 1604446554151,
+        "value": 100
+      },
+      "EXERCISE": {
+        "timestamp": 1604446551001,
+        "value": 100
+      },
+      "name": "Flower",
+      "experience": 1600
+    },
+    "MOOSHROOM": {
+      "EXERCISE": {
+        "timestamp": 1604446528899,
+        "value": 100
+      },
+      "THIRST": {
+        "timestamp": 1604446531049,
+        "value": 100
+      },
+      "HUNGER": {
+        "timestamp": 1604446535000,
+        "value": 100
+      },
+      "experience": 800
+    },
+    "SHEEP_MAGENTA_BABY": {
+      "THIRST": {
+        "timestamp": 1707912322771,
+        "value": 100
+      },
+      "HUNGER": {
+        "timestamp": 1707912329221,
+        "value": 100
+      },
+      "EXERCISE": {
+        "timestamp": 1707912334076,
+        "value": 100
+      }
+    }
+  },
+  "tourney": {
+    "first_join_lobby": 1572184809681,
+    "mcgo_defusal_0": {
+      "seenRPbook": true
+    }
+  },
+  "socialMedia": {
+    "links": {
+      "DISCORD": "medua"
+    },
+    "prompt": true,
+    "DISCORD": "0;FPrVVVX",
+    "YOUTUBE": "1;UCRhD6vxcoYxsGnwwfwm7j2g"
+  },
+  "snowball_fight_intro_2019": true,
+  "achievementSync": {
+    "quake_tiered": 1
+  },
+  "adsense_tokens": 20,
+  "monthlyRankColor": "AQUA",
+  "vanityFavorites": "OUTFIT_BUMBLEBEE_HELMET;CLOAK_DARK_ANGEL;PARTICLEPACK_ENCHANTMENT_TABLE;PET_SHEEP_MAGENTA_BABY",
+  "challenges": {
+    "all_time": {
+      "BEDWARS__support": 15,
+      "DUELS__feed_the_void_challenge": 2,
+      "BUILD_BATTLE__top_3_challenge": 2,
+      "MURDER_MYSTERY__hero": 2,
+      "BEDWARS__offensive": 3,
+      "SKYWARS__feeding_the_void_challenge": 1,
+      "ARCADE__mini_walls_challenge": 1,
+      "MURDER_MYSTERY__murder_spree": 1
+    }
+  },
+  "quests": {
+    "bedwars_daily_gifts": {
+      "completions": [
+        {
+          "time": 1576544998784
+        }
+      ]
+    },
+    "bedwars_daily_win": {
+      "completions": [
+        {
+          "time": 1576543997468
+        },
+        {
+          "time": 1600209611592
+        },
+        {
+          "time": 1600794269568
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1659456135047
+      }
+    },
+    "bedwars_weekly_bed_elims": {
+      "active": {
+        "objectives": {
+          "bedwars_bed_elims": 16
+        },
+        "started": 1576543687857
+      }
+    },
+    "bedwars_weekly_dream_win": {
+      "active": {
+        "objectives": {},
+        "started": 1576543688307
+      }
+    },
+    "bedwars_daily_one_more": {
+      "completions": [
+        {
+          "time": 1576544571489
+        },
+        {
+          "time": 1580250235965
+        },
+        {
+          "time": 1600203732168
+        },
+        {
+          "time": 1600794269565
+        },
+        {
+          "time": 1663687961720
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1666045621108
+      }
+    },
+    "skywars_solo_kills": {
+      "active": {
+        "objectives": {
+          "skywars_solo_kills": 3
+        },
+        "started": 1580151118765
+      }
+    },
+    "skywars_solo_win": {
+      "active": {
+        "objectives": {},
+        "started": 1580151120915
+      }
+    },
+    "skywars_weekly_free_loot_chest": {
+      "active": {
+        "objectives": {
+          "skywars_free_loot_chest_win": 1
+        },
+        "started": 1580151122215
+      }
+    },
+    "skywars_daily_tokens": {
+      "active": {
+        "objectives": {
+          "skywars_daily_tokens_wins": 8
+        },
+        "started": 1580151127466
+      }
+    },
+    "skywars_team_kills": {
+      "active": {
+        "objectives": {
+          "skywars_team_kills": 5
+        },
+        "started": 1580151169322
+      }
+    },
+    "skywars_lunar_quest": {
+      "active": {
+        "objectives": {
+          "skywars_special_fireworks": 1
+        },
+        "started": 1580151169322
+      }
+    },
+    "skywars_weekly_kills": {
+      "active": {
+        "objectives": {
+          "skywars_weekly_kills": 8
+        },
+        "started": 1580151169322
+      }
+    },
+    "skywars_corrupt_win": {
+      "active": {
+        "objectives": {},
+        "started": 1580151169322
+      }
+    },
+    "skywars_weekly_arcade_win_all": {
+      "active": {
+        "objectives": {},
+        "started": 1580151169323
+      }
+    },
+    "skywars_team_win": {
+      "completions": [
+        {
+          "time": 1600214848284
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1606068516772
+      }
+    },
+    "skywars_arcade_win": {
+      "active": {
+        "objectives": {},
+        "started": 1580151169322
+      }
+    },
+    "bedwars_lunar_quest": {
+      "active": {
+        "objectives": {
+          "bedwars_special_emeralds": 7,
+          "bedwars_special_fireballs": 25
+        },
+        "started": 1580243932472
+      }
+    },
+    "tnt_daily_win": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140880
+      }
+    },
+    "tnt_tntrun_daily": {
+      "completions": [
+        {
+          "time": 1600200080070
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1666206282600
+      }
+    },
+    "tnt_tntrun_weekly": {
+      "active": {
+        "objectives": {
+          "tnt_tntrun_weekly": 1096
+        },
+        "started": 1580245140917
+      }
+    },
+    "tnt_weekly_play": {
+      "active": {
+        "objectives": {
+          "tnt_weekly_play": 4
+        },
+        "started": 1580245140919
+      }
+    },
+    "tnt_pvprun_daily": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140927
+      }
+    },
+    "tnt_bowspleef_daily": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140927
+      }
+    },
+    "tnt_bowspleef_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140927
+      }
+    },
+    "tnt_tnttag_daily": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140927
+      }
+    },
+    "tnt_tnttag_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140928
+      }
+    },
+    "tnt_pvprun_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140928
+      }
+    },
+    "tnt_wizards_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140928
+      }
+    },
+    "tnt_lunar_quest": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140959
+      }
+    },
+    "tnt_wizards_daily": {
+      "active": {
+        "objectives": {},
+        "started": 1580245140928
+      }
+    },
+    "duels_player": {
+      "active": {
+        "objectives": {},
+        "started": 1580245440246
+      }
+    },
+    "duels_killer": {
+      "active": {
+        "objectives": {},
+        "started": 1580245440246
+      }
+    },
+    "duels_weekly_kills": {
+      "active": {
+        "objectives": {},
+        "started": 1580245440246
+      }
+    },
+    "duels_winner": {
+      "active": {
+        "objectives": {},
+        "started": 1580245440246
+      }
+    },
+    "duels_weekly_wins": {
+      "active": {
+        "objectives": {},
+        "started": 1580245440246
+      }
+    },
+    "mm_daily_target_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1580246884570
+      }
+    },
+    "mm_daily_win": {
+      "completions": [
+        {
+          "time": 1580247818225
+        },
+        {
+          "time": 1660837778646
+        }
+      ]
+    },
+    "mm_weekly_murderer_kills": {
+      "active": {
+        "objectives": {
+          "mm_weekly_kills_as_murderer": 5
+        },
+        "started": 1580246884571
+      }
+    },
+    "mm_weekly_wins": {
+      "active": {
+        "objectives": {
+          "mm_weekly_win": 10
+        },
+        "started": 1580246884571
+      }
+    },
+    "mm_daily_power_play": {
+      "completions": [
+        {
+          "time": 1580248720888
+        },
+        {
+          "time": 1660841828243
+        }
+      ]
+    },
+    "mm_lunar_quest": {
+      "active": {
+        "objectives": {},
+        "started": 1580246884571
+      }
+    },
+    "prototype_pit_daily_contract": {
+      "completions": [
+        {
+          "time": 1600199237983
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1606281333245
+      }
+    },
+    "prototype_pit_weekly_gold": {
+      "active": {
+        "objectives": {
+          "prototype_pit_weekly_gold": 4694
+        },
+        "started": 1580357338229
+      }
+    },
+    "prototype_pit_daily_kills": {
+      "completions": [
+        {
+          "time": 1587490046255
+        }
+      ],
+      "active": {
+        "objectives": {
+          "kill": 24
+        },
+        "started": 1591791035708
+      }
+    },
+    "build_battle_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1586279454143
+      }
+    },
+    "build_battle_player": {
+      "active": {
+        "objectives": {},
+        "started": 1586279454143
+      }
+    },
+    "build_battle_winner": {
+      "active": {
+        "objectives": {},
+        "started": 1586279454143
+      }
+    },
+    "mega_walls_win": {
+      "active": {
+        "objectives": {},
+        "started": 1586461249583
+      }
+    },
+    "mega_walls_play": {
+      "active": {
+        "objectives": {},
+        "started": 1586461249583
+      }
+    },
+    "mega_walls_faithful": {
+      "active": {
+        "objectives": {},
+        "started": 1586461249583
+      }
+    },
+    "mega_walls_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1586461249583
+      }
+    },
+    "mega_walls_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1586461249584
+      }
+    },
+    "arcade_gamer": {
+      "completions": [
+        {
+          "time": 1587777601895
+        },
+        {
+          "time": 1600216557082
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1606164713380
+      }
+    },
+    "arcade_winner": {
+      "completions": [
+        {
+          "time": 1587777896866
+        },
+        {
+          "time": 1600216996008
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1606164713380
+      }
+    },
+    "arcade_specialist": {
+      "active": {
+        "objectives": {
+          "play": 10
+        },
+        "started": 1587772181691
+      }
+    },
+    "paintball_expert": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "quake_weekly_play": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "quake_daily_play": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "arena_daily_wins": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "paintballer": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "paintball_killer": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "vampirez_daily_win": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "vampirez_daily_play": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "vampirez_daily_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "vampirez_daily_human_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "vampirez_weekly_win": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "walls_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "vampirez_weekly_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "vampirez_weekly_human_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "gingerbread_bling_bling": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "gingerbread_racer": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "gingerbread_maps": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "walls_daily_play": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "arena_daily_play": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "walls_daily_win": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "quake_daily_win": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "arena_daily_kills": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "quake_daily_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124493
+      }
+    },
+    "gingerbread_mastery": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "arena_weekly_play": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124495
+      }
+    },
+    "walls_daily_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1600215124494
+      }
+    },
+    "blitz_loot_chest_daily": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "blitz_game_of_the_day": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "blitz_kills": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "blitz_loot_chest_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "blitz_special_daily_north_pole": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "blitz_win": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "blitz_weekly_master": {
+      "active": {
+        "objectives": {},
+        "started": 1610727860952
+      }
+    },
+    "wool_wars_daily_play": {
+      "completions": [
+        {
+          "time": 1660840452366
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1661682498719
+      }
+    },
+    "wool_wars_daily_wins": {
+      "completions": [
+        {
+          "time": 1660840796196
+        }
+      ],
+      "active": {
+        "objectives": {},
+        "started": 1661682498719
+      }
+    },
+    "wool_weekly_play": {
+      "active": {
+        "objectives": {
+          "win": 3,
+          "kill": 1
+        },
+        "started": 1658958249704
+      }
+    },
+    "wool_wars_weekly_shears": {
+      "active": {
+        "objectives": {},
+        "started": 1658958249704
+      }
+    },
+    "wool_wars_daily_kills": {
+      "active": {
+        "objectives": {
+          "kill": 1
+        },
+        "started": 1658958249704
+      }
+    },
+    "bedwars_weekly_challenges": {
+      "active": {
+        "objectives": {},
+        "started": 1659456135061
+      }
+    },
+    "mm_daily_infector": {
+      "active": {
+        "objectives": {},
+        "started": 1660836917045
+      }
+    },
+    "bedwars_weekly_pumpkinator": {
+      "active": {
+        "objectives": {},
+        "started": 1666045621108
+      }
+    },
+    "bedwars_daily_nightmares": {
+      "active": {
+        "objectives": {},
+        "started": 1666045621108
+      }
+    },
+    "cvc_kill": {
+      "active": {
+        "objectives": {},
+        "started": 1668207443734
+      }
+    },
+    "cvc_win_daily_deathmatch": {
+      "active": {
+        "objectives": {},
+        "started": 1668207443733
+      }
+    },
+    "cvc_win_daily_normal": {
+      "active": {
+        "objectives": {},
+        "started": 1668207443733
+      }
+    },
+    "cvc_kill_daily_normal": {
+      "active": {
+        "objectives": {},
+        "started": 1668207443734
+      }
+    },
+    "cvc_kill_weekly": {
+      "active": {
+        "objectives": {},
+        "started": 1668207443733
+      }
+    },
+    "pit_daily_kills": {
+      "active": {
+        "objectives": {},
+        "started": 1705843627249
+      }
+    },
+    "pit_daily_contract": {
+      "active": {
+        "objectives": {},
+        "started": 1705843627250
+      }
+    },
+    "pit_weekly_gold": {
+      "active": {
+        "objectives": {},
+        "started": 1705843627251
+      }
+    },
+    "bedwars_daily_bed_breaker": {
+      "active": {
+        "objectives": {},
+        "started": 1730739249620
+      }
+    },
+    "bedwars_daily_final_killer": {
+      "active": {
+        "objectives": {},
+        "started": 1730739249622
+      }
+    },
+    "bedwars_weekly_challenges_win": {
+      "active": {
+        "objectives": {},
+        "started": 1730739249623
+      }
+    },
+    "bedwars_weekly_final_killer": {
+      "active": {
+        "objectives": {},
+        "started": 1730739249624
+      }
+    },
+    "mega_walls_aggressor": {
+      "active": {
+        "objectives": {},
+        "started": 1736081062226
+      }
+    },
+    "mega_walls_defender": {
+      "active": {
+        "objectives": {},
+        "started": 1736081062227
+      }
+    },
+    "mega_walls_teamwork": {
+      "active": {
+        "objectives": {},
+        "started": 1736081062230
+      }
+    }
+  },
+  "giftingMeta": {
+    "bundlesReceived": 51,
+    "realBundlesReceived": 51,
+    "bundlesGiven": 7,
+    "giftsGiven": 33,
+    "realBundlesGiven": 7,
+    "milestones": [
+      "ONE"
+    ],
+    "ranksGiven": 227,
+    "rankgiftingmilestones": [
+      "ONE",
+      "FIVE",
+      "TWENTY",
+      "FIFTY",
+      "ONE_HUNDRED",
+      "TWO_HUNDRED"
+    ]
+  },
+  "particlePack": "ENCHANTMENT_TABLE",
+  "onetime_achievement_menu_sort": "a_to_z",
+  "questSettings": {
+    "autoActivate": true
+  },
+  "voting": {
+    "last_mcsorg": 1581944525453,
+    "last_vote": 1581944525453,
+    "secondary_mcsorg": 1,
+    "total": 1,
+    "total_mcsorg": 1,
+    "votesToday": 1
+  },
+  "lastClaimedReward": 1605615667104,
+  "rewardHighScore": 26,
+  "rewardScore": 1,
+  "rewardStreak": 1,
+  "totalDailyRewards": 85,
+  "totalRewards": 105,
+  "petJourneyTimestamp": 1604446562153,
+  "claimed_potato_talisman": 1592779802207,
+  "skyblock_free_cookie": 1599591066185,
+  "fortuneBuff": 197,
+  "tiered_achievement_menu_sort": "z_to_a",
+  "onetime_achievement_menu_sort_completion_sort": "not_completed_first",
+  "scorpius_bribe_96": 1603255770243,
+  "claimed_century_cake": 1604485899320,
+  "channel": "ALL",
+  "adventRewards2019": {
+    "day1": 1575317355784,
+    "day2": 1575317358533,
+    "day4": 1575458801974,
+    "day5": 1575523332868,
+    "day6": 1575646571473,
+    "day7": 1575744319791,
+    "day8": 1575800522517,
+    "day9": 1575875640848,
+    "day10": 1575972977298,
+    "day11": 1576050920751,
+    "day12": 1576135095241,
+    "day13": 1576242866330,
+    "day14": 1576339522791,
+    "day15": 1576424619583,
+    "day16": 1576478365177,
+    "day17": 1576594578367,
+    "day18": 1576657885650,
+    "day19": 1576773797160,
+    "day20": 1576831901553,
+    "day22": 1577010601344,
+    "day23": 1577104343283,
+    "day25": 1577265096266
+  },
+  "adventRewards2020": {
+    "day1": 1606859324670,
+    "day2": 1606907806818,
+    "day3": 1607002307191,
+    "day4": 1607074239343,
+    "day5": 1607171200147,
+    "day6": 1607264055846,
+    "day7": 1607320552000,
+    "day8": 1607436538463,
+    "day9": 1607497147143,
+    "day10": 1607580549183,
+    "day11": 1607706689247,
+    "day13": 1607882026608,
+    "day14": 1607933665625,
+    "day15": 1608035787359,
+    "day16": 1608097244712,
+    "day17": 1608185160063,
+    "day18": 1608314885214,
+    "day19": 1608399357769,
+    "day20": 1608493029420,
+    "day21": 1608530948017,
+    "day22": 1608617853256,
+    "day23": 1608718160765,
+    "day24": 1608817287567,
+    "day25": 1608913241764
+  },
+  "claimed_year143_cake": 1624553594809,
+  "summer2021Cooldowns": {
+    "NORMAL0": true
+  },
+  "scorpius_bribe_168": 1635427327624,
+  "claimed_century_cake200": 1649178268794,
+  "easter2022Cooldowns2": {
+    "VIP1": true,
+    "VIP0": true,
+    "MVP0": true,
+    "SUPERSTAR0": true,
+    "MVP_PLUS0": true,
+    "NORMAL1": true,
+    "NORMAL0": true,
+    "VIP_PLUS0": true,
+    "VIP_PLUS1": true,
+    "MVP1": true,
+    "NORMAL2": true,
+    "MVP_PLUS1": true,
+    "VIP_PLUS2": true,
+    "NORMAL3": true,
+    "MVP_PLUS2": true,
+    "SUPERSTAR1": true,
+    "SUPERSTAR2": true,
+    "VIP3": true,
+    "VIP2": true,
+    "MVP2": true,
+    "VIP_PLUS3": true,
+    "MVP3": true,
+    "SUPERSTAR3": true,
+    "MVP_PLUS3": true
+  },
+  "seasonal": {
+    "easter": {
+      "2022": {
+        "mainlobby_egghunt_35_70_22": true,
+        "mainlobby_egghunt_2_70_56": true,
+        "mainlobby_egghunt_-77_109_18": true,
+        "mainlobby_egghunt_-136_64_-142": true,
+        "mainlobby_egghunt_64_104_-129": true
+      },
+      "2023": {
+        "levelling": {
+          "experience": 2381804
+        },
+        "mainlobby_egghunt_-59_94_-5": true,
+        "mainlobby_egghunt_-372_50_10": true,
+        "mainlobby_egghunt_327_43_-137": true,
+        "mainlobby_egghunt_374_60_0": true,
+        "mainlobby_egghunt_384_56_149": true,
+        "mainlobby_egghunt_375_92_139": true,
+        "mainlobby_egghunt_133_53_354": true,
+        "mainlobby_egghunt_137_49_347": true,
+        "mainlobby_egghunt_4_52_364": true,
+        "mainlobby_egghunt_-18_57_402": true,
+        "mainlobby_egghunt_-206_52_345": true,
+        "mainlobby_egghunt_-370_65_228": true,
+        "mainlobby_egghunt_68_54_-399": true,
+        "mainlobby_egghunt_-20_51_-436": true,
+        "mainlobby_egghunt_0_58_-500": true,
+        "mainlobby_egghunt_-14_57_-518": true,
+        "mainlobby_egghunt_70_54_-565": true,
+        "mainlobby_egghunt_115_26_-509": true,
+        "mainlobby_egghunt_96_25_-579": true,
+        "mainlobby_egghunt_29_67_-27": true,
+        "mainlobby_egghunt_100_75_6": true,
+        "mainlobby_egghunt_128_72_-134": true,
+        "mainlobby_egghunt_59_105_-137": true,
+        "mainlobby_egghunt_-55_87_56": true,
+        "mainlobby_egghunt_-108_78_86": true,
+        "mainlobby_egghunt_-77_56_191": true,
+        "mainlobby_egghunt_33_54_254": true,
+        "mainlobby_egghunt_-145_73_-137": true,
+        "mainlobby_egghunt_-87_81_-62": true,
+        "mainlobby_egghunt_-22_85_-59": true,
+        "mainlobby_egghunt_reward": true
+      },
+      "2024": {
+        "levelling": {
+          "experience": 1951069
+        },
+        "egghunt": {
+          "eggs": {
+            "0": true,
+            "2": true,
+            "11": true,
+            "12": true,
+            "25": true,
+            "13": true,
+            "1": true,
+            "16": true,
+            "23": true,
+            "3": true,
+            "14": true,
+            "29": true,
+            "28": true,
+            "6": true,
+            "5": true,
+            "27": true,
+            "26": true,
+            "4": true,
+            "7": true,
+            "8": true,
+            "9": true,
+            "10": true,
+            "24": true,
+            "17": true,
+            "18": true,
+            "19": true,
+            "22": true,
+            "20": true,
+            "21": true,
+            "15": true
+          },
+          "reward": true
+        }
+      }
+    },
+    "summer": {
+      "2022": {
+        "levelling": {
+          "experience": 7587461
+        }
+      },
+      "2023": {
+        "levelling": {
+          "experience": 5676600
+        }
+      },
+      "2024": {
+        "levelling": {
+          "experience": 1092238
+        }
+      }
+    },
+    "silver": 25078,
+    "halloween": {
+      "2022": {
+        "levelling": {
+          "experience": 1681488
+        },
+        "skyBlockAlchemistIntro": true
+      },
+      "2023": {
+        "levelling": {
+          "experience": 1035964
+        },
+        "skyBlockAlchemistIntro": true
+      },
+      "2024": {
+        "levelling": {
+          "experience": 881363
+        },
+        "skyBlockAlchemistIntro": true
+      }
+    },
+    "christmas": {
+      "2022": {
+        "adventRewards": {
+          "day1": 1669939834345,
+          "day2": 1669966742111,
+          "day3": 1670113161973,
+          "day4": 1670156487790,
+          "day6": 1670355827515,
+          "day7": 1670398620541,
+          "day8": 1670503180647,
+          "day9": 1670599136371,
+          "day10": 1670678192070,
+          "day11": 1670765293311,
+          "day12": 1670832965085,
+          "day13": 1670927453724,
+          "day14": 1671007064298,
+          "day15": 1671106041786,
+          "day16": 1671190871563,
+          "day17": 1671301658934,
+          "day18": 1671397281520,
+          "day19": 1671433795899,
+          "day20": 1671544072413,
+          "day21": 1671615126740,
+          "day22": 1671717693770,
+          "day24": 1671883374268,
+          "day25": 1671985327641
+        },
+        "levelling": {
+          "experience": 2070333
+        }
+      },
+      "2023": {
+        "levelling": {
+          "experience": 1978800
+        },
+        "adventRewards": {
+          "day1": 1701410203691,
+          "day2": 1701513119969,
+          "day5": 1701764834911,
+          "day6": 1701851500918,
+          "day7": 1701936241561,
+          "day8": 1702031030949,
+          "day9": 1702136491320,
+          "day10": 1702250831495,
+          "day12": 1702376164648,
+          "day13": 1702462394428,
+          "day14": 1702594942866,
+          "day15": 1702635916475,
+          "day16": 1702780524570,
+          "day17": 1702814147170,
+          "day18": 1702880991691,
+          "day19": 1702995702657,
+          "day20": 1703078558913,
+          "day21": 1703188704645,
+          "day22": 1703256227797,
+          "day23": 1703355450212,
+          "day24": 1703455240232,
+          "day25": 1703512190426
+        }
+      },
+      "2024": {
+        "adventRewards": {
+          "day1": 1733177741306,
+          "day2": 1733177743610,
+          "day3": 1733236034391,
+          "day4": 1733325688098,
+          "day5": 1733433335639,
+          "day6": 1733502653077,
+          "day7": 1733610754168,
+          "day8": 1733698384759,
+          "day9": 1733735391174,
+          "day10": 1733819441805,
+          "day11": 1733921017126,
+          "day12": 1733985236350,
+          "day13": 1734077979346,
+          "day14": 1734177936796,
+          "day15": 1734262461990,
+          "day17": 1734425411605,
+          "day18": 1734520149186,
+          "day19": 1734612643525,
+          "day20": 1734672699278,
+          "day21": 1734821507425,
+          "day22": 1734869970436,
+          "day23": 1734947760294,
+          "day24": 1735046059658,
+          "day25": 1735123305591
+        },
+        "levelling": {
+          "experience": 1407391
+        }
+      }
+    },
+    "anniversary": {
+      " 2023": {
+        "bingo": {
+          "easy": {
+            "objectives": {
+              "Maincatchfish": 25
+            }
+          }
+        }
+      }
+    }
+  },
+  "skyblock_extra": {
+    "ozanne_coins": 5000000
+  },
+  "scorpius_bribe_216": 1656804064971,
+  "leveling": {
+    "claimedRewards": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      109,
+      119,
+      129,
+      139,
+      149,
+      159,
+      169,
+      179,
+      189,
+      199,
+      209,
+      219,
+      224,
+      249
+    ]
+  },
+  "outfit": {},
+  "userLanguage": "ENGLISH",
+  "achievementTotem": {
+    "canCustomize": true,
+    "allowed_max_height": 2,
+    "unlockedParts": [
+      "birdy",
+      "happy",
+      "arrow",
+      "snake"
+    ],
+    "selectedParts": {
+      "slot_0": "arrow",
+      "slot_1": "birdy"
+    },
+    "unlockedColors": [
+      "blue"
+    ],
+    "selectedColors": {
+      "slotcolor_0": "blue"
+    }
+  },
+  "scorpius_bribe_240": 1667539743582,
+  "scorpius_bribe_264": 1678240548349,
+  "battlePassGlowStatus": true,
+  "collectibles_menu_sort": "highest_rarity",
+  "scorpius_bribe_288": 1688989464005,
+  "currentPet": "SHEEP_MAGENTA_BABY",
+  "scorpius_bribe_336": 1710605331689,
+  "mostRecentGameType": "PROTOTYPE"
+}
