@@ -173,7 +173,7 @@ fun JsonObject.getOrNull(memberName: String): JsonElement? {
 }
 
 fun JsonObject.getAsJsonPrimitiveOrNull(memberName: String): JsonPrimitive? {
-    return if (has(memberName)) {
+    return if (has(memberName) && get(memberName) !is JsonNull) {
         getAsJsonPrimitive(memberName)
     } else {
         null

@@ -9,5 +9,6 @@ class PastMember(
     override val leveling: MemberLeveling,
     override val playerData: MemberPlayerData,
     override val slayer: MemberSlayerData?,
+    val petsData: MemberPetsData?,
     override val raw: JsonObject
 ) : SkyblockProfileMember(uuid, "past", profile, leveling, playerData, slayer, raw)

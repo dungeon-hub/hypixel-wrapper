@@ -8,8 +8,8 @@ class InventoryContent(
     val type: Int,
     val data: String
 ) {
-    val items: List<InventoryItemStack?>
-        get() = NBTReader.readBase64(data).getList("i").map { (it as NBTCompound).toInventoryItem() }
+    val items: List<ItemStack?>
+        get() = NBTReader.readBase64(data).getList("i").map { (it as NBTCompound).toItem() }
 }
 
 fun JsonObject.toInventoryContentData(): InventoryContent {

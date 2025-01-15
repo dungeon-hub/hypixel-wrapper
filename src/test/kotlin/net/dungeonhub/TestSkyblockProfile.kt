@@ -3,10 +3,15 @@ package net.dungeonhub
 import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.entities.*
-import net.dungeonhub.hypixel.entities.inventory.InventoryItemStack
+import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
+import net.dungeonhub.hypixel.entities.inventory.ItemStack
+import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
-import org.mockito.kotlin.*
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.spy
+import org.mockito.kotlin.whenever
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.time.Instant
@@ -257,10 +262,22 @@ class TestSkyblockProfile {
         }
     }
 
-    fun checkItems(items: List<InventoryItemStack>) {
+    fun checkItems(items: List<ItemStack>) {
         for (item in items) {
+            assertNotNull(item.tag)
             assertNotNull(item.name)
             assertNotNull(item.rawName)
+            assertNotNull(item.extraAttributes)
+
+            if (item is SkyblockItem) {
+                assertNotNull(item.id)
+                assertTrue(item.runes.isEmpty() || item.runes.size == 1)
+                assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
+                    GemstoneQuality.entries.contains(
+                        it.gemstoneQuality
+                    )
+                })
+            }
         }
     }
 
@@ -313,16 +330,16 @@ class TestSkyblockProfile {
 
     @Test
     fun testNoUnknownDataTypes() {
-        for(skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
-            for(skyblockProfile in skyblockProfiles) {
-                for(member in skyblockProfile.members) {
+        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
+            for (skyblockProfile in skyblockProfiles) {
+                for (member in skyblockProfile.members) {
                     member.slayer?.slayerProgress?.keys?.forEach {
                         assertIsNot<KnownSlayerType.UnknownSlayerType>(it)
                     }
 
                     assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
 
-                    if(member is CurrentMember) {
+                    if (member is CurrentMember) {
                         member.playerData.experience?.keys?.forEach {
                             assertIsNot<KnownSkill.UnknownSkill>(it)
                         }

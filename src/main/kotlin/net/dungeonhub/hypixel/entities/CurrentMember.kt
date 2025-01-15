@@ -17,6 +17,7 @@ class CurrentMember(
     val accessoryBag: AccessoryBagStorage?,
     val fairySoulData: FairySoulData?,
     val inventory: MemberInventory?,
+    val petsData: MemberPetsData?,
     override val raw: JsonObject
 ) : SkyblockProfileMember(uuid, "current", profile, leveling, playerData, slayer, raw) {
     val coins

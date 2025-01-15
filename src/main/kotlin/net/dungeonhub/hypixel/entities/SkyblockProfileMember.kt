@@ -45,6 +45,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                     ?: defaultLeveling,
                 it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
+                it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
                 this
             )
         }
@@ -84,6 +85,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("accessory_bag_storage")?.toAccessoryBagStorage(),
             it.value.asJsonObject.getAsJsonObjectOrNull("fairy_soul")?.toFairySoulData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("inventory")?.toMemberInventoryData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
             this
         )
     }
