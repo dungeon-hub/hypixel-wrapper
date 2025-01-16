@@ -46,7 +46,7 @@ object MojangConnection {
         }
 
         val request = Request.Builder()
-            .url("https://api.mojang.com/users/profiles/minecraft/$name")
+            .url("https://api.minecraftservices.com/minecraft/profile/lookup/name/$name")
             .get()
             .build()
 
@@ -83,7 +83,7 @@ object MojangConnection {
         }
 
         val request = Request.Builder()
-            .url("https://sessionserver.mojang.com/session/minecraft/profile/$uuid")
+            .url("https://api.minecraftservices.com/minecraft/profile/lookup/$uuid")
             .get()
             .build()
 
