@@ -339,16 +339,16 @@ class TestSkyblockProfile {
 
                     assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
 
-                    if (member is CurrentMember) {
-                        member.playerData.experience?.keys?.forEach {
-                            //ignore dungeoneering -> it's an old entry I guess
-                            if(it is KnownSkill.UnknownSkill && it.apiName == "SKILL_DUNGEONEERING") {
-                                return@forEach
-                            }
-
-                            assertIsNot<KnownSkill.UnknownSkill>(it)
+                    member.playerData?.experience?.keys?.forEach {
+                        //ignore dungeoneering -> it's an old entry I guess
+                        if(it is KnownSkill.UnknownSkill && it.apiName == "SKILL_DUNGEONEERING") {
+                            return@forEach
                         }
 
+                        assertIsNot<KnownSkill.UnknownSkill>(it)
+                    }
+
+                    if (member is CurrentMember) {
                         member.essence.keys.forEach {
                             assertIsNot<KnownEssenceType.UnknownEssenceType>(it)
                         }
