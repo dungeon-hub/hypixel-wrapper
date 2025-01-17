@@ -33,7 +33,7 @@ fun JsonObject.toPet(): Pet {
         getAsJsonPrimitive("active").asBoolean,
         SkyblockRarity.fromApiName(getAsJsonPrimitive("tier").asString),
         getAsJsonPrimitiveOrNull("heldItem")?.asString,
-        getAsJsonPrimitive("candyUsed").asInt,
+        getAsJsonPrimitiveOrNull("candyUsed")?.asInt ?: 0,
         getAsJsonPrimitiveOrNull("skin")?.asString,
         getAsJsonObjectOrNull("extra")
     )
