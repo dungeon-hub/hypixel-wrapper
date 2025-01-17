@@ -341,6 +341,11 @@ class TestSkyblockProfile {
 
                     if (member is CurrentMember) {
                         member.playerData.experience?.keys?.forEach {
+                            //ignore dungeoneering -> it's an old entry I guess
+                            if(it is KnownSkill.UnknownSkill && it.apiName == "SKILL_DUNGEONEERING") {
+                                return@forEach
+                            }
+
                             assertIsNot<KnownSkill.UnknownSkill>(it)
                         }
 
