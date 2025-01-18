@@ -6,7 +6,7 @@ import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import org.jetbrains.annotations.Range
 
-//TODO check what can we not-null
+//TODO check what can be not-null
 class MemberDungeonsData(
     val dungeonTypes: Map<DungeonType, DungeonData>,
     val classExperience: Map<CatacombsClass, Double>,
@@ -27,6 +27,19 @@ class MemberDungeonsData(
         453559640, 569809640
     )
 
+    fun levelFromExperience(experience: Double): Int {
+        for (i in requiredExperience.indices) {
+            if (requiredExperience[i] > (experience)) return i
+        }
+
+        // 50 and everything higher is returned as 50
+        return 50
+    }
+
+    val classAverage = CatacombsClass.entries.sumOf {
+        levelFromExperience(classExperience[it] ?: 0.0)
+    }.toDouble() / CatacombsClass.entries.size
+
     val catacombsExperience = dungeonTypes[KnownDungeonType.Catacombs]?.experience
     val catacombsLevel: Int?
         get() {
@@ -34,12 +47,7 @@ class MemberDungeonsData(
                 return null
             }
 
-            for (i in requiredExperience.indices) {
-                if (requiredExperience[i] > (catacombsExperience)) return i
-            }
-
-            // 50 and everything higher is returned as 50
-            return 50
+            return levelFromExperience(catacombsExperience)
         }
 }
 

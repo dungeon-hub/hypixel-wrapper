@@ -157,8 +157,10 @@ class TestSkyblockProfile {
                         checkHappened = true
 
                         assertTrue(member.playerData != null && member.playerData!!.experience != null)
+                        assertTrue(member is CurrentMember)
+                        assertNotNull(member.dungeons?.classAverage)
 
-                        for (skillExperience in member.playerData!!.experience!!.entries) {
+                        for (skillExperience in member.playerData.experience!!.entries) {
                             assertTrue(skillExperience.key is KnownSkill)
 
                             val skill = skillExperience.key as KnownSkill
@@ -168,7 +170,10 @@ class TestSkyblockProfile {
                             assertEquals(levels[skill], level)
                         }
 
-                        assertEquals(54.78, member.playerData?.skillAverage)
+                        assertEquals(54.78, member.playerData.skillAverage)
+
+                        assertEquals(43, member.dungeons?.catacombsLevel)
+                        assertEquals(37.0, member.dungeons?.classAverage)
                     }
                 }
             }
