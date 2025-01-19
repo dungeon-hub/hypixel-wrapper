@@ -175,8 +175,8 @@ class TestSkyblockProfile {
 
                         assertEquals(54.78, member.playerData.skillAverage)
 
-                        assertEquals(43, member.dungeons?.catacombsLevel)
-                        assertEquals(37.0, member.dungeons?.classAverage)
+                        assertEquals(43, member.dungeons.catacombsLevel)
+                        assertEquals(37.0, member.dungeons.classAverage)
                     }
                 }
             }
@@ -233,18 +233,18 @@ class TestSkyblockProfile {
 
         assertNotNull(member)
         assertNotNull(member.inventory)
-        assertNotNull(member.inventory!!.enderChestContent)
-        assertNotNull(member.inventory!!.armor)
-        assertNotNull(member.inventory!!.equipment)
-        assertNotNull(member.inventory!!.personalVault)
-        assertNotNull(member.inventory!!.equippedWardrobeSlot)
-        assertNotNull(member.inventory!!.wardrobeContents)
+        assertNotNull(member.inventory.enderChestContent)
+        assertNotNull(member.inventory.armor)
+        assertNotNull(member.inventory.equipment)
+        assertNotNull(member.inventory.personalVault)
+        assertNotNull(member.inventory.equippedWardrobeSlot)
+        assertNotNull(member.inventory.wardrobeContents)
 
         assertEquals(
             "Heroic Hyperion ✪✪✪✪✪➌",
-            member.inventory!!.inventoryContents!!.items.filterNotNull().first().rawName
+            member.inventory.inventoryContents!!.items.filterNotNull().first().rawName
         )
-        assertEquals("Abiphone XII Mega", member.inventory!!.inventoryContents!!.items.filterNotNull().last().rawName)
+        assertEquals("Abiphone XII Mega", member.inventory.inventoryContents.items.filterNotNull().last().rawName)
     }
 
     @Test
@@ -253,7 +253,7 @@ class TestSkyblockProfile {
             for (fullProfile in fullProfiles) {
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
                     if (member.inventory != null) {
-                        val inventory = member.inventory!!
+                        val inventory = member.inventory
 
                         checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
                         checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
@@ -302,8 +302,8 @@ class TestSkyblockProfile {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null && member.inventory?.inventoryContents != null) {
-                        val inventoryContent = member.inventory!!.inventoryContents?.items!!
+                    if (member.inventory != null && member.inventory.inventoryContents != null) {
+                        val inventoryContent = member.inventory.inventoryContents.items
 
                         val skyblockMenu = inventoryContent[8]
 
@@ -367,6 +367,11 @@ class TestSkyblockProfile {
 
                         member.dungeons?.dungeonTypes?.keys?.forEach {
                             assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
+                        }
+
+                        member.petsData?.pets?.forEach { pet ->
+                            //TODO check for pet type once implemented
+                            assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
                         }
                     }
                 }
