@@ -28,7 +28,7 @@ dependencies {
 
     //HTTP Client
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    api("io.ktor:ktor-client-okhttp:3.0.0")
+    api("io.ktor:ktor-client-okhttp:3.0.3")
 
     //Logging
     implementation("org.apache.logging.log4j:log4j-core:2.20.0")
