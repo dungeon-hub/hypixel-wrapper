@@ -31,7 +31,7 @@ dependencies {
     api("io.ktor:ktor-client-okhttp:3.0.3")
 
     //Logging
-    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.24.3")
     implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3")
 
     //Testing
