@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     //Functionality
-    api("org.jsoup:jsoup:1.15.3")
+    api("org.jsoup:jsoup:1.18.3")
     api("net.hypixel:hypixel-api-core:4.4")
     api("me.nullicorn:Nedit:2.2.0")
 
