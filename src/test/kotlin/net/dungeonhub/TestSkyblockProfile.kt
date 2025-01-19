@@ -400,8 +400,8 @@ class TestSkyblockProfile {
         assertEquals(uuid, statsOverview.uuid)
         assertEquals(
             "\uD83D\uDDE1\uFE0F: Heroic Hyperion ✪✪✪✪✪➌\n" +
-                    "\uD83C\uDFF9: Precise Terminator ✪✪✪✪✪➋\n" +
-                    "\uD83C\uDFF9: Hasty Terminator ✪✪✪✪✪➋\n" +
+                    "\uD83C\uDFF9: Precise Terminator ✪✪✪✪✪➋ (Duplex 5)\n" +
+                    "\uD83C\uDFF9: Hasty Terminator ✪✪✪✪✪➋ (Fatal Tempo 1)\n" +
                     "\uD83D\uDC09: [Lvl 200] Greg (Minos Relic)\n" +
                     "\uD83D\uDC09: [Lvl 181] Greg (Dwarf Turtle Shelmet)\n" +
                     "\n" +
@@ -409,7 +409,7 @@ class TestSkyblockProfile {
                     "<:diamond_sword:1330399391839686656> Skill Average: 54.78\n" +
                     "\n" +
                     "<:batphone:1330399234813329458> Slayers:\uD83E\uDDDF 9 \uD83D\uDD78\uFE0F 9 \uD83D\uDC3A 9 \uD83D\uDD2E 9 \uD83D\uDD25 9 \uD83E\uDE78 5\n" +
-                    "<:redstone_key:1330398890725478510> Catacombs: 43\n" +
+                    "<:redstone_key:1330398890725478510> Catacombs: 43 (Class Average 37)\n" +
                     "\n" +
                     "<:piggy_bank:1330399968221204560> Purse: 19.04m\n" +
                     "<:personal_bank:1330399998512468018> Bank: 400.72m", statsOverview.description

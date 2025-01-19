@@ -10,7 +10,6 @@ import java.util.*
 
 //TODO add more fields
 //TODO map id to item id
-//TODO map origin tag
 //TODO map reforge data
 //TODO map enchantment data
 //TODO map attribute type

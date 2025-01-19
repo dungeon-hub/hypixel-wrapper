@@ -8,7 +8,7 @@ plugins {
 
 group = "net.dungeon-hub"
 val artifactId = "hypixel-wrapper"
-version = "0.5.0"
+version = "0.5.1"
 description = "A simple Kotlin wrapper for the Hypixel API, including a cache."
 
 repositories {
@@ -27,7 +27,6 @@ dependencies {
 
     //HTTP Client
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    api("io.ktor:ktor-client-okhttp:3.0.3")
 
     //Logging
     implementation("org.apache.logging.log4j:log4j-core:2.24.3")

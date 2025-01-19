@@ -1,6 +1,5 @@
 package net.dungeonhub.hypixel.connection
 
-import io.ktor.client.*
 import net.dungeonhub.exception.FailedToLoadException
 import net.hypixel.api.HypixelAPI
 import net.hypixel.api.http.HypixelHttpClient
@@ -30,9 +29,6 @@ object HypixelConnection : HypixelHttpClient {
         .callTimeout(Duration.ofSeconds(30))
         .writeTimeout(Duration.ofSeconds(30))
         .build()
-
-    //TODO can this be removed?
-    private val client = HttpClient()
 
     val hypixelApi: HypixelAPI = HypixelAPI(this)
 

@@ -4,7 +4,6 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonArrayOrNull
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
-import org.jetbrains.annotations.Range
 
 //TODO check what can be not-null
 class MemberDungeonsData(
