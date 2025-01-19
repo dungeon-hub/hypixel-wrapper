@@ -3,7 +3,7 @@ import net.thebugmc.gradle.sonatypepublisher.PublishingType
 plugins {
     id("java-library")
     id("net.thebugmc.gradle.sonatype-central-portal-publisher").version("1.2.3")
-    kotlin("jvm") version "2.0.21"
+    kotlin("jvm") version "2.1.0"
 }
 
 group = "net.dungeon-hub"
