@@ -8,7 +8,7 @@ plugins {
 
 group = "net.dungeon-hub"
 val artifactId = "hypixel-wrapper"
-version = "0.4.1"
+version = "0.5.0"
 description = "A simple Kotlin wrapper for the Hypixel API, including a cache."
 
 repositories {
@@ -22,7 +22,6 @@ repositories {
 
 dependencies {
     //Functionality
-    api("org.jsoup:jsoup:1.18.3")
     api("net.hypixel:hypixel-api-core:4.4")
     api("me.nullicorn:Nedit:2.2.0")
 

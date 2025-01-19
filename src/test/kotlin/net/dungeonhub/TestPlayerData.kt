@@ -1,6 +1,5 @@
 package net.dungeonhub
 
-import com.google.gson.Gson
 import com.google.gson.JsonObject
 import net.dungeonhub.hypixel.client.MemoryCacheApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
@@ -9,6 +8,7 @@ import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.player.Rank
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.provider.CacheApiClientProvider
+import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import net.dungeonhub.strategy.ApiClientStrategy
 import java.util.*
@@ -45,7 +45,7 @@ class TestPlayerData {
 
         //Store example data in cache
         for (pair in rawData) {
-            val player = Gson().fromJson(pair.second, JsonObject::class.java)
+            val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
 
             CacheApiClientProvider.client.playerDataCache.store(player.toHypixelPlayer())
         }

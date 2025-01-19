@@ -1,6 +1,5 @@
 package net.dungeonhub
 
-import com.google.gson.Gson
 import com.google.gson.JsonObject
 import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
@@ -45,7 +44,7 @@ class TestDiskCache {
 
         //Store example data in cache
         for (pair in rawData) {
-            val player = Gson().fromJson(pair.second, JsonObject::class.java)
+            val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
 
             apiClient.playerDataCache.store(player.toHypixelPlayer())
         }
@@ -56,10 +55,10 @@ class TestDiskCache {
         }
 
         for (pair in links) {
-            assertEquals(apiClient.getHypixelLinkedDiscord(pair.first), pair.second)
+            assertEquals(pair.second, apiClient.getHypixelLinkedDiscord(pair.first))
         }
 
-        assertEquals(apiClient.playerDataCache.retrieveAllElements().count(), 2)
+        assertEquals(2, apiClient.playerDataCache.retrieveAllElements().count())
     }
 
     @Test

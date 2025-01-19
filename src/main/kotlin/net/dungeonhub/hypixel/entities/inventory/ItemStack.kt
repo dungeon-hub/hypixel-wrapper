@@ -13,7 +13,7 @@ open class ItemStack(val raw: NBTCompound) {
         get() = name.replace(Regex("§[0-9a-fk-or]"), "").trim()
 
     val extraAttributes: NBTCompound
-        get() = tag.getCompound("ExtraAttributes")
+        get() = tag.getCompound("ExtraAttributes") ?: NBTCompound()
 }
 
 fun NBTCompound.toItem(): ItemStack? {

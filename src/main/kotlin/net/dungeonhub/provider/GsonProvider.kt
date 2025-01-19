@@ -22,13 +22,23 @@ object GsonProvider {
     val gson: Gson = GsonBuilder()
         .registerTypeAdapter(Instant::class.java, InstantTypeAdapter())
         .registerTypeAdapter(SkyblockProfileMember::class.java, PolymorphDeserializer<SkyblockProfileMember>())
-        .registerTypeAdapter(Skill::class.java, SkillDeserializer())
-        .registerTypeAdapter(CurrencyType::class.java, CurrencyDeserializer())
-        .registerTypeAdapter(DungeonType::class.java, DungeonTypeDeserializer())
-        .registerTypeAdapter(EssenceType::class.java, EssenceTypeDeserializer())
-        .registerTypeAdapter(SlayerType::class.java, SlayerTypeDeserializer())
-        .registerTypeAdapter(SocialMediaType::class.java, SocialMediaTypeDeserializer())
-        .registerTypeAdapter(Rank::class.java, RankDeserializer())
+        .registerTypeAdapter(KnownPetItem::class.java, PetItemSerializer())
+        .registerTypeAdapter(PetItem::class.java, PetItemSerializer())
+        .registerTypeAdapter(KnownSkill::class.java, SkillSerializer())
+        .registerTypeAdapter(Skill::class.java, SkillSerializer())
+        .registerTypeAdapter(KnownCurrencyTypes::class.java, CurrencySerializer())
+        .registerTypeAdapter(CurrencyType::class.java, CurrencySerializer())
+        .registerTypeAdapter(KnownDungeonType::class.java, DungeonTypeSerializer())
+        .registerTypeAdapter(DungeonType::class.java, DungeonTypeSerializer())
+        .registerTypeAdapter(KnownEssenceType::class.java, EssenceTypeSerializer())
+        .registerTypeAdapter(EssenceType::class.java, EssenceTypeSerializer())
+        .registerTypeAdapter(KnownSlayerType::class.java, SlayerTypeSerializer())
+        .registerTypeAdapter(SlayerType::class.java, SlayerTypeSerializer())
+        .registerTypeAdapter(KnownSocialMediaType::class.java, SocialMediaTypeSerializer())
+        .registerTypeAdapter(SocialMediaType::class.java, SocialMediaTypeSerializer())
+        .registerTypeAdapter(KnownRank::class.java, RankSerializer())
+        .registerTypeAdapter(Rank::class.java, RankSerializer())
+        .enableComplexMapKeySerialization()
         .setExclusionStrategies(SuperClassExclusionStrategies(SkyblockProfileMember::class.java))
         .create()
 
@@ -51,13 +61,29 @@ object GsonProvider {
         }
     }
 
-    private class RankDeserializer : JsonDeserializer<Rank> {
+    private class PetItemSerializer : JsonSerializer<PetItem>, JsonDeserializer<PetItem> {
+        override fun serialize(src: PetItem, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
+
+        override fun deserialize(json: JsonElement, typeOfT: Type?, context: JsonDeserializationContext?): PetItem {
+            return KnownPetItem.fromApiName(json.asString)
+        }
+    }
+
+    private class RankSerializer : JsonSerializer<Rank>, JsonDeserializer<Rank> {
+        override fun serialize(src: Rank, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Rank {
             return KnownRank.fromApiName(json!!.asString)
         }
     }
 
-    private class SocialMediaTypeDeserializer : JsonDeserializer<SocialMediaType> {
+    private class SocialMediaTypeSerializer : JsonSerializer<SocialMediaType>, JsonDeserializer<SocialMediaType> {
+        override fun serialize(src: SocialMediaType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
@@ -67,19 +93,28 @@ object GsonProvider {
         }
     }
 
-    private class SkillDeserializer : JsonDeserializer<Skill> {
+    private class SkillSerializer : JsonSerializer<Skill>, JsonDeserializer<Skill> {
+        override fun serialize(src: Skill, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Skill {
             return KnownSkill.fromApiName(json!!.asString)
         }
     }
 
-    private class SlayerTypeDeserializer : JsonDeserializer<SlayerType> {
+    private class SlayerTypeSerializer : JsonSerializer<SlayerType>, JsonDeserializer<SlayerType> {
+        override fun serialize(src: SlayerType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): SlayerType {
             return KnownSlayerType.fromApiName(json!!.asString)
         }
     }
 
-    private class CurrencyDeserializer : JsonDeserializer<CurrencyType> {
+    private class CurrencySerializer : JsonSerializer<CurrencyType>, JsonDeserializer<CurrencyType> {
+        override fun serialize(src: CurrencyType, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
@@ -89,7 +124,10 @@ object GsonProvider {
         }
     }
 
-    private class DungeonTypeDeserializer : JsonDeserializer<DungeonType> {
+    private class DungeonTypeSerializer : JsonSerializer<DungeonType>, JsonDeserializer<DungeonType> {
+        override fun serialize(src: DungeonType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
@@ -99,7 +137,10 @@ object GsonProvider {
         }
     }
 
-    private class EssenceTypeDeserializer : JsonDeserializer<EssenceType> {
+    private class EssenceTypeSerializer : JsonSerializer<EssenceType>, JsonDeserializer<EssenceType> {
+        override fun serialize(src: EssenceType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
