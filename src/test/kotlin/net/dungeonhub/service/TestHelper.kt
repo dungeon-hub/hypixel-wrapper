@@ -2,10 +2,10 @@ package net.dungeonhub.service
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import net.dungeonhub.hypixel.entities.SkyblockProfile
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
-import net.dungeonhub.hypixel.entities.toSkyblockProfile
+import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Protocol

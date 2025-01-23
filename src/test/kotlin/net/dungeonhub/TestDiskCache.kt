@@ -3,7 +3,7 @@ package net.dungeonhub
 import com.google.gson.JsonObject
 import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
-import net.dungeonhub.hypixel.entities.SkyblockProfile
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper

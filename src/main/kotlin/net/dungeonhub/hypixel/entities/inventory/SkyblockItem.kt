@@ -2,8 +2,8 @@ package net.dungeonhub.hypixel.entities.inventory
 
 import com.google.gson.JsonObject
 import me.nullicorn.nedit.type.NBTCompound
-import net.dungeonhub.hypixel.entities.Pet
-import net.dungeonhub.hypixel.entities.toPet
+import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
+import net.dungeonhub.hypixel.entities.skyblock.pet.toPet
 import net.dungeonhub.provider.GsonProvider
 import java.time.Instant
 import java.util.*

@@ -4,10 +4,17 @@ import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.client.MemoryCacheApiClient
 import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
-import net.dungeonhub.hypixel.entities.*
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
 import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
+import net.dungeonhub.hypixel.entities.skyblock.*
+import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
+import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
+import net.dungeonhub.hypixel.entities.skyblock.misc.ProfileGameMode
+import net.dungeonhub.hypixel.entities.skyblock.misc.fromSkyblockTime
+import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
+import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import net.dungeonhub.strategy.ApiClientStrategy
@@ -175,8 +182,8 @@ class TestSkyblockProfile {
 
                         assertEquals(54.78, member.playerData.skillAverage)
 
-                        assertEquals(43, member.dungeons.catacombsLevel)
-                        assertEquals(37.0, member.dungeons.classAverage)
+                        assertEquals(43, member.dungeons?.catacombsLevel)
+                        assertEquals(37.0, member.dungeons?.classAverage)
                     }
                 }
             }
@@ -233,18 +240,18 @@ class TestSkyblockProfile {
 
         assertNotNull(member)
         assertNotNull(member.inventory)
-        assertNotNull(member.inventory.enderChestContent)
-        assertNotNull(member.inventory.armor)
-        assertNotNull(member.inventory.equipment)
-        assertNotNull(member.inventory.personalVault)
-        assertNotNull(member.inventory.equippedWardrobeSlot)
-        assertNotNull(member.inventory.wardrobeContents)
+        assertNotNull(member.inventory?.enderChestContent)
+        assertNotNull(member.inventory?.armor)
+        assertNotNull(member.inventory?.equipment)
+        assertNotNull(member.inventory?.personalVault)
+        assertNotNull(member.inventory?.equippedWardrobeSlot)
+        assertNotNull(member.inventory?.wardrobeContents)
 
         assertEquals(
             "Heroic Hyperion ✪✪✪✪✪➌",
-            member.inventory.inventoryContents!!.items.filterNotNull().first().rawName
+            member.inventory?.inventoryContents!!.items.filterNotNull().first().rawName
         )
-        assertEquals("Abiphone XII Mega", member.inventory.inventoryContents.items.filterNotNull().last().rawName)
+        assertEquals("Abiphone XII Mega", member.inventory?.inventoryContents?.items?.filterNotNull()?.last()?.rawName)
     }
 
     @Test
@@ -255,15 +262,15 @@ class TestSkyblockProfile {
                     if (member.inventory != null) {
                         val inventory = member.inventory
 
-                        checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
-                        inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
-                        inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
-                        inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory?.inventoryContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory?.enderChestContent?.items?.filterNotNull() ?: emptyList())
+                        inventory?.backpackIcons?.values?.forEach { checkItems(it.items.filterNotNull()) }
+                        inventory?.bagContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory?.armor?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory?.equipment?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory?.personalVault?.items?.filterNotNull() ?: emptyList())
+                        inventory?.backpackContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory?.wardrobeContents?.items?.filterNotNull() ?: emptyList())
                     }
                 }
             }
@@ -302,8 +309,8 @@ class TestSkyblockProfile {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null && member.inventory.inventoryContents != null) {
-                        val inventoryContent = member.inventory.inventoryContents.items
+                    if (member.inventory != null && member.inventory?.inventoryContents != null) {
+                        val inventoryContent = member.inventory?.inventoryContents!!.items
 
                         val skyblockMenu = inventoryContent[8]
 

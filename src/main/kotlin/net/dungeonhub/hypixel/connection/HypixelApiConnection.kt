@@ -2,7 +2,7 @@ package net.dungeonhub.hypixel.connection
 
 import net.dungeonhub.hypixel.client.ApiClient
 import net.dungeonhub.hypixel.client.FallbackApiClient
-import net.dungeonhub.hypixel.entities.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.strategy.ApiClientStrategy
 import java.time.Duration

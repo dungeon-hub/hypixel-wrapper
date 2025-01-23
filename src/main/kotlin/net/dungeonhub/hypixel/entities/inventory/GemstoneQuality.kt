@@ -1,7 +1,5 @@
 package net.dungeonhub.hypixel.entities.inventory
 
-import net.dungeonhub.hypixel.entities.SkyblockRarity
-
 enum class GemstoneQuality(val apiName: String, val rarity: SkyblockRarity) {
     Rough("ROUGH", SkyblockRarity.Common),
     Flawed("FLAWED", SkyblockRarity.Uncommon),

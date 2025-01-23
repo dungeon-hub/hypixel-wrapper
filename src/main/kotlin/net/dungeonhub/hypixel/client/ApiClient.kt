@@ -1,9 +1,12 @@
 package net.dungeonhub.hypixel.client
 
-import net.dungeonhub.hypixel.entities.*
 import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
+import net.dungeonhub.hypixel.entities.skyblock.*
+import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
+import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.hypixel.service.FormattingService
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.util.*

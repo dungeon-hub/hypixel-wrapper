@@ -2,10 +2,10 @@ package net.dungeonhub.hypixel.client
 
 import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.connection.HypixelConnection
-import net.dungeonhub.hypixel.entities.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
-import net.dungeonhub.hypixel.entities.toSkyblockProfile
+import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
 import java.util.*
 
 //TODO add test(s) for what happens when endpoints return nothing / are down
