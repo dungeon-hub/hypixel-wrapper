@@ -5,7 +5,6 @@ import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
 //TODO map pet stats
-//TODO add dik9 to test data set
 class MemberPlayerStats(
     val kills: Map<String, Int>,
     val deaths: Map<String, Int>,
