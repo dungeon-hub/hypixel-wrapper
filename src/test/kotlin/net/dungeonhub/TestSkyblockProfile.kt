@@ -18,6 +18,7 @@ import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import net.dungeonhub.strategy.ApiClientStrategy
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.spy
@@ -292,6 +293,10 @@ class TestSkyblockProfile {
                         it.gemstoneQuality
                     )
                 })
+                assertNotNull(item.abilityScrolls)
+                assertNotNull(item.attributes)
+                assertNotNull(item.newYearCakeBagData)
+                assertDoesNotThrow { item.dungeonSkillRequirement }
             }
         }
     }
