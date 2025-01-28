@@ -18,23 +18,6 @@ class MemberDungeonsData(
     val secrets: Int?,
     val raw: JsonObject
 ) {
-    val requiredExperience = listOf(
-        50, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 8940, 12700,
-        17960, 25340, 35640, 50040, 70040, 97640, 135640, 188140, 259640, 356640, 488640, 668640, 911640, 1239640,
-        1684640, 2284640, 3084640, 4149640, 5559640, 7459640, 9959640, 13259640, 17559640, 23159640, 30359640,
-        39559640, 51559640, 66559640, 85559640, 109559640, 139559640, 177559640, 225559640, 285559640, 360559640,
-        453559640, 569809640
-    )
-
-    fun levelFromExperience(experience: Double): Int {
-        for (i in requiredExperience.indices) {
-            if (requiredExperience[i] > (experience)) return i
-        }
-
-        // 50 and everything higher is returned as 50
-        return 50
-    }
-
     val classAverage = CatacombsClass.entries.sumOf {
         levelFromExperience(classExperience[it] ?: 0.0)
     }.toDouble() / CatacombsClass.entries.size
@@ -42,12 +25,85 @@ class MemberDungeonsData(
     val catacombsExperience = dungeonTypes[KnownDungeonType.Catacombs]?.experience
     val catacombsLevel: Int?
         get() {
-            if(catacombsExperience == null) {
+            if (catacombsExperience == null) {
                 return null
             }
 
             return levelFromExperience(catacombsExperience)
         }
+
+    companion object {
+        val requiredExperience = listOf<Long>(
+            50,
+            75,
+            110,
+            160,
+            230,
+            330,
+            470,
+            670,
+            950,
+            1340,
+            1890,
+            2665,
+            3760,
+            5260,
+            7380,
+            10300,
+            14400,
+            20000,
+            27600,
+            38000,
+            52500,
+            71500,
+            97000,
+            132000,
+            180000,
+            243000,
+            328000,
+            445000,
+            600000,
+            800000,
+            1065000,
+            1410000,
+            1900000,
+            2500000,
+            3300000,
+            4300000,
+            5600000,
+            7200000,
+            9200000,
+            12000000,
+            15000000,
+            19000000,
+            24000000,
+            30000000,
+            38000000,
+            48000000,
+            60000000,
+            75000000,
+            93000000,
+            116250000,
+            200000000
+        )
+
+        fun getRequiredExperience(level: Int): Long {
+            if(level > requiredExperience.size) {
+                return getRequiredExperience(requiredExperience.size) + requiredExperience.last() * (level - requiredExperience.size)
+            }
+
+            return requiredExperience.take(level).sum()
+        }
+
+        fun levelFromExperience(experience: Double): Int {
+            for (i in 0..500) {
+                if (getRequiredExperience(i) > (experience)) return i-1
+            }
+
+            // 50 and everything higher is returned as 50
+            return 500
+        }
+    }
 }
 
 fun JsonObject.toDungeonsData(): MemberDungeonsData {
