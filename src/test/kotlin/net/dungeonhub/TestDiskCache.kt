@@ -3,12 +3,14 @@ package net.dungeonhub
 import com.google.gson.JsonObject
 import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
-import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
+import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.assertDoesNotThrow
 import java.io.File
 import java.util.*
 import kotlin.test.Test
@@ -70,6 +72,27 @@ class TestDiskCache {
                 val profileFromJson = GsonProvider.gson.fromJson(profileJson, SkyblockProfile::class.java)
 
                 assertNotNull(profileFromJson)
+            }
+        }
+    }
+
+    @Test
+    fun testDiskCacheSkyblock() {
+        val apiClient = DiskCacheApiClient
+
+        for (skyblockProfiles in TestHelper.readAllSkyblockProfileObjects()) {
+            assertDoesNotThrow { apiClient.skyblockProfilesCache.store(skyblockProfiles) }
+
+            val loadedProfile = assertDoesNotThrow { apiClient.skyblockProfilesCache.retrieve(skyblockProfiles.owner) }
+
+            assertNotNull(loadedProfile)
+
+            for(profile in loadedProfile.profiles) {
+                for(member in profile.members.filterIsInstance<CurrentMember>()) {
+                    for(inventoryContent in member.inventory?.allItems ?: listOf()) {
+                        assertNotNull(inventoryContent.items)
+                    }
+                }
             }
         }
     }

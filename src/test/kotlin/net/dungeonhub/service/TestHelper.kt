@@ -2,9 +2,10 @@ package net.dungeonhub.service
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -15,6 +16,7 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.*
 import kotlin.io.path.name
 
 object TestHelper {
@@ -38,6 +40,25 @@ object TestHelper {
         val fullProfilesJson = readFile("full-profiles/full_skyblock_profiles.json")
 
         return GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
+    }
+
+    fun readAllSkyblockProfileObjects(): List<SkyblockProfiles> {
+        val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
+
+        return Files.list(Paths.get(profilesDirectory)).filter {
+            try {
+                UUID.fromString(it.name.replace(".json", ""))
+                return@filter true
+            } catch (_: Exception) {
+                return@filter false
+            }
+        }.toList().associate { file ->
+            val fullProfilesJson = readFile("full-profiles/${file.name}")
+
+            val uuid = UUID.fromString(file.name.replace(".json", ""))
+
+            uuid to GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
+        }.map { (key, value) -> SkyblockProfiles(key, value) }
     }
 
     fun readAllSkyblockProfiles(): List<List<SkyblockProfile>> {
