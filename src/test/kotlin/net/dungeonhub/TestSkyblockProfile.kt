@@ -6,7 +6,7 @@ import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
-import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.*
 import net.dungeonhub.hypixel.entities.skyblock.*
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
@@ -287,16 +287,47 @@ class TestSkyblockProfile {
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
+                if (item.id is KnownSkyblockItemId.UnknownSkyblockItemId) {
+                    //println(item.id.apiName)
+                }
+                //TODO enable once fully mapped
+                //assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(item.id)
                 assertTrue(item.runes.isEmpty() || item.runes.size == 1)
                 assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
                     GemstoneQuality.entries.contains(
                         it.gemstoneQuality
                     )
                 })
-                assertNotNull(item.abilityScrolls)
+
+                if (item is EnchantableItem) {
+                    assertNotNull(item.enchantments)
+                    item.enchantments.forEach {
+                        assertIsNot<KnownEnchantment.UnknownEnchantment>(
+                            it.key,
+                            "Item ${item.id.apiName} has enchantments (${it.key.apiName}), but the wrapper doesn't acknowledge that!"
+                        )
+                    }
+                } else {
+                    /*assertTrue("Item ${item.id.apiName} has enchantments, but the wrapper doesn't acknowledge that!") {
+                        !item.extraAttributes.contains(
+                            "enchantments"
+                        )
+                    }*/
+                }
+
+                if (item is WitherBlade) {
+                    assertNotNull(item.abilityScrolls)
+                } else {
+                    assertTrue { !item.extraAttributes.contains("ability_scroll") }
+                }
+
                 assertNotNull(item.attributes)
                 assertNotNull(item.newYearCakeBagData)
                 assertDoesNotThrow { item.dungeonSkillRequirement }
+
+                if (item is BuildersWand) {
+                    assertNotNull(item.buildersWandData)
+                }
             }
         }
     }

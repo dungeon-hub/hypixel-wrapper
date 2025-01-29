@@ -1,26 +1,19 @@
-package net.dungeonhub.hypixel.entities.inventory
+package net.dungeonhub.hypixel.entities.inventory.items
 
-import com.google.gson.JsonObject
 import me.nullicorn.nedit.NBTReader
 import me.nullicorn.nedit.type.NBTCompound
 import me.nullicorn.nedit.type.TagType
+import net.dungeonhub.hypixel.entities.inventory.*
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
-import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
-import net.dungeonhub.hypixel.entities.skyblock.pet.toPet
-import net.dungeonhub.provider.GsonProvider
 import java.io.ByteArrayInputStream
 import java.time.Instant
 import java.util.*
 
 //TODO add more fields
-//TODO map id to item id
-//TODO map reforge data
-//TODO map enchantment data
 //TODO map attribute type
-class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
-    val id: String
-        get() = extraAttributes.getString("id")
+open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory {
+    val id: SkyblockItemId = KnownSkyblockItemId.fromApiName(extraAttributes.getString("id"))
 
     val uuid: UUID?
         get() = extraAttributes.getString("uuid")?.let { UUID.fromString(it) }
@@ -37,6 +30,9 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val museumDonated: Boolean
         get() = extraAttributes.getByte("donated_museum", 0) == 1.toByte()
 
+    //TODO check / migrate all below
+
+
     val etherWarp: Boolean
         get() = extraAttributes.getByte("ethermerge", 0) == 1.toByte()
 
@@ -49,24 +45,13 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val gems: ItemGemsData?
         get() = extraAttributes.getCompound("gems")?.toGemsData()
 
-    val enchantments: Map<String, Int>
-        get() = extraAttributes.getCompound("enchantments")?.let {
-            it.mapValues { enchantment -> enchantment.value as Int }
-        } ?: emptyMap()
-
     val runes: Map<String, Int>
         get() = extraAttributes.getCompound("runes")?.let {
             it.mapValues { rune -> rune.value as Int }
         } ?: emptyMap()
 
-    val reforge: String?
-        get() = extraAttributes.getString("modifier")
-
     val starAmount: Int
         get() = extraAttributes.getInt("upgrade_level", 0)
-
-    val hotPotatoes: Int
-        get() = extraAttributes.getInt("hot_potato_count", 0)
 
     val dungeonItem: Boolean
         get() = extraAttributes.getByte("dungeon_item", -1) == 1.toByte()
@@ -74,26 +59,16 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val anvilUses: Int
         get() = extraAttributes.getInt("anvil_uses", 0)
 
-    val petInfo: Pet?
-        get() = extraAttributes.getString("petInfo")?.let { GsonProvider.gson.fromJson(it, JsonObject::class.java) }
-            ?.toPet()
-
     val attributes: Map<String, Int>
         get() = extraAttributes.getCompound("attributes")?.let {
             it.mapValues { attribute -> attribute.value as Int }
         } ?: emptyMap()
-
-    val abilityScrolls: List<String>
-        get() = extraAttributes.getList("ability_scroll")?.map { it.toString() } ?: emptyList()
 
     val dungeonLevel: Int
         get() = extraAttributes.getInt("dungeon_item_level", 0)
 
     val hasArtOfWar: Boolean
         get() = extraAttributes.getInt("art_of_war_count", 0) > 0
-
-    val isShiny: Boolean
-        get() = extraAttributes.getInt("is_shiny", 0) > 0
 
     val isRiftTransferred: Boolean
         get() = extraAttributes.getInt("rift_transferred", 0) > 0
@@ -194,31 +169,116 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
             KnownDungeonType.fromApiName(it.first().lowercase()) to Integer.valueOf(it.last())
         }
 
-    val newYearCakeBagData: List<SkyblockItem>
+    val newYearCakeBagData: List<ItemStack>
         get() = extraAttributes.get("new_year_cake_bag_data")?.let {
             if (it is ByteArray) it.parseItemList() else emptyList()
         } ?: emptyList()
 
-    val buildersWandData: List<SkyblockItem>
-        get() = extraAttributes.get("builder's_wand_data")?.let {
-            if (it is ByteArray) it.parseItemList() else emptyList()
-        } ?: emptyList()
+    companion object {
+        fun fromNbtCompound(compound: NBTCompound): SkyblockItem? {
+            if (!compound.isSkyblockItem()) {
+                return null
+            }
+
+            val skyblockItem = SkyblockItem(compound)
+
+            return if (skyblockItem.id is KnownSkyblockItemId) skyblockItem.id.itemClass(skyblockItem) else skyblockItem
+        }
+    }
 }
 
-fun ByteArray.parseItemList(): List<SkyblockItem> {
+interface SkyblockItemFactory {
+    val raw: NBTCompound
+
+    val extraAttributes: NBTCompound
+}
+
+fun ByteArray.parseItemList(): List<ItemStack> {
     val list = NBTReader.read(ByteArrayInputStream(this))
     if (list.containsTag("i", TagType.LIST)) {
         return list.getList("i").mapNotNull { item ->
-            if (item is NBTCompound && item.isSkyblockItem()) SkyblockItem(item) else null
+            if (item is NBTCompound) item.toItem() else null
         }
     }
     return emptyList()
 }
 
+/*fun NBTCompound.isSkyblockItem(): Boolean {
+    if (!isValidItem()) return false
+
+    val tag = getCompound("tag") ?: return false
+
+    return tag.getCompound("ExtraAttributes")?.getString("id") != null
+}*/
+
 fun NBTCompound.isSkyblockItem(): Boolean {
     if (!isValidItem()) return false
 
     val tag = getCompound("tag") ?: return false
+
+    val ea = HashMap(tag.getCompound("ExtraAttributes") ?: HashMap())
+
+    ea.remove("id")
+    ea.remove("blocksBroken")
+    ea.remove("drill_fuel")
+    ea.remove("champion_combat_xp")
+    ea.remove("uuid")
+    ea.remove("stats_book")
+    ea.remove("bookworm_books")
+    ea.remove("thunder_charge")
+    ea.remove("trapsDefused")
+    ea.remove("timestamp")
+    ea.remove("new_year_cake_bag_data")
+    ea.remove("ranchers_speed")
+    ea.remove("raider_kills")
+    ea.remove("builder's_wand_data")
+    ea.remove("blazetekk_channel")
+    ea.remove("promising_pickaxe_breaks")
+    ea.remove("blocks_walked")
+    ea.remove("ethermerge")
+    ea.remove("compact_blocks")
+    ea.remove("tuned_transmission")
+    ea.remove("power_ability_scroll")
+    ea.remove("baseStatBoostPercentage")
+    ea.remove("rarity_upgrades")
+    ea.remove("originTag")
+    ea.remove("mana_disintegrator_count")
+    ea.remove("donated_museum")
+    ea.remove("modifier")
+    ea.remove("hot_potato_count")
+    ea.remove("enchantments")
+    ea.remove("dungeon_item")
+    ea.remove("runes")
+    ea.remove("upgrade_level")
+    ea.remove("anvil_uses")
+    ea.remove("gems")
+    ea.remove("petInfo")
+    ea.remove("ability_scroll")
+    ea.remove("dungeon_item_level")
+    ea.remove("art_of_war_count")
+    ea.remove("attributes")
+    ea.remove("toxophilite_combat_xp")
+    ea.remove("is_shiny")
+    ea.remove("rift_transferred")
+    ea.remove("jalapeno_count")
+    ea.remove("talisman_enrichment")
+    ea.remove("bossId")
+    ea.remove("spawnedFor")
+    ea.remove("skin")
+    ea.remove("dye_item")
+    ea.remove("polarvoid")
+    ea.remove("potion_level")
+    ea.remove("potion")
+    ea.remove("potion_type")
+    ea.remove("splash")
+    ea.remove("effects")
+    ea.remove("expertise_kills")
+    ea.remove("lava_creatures_killed")
+    ea.remove("dungeon_skill_req")
+
+    if (ea.isNotEmpty()) {
+        //println(ea)
+    }
 
     return tag.getCompound("ExtraAttributes")?.getString("id") != null
 }

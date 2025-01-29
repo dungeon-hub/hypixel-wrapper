@@ -1,6 +1,8 @@
 package net.dungeonhub.hypixel.entities.skyblock
 
-import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
+import net.dungeonhub.hypixel.entities.inventory.items.Gear
+import net.dungeonhub.hypixel.entities.inventory.items.WitherBlade
 import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
@@ -10,8 +12,8 @@ import java.util.*
 class ProfileStatsOverview(
     val uuid: UUID,
     val profileName: String,
-    val witherBlades: List<SkyblockItem>,
-    val terminator: List<SkyblockItem>,
+    val witherBlades: List<WitherBlade>,
+    val terminator: List<Gear>,
     val goldenDragon: List<Pet>,
     val skyblockLevel: Double,
     val skillAverage: Double,
@@ -34,13 +36,13 @@ class ProfileStatsOverview(
             } else {
                 //TODO change once enchants are fully mapped
                 terminator.joinToString("\n") {
-                    val ultimateEnchant: Pair<String, Int>? = it.enchantments.entries.firstOrNull { enchant ->
-                        enchant.key.startsWith("ultimate_")
+                    val ultimateEnchant: Pair<Enchantment, Int>? = it.enchantments.entries.firstOrNull { enchant ->
+                        enchant.key.apiName.startsWith("ultimate_")
                     }?.toPair()
 
                     "$terminatorEmoji: ${it.rawName}${
                         if (ultimateEnchant != null) {
-                            " (${parseUltimateEnchantment(ultimateEnchant.first)} ${ultimateEnchant.second})"
+                            " (${parseUltimateEnchantment(ultimateEnchant.first.apiName)} ${ultimateEnchant.second})"
                         } else {
                             ""
                         }
