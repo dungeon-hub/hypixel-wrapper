@@ -138,9 +138,13 @@ enum class KnownSkill(
         true
     );
 
+    enum class DeprecatedSkill(override val apiName: String) : Skill {
+        Dungeoneering("SKILL_DUNGEONEERING");
+    }
+
     fun calculateLevel(experience: Double): Int {
         for (i in requiredExperience.indices) {
-            if(i > maxLevel) return maxLevel
+            if (i > maxLevel) return maxLevel
 
             if (requiredExperience[i] > (experience)) return i
         }
@@ -153,7 +157,9 @@ enum class KnownSkill(
     companion object {
         fun fromApiName(apiName: String): Skill {
             return entries.firstOrNull { it.apiName == apiName }
-                ?: UnknownSkill(apiName)
+                ?: DeprecatedSkill.entries.firstOrNull {
+                    it.apiName == apiName
+                } ?: UnknownSkill(apiName)
         }
     }
 }

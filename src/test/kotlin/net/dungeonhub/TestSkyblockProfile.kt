@@ -256,7 +256,7 @@ class TestSkyblockProfile {
     }
 
     @Test
-    fun testItemNameParsing() {
+    fun testItemDataParsing() {
         for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (fullProfile in fullProfiles) {
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
@@ -360,11 +360,6 @@ class TestSkyblockProfile {
                     assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
 
                     member.playerData?.experience?.keys?.forEach {
-                        //ignore dungeoneering -> it's an old entry I guess
-                        if (it is KnownSkill.UnknownSkill && it.apiName == "SKILL_DUNGEONEERING") {
-                            return@forEach
-                        }
-
                         assertIsNot<KnownSkill.UnknownSkill>(it)
                     }
 
