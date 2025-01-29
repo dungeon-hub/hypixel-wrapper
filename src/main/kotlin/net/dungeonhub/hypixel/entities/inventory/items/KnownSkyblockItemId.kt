@@ -74,7 +74,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     Scylla("SCYLLA", { WitherBlade(it.raw) }),
     Astraea("ASTRAEA", { WitherBlade(it.raw) }),
     NecronBlade("NECRON_BLADE", { WitherBlade(it.raw) }),
-    Terminator("TERMINATOR", { Gear(it.raw) }), //TODO add own class
+    Terminator("TERMINATOR", { Terminator(it.raw) }),
     AspectOfTheVoid("ASPECT_OF_THE_VOID"),
     RodOfTheSea("ROD_OF_THE_SEA"),
     SkyblockMenu("SKYBLOCK_MENU"),

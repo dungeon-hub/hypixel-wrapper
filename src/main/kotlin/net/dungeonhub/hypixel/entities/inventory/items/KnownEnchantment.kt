@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items
 
 //TODO complete mapping
+//TODO should different types of armor/tools be mapped -> when enchantment is only for helmets/pickaxes
 enum class KnownEnchantment(
     override val apiName: String,
     val ultimate: Boolean,
