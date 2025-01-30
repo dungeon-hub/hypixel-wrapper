@@ -257,6 +257,8 @@ class TestSkyblockProfile {
 
     @Test
     fun testItemDataParsing() {
+        assertTrue(KnownEnchantment.TheOne.isUltimate())
+
         for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (fullProfile in fullProfiles) {
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
