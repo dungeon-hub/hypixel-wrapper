@@ -9,6 +9,30 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     //Admin Item
 
     //Armor
+    ExceedinglyComfySneakers("EXCEEDINGLY_COMFY_SNEAKERS", { Armor(it.raw) }),
+    FarmerBoots("FARMER_BOOTS", { Armor(it.raw) }),
+    GhostlyBoots("GHOST_BOOTS", { Armor(it.raw) }),
+    GunthersSneakers("GUNTHER_SNEAKERS", { Armor(it.raw) }),
+    RanchersBoots("RANCHERS_BOOTS", { Armor(it.raw) }),
+    SlugBoots("SLUG_BOOTS", { Armor(it.raw) }),
+    SnakeInABoot("SNAKE_IN_A_BOOT", { Armor(it.raw) }),
+    SpidersBoots("SPIDER_BOOTS", { Armor(it.raw) }),
+    SpiritBoots("THORNS_BOOTS", { Armor(it.raw) }),
+    SpringBoots("SPRING_BOOTS", { Armor(it.raw) }),
+    SquidBoots("SQUID_BOOTS", { Armor(it.raw) }),
+    UglyBoots("UGLY_BOOTS", { Armor(it.raw) }),
+    EtalptsehCnorI("ETALPTSEHC_NORI", { Armor(it.raw) }),
+    FlamingChestplate("FLAMING_CHESTPLATE", { Armor(it.raw) }),
+    GuardianChestplate("GUARDIAN_CHESTPLATE", { Armor(it.raw) }),
+    LivelySepultureChestplate("LIVELY_SEPULTURE_CHESTPLATE", { Armor(it.raw) }),
+    MetalChestplate("METAL_CHESTPLATE", { Armor(it.raw) }),
+    MithrilCoat("MITHRIL_COAT", { Armor(it.raw) }),
+    ObsidianChestplate("OBSIDIAN_CHESTPLATE", { Armor(it.raw) }),
+    OrangeChestplate("ORANGE_CHESTPLATE", { Armor(it.raw) }),
+    ShimmersparkleChestplate("SHIMMERSPARKLE_CHESTPLATE", { Armor(it.raw) }),
+    SteelChestplate("STEEL_CHESTPLATE", { Armor(it.raw) }),
+    StoneChestplate("STONE_CHESTPLATE", { Armor(it.raw) }),
+    WLogo("S_LOGO_CHESTPLATE", { Armor(it.raw) }),
 
     //Brewing Ingredient
     EnchantedCake("ENCHANTED_CAKE"),
@@ -30,6 +54,19 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     //Item Sack
 
     //Memento
+    BasketOfHope("POTATO_BASKET"),
+    BingosSecrets("SECRET_BINGO_MEMENTO"),
+    CakeSliceOfTheCentury("CENTURY_MEMENTO_RED"),
+    CampaignPoster("CAMPAIGN_POSTER"),
+    ExpensiveToy("EXPENSIVE_TOY"),
+    FrenchBread("FRENCH_BREAD"),
+    GoldenCollar("GOLDEN_COLLAR"),
+    LockedBallotBox("LOCKED_BALLOT_BOX"),
+    MoldyMuffin("MOLDY_MUFFIN"),
+    PaintersPalette("PAINTERS_PALETTE"),
+    PieceOfWizardPortal("WIZARD_PORTAL_MEMENTO"),
+    ShinyRelic("SHINY_RELIC"),
+    ThereAndBackAgain("RIFT_COMPLETION_MEMENTO"),
 
     //Minion
 
@@ -56,8 +93,14 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     //Wand
 
     //Weapon
-    PhantomRod("PHANTOM_ROD"),
-    Shredder("THE_SHREDDER"),
+    PhantomRod("PHANTOM_ROD", { Gear(it.raw) }),
+    Shredder("THE_SHREDDER", { Gear(it.raw) }),
+    Hyperion("HYPERION", { WitherBlade(it.raw) }),
+    Valkyrie("VALKYRIE", { WitherBlade(it.raw) }),
+    Scylla("SCYLLA", { WitherBlade(it.raw) }),
+    Astraea("ASTRAEA", { WitherBlade(it.raw) }),
+    NecronBlade("NECRON_BLADE", { WitherBlade(it.raw) }),
+    Terminator("TERMINATOR", { Terminator(it.raw) }),
 
     //Misc
     KuudraKey("KUUDRA_TIER_KEY"),
@@ -69,18 +112,11 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
 
 
     BuildersWand("BUILDERS_WAND", { BuildersWand(it.raw) }),
-    Hyperion("HYPERION", { WitherBlade(it.raw) }),
-    Valkyrie("VALKYRIE", { WitherBlade(it.raw) }),
-    Scylla("SCYLLA", { WitherBlade(it.raw) }),
-    Astraea("ASTRAEA", { WitherBlade(it.raw) }),
-    NecronBlade("NECRON_BLADE", { WitherBlade(it.raw) }),
-    Terminator("TERMINATOR", { Terminator(it.raw) }),
     AspectOfTheVoid("ASPECT_OF_THE_VOID"),
     RodOfTheSea("ROD_OF_THE_SEA"),
     SkyblockMenu("SKYBLOCK_MENU"),
     GrandExpBottle("GRAND_EXP_BOTTLE"),
     TitanicExpBottle("TITANIC_EXP_BOTTLE"),
-    SlugBoots("SLUG_BOOTS"),
     InfernoRod("INFERNO_ROD"),
     MoogmaLeggings("MOOGMA_LEGGINGS"),
     DivansDrill("DIVAN_DRILL"),
@@ -144,7 +180,8 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     AbiphoneFlipDragon("ABIPHONE_FLIP_DRAGON"),
     AbiphoneFlipNucleus("ABIPHONE_FLIP_NUCLEUS"),
     AbiphoneFlipVolcano("ABIPHONE_FLIP_VOLCANO"),
-    AbiphoneBingo("ABINGOPHONE");
+    AbiphoneBingo("ABINGOPHONE"),
+    MithrilDrillSxR326("MITHRIL_DRILL_2");
 
     constructor(apiName: String) : this(apiName, { it })
 

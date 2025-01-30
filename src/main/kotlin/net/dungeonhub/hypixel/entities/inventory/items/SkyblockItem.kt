@@ -145,9 +145,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val compactBlocks: Int
         get() = extraAttributes.getInt("compact_blocks", 0)
 
-    val raiderKills: Int
-        get() = extraAttributes.getInt("raider_kills", 0)
-
     val bookWormBooks: Int
         get() = extraAttributes.getInt("bookworm_books", 0)
 
@@ -156,13 +153,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
 
     val thunderCharge: Int
         get() = extraAttributes.getInt("thunder_charge", 0)
-
-    val toxophiliteExperience: Double
-        get() = extraAttributes.getDouble("toxophilite_combat_xp", 0.0)
-
-    //TODO map to enum
-    val abiphoneModel: String?
-        get() = extraAttributes.getString("model")
 
     val dungeonSkillRequirement: Pair<DungeonType, Int>?
         get() = extraAttributes.getString("dungeon_skill_req")?.split(":")?.let {

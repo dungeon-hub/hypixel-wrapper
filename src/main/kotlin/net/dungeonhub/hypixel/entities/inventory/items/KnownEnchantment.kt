@@ -34,7 +34,8 @@ enum class KnownEnchantment(
     Efficiency("efficiency", false, EnchantmentTarget.Tools),
     EnderSlayer("ender_slayer", false, EnchantmentTarget.Swords),
     Execute("execute", false, EnchantmentTarget.Swords),
-    Experience("experience", false, EnchantmentTarget.Swords, EnchantmentTarget.Tools, EnchantmentTarget.FishingRods),
+    Experience("experience", false, EnchantmentTarget.Swords, EnchantmentTarget.Tools),
+    Expertise("expertise", false, EnchantmentTarget.FishingRods),
     FeatherFalling("feather_falling", false, EnchantmentTarget.Armor),
     FerociousMana("ferocious_mana", false, EnchantmentTarget.Armor),
     FireAspect("fire_aspect", false, EnchantmentTarget.Swords),
@@ -96,7 +97,14 @@ enum class KnownEnchantment(
     SugarRush("sugar_rush", false, EnchantmentTarget.Armor),
     Sunder("sunder", false, EnchantmentTarget.Tools),
     Syphon("syphon", false, EnchantmentTarget.Swords),
-    Tabasco("tabasco", false, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.FishingRods, EnchantmentTarget.Tools),
+    Tabasco(
+        "tabasco",
+        false,
+        EnchantmentTarget.Swords,
+        EnchantmentTarget.Bows,
+        EnchantmentTarget.FishingRods,
+        EnchantmentTarget.Tools
+    ),
     Thorns("thorns", false, EnchantmentTarget.Armor),
     Thunderbolt("thunderbolt", false, EnchantmentTarget.Swords),
     Thunderlord("thunderlord", false, EnchantmentTarget.Swords),
@@ -124,11 +132,25 @@ enum class KnownEnchantment(
     Chimera("ultimate_chimera", true, EnchantmentTarget.Swords),
     Combo("ultimate_combo", true, EnchantmentTarget.Swords),
     Duplex("ultimate_reiterate", true, EnchantmentTarget.Bows),
-    FatalTempo("ultimate_fatal_tempo", true, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.FishingRods, EnchantmentTarget.Tools),
+    FatalTempo(
+        "ultimate_fatal_tempo",
+        true,
+        EnchantmentTarget.Swords,
+        EnchantmentTarget.Bows,
+        EnchantmentTarget.FishingRods,
+        EnchantmentTarget.Tools
+    ),
     Flash("ultimate_flash", true, EnchantmentTarget.FishingRods),
     Flowstate("ultimate_flowstate", true, EnchantmentTarget.Tools),
     HabaneroTactics("ultimate_habanero_tactics", true, EnchantmentTarget.Armor),
-    Inferno("ultimate_inferno", true, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.FishingRods, EnchantmentTarget.Tools),
+    Inferno(
+        "ultimate_inferno",
+        true,
+        EnchantmentTarget.Swords,
+        EnchantmentTarget.Bows,
+        EnchantmentTarget.FishingRods,
+        EnchantmentTarget.Tools
+    ),
     LastStand("ultimate_last_stand", true, EnchantmentTarget.Armor),
     Legion("ultimate_legion", true, EnchantmentTarget.Armor),
     NoPainNoGain("ultimate_no_pain_no_gain", true, EnchantmentTarget.Armor),
@@ -139,7 +161,15 @@ enum class KnownEnchantment(
     Swarm("ultimate_swarm", true, EnchantmentTarget.Swords, EnchantmentTarget.Bows),
     TheOne("the_one", true, EnchantmentTarget.Equipment),
     UltimateJerry("ultimate_jerry", true, EnchantmentTarget.Swords),
-    UltimateWise("ultimate_wise", true, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.Wands, EnchantmentTarget.FishingRods, EnchantmentTarget.Tools),
+    UltimateWise(
+        "ultimate_wise",
+        true,
+        EnchantmentTarget.Swords,
+        EnchantmentTarget.Bows,
+        EnchantmentTarget.Wands,
+        EnchantmentTarget.FishingRods,
+        EnchantmentTarget.Tools
+    ),
     Wisdom("ultimate_wisdom", true, EnchantmentTarget.Armor);
 
     enum class DeprecatedEnchantment(
