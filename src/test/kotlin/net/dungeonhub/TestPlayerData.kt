@@ -102,6 +102,7 @@ class TestPlayerData {
             UUID.fromString("e4704ec0-63cc-435f-9971-1b20577617dc") to KnownRank.MvpPlus,
             UUID.fromString("91821440-2b71-4cdb-8364-611c3e435e4b") to KnownRank.MvpPlus,
             UUID.fromString("39659d02-f0b4-4d39-99f2-eb3566fad1f1") to KnownRank.MvpPlus,
+            UUID.fromString("1a5130bf-2ac5-44ca-a6c6-b1f8afd008bf") to KnownRank.MvpPlus,
 
             UUID.fromString("92d940ad-10e8-4d9d-a795-adcf5fd6b0c6") to KnownRank.MvpPlusPlus,
 
