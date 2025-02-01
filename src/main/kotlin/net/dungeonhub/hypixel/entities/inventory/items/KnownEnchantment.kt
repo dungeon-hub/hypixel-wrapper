@@ -67,7 +67,7 @@ enum class KnownEnchantment(
     ManaVampire("mana_vampire", false, EnchantmentTarget.Armor),
     Overload("overload", false, EnchantmentTarget.Bows),
     Paleontologist("paleontologist", false, EnchantmentTarget.Tools),
-    Pesterminator("presterminator", false, EnchantmentTarget.Armor),
+    Pesterminator("pesterminator", false, EnchantmentTarget.Armor),
     Piercing("piercing", false, EnchantmentTarget.Bows),
     Piscary("piscary", false, EnchantmentTarget.FishingRods),
     Power("power", false, EnchantmentTarget.Bows),
