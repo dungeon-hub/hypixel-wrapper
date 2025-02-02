@@ -180,7 +180,8 @@ enum class KnownEnchantment(
         Telekinesis(
             "telekinesis", false, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.Tools,
             EnchantmentTarget.FishingRods, EnchantmentTarget.Wands
-        );
+        ),
+        TurboCactus("turbo_cactus", false, EnchantmentTarget.Tools); //TODO check if thats actually just an old name or if the wiki is just incorrect (again)
     }
 
     enum class EnchantmentTarget {

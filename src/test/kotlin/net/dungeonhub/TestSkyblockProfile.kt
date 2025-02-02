@@ -290,7 +290,7 @@ class TestSkyblockProfile {
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
                 if (item.id is KnownSkyblockItemId.UnknownSkyblockItemId) {
-                    //println(item.id.apiName)
+                    //println(item.rawName + "(" + item.id.apiName + ")")
                 }
                 //TODO enable once fully mapped
                 //assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(item.id)
@@ -310,6 +310,7 @@ class TestSkyblockProfile {
                         )
                     }
                 } else {
+                    //TODO reenable once everything is mapped
                     /*assertTrue("Item ${item.id.apiName} has enchantments, but the wrapper doesn't acknowledge that!") {
                         !item.extraAttributes.contains(
                             "enchantments"
@@ -323,7 +324,16 @@ class TestSkyblockProfile {
                     assertTrue { !item.extraAttributes.contains("ability_scroll") }
                 }
 
-                assertNotNull(item.attributes)
+                if (item is Gear) {
+                    assertNotNull(item.attributes)
+                } else {
+                    //TODO reenable once everything is mapped
+                    /*assertTrue("Item ${item.id.apiName} has attributes, but the wrapper doesn't acknowledge that!") {
+                        !item.extraAttributes.contains(
+                            "attributes"
+                        )
+                    }*/
+                }
                 assertNotNull(item.newYearCakeBagData)
                 assertDoesNotThrow { item.dungeonSkillRequirement }
 
@@ -382,7 +392,12 @@ class TestSkyblockProfile {
     }
 
     @Test
-    fun testNoUnknownDataTypes() {
+    fun testNoInvalidDataTypes() {
+        assertTrue {
+            KnownSkyblockItemId.entries.map { it.apiName }.count() ==
+                    KnownSkyblockItemId.entries.map { it.apiName }.distinct().count()
+        }
+
         for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (skyblockProfile in skyblockProfiles) {
                 for (member in skyblockProfile.members) {

@@ -30,17 +30,13 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val museumDonated: Boolean
         get() = extraAttributes.getByte("donated_museum", 0) == 1.toByte()
 
+    val anvilUses: Int
+        get() = extraAttributes.getInt("anvil_uses", 0)
+
+    val isRiftTransferred: Boolean
+        get() = extraAttributes.getInt("rift_transferred", 0) > 0
+
     //TODO check / migrate all below
-
-
-    val etherWarp: Boolean
-        get() = extraAttributes.getByte("ethermerge", 0) == 1.toByte()
-
-    val transmissionTuners: Int
-        get() = extraAttributes.getInt("tuned_transmission", 0)
-
-    val manaDisintegrators: Int
-        get() = extraAttributes.getInt("mana_disintegrator_count", 0)
 
     val gems: ItemGemsData?
         get() = extraAttributes.getCompound("gems")?.toGemsData()
@@ -56,34 +52,11 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val dungeonItem: Boolean
         get() = extraAttributes.getByte("dungeon_item", -1) == 1.toByte()
 
-    val anvilUses: Int
-        get() = extraAttributes.getInt("anvil_uses", 0)
-
-    val attributes: Map<String, Int>
-        get() = extraAttributes.getCompound("attributes")?.let {
-            it.mapValues { attribute -> attribute.value as Int }
-        } ?: emptyMap()
-
     val dungeonLevel: Int
         get() = extraAttributes.getInt("dungeon_item_level", 0)
 
-    val hasArtOfWar: Boolean
-        get() = extraAttributes.getInt("art_of_war_count", 0) > 0
-
-    val isRiftTransferred: Boolean
-        get() = extraAttributes.getInt("rift_transferred", 0) > 0
-
-    val hasJalapeno: Boolean
-        get() = extraAttributes.getInt("jalapeno_count", 0) > 0
-
     val enrichment: String?
         get() = extraAttributes.getString("talisman_enrichment")
-
-    val appliedDye: String?
-        get() = extraAttributes.getString("dye_item")
-
-    val appliedSkin: String?
-        get() = extraAttributes.getString("skin")
 
     val polarvoid: Int
         get() = extraAttributes.getInt("polarvoid", 0)
@@ -125,10 +98,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
 
     val championXp: Double
         get() = extraAttributes.getDouble("champion_combat_xp", 0.0)
-
-    //TODO map to scroll type?
-    val abilityScroll: String?
-        get() = extraAttributes.getString("power_ability_scroll")
 
     val baseStatBoost: Int
         get() = extraAttributes.getInt("baseStatBoostPercentage", 0)
@@ -265,6 +234,7 @@ fun NBTCompound.isSkyblockItem(): Boolean {
     ea.remove("expertise_kills")
     ea.remove("lava_creatures_killed")
     ea.remove("dungeon_skill_req")
+    ea.remove("artOfPeaceApplied")
 
     if (ea.isNotEmpty()) {
         //println(ea)
