@@ -1,19 +1,27 @@
 package net.dungeonhub.hypixel.client
 
 import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import net.dungeonhub.hypixel.connection.HypixelConnection
-import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.guild.Guild
+import net.dungeonhub.hypixel.entities.guild.toGuild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
+import net.dungeonhub.provider.GsonProvider
+import net.dungeonhub.provider.getAsJsonObjectOrNull
+import net.hypixel.api.http.HypixelHttpResponse
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.util.*
 
-//TODO add test(s) for what happens when endpoints return nothing / are down
 object RestApiClient : ApiClient {
+    const val API_PREFIX = "https://api.hypixel.net/v2/"
+
     override fun getPlayerData(uuid: UUID): HypixelPlayer? {
         val player = HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
 
-        if(player?.uuid == null) {
+        if (player?.uuid == null) {
             return null
         }
 
@@ -27,6 +35,24 @@ object RestApiClient : ApiClient {
                 it.toSkyblockProfile()
             } ?: emptyList()
         )
+    }
+
+    fun makeAuthenticatedHypixelRequest(url: String): HypixelHttpResponse {
+        return HypixelConnection.makeAuthenticatedRequest(url).join()
+    }
+
+    override fun getGuild(name: String): Guild? {
+        val url = (API_PREFIX + "guild").toHttpUrl().newBuilder().addEncodedQueryParameter("name", name).build()
+
+        val response = makeAuthenticatedHypixelRequest(url.toString())
+
+        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
+            return null
+        }
+
+        val jsonObject = GsonProvider.gson.fromJson(response.body, JsonObject::class.java)
+
+        return jsonObject.getAsJsonObjectOrNull("guild")?.toGuild()
     }
 
     fun fetchSkyblockProfiles(uuid: UUID): JsonArray? {

@@ -1,8 +1,9 @@
 package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.cache.Cache
-import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import java.util.*
 
 object DatabaseCacheApiClient : ApiClientWithCache {
@@ -10,12 +11,6 @@ object DatabaseCacheApiClient : ApiClientWithCache {
         get() = TODO("Not yet implemented")
     override val skyblockProfilesCache: Cache<SkyblockProfiles, UUID>
         get() = TODO("Not yet implemented")
-
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
-        TODO("Not yet implemented")
-    }
+    override val guildCache: Cache<Guild, String>
+        get() = TODO("Not yet implemented")
 }

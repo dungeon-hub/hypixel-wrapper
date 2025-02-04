@@ -1,9 +1,13 @@
 package net.dungeonhub.hypixel.client
 
+import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
-import net.dungeonhub.hypixel.entities.skyblock.*
+import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
+import net.dungeonhub.hypixel.entities.skyblock.ProfileStatsOverview
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
@@ -19,6 +23,8 @@ interface ApiClient {
     }
 
     fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles?
+
+    fun getGuild(name: String): Guild?
 
     fun getStatsOverview(uuid: UUID): ProfileStatsOverview? {
         val profiles = getSkyblockProfiles(uuid)
