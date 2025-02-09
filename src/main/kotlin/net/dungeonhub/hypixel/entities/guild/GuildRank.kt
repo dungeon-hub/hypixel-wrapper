@@ -4,19 +4,31 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.time.Instant
 
-class GuildRank(
-    val name: String,
-    val default: Boolean,
-    val tag: String?,
-    val created: Instant,
+interface GuildRank {
+    val name: String
+    val tag: String?
+    val default: Boolean
+    val owner: Boolean
+    val created: Instant
     var priority: Int
-)
+}
 
 fun JsonObject.toGuildRank(): GuildRank {
-    return GuildRank(
-        getAsJsonPrimitive("name").asString,
-        getAsJsonPrimitiveOrNull("default")?.asBoolean ?: false,
+    val name = getAsJsonPrimitive("name").asString
+
+    if (name == GuildMasterRank.GUILD_MASTER_NAME) {
+        return GuildMasterRank(
+            getAsJsonPrimitiveOrNull("tag")?.asString,
+            getAsJsonPrimitiveOrNull("default")?.asBoolean ?: false,
+            Instant.ofEpochMilli(getAsJsonPrimitive("created").asLong),
+            getAsJsonPrimitive("priority").asInt
+        )
+    }
+
+    return CustomGuildRank(
+        name,
         getAsJsonPrimitiveOrNull("tag")?.asString,
+        getAsJsonPrimitiveOrNull("default")?.asBoolean ?: false,
         Instant.ofEpochMilli(getAsJsonPrimitive("created").asLong),
         getAsJsonPrimitive("priority").asInt
     )

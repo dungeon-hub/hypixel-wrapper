@@ -9,7 +9,6 @@ import net.hypixel.api.data.type.GameType
 import java.time.Instant
 import java.time.ZoneId
 
-//TODO map member
 class Guild(
     val id: String,
     val name: String,
@@ -21,18 +20,35 @@ class Guild(
     val experience: Long,
     val isPubliclyListed: Boolean,
     val isJoinable: Boolean,
-    val members: List<JsonObject>,
+    val members: List<GuildMember>,
     val ranks: List<GuildRank>,
     val preferredGames: List<GameType>,
     val guildExp: Map<GameType, Int>,
     val achievements: Map<String, Int>, //TODO map key to achievement?
     val coins: Int,
     val coinsEver: Int
-)
+) {
+    val customRanks
+        get() = ranks.filterIsInstance<CustomGuildRank>()
+}
 
 fun JsonObject.toGuild(): Guild {
-    val ranks =
-        getAsJsonArrayOrNull("ranks")?.map { it.asJsonObject.toGuildRank() }?.sortedBy { it.priority } ?: emptyList()
+    val ranks = (getAsJsonArrayOrNull("ranks")?.map { it.asJsonObject.toGuildRank() }?.sortedBy { it.priority }
+        ?: emptyList()).toMutableList()
+
+    val creationDate =
+        Instant.ofEpochMilli(getAsJsonPrimitive("created").asLong).atZone(ZoneId.of("America/New_York")).toInstant()
+
+    if (!ranks.any { it.name == GuildMasterRank.GUILD_MASTER_NAME }) {
+        ranks.add(
+            GuildMasterRank(
+                "GM",
+                false,
+                creationDate,
+                50
+            )
+        )
+    }
 
     ranks.withIndex().forEach { (index, rank) ->
         rank.priority = index + 1
@@ -45,12 +61,11 @@ fun JsonObject.toGuild(): Guild {
         description = getAsJsonPrimitiveOrNull("description")?.asString,
         tag = getAsJsonPrimitiveOrNull("tag")?.asString,
         tagColor = getAsJsonPrimitiveOrNull("tagColor")?.asString,
-        creationDate = Instant.ofEpochMilli(getAsJsonPrimitive("created").asLong).atZone(ZoneId.of("America/New_York"))
-            .toInstant(), //TODO should this rather be zoneddatetime -> then gson would have to have a type adapter for that
+        creationDate = creationDate, //TODO should this rather be zoneddatetime -> then gson would have to have a type adapter for that
         experience = getAsJsonPrimitive("exp").asLong,
         isPubliclyListed = getAsJsonPrimitiveOrNull("publiclyListed")?.asBoolean == true,
         isJoinable = getAsJsonPrimitiveOrNull("joinable")?.asBoolean == true,
-        members = getAsJsonArrayOrNull("members")?.map { it.asJsonObject } ?: emptyList(), //TODO implement
+        members = getAsJsonArrayOrNull("members")?.map { it.asJsonObject.toGuildMember(ranks) } ?: emptyList(),
         ranks = ranks,
         preferredGames = getAsJsonArrayOrNull("preferredGames")?.mapNotNull {
             if (it is JsonPrimitive && it.isNumber) {

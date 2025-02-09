@@ -11,7 +11,6 @@ import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
-import net.hypixel.api.http.HypixelHttpResponse
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.util.*
 
@@ -37,14 +36,10 @@ object RestApiClient : ApiClient {
         )
     }
 
-    fun makeAuthenticatedHypixelRequest(url: String): HypixelHttpResponse {
-        return HypixelConnection.makeAuthenticatedRequest(url).join()
-    }
-
     override fun getGuild(name: String): Guild? {
         val url = (API_PREFIX + "guild").toHttpUrl().newBuilder().addEncodedQueryParameter("name", name).build()
 
-        val response = makeAuthenticatedHypixelRequest(url.toString())
+        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
 
         if (response.statusCode != 200 || response.body.isNullOrBlank()) {
             return null
