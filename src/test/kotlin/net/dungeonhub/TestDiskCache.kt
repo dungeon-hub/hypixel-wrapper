@@ -1,7 +1,7 @@
 package net.dungeonhub
 
 import com.google.gson.JsonObject
-import net.dungeonhub.cache.disk.DiskHistoryCache
+import net.dungeonhub.cache.disk.DiskHistoryUUIDCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
@@ -101,7 +101,7 @@ class TestDiskCache {
         @JvmStatic
         @BeforeAll
         fun build() {
-            DiskHistoryCache.cacheDirectory =
+            DiskHistoryUUIDCache.cacheDirectory =
                 "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-test"
         }
 
