@@ -29,8 +29,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     //Logging
-    implementation("org.apache.logging.log4j:log4j-core:2.24.3")
-    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3")
+    implementation("org.slf4j:slf4j-api:2.0.16")
 
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
