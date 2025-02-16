@@ -46,6 +46,7 @@ enum class KnownEnchantment(
     Frail("frail", false, EnchantmentTarget.FishingRods),
     FrostWalker("frost_walker", false, EnchantmentTarget.Armor),
     GiantKiller("giant_killer", false, EnchantmentTarget.Swords),
+    GreatSpook("great_spook", false, EnchantmentTarget.Armor),
     GreenThumb("green_thumb", false, EnchantmentTarget.Equipment),
     Growth("growth", false, EnchantmentTarget.Armor),
     HardenedMana("hardened_mana", false, EnchantmentTarget.Armor),
