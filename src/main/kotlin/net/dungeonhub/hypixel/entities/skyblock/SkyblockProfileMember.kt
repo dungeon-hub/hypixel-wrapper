@@ -11,6 +11,7 @@ import net.dungeonhub.hypixel.entities.skyblock.misc.MemberPlayerData
 import net.dungeonhub.hypixel.entities.skyblock.misc.toFairySoulData
 import net.dungeonhub.hypixel.entities.skyblock.misc.toPlayerData
 import net.dungeonhub.hypixel.entities.skyblock.pet.toPetsData
+import net.dungeonhub.hypixel.entities.skyblock.rift.toRiftData
 import net.dungeonhub.hypixel.entities.skyblock.slayer.MemberSlayerData
 import net.dungeonhub.hypixel.entities.skyblock.slayer.toSlayerData
 import net.dungeonhub.hypixel.entities.skyblock.stats.MemberPlayerStats
@@ -100,6 +101,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("fairy_soul")?.toFairySoulData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("inventory")?.toMemberInventoryData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull("rift")?.toRiftData(),
             this
         )
     }
