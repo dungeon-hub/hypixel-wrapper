@@ -278,6 +278,12 @@ class TestSkyblockProfile {
                 }
             }
         }
+
+        for (museum in TestHelper.readAllMuseumData()) {
+            for (museumData in museum.museumData.values) {
+                checkItems(museumData.allItems)
+            }
+        }
     }
 
     fun checkItems(items: List<ItemStack>) {
