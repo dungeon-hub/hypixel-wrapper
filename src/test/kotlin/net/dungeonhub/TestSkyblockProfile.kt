@@ -393,9 +393,17 @@ class TestSkyblockProfile {
 
     @Test
     fun testNoInvalidDataTypes() {
-        assertTrue {
-            KnownSkyblockItemId.entries.map { it.apiName }.count() ==
-                    KnownSkyblockItemId.entries.map { it.apiName }.distinct().count()
+        val duplicateSkyblockItemIds = HashSet<String>()
+        val uniqueSkyblockItemIds = HashSet<String>()
+
+        for (item in KnownSkyblockItemId.entries.map { it.apiName }) {
+            if (!uniqueSkyblockItemIds.add(item)) {
+                duplicateSkyblockItemIds.add(item)
+            }
+        }
+
+        assertTrue("There are some skyblock item ids that were used multiple times: $duplicateSkyblockItemIds") {
+            duplicateSkyblockItemIds.isEmpty() && uniqueSkyblockItemIds.size == KnownSkyblockItemId.entries.size
         }
 
         for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
