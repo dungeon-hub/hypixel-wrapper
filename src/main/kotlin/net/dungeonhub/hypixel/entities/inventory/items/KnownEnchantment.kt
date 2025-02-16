@@ -88,6 +88,7 @@ enum class KnownEnchantment(
     Scavenger("scavenger", false, EnchantmentTarget.Swords),
     Sharpness("sharpness", false, EnchantmentTarget.Swords),
     SilkTouch("silk_touch", false, EnchantmentTarget.Tools),
+    SmallBrain("small_brain", false, EnchantmentTarget.Armor),
     SmartyPants("smarty_pants", false, EnchantmentTarget.Armor),
     SmeltingTouch("smelting_touch", false, EnchantmentTarget.Tools),
     Smite("smite", false, EnchantmentTarget.Swords),
@@ -109,6 +110,7 @@ enum class KnownEnchantment(
     Thorns("thorns", false, EnchantmentTarget.Armor),
     Thunderbolt("thunderbolt", false, EnchantmentTarget.Swords),
     Thunderlord("thunderlord", false, EnchantmentTarget.Swords),
+    Tidal("tidal", false, EnchantmentTarget.Armor),
     TitanKiller("titan_killer", false, EnchantmentTarget.Swords),
     Toxophilite("toxophilite", false, EnchantmentTarget.Bows),
     Transylvanian("transylvanian", false, EnchantmentTarget.Armor),
@@ -160,7 +162,7 @@ enum class KnownEnchantment(
     Rend("ultimate_rend", true, EnchantmentTarget.Bows),
     SoulEater("ultimate_soul_eater", true, EnchantmentTarget.Swords, EnchantmentTarget.Bows),
     Swarm("ultimate_swarm", true, EnchantmentTarget.Swords, EnchantmentTarget.Bows),
-    TheOne("the_one", true, EnchantmentTarget.Equipment),
+    TheOne("ultimate_the_one", true, EnchantmentTarget.Equipment),
     UltimateJerry("ultimate_jerry", true, EnchantmentTarget.Swords),
     UltimateWise(
         "ultimate_wise",
@@ -182,7 +184,11 @@ enum class KnownEnchantment(
             "telekinesis", false, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.Tools,
             EnchantmentTarget.FishingRods, EnchantmentTarget.Wands
         ),
-        TurboCactus("turbo_cactus", false, EnchantmentTarget.Tools); //TODO check if thats actually just an old name or if the wiki is just incorrect (again)
+        TurboCactus(
+            "turbo_cactus",
+            false,
+            EnchantmentTarget.Tools
+        ); //TODO check if thats actually just an old name or if the wiki is just incorrect (again)
     }
 
     enum class EnchantmentTarget {
