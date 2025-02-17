@@ -1,0 +1,73 @@
+{
+  "_id": "62b6b5b68ea8c90da91fe806",
+  "name": "Dungeon Hub",
+  "name_lower": "dungeon hub",
+  "coins": 0,
+  "coinsEver": 0,
+  "created": 1656141238067,
+  "members": [
+    {
+      "uuid": "820d5563b4084c33ba3235d032ef5fdc",
+      "rank": "Guild Master",
+      "joined": 1656141238067,
+      "expHistory": {
+        "2025-01-28": 0,
+        "2025-01-27": 0,
+        "2025-01-26": 0,
+        "2025-01-25": 0,
+        "2025-01-24": 0,
+        "2025-01-23": 0,
+        "2025-01-22": 0
+      }
+    }
+  ],
+  "ranks": [
+    {
+      "name": "Member",
+      "default": true,
+      "priority": 1,
+      "created": 1656141238067
+    },
+    {
+      "name": "Officer",
+      "priority": 2,
+      "created": 1656141238067
+    }
+  ],
+  "achievements": {
+    "EXPERIENCE_KINGS": 66961,
+    "ONLINE_PLAYERS": 2,
+    "WINNERS": 74
+  },
+  "exp": 914264,
+  "guildExpByGameType": {
+    "LEGACY": 0,
+    "VAMPIREZ": 0,
+    "SKYWARS": 75,
+    "SUPER_SMASH": 0,
+    "WOOL_GAMES": 0,
+    "WALLS": 0,
+    "BUILD_BATTLE": 0,
+    "PROTOTYPE": 413202,
+    "UHC": 0,
+    "GINGERBREAD": 0,
+    "DUELS": 0,
+    "SURVIVAL_GAMES": 0,
+    "REPLAY": 0,
+    "ARCADE": 32259,
+    "ARENA": 0,
+    "HOUSING": 314,
+    "QUAKECRAFT": 0,
+    "SMP": 0,
+    "WALLS3": 0,
+    "PIT": 0,
+    "BEDWARS": 0,
+    "MCGO": 0,
+    "SKYBLOCK": 0,
+    "PAINTBALL": 0,
+    "SPEED_UHC": 0,
+    "TNTGAMES": 57,
+    "MURDER_MYSTERY": 217453,
+    "BATTLEGROUND": 0
+  }
+}

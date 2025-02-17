@@ -2,8 +2,9 @@ package net.dungeonhub.hypixel.connection
 
 import net.dungeonhub.hypixel.client.ApiClient
 import net.dungeonhub.hypixel.client.FallbackApiClient
-import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.strategy.ApiClientStrategy
 import java.time.Duration
 import java.util.*
@@ -14,6 +15,7 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
 
     override fun getPlayerData(uuid: UUID): HypixelPlayer? = strategy.client.getPlayerData(uuid)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = strategy.client.getSkyblockProfiles(uuid)
+    override fun getGuild(name: String): Guild? = strategy.client.getGuild(name)
 
     var cacheExpiration: Int?
         get() {

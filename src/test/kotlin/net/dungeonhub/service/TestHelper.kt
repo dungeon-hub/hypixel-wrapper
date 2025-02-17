@@ -2,6 +2,8 @@ package net.dungeonhub.service
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import net.dungeonhub.hypixel.entities.guild.Guild
+import net.dungeonhub.hypixel.entities.guild.toGuild
 import net.dungeonhub.hypixel.entities.museum.MuseumData
 import net.dungeonhub.hypixel.entities.museum.toMuseumData
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
@@ -81,6 +83,16 @@ object TestHelper {
             val hypixelPlayerJson = readFile("player-data/${file.name}")
 
             GsonProvider.gson.fromJson(hypixelPlayerJson, JsonObject::class.java).toHypixelPlayer()
+        }.toList()
+    }
+
+    fun readAllGuilds(): List<Guild> {
+        val guildsDirectory = javaClass.classLoader.getResource("guilds/")!!.toURI()
+
+        return Files.list(Paths.get(guildsDirectory)).map { file ->
+            val guildJson = readFile("guilds/${file.name}")
+
+            GsonProvider.gson.fromJson(guildJson, JsonObject::class.java).toGuild()
         }.toList()
     }
 

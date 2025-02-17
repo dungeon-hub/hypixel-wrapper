@@ -8,7 +8,7 @@ plugins {
 
 group = "net.dungeon-hub"
 val artifactId = "hypixel-wrapper"
-version = "0.5.1"
+version = "0.5.2"
 description = "A simple Kotlin wrapper for the Hypixel API, including a cache."
 
 repositories {
@@ -29,14 +29,14 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     //Logging
-    implementation("org.apache.logging.log4j:log4j-core:2.24.3")
-    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3")
+    implementation("org.slf4j:slf4j-api:2.0.16")
 
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+    testImplementation("io.mockk:mockk:1.13.16")
 }
 
 centralPortal {

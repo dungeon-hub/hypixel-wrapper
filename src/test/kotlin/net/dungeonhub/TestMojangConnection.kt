@@ -1,16 +1,17 @@
 package net.dungeonhub
 
+import io.mockk.every
+import io.mockk.mockkObject
+import io.mockk.unmockkAll
 import net.dungeonhub.mojang.connection.MojangConnection
 import net.dungeonhub.service.TestHelper
 import net.dungeonhub.service.TestHelper.toMockResponse
 import okhttp3.Call
 import okhttp3.OkHttpClient
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.spy
 import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,18 +23,22 @@ class TestMojangConnection {
         val notchName = "Notch"
         val notchUUID = UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5")
 
-        assertTrue(mojangConnection.cache.retrieveAll().isEmpty())
+        assertTrue(MojangConnection.cache.retrieveAll().isEmpty())
 
-        assertEquals(notchUUID, mojangConnection.getUUIDByName("notch"))
-        assertEquals(notchUUID, mojangConnection.getUUIDByName("NOTCH"))
+        assertEquals(notchUUID, MojangConnection.getUUIDByName("notch"))
+        assertEquals(notchUUID, MojangConnection.getUUIDByName("NOTCH"))
 
-        assertEquals(1, mojangConnection.cache.retrieveAll().size)
-        assertEquals(notchName, mojangConnection.cache.retrieve(notchUUID)?.name)
+        assertEquals(1, MojangConnection.cache.retrieveAll().size)
+        assertEquals(notchName, MojangConnection.cache.retrieve(notchUUID)?.name)
     }
 
     companion object {
-        private val mojangConnection: MojangConnection = spy {
-            on { getHttpClient() }.thenAnswer {
+        @BeforeAll
+        @JvmStatic
+        fun prepareMojangConnection() {
+            mockkObject(MojangConnection)
+
+            every { MojangConnection.getHttpClient() }.returns(
                 mock<OkHttpClient> {
                     on { newCall(any()) }.thenAnswer {
                         mock<Call> {
@@ -43,7 +48,13 @@ class TestMojangConnection {
                         }
                     }
                 }
-            }
+            )
+        }
+
+        @AfterAll
+        @JvmStatic
+        fun tearDownMojangConnection() {
+            unmockkAll()
         }
     }
 }

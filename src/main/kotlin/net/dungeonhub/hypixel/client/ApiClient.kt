@@ -1,5 +1,6 @@
 package net.dungeonhub.hypixel.client
 
+import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
 import net.dungeonhub.hypixel.entities.inventory.items.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
@@ -25,6 +26,8 @@ interface ApiClient {
     }
 
     fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles?
+
+    fun getGuild(name: String): Guild?
 
     fun getStatsOverview(uuid: UUID): ProfileStatsOverview? {
         val profiles = getSkyblockProfiles(uuid)

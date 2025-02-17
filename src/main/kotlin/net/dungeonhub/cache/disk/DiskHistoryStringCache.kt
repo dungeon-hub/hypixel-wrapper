@@ -8,24 +8,26 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.time.Instant
-import java.util.*
 import kotlin.io.path.exists
 import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
 import kotlin.io.path.name
 
-
-class DiskHistoryCache<T>(val name: String, val type: TypeToken<CacheElement<T>>, val keyFunction: (T) -> UUID) : Cache<T, UUID> {
-    fun getDirectory(uuid: UUID): Path {
-        val directory = Path.of(cacheDirectory, name, uuid.toString())
+class DiskHistoryStringCache<T>(
+    val name: String,
+    val type: TypeToken<CacheElement<T>>,
+    val keyFunction: (T) -> String
+) : Cache<T, String> {
+    fun getDirectory(name: String): Path {
+        val directory = Path.of(cacheDirectory, this@DiskHistoryStringCache.name, name.toString())
         if (!directory.exists()) {
             Files.createDirectories(directory)
         }
         return directory
     }
 
-    fun getDataFile(uuid: UUID): Path {
-        val dataFile = getDirectory(uuid).resolve("data.json")
+    fun getDataFile(name: String): Path {
+        val dataFile = getDirectory(name).resolve("data.json")
         if (!dataFile.exists()) {
             Files.createFile(dataFile)
         }
@@ -40,19 +42,19 @@ class DiskHistoryCache<T>(val name: String, val type: TypeToken<CacheElement<T>>
         return historyDirectory
     }
 
-    fun getHistoryDirectory(uuid: UUID): Path {
-        val historyDirectory = getHistoryDirectory().resolve(uuid.toString())
+    fun getHistoryDirectory(name: String): Path {
+        val historyDirectory = getHistoryDirectory().resolve(name.toString())
         if (!historyDirectory.exists()) {
             Files.createDirectory(historyDirectory)
         }
         return historyDirectory
     }
 
-    fun getHistoryFile(uuid: UUID, instant: Instant): Path {
-        return getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString() + ".json")
+    fun getHistoryFile(name: String, instant: Instant): Path {
+        return getHistoryDirectory(name).resolve(instant.toEpochMilli().toString() + ".json")
     }
 
-    override fun retrieveElement(key: UUID): CacheElement<T>? {
+    override fun retrieveElement(key: String): CacheElement<T>? {
         val dataFile = getDataFile(key)
 
         if (dataFile.isRegularFile()) {
@@ -73,20 +75,14 @@ class DiskHistoryCache<T>(val name: String, val type: TypeToken<CacheElement<T>>
 
         return Files.list(cacheDirectory).map {
             if (it.isDirectory()) {
-                val uuid = try {
-                    UUID.fromString(it.name)
-                } catch (_: IllegalArgumentException) {
-                    return@map null
-                }
-
-                return@map retrieveElement(uuid)
+                return@map retrieveElement(it.name)
             }
 
             return@map null
         }.toList().filterNotNull()
     }
 
-    override fun invalidateEntry(key: UUID) {
+    override fun invalidateEntry(key: String) {
         val cacheElement = retrieveElement(key)
         val dataFile = getDataFile(key)
 
@@ -107,8 +103,8 @@ class DiskHistoryCache<T>(val name: String, val type: TypeToken<CacheElement<T>>
         deleteDirectoryWithContents(getHistoryDirectory())
     }
 
-    fun clearHistoryDirectory(uuid: UUID) {
-        deleteDirectoryWithContents(getHistoryDirectory(uuid))
+    fun clearHistoryDirectory(name: String) {
+        deleteDirectoryWithContents(getHistoryDirectory(name))
     }
 
     companion object {
