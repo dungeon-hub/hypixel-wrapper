@@ -90,7 +90,13 @@ object TestHelper {
         return Files.list(Paths.get(museumDirectory)).map { file ->
             val museumJson = readFile("museum/${file.name}")
 
-            GsonProvider.gson.fromJson(museumJson, JsonObject::class.java).toMuseumData(UUID.fromString(file.nameWithoutExtension))
+            GsonProvider.gson.fromJson(museumJson, JsonObject::class.java)
+                .toMuseumData(UUID.fromString(file.nameWithoutExtension))
         }.toList()
+    }
+
+    fun readItemList(): List<JsonObject> {
+        return GsonProvider.gson.fromJson(readFile("resources/skyblock_items.json"), JsonObject::class.java)
+            .getAsJsonArray("items").map { it.asJsonObject }
     }
 }

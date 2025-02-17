@@ -219,8 +219,14 @@ class TestSkyblockProfile {
             for (fullProfileJson in fullProfiles) {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
-                fullProfile.members.filterIsInstance<CurrentMember>().mapNotNull { it.fairySoulData }.forEach {
-                    assertEquals(it.unspentSouls, it.totalCollected - it.totalExchanged)
+                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
+                    if (member.fairySoulData != null) {
+                        assertEquals(
+                            member.fairySoulData.unspentSouls,
+                            member.fairySoulData.totalCollected - member.fairySoulData.totalExchanged,
+                            "Profile member ${member.uuid} on profile ${fullProfile.cuteName} (${fullProfile.profileId}) has an invalid count of fairy souls."
+                        )
+                    }
                 }
             }
         }
@@ -395,6 +401,21 @@ class TestSkyblockProfile {
         assertNotNull(profiles)
         assertEquals(uuid, profiles.owner)
         assertEquals(0, profiles.profiles.size)
+    }
+
+    @Test
+    fun testAllItemIds() {
+        TestHelper.readItemList().forEach {
+            val apiName = it.getAsJsonPrimitive("id").asString
+
+            val id = KnownSkyblockItemId.fromApiName(apiName)
+
+            // TODO enable once mapped
+            /*assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                id,
+                "Item $apiName has not been added to Skyblock item ID list.",
+            )*/
+        }
     }
 
     @Test
