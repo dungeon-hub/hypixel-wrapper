@@ -413,7 +413,7 @@ class TestSkyblockProfile {
             // TODO enable once mapped
             /*assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
                 id,
-                "Item $apiName has not been added to Skyblock item ID list.",
+                "Item $apiName has not been added to Skyblock item ID list",
             )*/
         }
     }
