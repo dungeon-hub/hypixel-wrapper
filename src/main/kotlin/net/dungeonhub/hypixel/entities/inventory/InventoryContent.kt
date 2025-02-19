@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import me.nullicorn.nedit.NBTReader
 import me.nullicorn.nedit.type.NBTCompound
 
-class InventoryContent(
+data class InventoryContent(
     val type: Int,
     val data: String
 ) {

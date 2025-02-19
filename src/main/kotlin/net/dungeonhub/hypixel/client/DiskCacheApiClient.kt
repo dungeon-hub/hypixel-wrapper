@@ -20,7 +20,7 @@ object DiskCacheApiClient : ApiClientWithCache {
 
     fun clearCache() {
         val cacheDirectory = Path.of(DiskHistoryUUIDCache.cacheDirectory)
-        if(cacheDirectory.exists()) {
+        if (cacheDirectory.exists()) {
             DiskHistoryUUIDCache.deleteDirectoryWithContents(cacheDirectory)
         }
     }

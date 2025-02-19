@@ -8,8 +8,6 @@ enum class CatacombsClass(val apiName: String) {
     Tank("tank");
 
     companion object {
-        fun fromApiName(apiName: String): CatacombsClass? {
-            return entries.firstOrNull { it.apiName == apiName }
-        }
+        fun fromApiName(apiName: String): CatacombsClass? = entries.firstOrNull { it.apiName == apiName }
     }
 }

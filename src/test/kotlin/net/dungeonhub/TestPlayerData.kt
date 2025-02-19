@@ -18,8 +18,10 @@ class TestPlayerData {
     @Test
     fun testPlayerDataCache() {
         val rawData = listOf(
-            UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
-            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to TestHelper.readFile("player-data/39642ffc-a7fb-4d24-a1d4-916f4cad1d98.json")
+            UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to
+                    TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
+            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to
+                    TestHelper.readFile("player-data/39642ffc-a7fb-4d24-a1d4-916f4cad1d98.json")
         )
 
         val links = listOf(
@@ -29,7 +31,7 @@ class TestPlayerData {
 
         val connection = HypixelApiConnection(ApiClientStrategy.Cache)
 
-        //Check if cache is empty
+        // Check if cache is empty
         for (pair in rawData) {
             assertNull(connection.getPlayerData(pair.first))
         }
@@ -43,14 +45,14 @@ class TestPlayerData {
             0
         )
 
-        //Store example data in cache
+        // Store example data in cache
         for (pair in rawData) {
             val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
 
             CacheApiClientProvider.client.playerDataCache.store(player.toHypixelPlayer())
         }
 
-        //Check if cache is filled
+        // Check if cache is filled
         for (pair in rawData) {
             assertNotNull(connection.getPlayerData(pair.first))
         }

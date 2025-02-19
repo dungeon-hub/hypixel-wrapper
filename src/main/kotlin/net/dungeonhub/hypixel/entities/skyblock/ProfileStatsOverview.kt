@@ -32,7 +32,7 @@ class ProfileStatsOverview(
             if (terminator.isEmpty()) {
                 "$terminatorEmoji: No Terminator!"
             } else {
-                //TODO change once enchants are fully mapped
+                // TODO change once enchants are fully mapped
                 terminator.joinToString("\n") {
                     val ultimateEnchant: Pair<String, Int>? = it.enchantments.entries.firstOrNull { enchant ->
                         enchant.key.startsWith("ultimate_")
@@ -53,7 +53,7 @@ class ProfileStatsOverview(
             } else {
                 goldenDragon.joinToString("\n") {
                     val level = it.gdragExpToLevel(it.exp)
-                    "$goldenDragonEmoji: [Lvl ${level}] Greg ${
+                    "$goldenDragonEmoji: [Lvl $level] Greg ${
                         if (it.heldItem is KnownPetItem) {
                             "(" + it.heldItem.displayName + ")"
                         } else if (it.heldItem != null) {
@@ -64,11 +64,12 @@ class ProfileStatsOverview(
                     }"
                 }
             }
-        }\n\n$skyblockLevelEmoji Skyblock Level: $skyblockLevel\n$skillAverageEmoji Skill Average: $skillAverage\n\n$slayerEmoji Slayers:${
+        }\n\n$skyblockLevelEmoji Skyblock Level: $skyblockLevel\n$skillAverageEmoji " +
+                "Skill Average: $skillAverage\n\n$slayerEmoji Slayers:${
             slayerEmojies.map { (slayerType, emoji) ->
                 emoji + " " + (slayerData[slayerType] ?: 0)
             }.joinToString(" ")
-            //TODO check personal bank
+                    // TODO check personal bank
         }\n$catacombsEmoji Catacombs: $catacombsLevel (Class Average ${
             FormattingService.makeDoubleReadable(
                 classAverage,
@@ -76,7 +77,7 @@ class ProfileStatsOverview(
             )
         })\n\n$purseEmoji Purse: $purse\n$bankEmoji Bank: $bankMoney"
 
-    //TODO do properly
+    // TODO do properly
     fun parseUltimateEnchantment(apiName: String): String {
         return when (apiName) {
             "ultimate_reiterate" -> "Duplex"

@@ -3,14 +3,18 @@ package net.dungeonhub.hypixel.entities.skyblock.misc
 import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-class FairySoulData(
+data class FairySoulData(
     val numberOfExchanges: Int,
     val totalCollected: Int,
     val unspentSouls: Int,
     val raw: JsonObject
 ) {
     val totalExchanged: Int
-        get() = numberOfExchanges * 5
+        get() = numberOfExchanges * FAIRY_SOUL_PER_EXCHANGE
+
+    companion object {
+        const val FAIRY_SOUL_PER_EXCHANGE = 5
+    }
 }
 
 fun JsonObject.toFairySoulData(): FairySoulData {

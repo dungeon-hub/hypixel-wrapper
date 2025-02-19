@@ -22,9 +22,8 @@ import java.util.*
 import kotlin.io.path.name
 
 object TestHelper {
-    fun readFile(fileName: String): String {
-        return javaClass.classLoader.getResourceAsStream(fileName)!!.reader(StandardCharsets.UTF_8).readText()
-    }
+    fun readFile(fileName: String): String =
+        javaClass.classLoader.getResourceAsStream(fileName)!!.reader(StandardCharsets.UTF_8).readText()
 
     fun String.toMockResponse(): Response {
         return Response.Builder()

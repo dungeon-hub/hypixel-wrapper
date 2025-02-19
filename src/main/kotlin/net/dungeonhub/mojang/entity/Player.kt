@@ -1,9 +1,9 @@
 package net.dungeonhub.mojang.entity
 
 import com.google.gson.JsonObject
-import java.util.UUID
+import java.util.*
 
-class Player(val id: UUID, val name: String)
+data class Player(val id: UUID, val name: String)
 
 fun JsonObject.toPlayer(): Player {
     return Player(
@@ -12,7 +12,7 @@ fun JsonObject.toPlayer(): Player {
     )
 }
 
-//TODO make safe -> check for format
+// TODO make safe -> check for format
 fun String.toUUIDUnsafe(): UUID {
     return UUID.fromString(
         replaceFirst(

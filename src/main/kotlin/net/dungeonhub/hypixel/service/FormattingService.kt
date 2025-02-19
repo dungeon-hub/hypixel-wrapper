@@ -5,12 +5,17 @@ import java.text.DecimalFormatSymbols
 import java.util.*
 
 object FormattingService {
+    const val THOUSAND = 1_000.0
+    const val MILLION = 1_000_000.0
+    const val BILLION = 1_000_000_000.0
+    const val TRILLION = 1_000_000_000_000.0
+
     /**
      * This formats a decimal number as a String.
      */
     fun makeDoubleReadable(number: Double, maxFractionDigits: Int = 340, locale: Locale = Locale.US): String {
         val df = DecimalFormat("0", DecimalFormatSymbols.getInstance(locale))
-        df.setMaximumFractionDigits(maxFractionDigits) //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+        df.setMaximumFractionDigits(maxFractionDigits) // 340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
 
         return df.format(number)
     }
@@ -24,20 +29,20 @@ object FormattingService {
      * 45544000000 -> "45.544b"
      */
     fun makeNumberReadable(number: Long, maxFractionDigits: Int = 340): String {
-        if (number >= 1000000000000L) {
-            return makeDoubleReadable(number / 1000000000000.0, maxFractionDigits) + "t"
+        if (number >= TRILLION) {
+            return makeDoubleReadable(number / TRILLION, maxFractionDigits) + "t"
         }
 
-        if (number >= 1000000000L) {
-            return makeDoubleReadable(number / 1000000000.0, maxFractionDigits) + "b"
+        if (number >= BILLION) {
+            return makeDoubleReadable(number / BILLION, maxFractionDigits) + "b"
         }
 
-        if (number >= 1000000L) {
-            return makeDoubleReadable(number / 1000000.0, maxFractionDigits) + "m"
+        if (number >= MILLION) {
+            return makeDoubleReadable(number / MILLION, maxFractionDigits) + "m"
         }
 
-        if (number >= 1000L) {
-            return makeDoubleReadable(number / 1000.0, maxFractionDigits) + "k"
+        if (number >= THOUSAND) {
+            return makeDoubleReadable(number / THOUSAND, maxFractionDigits) + "k"
         }
 
         return number.toString()

@@ -13,11 +13,11 @@ import java.io.ByteArrayInputStream
 import java.time.Instant
 import java.util.*
 
-//TODO add more fields
-//TODO map id to item id
-//TODO map reforge data
-//TODO map enchantment data
-//TODO map attribute type
+// TODO add more fields
+// TODO map id to item id
+// TODO map reforge data
+// TODO map enchantment data
+// TODO map attribute type
 class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val id: String
         get() = extraAttributes.getString("id")
@@ -50,14 +50,11 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
         get() = extraAttributes.getCompound("gems")?.toGemsData()
 
     val enchantments: Map<String, Int>
-        get() = extraAttributes.getCompound("enchantments")?.let {
-            it.mapValues { enchantment -> enchantment.value as Int }
-        } ?: emptyMap()
+        get() = extraAttributes.getCompound("enchantments")?.mapValues { enchantment -> enchantment.value as Int }
+            ?: emptyMap()
 
     val runes: Map<String, Int>
-        get() = extraAttributes.getCompound("runes")?.let {
-            it.mapValues { rune -> rune.value as Int }
-        } ?: emptyMap()
+        get() = extraAttributes.getCompound("runes")?.mapValues { rune -> rune.value as Int } ?: emptyMap()
 
     val reforge: String?
         get() = extraAttributes.getString("modifier")
@@ -79,9 +76,8 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
             ?.toPet()
 
     val attributes: Map<String, Int>
-        get() = extraAttributes.getCompound("attributes")?.let {
-            it.mapValues { attribute -> attribute.value as Int }
-        } ?: emptyMap()
+        get() = extraAttributes.getCompound("attributes")?.mapValues { attribute -> attribute.value as Int }
+            ?: emptyMap()
 
     val abilityScrolls: List<String>
         get() = extraAttributes.getList("ability_scroll")?.map { it.toString() } ?: emptyList()
@@ -113,7 +109,7 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val polarvoid: Int
         get() = extraAttributes.getInt("polarvoid", 0)
 
-    //TODO merge next 5 attributes
+    // TODO merge next 5 attributes
     val potionLevel: Int
         get() = extraAttributes.getInt("potion_level", 0)
 
@@ -126,7 +122,7 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val splash: Boolean
         get() = extraAttributes.getInt("splash", 0) > 0
 
-    //TODO map to object
+    // TODO map to object
     val effects: NBTCompound?
         get() = extraAttributes.getCompound("effects")
 
@@ -151,7 +147,7 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val championXp: Double
         get() = extraAttributes.getDouble("champion_combat_xp", 0.0)
 
-    //TODO map to scroll type?
+    // TODO map to scroll type?
     val abilityScroll: String?
         get() = extraAttributes.getString("power_ability_scroll")
 
@@ -185,7 +181,7 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
     val toxophiliteExperience: Double
         get() = extraAttributes.getDouble("toxophilite_combat_xp", 0.0)
 
-    //TODO map to enum
+    // TODO map to enum
     val abiphoneModel: String?
         get() = extraAttributes.getString("model")
 
@@ -195,12 +191,12 @@ class SkyblockItem(raw: NBTCompound) : ItemStack(raw) {
         }
 
     val newYearCakeBagData: List<SkyblockItem>
-        get() = extraAttributes.get("new_year_cake_bag_data")?.let {
+        get() = extraAttributes["new_year_cake_bag_data"]?.let {
             if (it is ByteArray) it.parseItemList() else emptyList()
         } ?: emptyList()
 
     val buildersWandData: List<SkyblockItem>
-        get() = extraAttributes.get("builder's_wand_data")?.let {
+        get() = extraAttributes["builder's_wand_data"]?.let {
             if (it is ByteArray) it.parseItemList() else emptyList()
         } ?: emptyList()
 }

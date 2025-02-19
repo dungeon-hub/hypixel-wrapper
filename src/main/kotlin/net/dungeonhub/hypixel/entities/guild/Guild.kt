@@ -9,7 +9,7 @@ import net.hypixel.api.data.type.GameType
 import java.time.Instant
 import java.time.ZoneId
 
-class Guild(
+data class Guild(
     val id: String,
     val name: String,
     val displayName: String,
@@ -24,7 +24,7 @@ class Guild(
     val ranks: List<GuildRank>,
     val preferredGames: List<GameType>,
     val guildExp: Map<GameType, Int>,
-    val achievements: Map<String, Int>, //TODO map key to achievement?
+    val achievements: Map<String, Int>, // TODO map key to achievement?
     val coins: Int,
     val coinsEver: Int
 ) {
@@ -33,8 +33,10 @@ class Guild(
 }
 
 fun JsonObject.toGuild(): Guild {
-    val ranks = (getAsJsonArrayOrNull("ranks")?.map { it.asJsonObject.toGuildRank() }?.sortedBy { it.priority }
-        ?: emptyList()).toMutableList()
+    val ranks = (
+            getAsJsonArrayOrNull("ranks")?.map { it.asJsonObject.toGuildRank() }?.sortedBy { it.priority }
+                ?: emptyList()
+            ).toMutableList()
 
     val creationDate =
         Instant.ofEpochMilli(getAsJsonPrimitive("created").asLong).atZone(ZoneId.of("America/New_York")).toInstant()
@@ -45,7 +47,7 @@ fun JsonObject.toGuild(): Guild {
                 "GM",
                 false,
                 creationDate,
-                50
+                GuildMasterRank.GUILD_MASTER_PRIORITY
             )
         )
     }
@@ -61,7 +63,7 @@ fun JsonObject.toGuild(): Guild {
         description = getAsJsonPrimitiveOrNull("description")?.asString,
         tag = getAsJsonPrimitiveOrNull("tag")?.asString,
         tagColor = getAsJsonPrimitiveOrNull("tagColor")?.asString,
-        creationDate = creationDate, //TODO should this rather be zoneddatetime -> then gson would have to have a type adapter for that
+        creationDate = creationDate,
         experience = getAsJsonPrimitive("exp").asLong,
         isPubliclyListed = getAsJsonPrimitiveOrNull("publiclyListed")?.asBoolean == true,
         isJoinable = getAsJsonPrimitiveOrNull("joinable")?.asBoolean == true,

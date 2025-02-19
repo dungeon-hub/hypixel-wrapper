@@ -4,8 +4,8 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonArrayOrNull
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 
-//TODO map autopet
-class MemberPetsData(
+// TODO map autopet
+data class MemberPetsData(
     val autoPet: JsonObject?,
     val pets: List<Pet>,
     val petCare: PetCareData?

@@ -4,8 +4,8 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-//TODO map pet stats
-class MemberPlayerStats(
+// TODO map pet stats
+data class MemberPlayerStats(
     val kills: Map<String, Int>,
     val deaths: Map<String, Int>,
     val auctions: AuctionStats?,
@@ -28,8 +28,8 @@ class MemberPlayerStats(
 
 fun JsonObject.toPlayerStats(): MemberPlayerStats {
     return MemberPlayerStats(
-        getAsJsonObjectOrNull("kills")?.entrySet()?.associate { it.key to it.value.asInt } ?: emptyMap(),
-        getAsJsonObjectOrNull("deaths")?.entrySet()?.associate { it.key to it.value.asInt } ?: emptyMap(),
+        getAsJsonObjectOrNull("kills")?.entrySet()?.associate { it.key to it.value.asInt }.orEmpty(),
+        getAsJsonObjectOrNull("deaths")?.entrySet()?.associate { it.key to it.value.asInt }.orEmpty(),
         getAsJsonObjectOrNull("auctions")?.toAuctionStats(),
         getAsJsonObjectOrNull("pets"),
         getAsJsonObjectOrNull("candy_collected"),

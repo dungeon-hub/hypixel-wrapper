@@ -26,6 +26,4 @@ fun NBTCompound.toItem(): ItemStack? {
     return ItemStack(this)
 }
 
-fun NBTCompound.isValidItem(): Boolean {
-    return containsKey("tag")
-}
+fun NBTCompound.isValidItem(): Boolean = containsKey("tag")

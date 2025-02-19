@@ -14,7 +14,7 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
 import kotlin.io.path.name
 
-//TODO can this be extended from string cache?
+// TODO can this be extended from string cache?
 class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement<T>>, val keyFunction: (T) -> UUID) :
     Cache<T, UUID> {
     fun getDirectory(uuid: UUID): Path {
@@ -49,9 +49,8 @@ class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement
         return historyDirectory
     }
 
-    fun getHistoryFile(uuid: UUID, instant: Instant): Path {
-        return getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString() + ".json")
-    }
+    fun getHistoryFile(uuid: UUID, instant: Instant): Path =
+        getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString() + ".json")
 
     override fun retrieveElement(key: UUID): CacheElement<T>? {
         val dataFile = getDataFile(key)

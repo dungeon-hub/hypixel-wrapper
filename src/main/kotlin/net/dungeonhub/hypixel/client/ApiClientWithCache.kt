@@ -13,24 +13,24 @@ interface ApiClientWithCache : ApiClient {
     val guildCache: Cache<Guild, String>
 
     fun <T : Any> isExpired(cache: Cache<T, UUID>, uuid: UUID, expiresAfterMinutes: Int = 5): Boolean {
-        return cache.retrieveElement(uuid)?.timeAdded?.plusSeconds(expiresAfterMinutes * 60L)?.isBefore(Instant.now())
+        return cache.retrieveElement(uuid)?.timeAdded?.plusSeconds(expiresAfterMinutes * SECONDS_PER_MINUTE)
+            ?.isBefore(Instant.now())
             ?: true
     }
 
     fun <T : Any> isExpired(cache: Cache<T, String>, name: String, expiresAfterMinutes: Int = 5): Boolean {
-        return cache.retrieveElement(name)?.timeAdded?.plusSeconds(expiresAfterMinutes * 60L)?.isBefore(Instant.now())
+        return cache.retrieveElement(name)?.timeAdded?.plusSeconds(expiresAfterMinutes * SECONDS_PER_MINUTE)
+            ?.isBefore(Instant.now())
             ?: true
     }
 
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? {
-        return playerDataCache.retrieve(uuid)
-    }
+    override fun getPlayerData(uuid: UUID): HypixelPlayer? = playerDataCache.retrieve(uuid)
 
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
-        return skyblockProfilesCache.retrieve(uuid)
-    }
+    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = skyblockProfilesCache.retrieve(uuid)
 
-    override fun getGuild(name: String): Guild? {
-        return guildCache.retrieve(name.lowercase())
+    override fun getGuild(name: String): Guild? = guildCache.retrieve(name.lowercase())
+
+    companion object {
+        const val SECONDS_PER_MINUTE = 60L
     }
 }

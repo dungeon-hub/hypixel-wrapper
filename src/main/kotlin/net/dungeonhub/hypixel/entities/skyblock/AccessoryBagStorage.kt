@@ -5,7 +5,7 @@ import net.dungeonhub.provider.getAsJsonArrayOrNull
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-class AccessoryBagStorage(
+data class AccessoryBagStorage(
     val selectedPower: String?,
     val upgradesPurchased: Int,
     val highestMagicalPower: Int,

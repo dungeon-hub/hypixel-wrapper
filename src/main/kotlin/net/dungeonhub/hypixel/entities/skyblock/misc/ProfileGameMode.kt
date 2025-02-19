@@ -6,8 +6,6 @@ enum class ProfileGameMode(val apiName: String?) {
     Bingo("bingo");
 
     companion object {
-        fun fromApiName(apiName: String?): ProfileGameMode {
-            return entries.firstOrNull { it.apiName == apiName } ?: Default
-        }
+        fun fromApiName(apiName: String?): ProfileGameMode = entries.firstOrNull { it.apiName == apiName } ?: Default
     }
 }

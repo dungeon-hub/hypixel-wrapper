@@ -26,5 +26,5 @@ enum class FormattingCode(val type: FormattingCodeType, val formattingCode: Stri
     Italic(FormattingCodeType.Formatting, "§o"),
 
     Reset(FormattingCodeType.Special, "§r"),
-    Magic(FormattingCodeType.Special, "§k");
+    Magic(FormattingCodeType.Special, "§k")
 }

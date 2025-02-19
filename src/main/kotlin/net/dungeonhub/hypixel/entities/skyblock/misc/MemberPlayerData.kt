@@ -35,6 +35,10 @@ class MemberPlayerData(
             experience[KnownSkill.Social] = actual
         }
     }
+
+    companion object {
+        const val SKYBLOCK_TIME_EPOCH = 1_560_275_700L
+    }
 }
 
 fun JsonObject.toPlayerData(): MemberPlayerData {
@@ -50,9 +54,8 @@ fun JsonObject.toPlayerData(): MemberPlayerData {
 }
 
 /**
- * Funny story: Skyblock measures some timestamps (e.g. last death) in Skyblock Time, which is the time since time was measured in Skyblock (at 11th June 2019, 17:55:00).
+ * Funny story: Skyblock measures some timestamps (e.g. last death) in Skyblock Time,
+ * which is the time since time was measured in Skyblock (at 11th June 2019, 17:55:00).
  * This function converts a Skyblock Time timestamp to a Java Instant.
  */
-fun Long.fromSkyblockTime(): Instant {
-    return Instant.ofEpochSecond(1_560_275_700L + this)
-}
+fun Long.fromSkyblockTime(): Instant = Instant.ofEpochSecond(MemberPlayerData.SKYBLOCK_TIME_EPOCH + this)

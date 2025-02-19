@@ -2,9 +2,9 @@ package net.dungeonhub.hypixel.entities.skyblock
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.hypixel.entities.inventory.toMemberInventoryData
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.toDungeonsData
 import net.dungeonhub.hypixel.entities.skyblock.misc.MemberPlayerData
@@ -23,7 +23,8 @@ import java.math.BigDecimal
 import java.util.*
 
 @GsonProvider.JsonType(
-    "type", subtypes = [
+    "type",
+    subtypes = [
         GsonProvider.JsonSubtype(CurrentMember::class, "current"),
         GsonProvider.JsonSubtype(PastMember::class, "past"),
         GsonProvider.JsonSubtype(PendingMember::class, "pending")
@@ -31,14 +32,20 @@ import java.util.*
 )
 abstract class SkyblockProfileMember(
     open val uuid: UUID,
-    val type: String,
     open val profile: JsonObject,
     open val leveling: MemberLeveling,
     open val playerData: MemberPlayerData?,
     open val playerStats: MemberPlayerStats?,
     open val slayer: MemberSlayerData?,
     open val raw: JsonObject
-)
+) {
+    abstract val type: String
+
+    companion object {
+        const val LEVELING_FIELD_NAME = "leveling"
+        const val SLAYER_FIELD_NAME = "slayer"
+    }
+}
 
 fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
     return entrySet().map {
@@ -53,11 +60,11 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             return@map PastMember(
                 uuid,
                 profileData,
-                it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
+                it.value.asJsonObject.getAsJsonObjectOrNull(SkyblockProfileMember.LEVELING_FIELD_NAME)?.toLeveling()
                     ?: defaultLeveling,
                 it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("player_stats")?.toPlayerStats(),
-                it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
+                it.value.asJsonObject.getAsJsonObjectOrNull(SkyblockProfileMember.SLAYER_FIELD_NAME)?.toSlayerData(),
                 it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
                 this
             )
@@ -70,9 +77,9 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             return@map PendingMember(
                 uuid,
                 profileData,
-                it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
+                it.value.asJsonObject.getAsJsonObjectOrNull(SkyblockProfileMember.LEVELING_FIELD_NAME)?.toLeveling()
                     ?: defaultLeveling,
-                it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
+                it.value.asJsonObject.getAsJsonObjectOrNull(SkyblockProfileMember.SLAYER_FIELD_NAME)?.toSlayerData(),
                 this
             )
         }
@@ -80,11 +87,11 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
         return@map CurrentMember(
             uuid,
             profileData,
-            it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
+            it.value.asJsonObject.getAsJsonObjectOrNull(SkyblockProfileMember.LEVELING_FIELD_NAME)?.toLeveling()
                 ?: defaultLeveling,
             it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
             it.value.asJsonObject.getAsJsonObjectOrNull("player_stats")?.toPlayerStats(),
-            it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
+            it.value.asJsonObject.getAsJsonObjectOrNull(SkyblockProfileMember.SLAYER_FIELD_NAME)?.toSlayerData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.filter { currency -> currency.key != "essence" }?.associate { currency ->
                     currency.key.toCurrencyType() to currency.value.asBigDecimal
@@ -92,8 +99,8 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("currencies")?.entrySet()
                 ?.firstOrNull { currency -> currency.key == "essence" }?.value?.asJsonObject?.entrySet()
                 ?.associate { essence ->
-                    KnownEssenceType.fromApiName(essence.key) to (essence.value.asJsonObject.getAsJsonPrimitiveOrNull("current")?.asInt
-                        ?: 0)
+                    KnownEssenceType.fromApiName(essence.key) to
+                            (essence.value.asJsonObject.getAsJsonPrimitiveOrNull("current")?.asInt ?: 0)
                 } ?: emptyMap(),
             it.value.asJsonObject.getAsJsonObjectOrNull("dungeons")?.toDungeonsData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("accessory_bag_storage")?.toAccessoryBagStorage(),

@@ -45,9 +45,8 @@ enum class KnownRank(
     ) : Rank
 
     companion object {
-        fun fromApiName(apiName: String): Rank {
-            return KnownRank.entries.firstOrNull { it.apiName == apiName } ?: UnknownRank(apiName)
-        }
+        fun fromApiName(apiName: String): Rank =
+            KnownRank.entries.firstOrNull { it.apiName == apiName } ?: UnknownRank(apiName)
 
         fun fromPlayerObject(jsonObject: JsonObject): Rank {
             val rank = jsonObject.getAsJsonPrimitiveOrNull("rank")?.let { fromApiName(it.asString) }

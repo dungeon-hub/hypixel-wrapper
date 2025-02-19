@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-class SlayerBossProgress(
+data class SlayerBossProgress(
     val claimedLevels: JsonObject,
     val xp: Int?,
     val raw: JsonObject

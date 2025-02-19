@@ -7,7 +7,7 @@ import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.time.Instant
 import java.util.*
 
-class HypixelPlayer(
+data class HypixelPlayer(
     val internalHypixelId: String,
     val uuid: UUID,
     val playerName: String,

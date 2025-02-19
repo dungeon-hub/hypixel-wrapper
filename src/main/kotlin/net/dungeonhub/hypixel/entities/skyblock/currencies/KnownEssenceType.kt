@@ -13,8 +13,7 @@ enum class KnownEssenceType(override val apiName: String, val displayName: Strin
     class UnknownEssenceType(override val apiName: String) : EssenceType
 
     companion object {
-        fun fromApiName(apiName: String): EssenceType {
-            return KnownEssenceType.entries.firstOrNull { it.apiName == apiName } ?: UnknownEssenceType(apiName)
-        }
+        fun fromApiName(apiName: String): EssenceType =
+            KnownEssenceType.entries.firstOrNull { it.apiName == apiName } ?: UnknownEssenceType(apiName)
     }
 }

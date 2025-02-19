@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-class MemberInventory(
+data class MemberInventory(
     val inventoryContents: InventoryContent?,
     val enderChestContent: InventoryContent?,
     val backpackContents: Map<Int, InventoryContent>,
@@ -19,7 +19,14 @@ class MemberInventory(
 ) {
     val allItems: List<InventoryContent>
         get() {
-            val result: MutableList<InventoryContent> = listOfNotNull(inventoryContents, enderChestContent, armor, equipment, personalVault, wardrobeContents).toMutableList()
+            val result: MutableList<InventoryContent> = listOfNotNull(
+                inventoryContents,
+                enderChestContent,
+                armor,
+                equipment,
+                personalVault,
+                wardrobeContents
+            ).toMutableList()
 
             result.addAll(backpackContents.values)
             result.addAll(bagContents.values)

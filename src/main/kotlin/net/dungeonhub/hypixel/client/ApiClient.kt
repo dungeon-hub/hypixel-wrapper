@@ -19,7 +19,11 @@ interface ApiClient {
     fun getPlayerData(uuid: UUID): HypixelPlayer?
 
     fun getHypixelLinkedDiscord(uuid: UUID): String? {
-        return getPlayerData(uuid)?.socialMediaLinks?.entries?.firstOrNull { it.key == KnownSocialMediaType.Discord }?.value
+        return getPlayerData(uuid)
+            ?.socialMediaLinks
+            ?.entries
+            ?.firstOrNull { it.key == KnownSocialMediaType.Discord }
+            ?.value
     }
 
     fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles?
@@ -30,10 +34,8 @@ interface ApiClient {
         val profiles = getSkyblockProfiles(uuid)
             ?: return null
 
-        val selectedProfile = (
-                profiles.profiles.firstOrNull { it.selected == true }
-                    ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
-                )
+        val selectedProfile = profiles.profiles.firstOrNull { it.selected == true }
+            ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
             ?: return null
 
         val member = selectedProfile.getCurrentMember(uuid) ?: return null
@@ -44,18 +46,18 @@ interface ApiClient {
     fun getStatsOverview(profileMember: CurrentMember, profile: SkyblockProfile): ProfileStatsOverview? {
         val witherBlades: List<SkyblockItem> =
             profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-                ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
+                ?.mapNotNull { item -> item as? SkyblockItem }?.filter { item ->
                     return@filter listOf("HYPERION", "VALKYRIE", "SCYLLA", "ASTRAEA").contains(item.id)
                 } ?: emptyList()
         val terminator: List<SkyblockItem> = profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-            ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
+            ?.mapNotNull { item -> item as? SkyblockItem }?.filter { item ->
                 return@filter item.id == "TERMINATOR"
             } ?: emptyList()
         val goldenDragon: List<Pet> = profileMember.petsData?.pets?.filter { pet ->
             pet.type == "GOLDEN_DRAGON"
         } ?: emptyList()
 
-        val skyblockLevel: Double = profileMember.leveling.experience.toDouble() / 100
+        val skyblockLevel: Double = profileMember.leveling.levelWithProgression
         val skillAverage: Double = profileMember.playerData.skillAverage
         val slayerData: Map<KnownSlayerType, Int> = KnownSlayerType.entries.associateWith { slayerType ->
             slayerType.toLevel(profileMember.slayer?.slayerProgress?.get(slayerType)?.xp ?: 0)

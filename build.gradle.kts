@@ -4,6 +4,7 @@ plugins {
     id("java-library")
     id("net.thebugmc.gradle.sonatype-central-portal-publisher").version("1.2.3")
     kotlin("jvm") version "2.1.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.6"
 }
 
 group = "net.dungeon-hub"
@@ -20,18 +21,25 @@ repositories {
     mavenCentral()
 }
 
+detekt {
+    buildUponDefaultConfig = true
+    ignoreFailures = true
+
+    config.from(rootProject.files("detekt.yml"))
+}
+
 dependencies {
-    //Functionality
+    // Functionality
     api("net.hypixel:hypixel-api-core:4.4")
     api("me.nullicorn:Nedit:2.2.0")
 
-    //HTTP Client
+    // HTTP Client
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
-    //Logging
+    // Logging
     implementation("org.slf4j:slf4j-api:2.0.16")
 
-    //Testing
+    // Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")

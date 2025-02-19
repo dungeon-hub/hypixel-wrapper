@@ -8,8 +8,6 @@ enum class GemstoneQuality(val apiName: String, val rarity: SkyblockRarity) {
     Perfect("PERFECT", SkyblockRarity.Legendary);
 
     companion object {
-        fun fromApiName(name: String): GemstoneQuality? {
-            return entries.firstOrNull { it.apiName == name }
-        }
+        fun fromApiName(name: String): GemstoneQuality? = entries.firstOrNull { it.apiName == name }
     }
 }

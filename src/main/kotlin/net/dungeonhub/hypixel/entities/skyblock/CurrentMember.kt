@@ -14,7 +14,7 @@ import net.dungeonhub.hypixel.entities.skyblock.stats.MemberPlayerStats
 import java.math.BigDecimal
 import java.util.*
 
-class CurrentMember(
+data class CurrentMember(
     override val uuid: UUID,
     override val profile: JsonObject,
     override val leveling: MemberLeveling,
@@ -29,7 +29,9 @@ class CurrentMember(
     val inventory: MemberInventory?,
     val petsData: MemberPetsData?,
     override val raw: JsonObject
-) : SkyblockProfileMember(uuid, "current", profile, leveling, playerData, playerStats, slayer, raw) {
+) : SkyblockProfileMember(uuid, profile, leveling, playerData, playerStats, slayer, raw) {
+    override val type = "current"
+
     val coins
         get() = currencies.entries.first { it.key == KnownCurrencyTypes.Coins }.value
 

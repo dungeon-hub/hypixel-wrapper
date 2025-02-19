@@ -13,5 +13,6 @@ class GuildMasterRank(
 
     companion object {
         const val GUILD_MASTER_NAME = "Guild Master"
+        const val GUILD_MASTER_PRIORITY = 50
     }
 }

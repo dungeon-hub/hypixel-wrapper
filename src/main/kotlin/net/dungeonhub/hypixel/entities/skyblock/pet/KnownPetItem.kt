@@ -1,8 +1,8 @@
 package net.dungeonhub.hypixel.entities.skyblock.pet
 
-//TODO complete mapping
+// TODO complete mapping
 enum class KnownPetItem(override val apiName: String, displayName: String? = null) : PetItem {
-    //Exp Boosts
+    // Exp Boosts
     MiningExpCommon("PET_ITEM_MINING_SKILL_BOOST_COMMON"),
     MiningExpUncommon("PET_ITEM_MINING_SKILL_BOOST_UNCOMMON"),
     MiningExpRare("PET_ITEM_MINING_SKILL_BOOST_RARE"),
@@ -23,7 +23,7 @@ enum class KnownPetItem(override val apiName: String, displayName: String? = nul
     AllSkillsExp("PET_ITEM_ALL_SKILLS_BOOST_COMMON"),
     AllSkillsExpSuperBoost("ALL_SKILLS_SUPER_BOOST"),
 
-    //Stats Items
+    // Stats Items
     BigTeeth("PET_ITEM_BIG_TEETH_COMMON"),
     BiggerTeeth("BIGGER_TEETH"),
     IronClaws("PET_ITEM_IRON_CLAWS_COMMON"),
@@ -47,20 +47,20 @@ enum class KnownPetItem(override val apiName: String, displayName: String? = nul
     BejeweledCollar("BEJEWELED_COLLAR"),
     TitaniumMinecart("PET_ITEM_TITANIUM_MINECART"),
 
-    //Perk Items
+    // Perk Items
     DwarfTurtleShelmet("DWARF_TURTLE_SHELMET"),
     Bubblegum("PET_ITEM_BUBBLEGUM"),
     ExpShare("PET_ITEM_EXP_SHARE"),
     TierBoost("PET_ITEM_TIER_BOOST"),
 
-    //Pet specific
+    // Pet specific
     Saddle("PET_ITEM_SADDLE"),
     FlyingPig("PET_ITEM_FLYING_PIG"),
     FourEyedFish("FOUR_EYED_FISH"),
     DeadCatFood("DEAD_CAT_FOOD"),
     GrandmasKnittingNeedle("GRANDMAS_KNITTING_NEEDLE"),
 
-    //Mythic upgrade
+    // Mythic upgrade
     VampireFang("PET_ITEM_VAMPIRE_FANG"),
     Jerry3DGlasses("PET_ITEM_TOY_JERRY"),
     RadioactiveVial("RADIOACTIVE_VIAL"),
@@ -73,7 +73,7 @@ enum class KnownPetItem(override val apiName: String, displayName: String? = nul
     MagicTopHat("MAGIC_TOP_HAT"),
     MixedMiteGel("MIXED_MITE_GEL"),
 
-    //Cosmetic
+    // Cosmetic
     UncommonPartyHat("UNCOMMON_PARTY_HAT");
 
     val displayName = displayName ?: name.replace(Regex("([A-Z])"), " $1").trim()

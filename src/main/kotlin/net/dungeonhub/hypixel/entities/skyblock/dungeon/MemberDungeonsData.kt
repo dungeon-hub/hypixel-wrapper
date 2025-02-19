@@ -5,8 +5,8 @@ import net.dungeonhub.provider.getAsJsonArrayOrNull
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-//TODO check what can be not-null
-class MemberDungeonsData(
+// TODO check what can be not-null
+data class MemberDungeonsData(
     val dungeonTypes: Map<DungeonType, DungeonData>,
     val classExperience: Map<CatacombsClass, Double>,
     val dungeonsBlahBlah: List<String>?,
@@ -33,6 +33,8 @@ class MemberDungeonsData(
         }
 
     companion object {
+        const val MAX_LEVEL = 500
+
         val requiredExperience = listOf<Long>(
             50,
             75,
@@ -43,65 +45,66 @@ class MemberDungeonsData(
             470,
             670,
             950,
-            1340,
-            1890,
-            2665,
-            3760,
-            5260,
-            7380,
-            10300,
-            14400,
-            20000,
-            27600,
-            38000,
-            52500,
-            71500,
-            97000,
-            132000,
-            180000,
-            243000,
-            328000,
-            445000,
-            600000,
-            800000,
-            1065000,
-            1410000,
-            1900000,
-            2500000,
-            3300000,
-            4300000,
-            5600000,
-            7200000,
-            9200000,
-            12000000,
-            15000000,
-            19000000,
-            24000000,
-            30000000,
-            38000000,
-            48000000,
-            60000000,
-            75000000,
-            93000000,
-            116250000,
-            200000000
+            1_340,
+            1_890,
+            2_665,
+            3_760,
+            5_260,
+            7_380,
+            10_300,
+            14_400,
+            20_000,
+            27_600,
+            38_000,
+            52_500,
+            71_500,
+            97_000,
+            132_000,
+            180_000,
+            243_000,
+            328_000,
+            445_000,
+            600_000,
+            800_000,
+            1_065_000,
+            1_410_000,
+            1_900_000,
+            2_500_000,
+            3_300_000,
+            4_300_000,
+            5_600_000,
+            7_200_000,
+            9_200_000,
+            12_000_000,
+            15_000_000,
+            19_000_000,
+            24_000_000,
+            30_000_000,
+            38_000_000,
+            48_000_000,
+            60_000_000,
+            75_000_000,
+            93_000_000,
+            116_250_000,
+            200_000_000
         )
 
         fun getRequiredExperience(level: Int): Long {
-            if(level > requiredExperience.size) {
-                return getRequiredExperience(requiredExperience.size) + requiredExperience.last() * (level - requiredExperience.size)
+            if (level > requiredExperience.size) {
+                return getRequiredExperience(requiredExperience.size) + requiredExperience.last() *
+                        (level - requiredExperience.size)
             }
 
             return requiredExperience.take(level).sum()
         }
 
         fun levelFromExperience(experience: Double): Int {
-            for (i in 0..500) {
-                if (getRequiredExperience(i) > (experience)) return i-1
+            for (i in 0..MAX_LEVEL) {
+                if (getRequiredExperience(i) > experience) return i - 1
             }
 
-            // 50 and everything higher is returned as 50
-            return 500
+            // Return the max level that is parsed -> No one has level 500, so it will calculate the max level
+            return MAX_LEVEL
         }
     }
 }

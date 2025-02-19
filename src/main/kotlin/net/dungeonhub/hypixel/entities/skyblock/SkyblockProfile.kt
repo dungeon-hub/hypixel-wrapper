@@ -6,7 +6,7 @@ import net.dungeonhub.hypixel.entities.skyblock.misc.ProfileGameMode
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import net.dungeonhub.provider.getOrNull
-import java.util.UUID
+import java.util.*
 
 class SkyblockProfile(
     val profileId: UUID,
@@ -21,9 +21,7 @@ class SkyblockProfile(
     val currentMembers
         get() = members.filterIsInstance<CurrentMember>()
 
-    fun getCurrentMember(uuid: UUID): CurrentMember? {
-        return currentMembers.firstOrNull { it.uuid == uuid }
-    }
+    fun getCurrentMember(uuid: UUID): CurrentMember? = currentMembers.firstOrNull { it.uuid == uuid }
 }
 
 fun JsonElement.toSkyblockProfile(): SkyblockProfile {
@@ -40,8 +38,8 @@ fun JsonElement.toSkyblockProfile(): SkyblockProfile {
 
     val totalSocialExperience = profile.members.sumOf { it.playerData?.experience?.get(KnownSkill.Social) ?: 0.0 }
 
-    for(member in profile.members) {
-        if(member.playerData?.experience?.containsKey(KnownSkill.Social) == true) {
+    for (member in profile.members) {
+        if (member.playerData?.experience?.containsKey(KnownSkill.Social) == true) {
             member.playerData!!.experience?.put(KnownSkill.Social, totalSocialExperience)
         }
     }

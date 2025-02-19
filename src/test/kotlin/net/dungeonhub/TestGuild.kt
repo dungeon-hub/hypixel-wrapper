@@ -41,7 +41,7 @@ class TestGuild {
                 "The guild ranks for ${guild.displayName} weren't automatically sorted!"
             )
 
-            //2 different ways to check if all values in the list are present
+            // 2 different ways to check if all values in the list are present
             for ((index, rank) in guild.ranks.withIndex()) {
                 assertTrue(index + 1 == rank.priority)
             }

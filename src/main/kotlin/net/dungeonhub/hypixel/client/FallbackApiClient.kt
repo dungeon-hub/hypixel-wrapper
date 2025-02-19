@@ -19,15 +19,11 @@ class FallbackApiClient(val first: ApiClientWithCache, val second: ApiClient, va
         (if (first.guildCache.isExpired(name)) null else first.getGuild(name))
             ?: second.getGuild(name)
 
-    fun withCacheExpiration(minutes: Int): FallbackApiClient {
-        return FallbackApiClient(first, second, minutes)
-    }
+    fun withCacheExpiration(minutes: Int): FallbackApiClient = FallbackApiClient(first, second, minutes)
 
-    private fun <T : Any> Cache<T, UUID>.isExpired(uuid: UUID): Boolean {
-        return first.isExpired(this, uuid, expiresAfterMinutes)
-    }
+    private fun <T : Any> Cache<T, UUID>.isExpired(uuid: UUID): Boolean =
+        first.isExpired(this, uuid, expiresAfterMinutes)
 
-    private fun <T : Any> Cache<T, String>.isExpired(name: String): Boolean {
-        return first.isExpired(this, name, expiresAfterMinutes)
-    }
+    private fun <T : Any> Cache<T, String>.isExpired(name: String): Boolean =
+        first.isExpired(this, name, expiresAfterMinutes)
 }

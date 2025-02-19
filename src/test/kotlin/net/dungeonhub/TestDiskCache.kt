@@ -24,8 +24,10 @@ class TestDiskCache {
         val apiClient = DiskCacheApiClient
 
         val rawData = listOf(
-            UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
-            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to TestHelper.readFile("player-data/39642ffc-a7fb-4d24-a1d4-916f4cad1d98.json")
+            UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to
+                    TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
+            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to
+                    TestHelper.readFile("player-data/39642ffc-a7fb-4d24-a1d4-916f4cad1d98.json")
         )
 
         val links = listOf(
@@ -33,7 +35,7 @@ class TestDiskCache {
             UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to "taubsie"
         )
 
-        //Check if cache is empty
+        // Check if cache is empty
         for (pair in rawData) {
             assertNull(apiClient.getPlayerData(pair.first))
         }
@@ -44,14 +46,14 @@ class TestDiskCache {
 
         assertEquals(0, apiClient.playerDataCache.retrieveAllElements().count())
 
-        //Store example data in cache
+        // Store example data in cache
         for (pair in rawData) {
             val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
 
             apiClient.playerDataCache.store(player.toHypixelPlayer())
         }
 
-        //Check if cache is filled
+        // Check if cache is filled
         for (pair in rawData) {
             assertNotNull(apiClient.getPlayerData(pair.first))
         }
@@ -87,9 +89,9 @@ class TestDiskCache {
 
             assertNotNull(loadedProfile)
 
-            for(profile in loadedProfile.profiles) {
-                for(member in profile.members.filterIsInstance<CurrentMember>()) {
-                    for(inventoryContent in member.inventory?.allItems ?: listOf()) {
+            for (profile in loadedProfile.profiles) {
+                for (member in profile.members.filterIsInstance<CurrentMember>()) {
+                    for (inventoryContent in member.inventory?.allItems ?: listOf()) {
                         assertNotNull(inventoryContent.items)
                     }
                 }

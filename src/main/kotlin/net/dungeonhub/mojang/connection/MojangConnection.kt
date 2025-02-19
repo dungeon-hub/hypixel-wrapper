@@ -14,19 +14,20 @@ import java.time.Instant
 import java.util.*
 
 object MojangConnection {
+    private const val TIMEOUT_SECONDS = 30L
     private const val EXPIRATION_TIME: Long = 60 * 60 * 3
     private val logger = LoggerFactory.getLogger(MojangConnection::class.java)
 
     val cache = HashMapCache<Player, UUID> { it.id }
 
-    //TODO add provider
+    // TODO add provider
     fun getHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
-            .connectTimeout(Duration.ofSeconds(30))
-            .readTimeout(Duration.ofSeconds(30))
-            .callTimeout(Duration.ofSeconds(30))
-            .writeTimeout(Duration.ofSeconds(30))
+            .connectTimeout(Duration.ofSeconds(TIMEOUT_SECONDS))
+            .readTimeout(Duration.ofSeconds(TIMEOUT_SECONDS))
+            .callTimeout(Duration.ofSeconds(TIMEOUT_SECONDS))
+            .writeTimeout(Duration.ofSeconds(TIMEOUT_SECONDS))
             .build()
     }
 

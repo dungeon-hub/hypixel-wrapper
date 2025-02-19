@@ -1,8 +1,8 @@
 package net.dungeonhub.hypixel.entities.skyblock
 
-import java.util.UUID
+import java.util.*
 
-class SkyblockProfiles(
+data class SkyblockProfiles(
     val owner: UUID,
     val profiles: List<SkyblockProfile>
 )

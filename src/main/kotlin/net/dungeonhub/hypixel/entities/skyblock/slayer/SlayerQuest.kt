@@ -3,7 +3,7 @@ package net.dungeonhub.hypixel.entities.skyblock.slayer
 import com.google.gson.JsonObject
 import java.time.Instant
 
-class SlayerQuest(
+data class SlayerQuest(
     val type: SlayerType,
     val tier: Int,
     val startTime: Instant,

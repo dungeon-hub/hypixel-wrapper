@@ -8,9 +8,9 @@ import java.time.Instant
 import java.time.LocalDate
 import java.util.*
 
-class GuildMember(
+data class GuildMember(
     val uuid: UUID,
-    val rank: GuildRank?, //TODO check if this could also be not-null
+    val rank: GuildRank?, // TODO check if this could also be not-null
     val joinedAt: Instant?,
     val mutedUntil: Instant?,
     val experienceHistory: Map<LocalDate, Int>,

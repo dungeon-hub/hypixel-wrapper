@@ -13,10 +13,6 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
     var client = strategy.client
         private set
 
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? = strategy.client.getPlayerData(uuid)
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = strategy.client.getSkyblockProfiles(uuid)
-    override fun getGuild(name: String): Guild? = strategy.client.getGuild(name)
-
     var cacheExpiration: Int?
         get() {
             return if (client is FallbackApiClient) {
@@ -31,9 +27,11 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
             }
         }
 
-    fun withStrategy(strategy: ApiClientStrategy): HypixelApiConnection {
-        return HypixelApiConnection(strategy)
-    }
+    override fun getPlayerData(uuid: UUID): HypixelPlayer? = strategy.client.getPlayerData(uuid)
+    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = strategy.client.getSkyblockProfiles(uuid)
+    override fun getGuild(name: String): Guild? = strategy.client.getGuild(name)
+
+    fun withStrategy(strategy: ApiClientStrategy): HypixelApiConnection = HypixelApiConnection(strategy)
 
     fun withCacheExpiration(cacheExpiration: Int): HypixelApiConnection {
         val connection = HypixelApiConnection(strategy)
@@ -41,7 +39,6 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
         return connection
     }
 
-    fun withCacheExpiration(cacheExpiration: Duration): HypixelApiConnection {
-        return withCacheExpiration(cacheExpiration.toMinutes().toInt())
-    }
+    fun withCacheExpiration(cacheExpiration: Duration): HypixelApiConnection =
+        withCacheExpiration(cacheExpiration.toMinutes().toInt())
 }

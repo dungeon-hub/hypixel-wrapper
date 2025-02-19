@@ -3,8 +3,8 @@ package net.dungeonhub.hypixel.entities.skyblock.dungeon
 import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
-//TODO complete mapping
-class DungeonData(
+// TODO complete mapping
+data class DungeonData(
     val experience: Double?,
     val highestTierCompleted: Int?,
     val raw: JsonObject

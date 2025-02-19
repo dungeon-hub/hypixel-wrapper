@@ -7,7 +7,7 @@ import net.dungeonhub.hypixel.entities.skyblock.slayer.MemberSlayerData
 import net.dungeonhub.hypixel.entities.skyblock.stats.MemberPlayerStats
 import java.util.*
 
-class PastMember(
+data class PastMember(
     override val uuid: UUID,
     override val profile: JsonObject,
     override val leveling: MemberLeveling,
@@ -16,4 +16,6 @@ class PastMember(
     override val slayer: MemberSlayerData?,
     val petsData: MemberPetsData?,
     override val raw: JsonObject
-) : SkyblockProfileMember(uuid, "past", profile, leveling, playerData, playerStats, slayer, raw)
+) : SkyblockProfileMember(uuid, profile, leveling, playerData, playerStats, slayer, raw) {
+    override val type = "past"
+}

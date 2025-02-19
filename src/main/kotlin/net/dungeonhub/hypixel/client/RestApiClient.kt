@@ -16,6 +16,7 @@ import java.util.*
 
 object RestApiClient : ApiClient {
     const val API_PREFIX = "https://api.hypixel.net/v2/"
+    const val OK_STATUS_CODE = 200
 
     override fun getPlayerData(uuid: UUID): HypixelPlayer? {
         val player = HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
@@ -41,7 +42,7 @@ object RestApiClient : ApiClient {
 
         val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
 
-        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
+        if (response.statusCode != OK_STATUS_CODE || response.body.isNullOrBlank()) {
             return null
         }
 
@@ -50,7 +51,6 @@ object RestApiClient : ApiClient {
         return jsonObject.getAsJsonObjectOrNull("guild")?.toGuild()
     }
 
-    fun fetchSkyblockProfiles(uuid: UUID): JsonArray? {
-        return HypixelConnection.hypixelApi.getSkyBlockProfiles(uuid).join().profiles
-    }
+    fun fetchSkyblockProfiles(uuid: UUID): JsonArray? =
+        HypixelConnection.hypixelApi.getSkyBlockProfiles(uuid).join().profiles
 }

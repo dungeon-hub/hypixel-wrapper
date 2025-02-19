@@ -50,9 +50,8 @@ class DiskHistoryStringCache<T>(
         return historyDirectory
     }
 
-    fun getHistoryFile(name: String, instant: Instant): Path {
-        return getHistoryDirectory(name).resolve(instant.toEpochMilli().toString() + ".json")
-    }
+    fun getHistoryFile(name: String, instant: Instant): Path =
+        getHistoryDirectory(name).resolve(instant.toEpochMilli().toString() + ".json")
 
     override fun retrieveElement(key: String): CacheElement<T>? {
         val dataFile = getDataFile(key)

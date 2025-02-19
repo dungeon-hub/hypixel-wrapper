@@ -3,7 +3,7 @@ package net.dungeonhub.hypixel.entities.skyblock.slayer
 import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 
-class MemberSlayerData(
+data class MemberSlayerData(
     val activeSlayerQuest: SlayerQuest?,
     val slayerProgress: Map<SlayerType, SlayerBossProgress>,
     val raw: JsonObject

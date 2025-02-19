@@ -16,8 +16,6 @@ enum class SkyblockRarity(val apiName: String, val color: FormattingCode) {
     Admin("ADMIN", FormattingCode.DarkRed);
 
     companion object {
-        fun fromApiName(apiName: String): SkyblockRarity {
-            return SkyblockRarity.entries.first { it.apiName == apiName }
-        }
+        fun fromApiName(apiName: String): SkyblockRarity = SkyblockRarity.entries.first { it.apiName == apiName }
     }
 }

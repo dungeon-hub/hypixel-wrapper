@@ -55,7 +55,7 @@ class TestSkyblockProfile {
 
     @Test
     fun testSkyblockTimeConversion() {
-        assertEquals(Instant.ofEpochSecond(1560275700L + 174463288), 174463288L.fromSkyblockTime())
+        assertEquals(Instant.ofEpochSecond(1_560_275_700L + 174_463_288), 174_463_288L.fromSkyblockTime())
     }
 
     @Test
@@ -134,7 +134,7 @@ class TestSkyblockProfile {
 
     @Test
     fun testSkillLevels() {
-        //only check blueberry profile, as there the skill levels are known
+        // only check blueberry profile, as there the skill levels are known
         val profileToCheck = UUID.fromString("529bddd9-3d7a-4277-9fe7-4e6aae86813d")
 
         val memberToCheck = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
@@ -288,11 +288,13 @@ class TestSkyblockProfile {
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
                 assertTrue(item.runes.isEmpty() || item.runes.size == 1)
-                assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
-                    GemstoneQuality.entries.contains(
-                        it.gemstoneQuality
-                    )
-                })
+                assertTrue(
+                    item.gems == null || item.gems!!.appliedGemstones.values.all {
+                        GemstoneQuality.entries.contains(
+                            it.gemstoneQuality
+                        )
+                    }
+                )
                 assertNotNull(item.abilityScrolls)
                 assertNotNull(item.attributes)
                 assertNotNull(item.newYearCakeBagData)
@@ -320,7 +322,7 @@ class TestSkyblockProfile {
                         val skyblockMenu = inventoryContent[8]
 
                         if (skyblockMenu != null) {
-                            //apparently some profiles still exist with this outdated item name :/
+                            // apparently some profiles still exist with this outdated item name :/
                             if (skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
                                 assertEquals("§aSkyBlock Menu §7(Right Click)", skyblockMenu.name)
                                 assertEquals("SkyBlock Menu (Right Click)", skyblockMenu.rawName)
@@ -377,7 +379,7 @@ class TestSkyblockProfile {
                         }
 
                         member.petsData?.pets?.forEach { pet ->
-                            //TODO check for pet type once implemented
+                            // TODO check for pet type once implemented
                             assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
                         }
                     }
@@ -388,12 +390,12 @@ class TestSkyblockProfile {
 
     @Test
     fun testSlayerLevel() {
-        assertEquals(9, KnownSlayerType.Zombie.toLevel(100000000))
+        assertEquals(9, KnownSlayerType.Zombie.toLevel(100_000_000))
         assertEquals(0, KnownSlayerType.Zombie.toLevel(1))
         assertEquals(0, KnownSlayerType.Zombie.toLevel(0))
         assertEquals(1, KnownSlayerType.Zombie.toLevel(7))
-        assertEquals(5, KnownSlayerType.Zombie.toLevel(5000))
-        assertEquals(4, KnownSlayerType.Zombie.toLevel(4999))
+        assertEquals(5, KnownSlayerType.Zombie.toLevel(5_000))
+        assertEquals(4, KnownSlayerType.Zombie.toLevel(4_999))
     }
 
     @Test
@@ -420,11 +422,13 @@ class TestSkyblockProfile {
                     "<:skyblock_level:1330399754181414994> Skyblock Level: 418.83\n" +
                     "<:diamond_sword:1330399391839686656> Skill Average: 54.78\n" +
                     "\n" +
-                    "<:batphone:1330399234813329458> Slayers:\uD83E\uDDDF 9 \uD83D\uDD78\uFE0F 9 \uD83D\uDC3A 9 \uD83D\uDD2E 9 \uD83D\uDD25 9 \uD83E\uDE78 5\n" +
+                    "<:batphone:1330399234813329458> Slayers:\uD83E\uDDDF 9 \uD83D\uDD78\uFE0F 9 " +
+                    "\uD83D\uDC3A 9 \uD83D\uDD2E 9 \uD83D\uDD25 9 \uD83E\uDE78 5\n" +
                     "<:redstone_key:1330398890725478510> Catacombs: 43 (Class Average 37)\n" +
                     "\n" +
                     "<:piggy_bank:1330399968221204560> Purse: 19.04m\n" +
-                    "<:personal_bank:1330399998512468018> Bank: 400.72m", statsOverview.description
+                    "<:personal_bank:1330399998512468018> Bank: 400.72m",
+            statsOverview.description
         )
     }
 
