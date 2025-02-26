@@ -1,9 +1,16 @@
 package net.dungeonhub.hypixel.entities.guild
 
 import com.google.gson.JsonObject
+import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.time.Instant
 
+@GsonProvider.JsonType(
+    "type", subtypes = [
+        GsonProvider.JsonSubtype(CustomGuildRank::class, "custom"),
+        GsonProvider.JsonSubtype(GuildMasterRank::class, "gm")
+    ]
+)
 interface GuildRank {
     val name: String
     val tag: String?

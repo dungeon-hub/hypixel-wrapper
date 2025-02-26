@@ -10,6 +10,7 @@ class GuildMasterRank(
 ) : GuildRank {
     override val name: String = GUILD_MASTER_NAME
     override val owner: Boolean = true
+    val type = "gm"
 
     companion object {
         const val GUILD_MASTER_NAME = "Guild Master"

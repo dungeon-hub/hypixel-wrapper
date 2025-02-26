@@ -1,20 +1,21 @@
 package net.dungeonhub.provider
 
 import com.google.gson.*
-import com.google.gson.JsonParseException
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
-import net.dungeonhub.hypixel.entities.*
-import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
+import net.dungeonhub.hypixel.entities.guild.GuildRank
 import net.dungeonhub.hypixel.entities.player.KnownRank
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.player.Rank
 import net.dungeonhub.hypixel.entities.player.SocialMediaType
-import net.dungeonhub.hypixel.entities.skyblock.*
+import net.dungeonhub.hypixel.entities.skyblock.KnownSkill
+import net.dungeonhub.hypixel.entities.skyblock.Skill
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfileMember
 import net.dungeonhub.hypixel.entities.skyblock.currencies.CurrencyType
 import net.dungeonhub.hypixel.entities.skyblock.currencies.EssenceType
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
@@ -25,6 +26,7 @@ import net.dungeonhub.hypixel.entities.skyblock.slayer.SlayerType
 import java.io.IOException
 import java.lang.reflect.Type
 import java.time.Instant
+import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.KClass
 
@@ -32,7 +34,9 @@ import kotlin.reflect.KClass
 object GsonProvider {
     val gson: Gson = GsonBuilder()
         .registerTypeAdapter(Instant::class.java, InstantTypeAdapter())
+        .registerTypeAdapter(LocalDate::class.java, LocalDateTypeAdapter())
         .registerTypeAdapter(SkyblockProfileMember::class.java, PolymorphDeserializer<SkyblockProfileMember>())
+        .registerTypeAdapter(GuildRank::class.java, PolymorphDeserializer<GuildRank>())
         .registerTypeAdapter(KnownPetItem::class.java, PetItemSerializer())
         .registerTypeAdapter(PetItem::class.java, PetItemSerializer())
         .registerTypeAdapter(KnownSkill::class.java, SkillSerializer())
@@ -196,6 +200,26 @@ object GsonProvider {
             }
 
             return Instant.ofEpochMilli(jsonReader.nextLong())
+        }
+    }
+
+    private class LocalDateTypeAdapter : TypeAdapter<LocalDate>() {
+        override fun write(jsonWriter: JsonWriter, value: LocalDate?) {
+            if (value == null) {
+                jsonWriter.nullValue()
+                return
+            }
+
+            jsonWriter.value(value.toString())
+        }
+
+        override fun read(jsonReader: JsonReader): LocalDate? {
+            if (jsonReader.peek() == JsonToken.NULL) {
+                jsonReader.nextNull()
+                return null
+            }
+
+            return LocalDate.parse(jsonReader.nextString())
         }
     }
 }
