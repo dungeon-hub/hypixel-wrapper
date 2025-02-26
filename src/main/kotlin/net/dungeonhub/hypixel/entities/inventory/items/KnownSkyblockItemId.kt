@@ -1300,13 +1300,13 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     ShinyRelic("SHINY_RELIC"),
     ThereAndBackAgain("RIFT_COMPLETION_MEMENTO"),
 
-    //Minion
+    //Minion TODO
 
     //Mixin - there are none
 
-    //Pet
+    //Pet TODO
 
-    //Potion
+    //Potion TODO
 
     //Power Stone
     AcaciaBirdhouse("ACACIA_BIRDHOUSE"),
@@ -1331,7 +1331,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     ScorchedBooks("SCORCHED_BOOKS"),
     VitaminDeath("VITAMIN_DEATH"),
 
-    //Reforge Stone
+    //Reforge Stone TODO
 
     //Rift Item
     AgaricusCapBunch("AGARICUS_CAP_BUNCH"),
@@ -1459,7 +1459,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     MobysShears("MOBYS_SHEARS", { Gear(it.raw) }),
     Shears("SHEARS", { Gear(it.raw) }),
 
-    //Tool
+    //Tool TODO
 
     //Vanilla Item TODO: https://wiki.hypixel.net/Decorative_Block_Variations
     ActivatorRail("ACTIVATOR_RAIL"),
@@ -1751,7 +1751,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     WandOfStrength("WAND_OF_STRENGTH", { Gear(it.raw) }),
     WizardWand("WIZARD_WAND", { Gear(it.raw) }),
 
-    //Weapon
+    //Weapon TODO
     PhantomRod("PHANTOM_ROD", { Gear(it.raw) }),
     Shredder("THE_SHREDDER", { Gear(it.raw) }),
     Hyperion("HYPERION", { WitherBlade(it.raw) }),
@@ -1841,7 +1841,10 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     AbiphoneFlipNucleus("ABIPHONE_FLIP_NUCLEUS"),
     AbiphoneFlipVolcano("ABIPHONE_FLIP_VOLCANO"),
     AbiphoneBingo("ABINGOPHONE"),
-    MithrilDrillSxR326("MITHRIL_DRILL_2");
+    MithrilDrillSxR326("MITHRIL_DRILL_2"),
+    PlushieRabbitSkin("PET_SKIN_RABBIT_PLUSHIE"),
+    RoseRabbitSkin("PET_SKIN_RABBIT_ROSE"),
+    NeonRedSheepSkin("PET_SKIN_SHEEP_NEON_RED");
 
     constructor(apiName: String) : this(apiName, { it })
 

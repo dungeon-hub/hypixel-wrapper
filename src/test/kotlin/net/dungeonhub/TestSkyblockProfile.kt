@@ -433,6 +433,95 @@ class TestSkyblockProfile {
             duplicateSkyblockItemIds.isEmpty() && uniqueSkyblockItemIds.size == KnownSkyblockItemId.entries.size
         }
 
+        val nonExistentItems = listOf(
+            KnownSkyblockItemId.AdminLavaRod,
+            KnownSkyblockItemId.AdminsWarmSweater,
+            KnownSkyblockItemId.BootsOfTheStars,
+            KnownSkyblockItemId.BowOfTheUniverse,
+            KnownSkyblockItemId.EnchantedClockAdmin,
+            KnownSkyblockItemId.EternalCrystal,
+            KnownSkyblockItemId.FerocitySword150,
+            KnownSkyblockItemId.FerocitySword50,
+            KnownSkyblockItemId.GhastHead,
+            KnownSkyblockItemId.GiantPileOfCash,
+            KnownSkyblockItemId.HelmetOfTheStars,
+            KnownSkyblockItemId.Kindred,
+            KnownSkyblockItemId.PotatoCrown,
+            KnownSkyblockItemId.ShimmersparkleChestplate,
+            KnownSkyblockItemId.ShinyRelic,
+            KnownSkyblockItemId.SwordOfTheMultiverse,
+            KnownSkyblockItemId.SwordOfTheStars9000,
+            KnownSkyblockItemId.SwordOfTheUniverse,
+            KnownSkyblockItemId.Voodoo,
+            KnownSkyblockItemId.RemoteTimeChamberRemote,
+            KnownSkyblockItemId.HellstormWand,
+            KnownSkyblockItemId.MinecartWithCommandBlock,
+
+            // These are quite impossible to find
+            KnownSkyblockItemId.BurningHollowHelmet,
+            KnownSkyblockItemId.DittoSkin,
+            KnownSkyblockItemId.FieryFervorBoots,
+            KnownSkyblockItemId.FieryFervorChestplate,
+            KnownSkyblockItemId.FieryFervorHelmet,
+            KnownSkyblockItemId.FieryFervorLeggings,
+            KnownSkyblockItemId.FieryHollowHelmet,
+            KnownSkyblockItemId.GoldenDanteStatue,
+            KnownSkyblockItemId.HotFervorHelmet,
+            KnownSkyblockItemId.HotHollowHelmet,
+            KnownSkyblockItemId.EmptyMap,
+            KnownSkyblockItemId.BarrysMontgrayPen,
+            KnownSkyblockItemId.CaducousExtract,
+            KnownSkyblockItemId.LivingMetalAnchor,
+            KnownSkyblockItemId.PreDigestionFish,
+
+            // Fairly hard to find, might do at some point
+            KnownSkyblockItemId.RubyPolishedDrillEngine,
+            KnownSkyblockItemId.SapphirePolishedDrillEngine,
+            KnownSkyblockItemId.DwarvenOsBlockBran,
+            KnownSkyblockItemId.CelestialTimecharm,
+            KnownSkyblockItemId.ChickenNEggTimecharm,
+            KnownSkyblockItemId.MirrorverseTimecharm,
+            KnownSkyblockItemId.SupremeTimecharm,
+            KnownSkyblockItemId.BerberisFuelInjector,
+            KnownSkyblockItemId.HotDog,
+            KnownSkyblockItemId.Discrite,
+            KnownSkyblockItemId.AgaricusSoup,
+            KnownSkyblockItemId.PolarvoidBook,
+            KnownSkyblockItemId.HornsOfTorment,
+            KnownSkyblockItemId.ObsidianTablet
+        )
+
+        val allInventorySkyblockItemIds =
+            TestHelper.readAllSkyblockProfiles().flatMap { it }.flatMap { it.currentMembers }
+                .flatMap { it.allItems }.flatMap { it.items }.filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is KnownSkyblockItemId.UnknownSkyblockItemId }.distinct()
+
+        val allMuseumSkyblockItemIds =
+            TestHelper.readAllMuseumData().flatMap { it.museumData.values }.flatMap { it.allItems }
+                .filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is KnownSkyblockItemId.UnknownSkyblockItemId }.distinct()
+
+        val allSkyblockItemIds = (allInventorySkyblockItemIds + allMuseumSkyblockItemIds).distinct()
+
+        assertTrue(
+            "Some (${KnownSkyblockItemId.entries.size - allSkyblockItemIds.size}/${KnownSkyblockItemId.entries.size}) Skyblock item(s) was/were never found in the test data: ${
+                KnownSkyblockItemId.entries.filterNot { allSkyblockItemIds.contains(it) || nonExistentItems.contains(it) }
+                    .map { "${it.name} (${it.apiName})" }
+            }"
+        ) {
+            (allSkyblockItemIds + nonExistentItems).distinct().size == KnownSkyblockItemId.entries.size
+        }
+
+        assertFalse(
+            "Some items that were ignored were actually found, so they don't have to be ignored anymore: ${
+                allSkyblockItemIds.filter {
+                    nonExistentItems.contains(
+                        it
+                    )
+                }
+            }"
+        ) { allSkyblockItemIds.any { nonExistentItems.contains(it) } }
+
         for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (skyblockProfile in skyblockProfiles) {
                 for (member in skyblockProfile.members) {
