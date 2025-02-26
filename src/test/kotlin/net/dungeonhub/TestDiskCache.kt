@@ -3,6 +3,7 @@ package net.dungeonhub
 import com.google.gson.JsonObject
 import net.dungeonhub.cache.disk.DiskHistoryUUIDCache
 import net.dungeonhub.hypixel.client.DiskCacheApiClient
+import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
@@ -73,6 +74,14 @@ class TestDiskCache {
 
                 assertNotNull(profileFromJson)
             }
+        }
+
+        for (guild in TestHelper.readAllGuilds()) {
+            val guildJson = GsonProvider.gson.toJson(guild)
+
+            val guildFromJson = GsonProvider.gson.fromJson(guildJson, Guild::class.java)
+
+            assertNotNull(guildFromJson)
         }
     }
 

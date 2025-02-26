@@ -10,4 +10,5 @@ class CustomGuildRank(
     override var priority: Int
 ) : GuildRank {
     override val owner: Boolean = false
+    val type = "custom"
 }
