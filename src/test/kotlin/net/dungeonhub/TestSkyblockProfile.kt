@@ -473,6 +473,7 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.CaducousExtract,
             KnownSkyblockItemId.LivingMetalAnchor,
             KnownSkyblockItemId.PreDigestionFish,
+            KnownSkyblockItemId.SecretRailroadPass,
 
             // Fairly hard to find, might do at some point
             KnownSkyblockItemId.RubyPolishedDrillEngine,
@@ -488,7 +489,12 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.AgaricusSoup,
             KnownSkyblockItemId.PolarvoidBook,
             KnownSkyblockItemId.HornsOfTorment,
-            KnownSkyblockItemId.ObsidianTablet
+            KnownSkyblockItemId.ObsidianTablet,
+            KnownSkyblockItemId.PetrifiedStarfall,
+            KnownSkyblockItemId.PocketIceberg,
+            KnownSkyblockItemId.PureMithril,
+            KnownSkyblockItemId.TitaniumTesseract,
+            KnownSkyblockItemId.TungstenRegulator
         )
 
         val allInventorySkyblockItemIds =
