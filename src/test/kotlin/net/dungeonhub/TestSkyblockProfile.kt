@@ -456,6 +456,8 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.RemoteTimeChamberRemote,
             KnownSkyblockItemId.HellstormWand,
             KnownSkyblockItemId.MinecartWithCommandBlock,
+            KnownSkyblockItemId.SwordOfLiveReloading,
+            KnownSkyblockItemId.HelmetOfLiveReloading,
 
             // These are quite impossible to find
             KnownSkyblockItemId.BurningHollowHelmet,
@@ -494,7 +496,16 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.PocketIceberg,
             KnownSkyblockItemId.PureMithril,
             KnownSkyblockItemId.TitaniumTesseract,
-            KnownSkyblockItemId.TungstenRegulator
+            KnownSkyblockItemId.TungstenRegulator,
+            KnownSkyblockItemId.BlackDiamond,
+            KnownSkyblockItemId.BulkyStone,
+            KnownSkyblockItemId.EntropySuppressor,
+            KnownSkyblockItemId.FullJawFangingKit,
+            KnownSkyblockItemId.LargeWalnut,
+            KnownSkyblockItemId.PresumedGallonOfRedPaint,
+            KnownSkyblockItemId.RustyAnchor,
+            KnownSkyblockItemId.SearingStone,
+            KnownSkyblockItemId.ShinyPrism
         )
 
         val allInventorySkyblockItemIds =
