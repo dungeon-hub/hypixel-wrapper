@@ -352,6 +352,10 @@ class TestSkyblockProfile {
                 if (item is BuildersWand) {
                     assertNotNull(item.buildersWandData)
                 }
+
+                if(item is BuildersRuler) {
+                    assertNotNull(item.buildersRulerData)
+                }
             }
         }
     }
@@ -479,6 +483,9 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.PreDigestionFish,
             KnownSkyblockItemId.SecretRailroadPass,
             KnownSkyblockItemId.TimeShuriken,
+            KnownSkyblockItemId.CarnivalDartTube,
+            KnownSkyblockItemId.ChunkOfTheMoon,
+            KnownSkyblockItemId.CapsaicinEyedropsOld,
 
             // Fairly hard to find, might do at some point
             KnownSkyblockItemId.RubyPolishedDrillEngine,
@@ -509,7 +516,28 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.RustyAnchor,
             KnownSkyblockItemId.SearingStone,
             KnownSkyblockItemId.ShinyPrism,
-            KnownSkyblockItemId.WoB
+            KnownSkyblockItemId.WoB,
+            KnownSkyblockItemId.ABeginnersGuideToPesthunting,
+            KnownSkyblockItemId.AbiphoneContactsTrio,
+            KnownSkyblockItemId.AvariciousChalice,
+            KnownSkyblockItemId.Beacon3,
+            KnownSkyblockItemId.Beacon4,
+            KnownSkyblockItemId.BirchForestBiomeStick,
+            KnownSkyblockItemId.EndBiomeStick,
+            KnownSkyblockItemId.MesaBiomeStick,
+            KnownSkyblockItemId.MushroomBiomeStick,
+            KnownSkyblockItemId.SavannaBiomeStick,
+            KnownSkyblockItemId.BloodSoakedCoins,
+            KnownSkyblockItemId.BloodStainedCoins,
+            KnownSkyblockItemId.Charcoal,
+            KnownSkyblockItemId.ChillTheFish,
+            KnownSkyblockItemId.ClayMinionXIIUpgradeStone,
+            KnownSkyblockItemId.CluckTheFish,
+            KnownSkyblockItemId.CompleteCenturyCakeBundle,
+            KnownSkyblockItemId.ConcentratedStone,
+            KnownSkyblockItemId.CryopowderShard,
+            KnownSkyblockItemId.DeadBushOfLove,
+            KnownSkyblockItemId.DiamondMagmafish
         )
 
         val allInventorySkyblockItemIds =
