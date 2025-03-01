@@ -458,6 +458,8 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.MinecartWithCommandBlock,
             KnownSkyblockItemId.SwordOfLiveReloading,
             KnownSkyblockItemId.HelmetOfLiveReloading,
+            KnownSkyblockItemId.GiantsEyeSword,
+            KnownSkyblockItemId.KuudraWashingMachine,
 
             // These are quite impossible to find
             KnownSkyblockItemId.BurningHollowHelmet,
@@ -476,6 +478,7 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.LivingMetalAnchor,
             KnownSkyblockItemId.PreDigestionFish,
             KnownSkyblockItemId.SecretRailroadPass,
+            KnownSkyblockItemId.TimeShuriken,
 
             // Fairly hard to find, might do at some point
             KnownSkyblockItemId.RubyPolishedDrillEngine,
@@ -505,7 +508,8 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.PresumedGallonOfRedPaint,
             KnownSkyblockItemId.RustyAnchor,
             KnownSkyblockItemId.SearingStone,
-            KnownSkyblockItemId.ShinyPrism
+            KnownSkyblockItemId.ShinyPrism,
+            KnownSkyblockItemId.WoB
         )
 
         val allInventorySkyblockItemIds =
