@@ -2,6 +2,7 @@ package net.dungeonhub.hypixel.entities.inventory.items
 
 import me.nullicorn.nedit.type.NBTCompound
 
+//TODO check fields
 //TODO map reforge data
 //TODO map enchantment data
 //TODO should ItemWithAbility be moved somewhere else?

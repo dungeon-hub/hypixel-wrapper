@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream
 import java.time.Instant
 import java.util.*
 
-//TODO add more fields
+//TODO add more fields that were missing
 //TODO map attribute type
 open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory {
     val id: SkyblockItemId = KnownSkyblockItemId.fromApiName(extraAttributes.getString("id"))
