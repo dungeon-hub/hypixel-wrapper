@@ -29,7 +29,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     //Logging
-    implementation("org.slf4j:slf4j-api:2.0.16")
+    implementation("org.slf4j:slf4j-api:2.0.17")
 
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
