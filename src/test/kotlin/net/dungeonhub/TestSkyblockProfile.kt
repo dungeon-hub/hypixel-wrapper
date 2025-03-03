@@ -438,6 +438,7 @@ class TestSkyblockProfile {
         }
 
         val nonExistentItems = listOf(
+            // These are unobtainable :(
             KnownSkyblockItemId.AdminLavaRod,
             KnownSkyblockItemId.AdminsWarmSweater,
             KnownSkyblockItemId.BootsOfTheStars,
@@ -464,6 +465,7 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.HelmetOfLiveReloading,
             KnownSkyblockItemId.GiantsEyeSword,
             KnownSkyblockItemId.KuudraWashingMachine,
+            KnownSkyblockItemId.DragonEgg,
 
             // These are quite impossible to find
             KnownSkyblockItemId.BurningHollowHelmet,
@@ -487,6 +489,9 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.ChunkOfTheMoon,
             KnownSkyblockItemId.CapsaicinEyedropsOld,
             KnownSkyblockItemId.EnchantedMushroomSoup,
+            KnownSkyblockItemId.FakeEmeraldAltar,
+            KnownSkyblockItemId.FlowerMaelstrom,
+            KnownSkyblockItemId.FramedVolcanicStonefish,
 
             // Fairly hard to find, might do at some point
             KnownSkyblockItemId.RubyPolishedDrillEngine,
@@ -498,7 +503,6 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.SupremeTimecharm,
             KnownSkyblockItemId.BerberisFuelInjector,
             KnownSkyblockItemId.HotDog,
-            KnownSkyblockItemId.Discrite,
             KnownSkyblockItemId.AgaricusSoup,
             KnownSkyblockItemId.PolarvoidBook,
             KnownSkyblockItemId.HornsOfTorment,
@@ -537,7 +541,6 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.CompleteCenturyCakeBundle,
             KnownSkyblockItemId.CryopowderShard,
             KnownSkyblockItemId.DeadBushOfLove,
-            KnownSkyblockItemId.DiamondMagmafish,
             KnownSkyblockItemId.BitterIcedTea,
             KnownSkyblockItemId.DecentCoffee,
             KnownSkyblockItemId.KnockOffCola,
@@ -547,7 +550,6 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.TepidGreenTea,
             KnownSkyblockItemId.TuttiFruttiFlavoredPoison,
             KnownSkyblockItemId.DivansAlloy,
-            KnownSkyblockItemId.DragonEgg,
             KnownSkyblockItemId.AppleDecoration,
             KnownSkyblockItemId.BrownMushroomDecoration,
             KnownSkyblockItemId.BushDecoration,
@@ -578,7 +580,19 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.DefenseEnrichment,
             KnownSkyblockItemId.HealthEnrichment,
             KnownSkyblockItemId.AttackSpeedEnrichment,
-            KnownSkyblockItemId.EverburningFlame
+            KnownSkyblockItemId.EverburningFlame,
+            KnownSkyblockItemId.FishingMinionXIIUpgradeStone,
+            KnownSkyblockItemId.Flames,
+            KnownSkyblockItemId.DesertCrystal,
+            KnownSkyblockItemId.UncommonGriffinUpgradeStone,
+            KnownSkyblockItemId.RareGriffinUpgradeStone,
+            KnownSkyblockItemId.EpicGriffinUpgradeStone,
+            KnownSkyblockItemId.LegendaryGriffinUpgradeStone,
+            KnownSkyblockItemId.HardGlass,
+            KnownSkyblockItemId.HasteBlock,
+            KnownSkyblockItemId.HeatCore,
+            KnownSkyblockItemId.HurricaneInABottle,
+            KnownSkyblockItemId.HyperCatalyst
         )
 
         val allInventorySkyblockItemIds =
