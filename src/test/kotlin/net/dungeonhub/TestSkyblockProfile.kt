@@ -592,7 +592,11 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.HasteBlock,
             KnownSkyblockItemId.HeatCore,
             KnownSkyblockItemId.HurricaneInABottle,
-            KnownSkyblockItemId.HyperCatalyst
+            KnownSkyblockItemId.HyperCatalyst,
+            KnownSkyblockItemId.IceCube,
+            KnownSkyblockItemId.JalapenoBook,
+            KnownSkyblockItemId.JumboBackpackUpgrade,
+            KnownSkyblockItemId.Kloonboat
         )
 
         val allInventorySkyblockItemIds =
