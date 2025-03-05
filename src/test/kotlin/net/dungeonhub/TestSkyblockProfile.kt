@@ -389,6 +389,9 @@ class TestSkyblockProfile {
                 if (item is BuildersRuler) {
                     assertNotNull(item.buildersRulerData)
                 }
+
+                //TODO reenable once everything is mapped
+                //SkyblockItemHelper.checkFields(item)
             }
         }
     }

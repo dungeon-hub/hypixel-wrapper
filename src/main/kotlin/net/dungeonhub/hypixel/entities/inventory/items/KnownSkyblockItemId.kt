@@ -2026,7 +2026,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     GolemSword("GOLEM_SWORD", { Weapon(it.raw) }),
     GreatSpookSword("GREAT_SPOOK_SWORD", { Weapon(it.raw) }),
     HunterKnife("HUNTER_KNIFE", { Weapon(it.raw) }),
-    HurricaneBow("HURRICANE_BOW", { Bow(it.raw) }),
+    HurricaneBow("HURRICANE_BOW", { HurricaneBow(it.raw) }),
     HyperCleaver("HYPER_CLEAVER", { Weapon(it.raw) }),
     Hyperion("HYPERION", { WitherBlade(it.raw) }),
     IceSprayWand("ICE_SPRAY_WAND", { Weapon(it.raw) }),
