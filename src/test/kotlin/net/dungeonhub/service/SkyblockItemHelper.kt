@@ -1,7 +1,7 @@
 package net.dungeonhub.service
 
 import net.dungeonhub.hypixel.entities.inventory.items.*
-import net.dungeonhub.hypixel.entities.inventory.items.special.HurricaneBow
+import net.dungeonhub.hypixel.entities.inventory.items.special.*
 import kotlin.test.assertTrue
 
 object SkyblockItemHelper {
@@ -35,7 +35,69 @@ object SkyblockItemHelper {
         SkinAppliable::class.java to listOf("dye_item", "skin"),
         TeleportationSword::class.java to listOf("ethermerge", "tuned_transmission"),
         Weapon::class.java to listOf("art_of_war_count"),
-        HurricaneBow::class.java to listOf("bow_kills")
+        Abicase::class.java to listOf("model"),
+        BloodGodCrest::class.java to listOf("blood_god_kills"),
+        BookOfProgression::class.java to listOf("upgradedRarity"),
+        BucketOfDye::class.java to listOf("dye_donated"),
+        BuildersRuler::class.java to listOf("builder's_ruler_data"),
+        BuildersWand::class.java to listOf("builder's_wand_data"),
+        GreatSpookAccessory::class.java to listOf("year", "edition"),
+        HegemonyArtifact::class.java to listOf("winning_bid"),
+        HurricaneBow::class.java to listOf("bow_kills"),
+        MelodysHair::class.java to listOf("tune"),
+        NewYearCakeBag::class.java to listOf("new_year_cake_bag_data"),
+        PandorasBox::class.java to listOf("pandora-rarity"),
+        PartyHat::class.java to listOf("party_hat_year", "party_hat_color", "party_hat_emoji"),
+        PersonalCompactor::class.java to listOf(
+            "PERSONAL_DELETOR_ACTIVE",
+            "personal_compact_0",
+            "personal_compact_1",
+            "personal_compact_2",
+            "personal_compact_3",
+            "personal_compact_4",
+            "personal_compact_5",
+            "personal_compact_6",
+            "personal_compact_7",
+            "personal_compact_8",
+            "personal_compact_9",
+            "personal_compact_10",
+            "personal_compact_11"
+        ),
+        PersonalDeletor::class.java to listOf(
+            "PERSONAL_DELETOR_ACTIVE",
+            "personal_deletor_0",
+            "personal_deletor_1",
+            "personal_deletor_2",
+            "personal_deletor_3",
+            "personal_deletor_4",
+            "personal_deletor_5",
+            "personal_deletor_6",
+            "personal_deletor_7",
+            "personal_deletor_8",
+            "personal_deletor_9",
+            "personal_deletor_10",
+            "personal_deletor_11"
+        ),
+        Potion::class.java to listOf(
+            "potion_level",
+            "potion",
+            "potion_type",
+            "splash",
+            "effects",
+            "potion_name",
+            "dungeon_potion",
+            "shop_dungeon_floor_completion_required",
+            "enhanced",
+            "extended",
+            "last_potion_ingredient",
+            "should_give_alchemy_exp"
+        ),
+        PulseRing::class.java to listOf("thunder_charge"),
+        RaidersAxe::class.java to listOf("raider_kills"),
+        Runebook::class.java to listOf("runic_kills"),
+        StaffOfTheRisingSun::class.java to listOf("leaderVotes", "leaderPosition"),
+        TrapperCrest::class.java to listOf("pelts_earned"),
+        WitherBlade::class.java to listOf("ability_scroll")
     )
 
     fun getFields(item: SkyblockItem): List<String> {

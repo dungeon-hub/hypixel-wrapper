@@ -31,7 +31,7 @@ class Potion(raw: NBTCompound) : SkyblockItem(raw) {
     val dungeonPotion: Boolean
         get() = extraAttributes.getByte("dungeon_potion", 0) == 1.toByte()
 
-    val dungeonFloorRequirement: Int
+    val dungeonFloorRequirement: Int //TODO export into extra class -> is that also for shop items like wither goggles?
         get() = extraAttributes.getInt("shop_dungeon_floor_completion_required", 0)
 
     val enhanced: Boolean?
