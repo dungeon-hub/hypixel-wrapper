@@ -3,7 +3,9 @@ package net.dungeonhub.hypixel.entities.inventory.items
 import me.nullicorn.nedit.NBTReader
 import me.nullicorn.nedit.type.NBTCompound
 import me.nullicorn.nedit.type.TagType
-import net.dungeonhub.hypixel.entities.inventory.*
+import net.dungeonhub.hypixel.entities.inventory.ItemStack
+import net.dungeonhub.hypixel.entities.inventory.isValidItem
+import net.dungeonhub.hypixel.entities.inventory.toItem
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 import java.io.ByteArrayInputStream
@@ -30,53 +32,19 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val museumDonated: Boolean
         get() = extraAttributes.getByte("donated_museum", 0) == 1.toByte()
 
-    val anvilUses: Int
-        get() = extraAttributes.getInt("anvil_uses", 0)
+    val soulbound: Boolean
+        get() = extraAttributes.getByte("soulbound", 0) == 1.toByte()
 
     val isRiftTransferred: Boolean
         get() = extraAttributes.getInt("rift_transferred", 0) > 0
 
     //TODO check / migrate all below
 
-    val gems: ItemGemsData?
-        get() = extraAttributes.getCompound("gems")?.toGemsData()
-
-    val runes: Map<String, Int>
-        get() = extraAttributes.getCompound("runes")?.let {
-            it.mapValues { rune -> rune.value as Int }
-        } ?: emptyMap()
-
-    val starAmount: Int
-        get() = extraAttributes.getInt("upgrade_level", 0)
-
-    val dungeonItem: Boolean
-        get() = extraAttributes.getByte("dungeon_item", -1) == 1.toByte()
-
     val dungeonLevel: Int
         get() = extraAttributes.getInt("dungeon_item_level", 0)
 
-    val enrichment: String?
-        get() = extraAttributes.getString("talisman_enrichment")
-
     val polarvoid: Int
         get() = extraAttributes.getInt("polarvoid", 0)
-
-    //TODO merge next 5 attributes
-    val potionLevel: Int
-        get() = extraAttributes.getInt("potion_level", 0)
-
-    val potion: String?
-        get() = extraAttributes.getString("potion")
-
-    val potionType: String?
-        get() = extraAttributes.getString("potion_type")
-
-    val splash: Boolean
-        get() = extraAttributes.getInt("splash", 0) > 0
-
-    //TODO map to object
-    val effects: NBTCompound?
-        get() = extraAttributes.getCompound("effects")
 
     val expertiseKills: Int
         get() = extraAttributes.getInt("expertise_kills", 0)
@@ -120,18 +88,10 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val ranchersSpeed: Int
         get() = extraAttributes.getInt("ranchers_speed", 0)
 
-    val thunderCharge: Int
-        get() = extraAttributes.getInt("thunder_charge", 0)
-
     val dungeonSkillRequirement: Pair<DungeonType, Int>?
         get() = extraAttributes.getString("dungeon_skill_req")?.split(":")?.let {
             KnownDungeonType.fromApiName(it.first().lowercase()) to Integer.valueOf(it.last())
         }
-
-    val newYearCakeBagData: List<ItemStack>
-        get() = extraAttributes.get("new_year_cake_bag_data")?.let {
-            if (it is ByteArray) it.parseItemList() else emptyList()
-        } ?: emptyList()
 
     companion object {
         fun fromNbtCompound(compound: NBTCompound): SkyblockItem? {
@@ -184,7 +144,6 @@ fun NBTCompound.isSkyblockItem(): Boolean {
     ea.remove("uuid")
     ea.remove("stats_book")
     ea.remove("bookworm_books")
-    ea.remove("thunder_charge")
     ea.remove("trapsDefused")
     ea.remove("timestamp")
     ea.remove("new_year_cake_bag_data")
@@ -226,11 +185,6 @@ fun NBTCompound.isSkyblockItem(): Boolean {
     ea.remove("skin")
     ea.remove("dye_item")
     ea.remove("polarvoid")
-    ea.remove("potion_level")
-    ea.remove("potion")
-    ea.remove("potion_type")
-    ea.remove("splash")
-    ea.remove("effects")
     ea.remove("expertise_kills")
     ea.remove("lava_creatures_killed")
     ea.remove("dungeon_skill_req")

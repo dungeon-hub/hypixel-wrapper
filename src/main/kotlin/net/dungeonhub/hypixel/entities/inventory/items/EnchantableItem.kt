@@ -7,4 +7,7 @@ interface EnchantableItem : SkyblockItemFactory {
                 KnownEnchantment.fromApiName(key.lowercase()) to value as Int
             }
         } ?: emptyMap()
+
+    val anvilUses: Int
+        get() = extraAttributes.getInt("anvil_uses", 0)
 }

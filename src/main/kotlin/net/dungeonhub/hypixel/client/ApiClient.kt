@@ -4,7 +4,7 @@ import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
 import net.dungeonhub.hypixel.entities.inventory.items.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
-import net.dungeonhub.hypixel.entities.inventory.items.WitherBlade
+import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember

@@ -7,6 +7,10 @@ import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
 import net.dungeonhub.hypixel.entities.inventory.items.*
+import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersRuler
+import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersWand
+import net.dungeonhub.hypixel.entities.inventory.items.special.NewYearCakeBag
+import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.skyblock.*
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
@@ -183,8 +187,8 @@ class TestSkyblockProfile {
 
                         assertEquals(54.78, member.playerData.skillAverage)
 
-                        assertEquals(43, member.dungeons?.catacombsLevel)
-                        assertEquals(37.0, member.dungeons?.classAverage)
+                        assertEquals(43, member.dungeons.catacombsLevel)
+                        assertEquals(37.0, member.dungeons.classAverage)
                     }
                 }
             }
@@ -247,18 +251,18 @@ class TestSkyblockProfile {
 
         assertNotNull(member)
         assertNotNull(member.inventory)
-        assertNotNull(member.inventory?.enderChestContent)
-        assertNotNull(member.inventory?.armor)
-        assertNotNull(member.inventory?.equipment)
-        assertNotNull(member.inventory?.personalVault)
-        assertNotNull(member.inventory?.equippedWardrobeSlot)
-        assertNotNull(member.inventory?.wardrobeContents)
+        assertNotNull(member.inventory.enderChestContent)
+        assertNotNull(member.inventory.armor)
+        assertNotNull(member.inventory.equipment)
+        assertNotNull(member.inventory.personalVault)
+        assertNotNull(member.inventory.equippedWardrobeSlot)
+        assertNotNull(member.inventory.wardrobeContents)
 
         assertEquals(
             "Heroic Hyperion ✪✪✪✪✪➌",
-            member.inventory?.inventoryContents!!.items.filterNotNull().first().rawName
+            member.inventory.inventoryContents!!.items.filterNotNull().first().rawName
         )
-        assertEquals("Abiphone XII Mega", member.inventory?.inventoryContents?.items?.filterNotNull()?.last()?.rawName)
+        assertEquals("Abiphone XII Mega", member.inventory.inventoryContents.items.filterNotNull().last().rawName)
     }
 
     @Test
@@ -271,15 +275,15 @@ class TestSkyblockProfile {
                     if (member.inventory != null) {
                         val inventory = member.inventory
 
-                        checkItems(inventory?.inventoryContents?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.enderChestContent?.items?.filterNotNull() ?: emptyList())
-                        inventory?.backpackIcons?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        inventory?.bagContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory?.armor?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.equipment?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.personalVault?.items?.filterNotNull() ?: emptyList())
-                        inventory?.backpackContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory?.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
+                        inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
                     }
                 }
             }
@@ -306,12 +310,18 @@ class TestSkyblockProfile {
                 }
                 //TODO enable once fully mapped
                 //assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(item.id)
-                assertTrue(item.runes.isEmpty() || item.runes.size == 1)
-                assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
-                    GemstoneQuality.entries.contains(
-                        it.gemstoneQuality
-                    )
-                })
+
+                if (item is Gear) {
+                    assertTrue(item.runes.isEmpty() || item.runes.size == 1)
+                }
+
+                if (item is ItemWithGems) {
+                    assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
+                        GemstoneQuality.entries.contains(
+                            it.gemstoneQuality
+                        )
+                    })
+                }
 
                 if (item is EnchantableItem) {
                     assertNotNull(item.enchantments)
@@ -346,14 +356,37 @@ class TestSkyblockProfile {
                         )
                     }*/
                 }
-                assertNotNull(item.newYearCakeBagData)
+                if (item is NewYearCakeBag) {
+                    assertNotNull(item.newYearCakeBagData)
+                    checkItems(item.newYearCakeBagData)
+                }
                 assertDoesNotThrow { item.dungeonSkillRequirement }
+
+                //TODO reenable once everything is mapped
+                /*if(item is PersonalCompactor) {
+                    item.compactSlots.forEach {
+                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                            it,
+                            "Unknown item ID in Personal Compactor: ${it.apiName}"
+                        )
+                    }
+                }*/
+
+                //TODO reenable once everything is mapped
+                /*if(item is PersonalDeletor) {
+                    item.deletorSlots.forEach {
+                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                            it,
+                            "Unknown item ID in Personal Compactor: ${it.apiName}"
+                        )
+                    }
+                }*/
 
                 if (item is BuildersWand) {
                     assertNotNull(item.buildersWandData)
                 }
 
-                if(item is BuildersRuler) {
+                if (item is BuildersRuler) {
                     assertNotNull(item.buildersRulerData)
                 }
             }
@@ -373,8 +406,8 @@ class TestSkyblockProfile {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null && member.inventory?.inventoryContents != null) {
-                        val inventoryContent = member.inventory?.inventoryContents!!.items
+                    if (member.inventory != null && member.inventory.inventoryContents != null) {
+                        val inventoryContent = member.inventory.inventoryContents.items
 
                         val skyblockMenu = inventoryContent[8]
 
