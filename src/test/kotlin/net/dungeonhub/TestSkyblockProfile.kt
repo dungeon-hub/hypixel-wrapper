@@ -302,6 +302,7 @@ class TestSkyblockProfile {
             assertNotNull(item.name)
             assertNotNull(item.rawName)
             assertNotNull(item.extraAttributes)
+            assertDoesNotThrow { item.lore }
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)

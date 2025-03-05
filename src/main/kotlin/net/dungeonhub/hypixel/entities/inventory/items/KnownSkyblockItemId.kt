@@ -1352,7 +1352,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
 
     //Mixin - there are none
 
-    //Pet
+    //Pet - TODO Pet Items
     Pet("PET", { PetAsItem(it.raw) }),
 
     //Potion
@@ -2692,16 +2692,16 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     WarningFlare("WARNING_FLARE", { Deployable(it.raw) }),
     AlertFlare("ALERT_FLARE", { Deployable(it.raw) }),
     SOSFlare("SOS_FLARE", { Deployable(it.raw) }),
-    RodOfTheSea("ROD_OF_THE_SEA"),
+    RodOfTheSea("ROD_OF_THE_SEA", { Gear(it.raw) }),
     SkyblockMenu("SKYBLOCK_MENU"),
     TitanicExperienceBottle("TITANIC_EXP_BOTTLE"),
-    InfernoRod("INFERNO_ROD"),
-    Pickonimbus("PICKONIMBUS"),
+    InfernoRod("INFERNO_ROD", { Gear(it.raw) }),
+    Pickonimbus("PICKONIMBUS", { Pickonimbus(it.raw) }),
     RoyalPigeon("ROYAL_PIGEON"),
     RoyalCompass("ROYAL_COMPASS"),
     DwarvenMetalDetector("DWARVEN_METAL_DETECTOR"),
-    Treecapitator("TREECAPITATOR_AXE"),
-    Stonk("STONK_PICKAXE"),
+    Treecapitator("TREECAPITATOR_AXE", { Gear(it.raw) }),
+    Stonk("STONK_PICKAXE", { Gear(it.raw) }),
     MoodyGrappleshot("MOODY_GRAPPLESHOT"),
     Infinileap("INFINITE_SPIRIT_LEAP"),
     NecronsHandle("NECRON_HANDLE"),
@@ -2714,7 +2714,7 @@ enum class KnownSkyblockItemId(override val apiName: String, val itemClass: ((Sk
     ScareFragment("SCARE_FRAGMENT"),
     NullEdge("NULL_EDGE"),
     NullBlade("NULL_BLADE"),
-    RodOfLegends("LEGEND_ROD"),
+    RodOfLegends("LEGEND_ROD", { Gear(it.raw) }),
     PlushieRabbitSkin("PET_SKIN_RABBIT_PLUSHIE"),
     RoseRabbitSkin("PET_SKIN_RABBIT_ROSE"),
     NeonRedSheepSkin("PET_SKIN_SHEEP_NEON_RED");

@@ -80,6 +80,7 @@ object SkyblockItemHelper {
             "personal_deletor_10",
             "personal_deletor_11"
         ),
+        Pickonimbus::class.java to listOf("pickonimbus_durability"),
         Potion::class.java to listOf(
             "potion_level",
             "potion",
@@ -115,6 +116,8 @@ object SkyblockItemHelper {
     }
 
     fun checkFields(item: SkyblockItem) {
+        if (item.id is KnownSkyblockItemId.UnknownSkyblockItemId) return
+
         val fields = getFields(item)
 
         val unmappedFields = item.extraAttributes.map { it.key }.filter { !fields.contains(it) }
