@@ -17,6 +17,7 @@ object SkyblockItemHelper {
             "soulbound",
             "rift_transferred"
         ),
+
         Accessory::class.java to listOf("talisman_enrichment"),
         Armor::class.java to listOf("artOfPeaceApplied"),
         Bow::class.java to listOf("toxophilite_combat_xp"),
@@ -35,6 +36,7 @@ object SkyblockItemHelper {
         SkinAppliable::class.java to listOf("dye_item", "skin"),
         TeleportationSword::class.java to listOf("ethermerge", "tuned_transmission"),
         Weapon::class.java to listOf("art_of_war_count"),
+
         Abicase::class.java to listOf("model"),
         BloodGodCrest::class.java to listOf("blood_god_kills"),
         BookOfProgression::class.java to listOf("upgradedRarity"),
