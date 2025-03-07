@@ -650,7 +650,12 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.QualityMap,
             KnownSkyblockItemId.RadioactiveVial,
             KnownSkyblockItemId.RandomCenturyCakeBundle,
-            KnownSkyblockItemId.ReaperPepper
+            KnownSkyblockItemId.ReaperPepper,
+            KnownSkyblockItemId.SavingGrace,
+            KnownSkyblockItemId.SecretGiftForJuliette,
+            KnownSkyblockItemId.SealsTreatBag,
+            KnownSkyblockItemId.SharkWaterOrb,
+            KnownSkyblockItemId.SkeletonTheFish
         )
 
         val allInventorySkyblockItemIds =
