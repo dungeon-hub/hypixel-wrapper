@@ -529,15 +529,16 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.FakeEmeraldAltar,
             KnownSkyblockItemId.FlowerMaelstrom,
             KnownSkyblockItemId.FramedVolcanicStonefish,
-
-            // Fairly hard to find, might do at some point
-            KnownSkyblockItemId.RubyPolishedDrillEngine,
-            KnownSkyblockItemId.SapphirePolishedDrillEngine,
-            KnownSkyblockItemId.DwarvenOsBlockBran,
             KnownSkyblockItemId.CelestialTimecharm,
             KnownSkyblockItemId.ChickenNEggTimecharm,
             KnownSkyblockItemId.MirrorverseTimecharm,
             KnownSkyblockItemId.SupremeTimecharm,
+            KnownSkyblockItemId.LetterOfRecommendation,
+            KnownSkyblockItemId.PoemOfTrueLove,
+            KnownSkyblockItemId.PoorlyWrappedRock,
+
+            // Fairly hard to find, might do at some point
+            KnownSkyblockItemId.SapphirePolishedDrillEngine,
             KnownSkyblockItemId.BerberisFuelInjector,
             KnownSkyblockItemId.HotDog,
             KnownSkyblockItemId.AgaricusSoup,
@@ -633,7 +634,23 @@ class TestSkyblockProfile {
             KnownSkyblockItemId.IceCube,
             KnownSkyblockItemId.JalapenoBook,
             KnownSkyblockItemId.JumboBackpackUpgrade,
-            KnownSkyblockItemId.Kloonboat
+            KnownSkyblockItemId.Kloonboat,
+            KnownSkyblockItemId.LavaWaterOrb,
+            KnownSkyblockItemId.MaddoxsPhoneNumber,
+            KnownSkyblockItemId.MushroomWartsStew,
+            KnownSkyblockItemId.MyceliumDust,
+            KnownSkyblockItemId.PerfectlyCutDiamond,
+            KnownSkyblockItemId.PoisonedCandy,
+            KnownSkyblockItemId.Portalizer,
+            KnownSkyblockItemId.PotatoWarSilverMedal,
+            KnownSkyblockItemId.RubyPowerScroll,
+            KnownSkyblockItemId.AmethystPowerScroll,
+            KnownSkyblockItemId.OpalPowerScroll,
+            KnownSkyblockItemId.PureMithrilGem,
+            KnownSkyblockItemId.QualityMap,
+            KnownSkyblockItemId.RadioactiveVial,
+            KnownSkyblockItemId.RandomCenturyCakeBundle,
+            KnownSkyblockItemId.ReaperPepper
         )
 
         val allInventorySkyblockItemIds =
