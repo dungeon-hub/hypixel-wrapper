@@ -1,7 +1,10 @@
 package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.hypixel.entities.guild.Guild
-import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.Gear
+import net.dungeonhub.hypixel.entities.inventory.items.KnownSkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
@@ -42,15 +45,14 @@ interface ApiClient {
     }
 
     fun getStatsOverview(profileMember: CurrentMember, profile: SkyblockProfile): ProfileStatsOverview? {
-        val witherBlades: List<SkyblockItem> =
+        val witherBlades: List<WitherBlade> =
             profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-                ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
-                    return@filter listOf("HYPERION", "VALKYRIE", "SCYLLA", "ASTRAEA").contains(item.id)
-                } ?: emptyList()
-        val terminator: List<SkyblockItem> = profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
+                ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filterIsInstance<WitherBlade>()
+                ?: emptyList()
+        val terminator: List<Gear> = profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
             ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
-                return@filter item.id == "TERMINATOR"
-            } ?: emptyList()
+                return@filter item.id == KnownSkyblockItemId.Terminator
+            }?.filterIsInstance<Gear>() ?: emptyList()
         val goldenDragon: List<Pet> = profileMember.petsData?.pets?.filter { pet ->
             pet.type == "GOLDEN_DRAGON"
         } ?: emptyList()

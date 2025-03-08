@@ -6,7 +6,11 @@ import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
-import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.*
+import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersRuler
+import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersWand
+import net.dungeonhub.hypixel.entities.inventory.items.special.NewYearCakeBag
+import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.skyblock.*
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
@@ -183,8 +187,8 @@ class TestSkyblockProfile {
 
                         assertEquals(54.78, member.playerData.skillAverage)
 
-                        assertEquals(43, member.dungeons?.catacombsLevel)
-                        assertEquals(37.0, member.dungeons?.classAverage)
+                        assertEquals(43, member.dungeons.catacombsLevel)
+                        assertEquals(37.0, member.dungeons.classAverage)
                     }
                 }
             }
@@ -219,8 +223,14 @@ class TestSkyblockProfile {
             for (fullProfileJson in fullProfiles) {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
-                fullProfile.members.filterIsInstance<CurrentMember>().mapNotNull { it.fairySoulData }.forEach {
-                    assertEquals(it.unspentSouls, it.totalCollected - it.totalExchanged)
+                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
+                    if (member.fairySoulData != null) {
+                        assertEquals(
+                            member.fairySoulData.unspentSouls,
+                            member.fairySoulData.totalCollected - member.fairySoulData.totalExchanged,
+                            "Profile member ${member.uuid} on profile ${fullProfile.cuteName} (${fullProfile.profileId}) has an invalid count of fairy souls."
+                        )
+                    }
                 }
             }
         }
@@ -241,39 +251,47 @@ class TestSkyblockProfile {
 
         assertNotNull(member)
         assertNotNull(member.inventory)
-        assertNotNull(member.inventory?.enderChestContent)
-        assertNotNull(member.inventory?.armor)
-        assertNotNull(member.inventory?.equipment)
-        assertNotNull(member.inventory?.personalVault)
-        assertNotNull(member.inventory?.equippedWardrobeSlot)
-        assertNotNull(member.inventory?.wardrobeContents)
+        assertNotNull(member.inventory.enderChestContent)
+        assertNotNull(member.inventory.armor)
+        assertNotNull(member.inventory.equipment)
+        assertNotNull(member.inventory.personalVault)
+        assertNotNull(member.inventory.equippedWardrobeSlot)
+        assertNotNull(member.inventory.wardrobeContents)
 
         assertEquals(
             "Heroic Hyperion ✪✪✪✪✪➌",
-            member.inventory?.inventoryContents!!.items.filterNotNull().first().rawName
+            member.inventory.inventoryContents!!.items.filterNotNull().first().rawName
         )
-        assertEquals("Abiphone XII Mega", member.inventory?.inventoryContents?.items?.filterNotNull()?.last()?.rawName)
+        assertEquals("Abiphone XII Mega", member.inventory.inventoryContents.items.filterNotNull().last().rawName)
     }
 
     @Test
     fun testItemDataParsing() {
+        assertTrue(KnownEnchantment.TheOne.isUltimate())
+
         for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (fullProfile in fullProfiles) {
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
                     if (member.inventory != null) {
                         val inventory = member.inventory
 
-                        checkItems(inventory?.inventoryContents?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.enderChestContent?.items?.filterNotNull() ?: emptyList())
-                        inventory?.backpackIcons?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        inventory?.bagContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory?.armor?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.equipment?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.personalVault?.items?.filterNotNull() ?: emptyList())
-                        inventory?.backpackContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory?.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
+                        inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
                     }
                 }
+            }
+        }
+
+        for (museum in TestHelper.readAllMuseumData()) {
+            for (museumData in museum.museumData.values) {
+                checkItems(museumData.allItems)
             }
         }
     }
@@ -284,19 +302,97 @@ class TestSkyblockProfile {
             assertNotNull(item.name)
             assertNotNull(item.rawName)
             assertNotNull(item.extraAttributes)
+            assertDoesNotThrow { item.lore }
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
-                assertTrue(item.runes.isEmpty() || item.runes.size == 1)
-                assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
-                    GemstoneQuality.entries.contains(
-                        it.gemstoneQuality
-                    )
-                })
-                assertNotNull(item.abilityScrolls)
-                assertNotNull(item.attributes)
-                assertNotNull(item.newYearCakeBagData)
+                if (item.id is KnownSkyblockItemId.UnknownSkyblockItemId) {
+                    //println(item.rawName + "(" + item.id.apiName + ")")
+                }
+                //TODO enable once fully mapped
+                //assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(item.id)
+
+                if (item is Gear) {
+                    assertTrue(item.runes.isEmpty() || item.runes.size == 1)
+                }
+
+                if (item is ItemWithGems) {
+                    assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
+                        GemstoneQuality.entries.contains(
+                            it.gemstoneQuality
+                        )
+                    })
+                }
+
+                if (item is EnchantableItem) {
+                    assertNotNull(item.enchantments)
+                    item.enchantments.forEach {
+                        assertIsNot<KnownEnchantment.UnknownEnchantment>(
+                            it.key,
+                            "Item ${item.id.apiName} has enchantments (${it.key.apiName}), but the wrapper doesn't acknowledge that!"
+                        )
+                    }
+                } else {
+                    //TODO reenable once everything is mapped
+                    /*assertTrue("Item ${item.id.apiName} has enchantments, but the wrapper doesn't acknowledge that!") {
+                        !item.extraAttributes.contains(
+                            "enchantments"
+                        )
+                    }*/
+                }
+
+                if (item is WitherBlade) {
+                    assertNotNull(item.abilityScrolls)
+                } else {
+                    assertTrue { !item.extraAttributes.contains("ability_scroll") }
+                }
+
+                if (item is Gear) {
+                    assertNotNull(item.attributes)
+                } else {
+                    //TODO reenable once everything is mapped
+                    /*assertTrue("Item ${item.id.apiName} has attributes, but the wrapper doesn't acknowledge that!") {
+                        !item.extraAttributes.contains(
+                            "attributes"
+                        )
+                    }*/
+                }
+                if (item is NewYearCakeBag) {
+                    assertNotNull(item.newYearCakeBagData)
+                    checkItems(item.newYearCakeBagData)
+                }
                 assertDoesNotThrow { item.dungeonSkillRequirement }
+
+                //TODO reenable once everything is mapped
+                /*if(item is PersonalCompactor) {
+                    item.compactSlots.forEach {
+                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                            it,
+                            "Unknown item ID in Personal Compactor: ${it.apiName}"
+                        )
+                    }
+                }*/
+
+                //TODO reenable once everything is mapped
+                /*if(item is PersonalDeletor) {
+                    item.deletorSlots.forEach {
+                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                            it,
+                            "Unknown item ID in Personal Compactor: ${it.apiName}"
+                        )
+                    }
+                }*/
+
+                if (item is BuildersWand) {
+                    assertNotNull(item.buildersWandData)
+                }
+
+                if (item is BuildersRuler) {
+                    assertNotNull(item.buildersRulerData)
+                }
+
+                //TODO reenable once everything is mapped
+                //SkyblockItemHelper.checkFields(item)
             }
         }
     }
@@ -314,8 +410,8 @@ class TestSkyblockProfile {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null && member.inventory?.inventoryContents != null) {
-                        val inventoryContent = member.inventory?.inventoryContents!!.items
+                    if (member.inventory != null && member.inventory.inventoryContents != null) {
+                        val inventoryContent = member.inventory.inventoryContents.items
 
                         val skyblockMenu = inventoryContent[8]
 
@@ -349,7 +445,303 @@ class TestSkyblockProfile {
     }
 
     @Test
-    fun testNoUnknownDataTypes() {
+    fun testAllItemIds() {
+        TestHelper.readItemList().forEach {
+            val apiName = it.getAsJsonPrimitive("id").asString
+
+            val id = KnownSkyblockItemId.fromApiName(apiName)
+
+            // TODO enable once mapped
+            /*assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                id,
+                "Item $apiName has not been added to Skyblock item ID list",
+            )*/
+        }
+    }
+
+    @Test
+    fun testNoInvalidDataTypes() {
+        val duplicateSkyblockItemIds = HashSet<String>()
+        val uniqueSkyblockItemIds = HashSet<String>()
+
+        for (item in KnownSkyblockItemId.entries.map { it.apiName }) {
+            if (!uniqueSkyblockItemIds.add(item)) {
+                duplicateSkyblockItemIds.add(item)
+            }
+        }
+
+        assertTrue("There are some skyblock item ids that were used multiple times: $duplicateSkyblockItemIds") {
+            duplicateSkyblockItemIds.isEmpty() && uniqueSkyblockItemIds.size == KnownSkyblockItemId.entries.size
+        }
+
+        val nonExistentItems = listOf(
+            // These are unobtainable :(
+            KnownSkyblockItemId.AdminLavaRod,
+            KnownSkyblockItemId.AdminsWarmSweater,
+            KnownSkyblockItemId.BootsOfTheStars,
+            KnownSkyblockItemId.BowOfTheUniverse,
+            KnownSkyblockItemId.EnchantedClockAdmin,
+            KnownSkyblockItemId.EternalCrystal,
+            KnownSkyblockItemId.FerocitySword150,
+            KnownSkyblockItemId.FerocitySword50,
+            KnownSkyblockItemId.GhastHead,
+            KnownSkyblockItemId.GiantPileOfCash,
+            KnownSkyblockItemId.HelmetOfTheStars,
+            KnownSkyblockItemId.Kindred,
+            KnownSkyblockItemId.PotatoCrown,
+            KnownSkyblockItemId.ShimmersparkleChestplate,
+            KnownSkyblockItemId.ShinyRelic,
+            KnownSkyblockItemId.SwordOfTheMultiverse,
+            KnownSkyblockItemId.SwordOfTheStars9000,
+            KnownSkyblockItemId.SwordOfTheUniverse,
+            KnownSkyblockItemId.Voodoo,
+            KnownSkyblockItemId.RemoteTimeChamberRemote,
+            KnownSkyblockItemId.HellstormWand,
+            KnownSkyblockItemId.MinecartWithCommandBlock,
+            KnownSkyblockItemId.SwordOfLiveReloading,
+            KnownSkyblockItemId.HelmetOfLiveReloading,
+            KnownSkyblockItemId.GiantsEyeSword,
+            KnownSkyblockItemId.KuudraWashingMachine,
+            KnownSkyblockItemId.DragonEgg,
+
+            // These are quite impossible to find
+            KnownSkyblockItemId.BurningHollowHelmet,
+            KnownSkyblockItemId.DittoSkin,
+            KnownSkyblockItemId.FieryFervorBoots,
+            KnownSkyblockItemId.FieryFervorChestplate,
+            KnownSkyblockItemId.FieryFervorHelmet,
+            KnownSkyblockItemId.FieryFervorLeggings,
+            KnownSkyblockItemId.FieryHollowHelmet,
+            KnownSkyblockItemId.GoldenDanteStatue,
+            KnownSkyblockItemId.HotFervorHelmet,
+            KnownSkyblockItemId.HotHollowHelmet,
+            KnownSkyblockItemId.EmptyMap,
+            KnownSkyblockItemId.BarrysMontgrayPen,
+            KnownSkyblockItemId.CaducousExtract,
+            KnownSkyblockItemId.LivingMetalAnchor,
+            KnownSkyblockItemId.PreDigestionFish,
+            KnownSkyblockItemId.SecretRailroadPass,
+            KnownSkyblockItemId.TimeShuriken,
+            KnownSkyblockItemId.CarnivalDartTube,
+            KnownSkyblockItemId.ChunkOfTheMoon,
+            KnownSkyblockItemId.CapsaicinEyedropsOld,
+            KnownSkyblockItemId.EnchantedMushroomSoup,
+            KnownSkyblockItemId.FakeEmeraldAltar,
+            KnownSkyblockItemId.FlowerMaelstrom,
+            KnownSkyblockItemId.FramedVolcanicStonefish,
+            KnownSkyblockItemId.CelestialTimecharm,
+            KnownSkyblockItemId.ChickenNEggTimecharm,
+            KnownSkyblockItemId.MirrorverseTimecharm,
+            KnownSkyblockItemId.SupremeTimecharm,
+            KnownSkyblockItemId.LetterOfRecommendation,
+            KnownSkyblockItemId.PoemOfTrueLove,
+            KnownSkyblockItemId.PoorlyWrappedRock,
+            KnownSkyblockItemId.SolvedRubixPrism,
+            KnownSkyblockItemId.VeryOfficialYellowRockOfLove,
+            KnownSkyblockItemId.WetPumpkin,
+
+            // Fairly hard to find, might do at some point
+            KnownSkyblockItemId.SapphirePolishedDrillEngine,
+            KnownSkyblockItemId.BerberisFuelInjector,
+            KnownSkyblockItemId.HotDog,
+            KnownSkyblockItemId.AgaricusSoup,
+            KnownSkyblockItemId.PolarvoidBook,
+            KnownSkyblockItemId.HornsOfTorment,
+            KnownSkyblockItemId.ObsidianTablet,
+            KnownSkyblockItemId.PetrifiedStarfall,
+            KnownSkyblockItemId.PocketIceberg,
+            KnownSkyblockItemId.PureMithril,
+            KnownSkyblockItemId.TitaniumTesseract,
+            KnownSkyblockItemId.TungstenRegulator,
+            KnownSkyblockItemId.BlackDiamond,
+            KnownSkyblockItemId.BulkyStone,
+            KnownSkyblockItemId.EntropySuppressor,
+            KnownSkyblockItemId.FullJawFangingKit,
+            KnownSkyblockItemId.LargeWalnut,
+            KnownSkyblockItemId.PresumedGallonOfRedPaint,
+            KnownSkyblockItemId.RustyAnchor,
+            KnownSkyblockItemId.SearingStone,
+            KnownSkyblockItemId.ShinyPrism,
+            KnownSkyblockItemId.WoB,
+            KnownSkyblockItemId.ABeginnersGuideToPesthunting,
+            KnownSkyblockItemId.AbiphoneContactsTrio,
+            KnownSkyblockItemId.AvariciousChalice,
+            KnownSkyblockItemId.Beacon3,
+            KnownSkyblockItemId.Beacon4,
+            KnownSkyblockItemId.BirchForestBiomeStick,
+            KnownSkyblockItemId.EndBiomeStick,
+            KnownSkyblockItemId.MesaBiomeStick,
+            KnownSkyblockItemId.MushroomBiomeStick,
+            KnownSkyblockItemId.SavannaBiomeStick,
+            KnownSkyblockItemId.BloodSoakedCoins,
+            KnownSkyblockItemId.BloodStainedCoins,
+            KnownSkyblockItemId.Charcoal,
+            KnownSkyblockItemId.ChillTheFish,
+            KnownSkyblockItemId.ClayMinionXIIUpgradeStone,
+            KnownSkyblockItemId.CluckTheFish,
+            KnownSkyblockItemId.CompleteCenturyCakeBundle,
+            KnownSkyblockItemId.CryopowderShard,
+            KnownSkyblockItemId.DeadBushOfLove,
+            KnownSkyblockItemId.BitterIcedTea,
+            KnownSkyblockItemId.DecentCoffee,
+            KnownSkyblockItemId.KnockOffCola,
+            KnownSkyblockItemId.PulpousOrangeJuice,
+            KnownSkyblockItemId.RedThornleafTea,
+            KnownSkyblockItemId.ScarletonPremium,
+            KnownSkyblockItemId.TepidGreenTea,
+            KnownSkyblockItemId.TuttiFruttiFlavoredPoison,
+            KnownSkyblockItemId.DivansAlloy,
+            KnownSkyblockItemId.AppleDecoration,
+            KnownSkyblockItemId.BrownMushroomDecoration,
+            KnownSkyblockItemId.BushDecoration,
+            KnownSkyblockItemId.BeetrootDecoration,
+            KnownSkyblockItemId.BerryDecoration,
+            KnownSkyblockItemId.AncientFruitDecoration,
+            KnownSkyblockItemId.BerryBushDecoration,
+            KnownSkyblockItemId.ChestoBerryDecoration,
+            KnownSkyblockItemId.LilacFruitDecoration,
+            KnownSkyblockItemId.AppalledPumpkinDecoration,
+            KnownSkyblockItemId.EccentricPaintingBundle,
+            KnownSkyblockItemId.EggHunt,
+            KnownSkyblockItemId.EnchantedBookBundleVicious,
+            KnownSkyblockItemId.EnchantedBookBundleBigBrain,
+            KnownSkyblockItemId.EnchantedBookBundleReflection,
+            KnownSkyblockItemId.EnchantedBookBundleTheOne,
+            KnownSkyblockItemId.EnchantedBookBundleChimera,
+            KnownSkyblockItemId.EnchantedBookBundlePrismatic,
+            KnownSkyblockItemId.EnchantedBookshelf,
+            KnownSkyblockItemId.EnchantedClayBlock,
+            KnownSkyblockItemId.EnchantedCookedSalmon,
+            KnownSkyblockItemId.EnchantedRabbitHide,
+            KnownSkyblockItemId.EnchantedRedSandCube,
+            KnownSkyblockItemId.SpeedEnrichment,
+            KnownSkyblockItemId.IntelligenceEnrichment,
+            KnownSkyblockItemId.CriticalDamageEnrichment,
+            KnownSkyblockItemId.CriticalChanceEnrichment,
+            KnownSkyblockItemId.DefenseEnrichment,
+            KnownSkyblockItemId.HealthEnrichment,
+            KnownSkyblockItemId.AttackSpeedEnrichment,
+            KnownSkyblockItemId.EverburningFlame,
+            KnownSkyblockItemId.FishingMinionXIIUpgradeStone,
+            KnownSkyblockItemId.Flames,
+            KnownSkyblockItemId.DesertCrystal,
+            KnownSkyblockItemId.UncommonGriffinUpgradeStone,
+            KnownSkyblockItemId.RareGriffinUpgradeStone,
+            KnownSkyblockItemId.EpicGriffinUpgradeStone,
+            KnownSkyblockItemId.LegendaryGriffinUpgradeStone,
+            KnownSkyblockItemId.HardGlass,
+            KnownSkyblockItemId.HasteBlock,
+            KnownSkyblockItemId.HeatCore,
+            KnownSkyblockItemId.HurricaneInABottle,
+            KnownSkyblockItemId.HyperCatalyst,
+            KnownSkyblockItemId.IceCube,
+            KnownSkyblockItemId.JalapenoBook,
+            KnownSkyblockItemId.JumboBackpackUpgrade,
+            KnownSkyblockItemId.Kloonboat,
+            KnownSkyblockItemId.LavaWaterOrb,
+            KnownSkyblockItemId.MaddoxsPhoneNumber,
+            KnownSkyblockItemId.MushroomWartsStew,
+            KnownSkyblockItemId.MyceliumDust,
+            KnownSkyblockItemId.PerfectlyCutDiamond,
+            KnownSkyblockItemId.PoisonedCandy,
+            KnownSkyblockItemId.Portalizer,
+            KnownSkyblockItemId.PotatoWarSilverMedal,
+            KnownSkyblockItemId.RubyPowerScroll,
+            KnownSkyblockItemId.AmethystPowerScroll,
+            KnownSkyblockItemId.OpalPowerScroll,
+            KnownSkyblockItemId.PureMithrilGem,
+            KnownSkyblockItemId.QualityMap,
+            KnownSkyblockItemId.RadioactiveVial,
+            KnownSkyblockItemId.RandomCenturyCakeBundle,
+            KnownSkyblockItemId.ReaperPepper,
+            KnownSkyblockItemId.SavingGrace,
+            KnownSkyblockItemId.SecretGiftForJuliette,
+            KnownSkyblockItemId.SealsTreatBag,
+            KnownSkyblockItemId.SharkWaterOrb,
+            KnownSkyblockItemId.SkeletonTheFish,
+            KnownSkyblockItemId.SolarPanel,
+            KnownSkyblockItemId.SoulflowEngine,
+            KnownSkyblockItemId.SpookTheFish,
+            KnownSkyblockItemId.SpookyWaterOrb,
+            KnownSkyblockItemId.StewTheFish,
+            KnownSkyblockItemId.StonePlatform,
+            KnownSkyblockItemId.StormInABottle,
+            KnownSkyblockItemId.TeleporterPill,
+            KnownSkyblockItemId.TheArtOfPeace,
+            KnownSkyblockItemId.VolcanicRock,
+            KnownSkyblockItemId.WeatherNode,
+            KnownSkyblockItemId.WinterWaterOrb,
+            KnownSkyblockItemId.WispUpgradeStoneRare,
+            KnownSkyblockItemId.WispUpgradeStoneEpic,
+            KnownSkyblockItemId.WispUpgradeStoneLegendary,
+            KnownSkyblockItemId.WormTheFish,
+            KnownSkyblockItemId.XLargeStorage,
+            KnownSkyblockItemId.PortalToTheCastle,
+            KnownSkyblockItemId.PortalToTheDarkAuction,
+            KnownSkyblockItemId.PortalToTheCrypts,
+            KnownSkyblockItemId.PortalToTheMuseum,
+            KnownSkyblockItemId.PortalToTheBarn,
+            KnownSkyblockItemId.PortalToMushroomIsland,
+            KnownSkyblockItemId.PortalToTheTrappersDen,
+            KnownSkyblockItemId.PortalToBirchPark,
+            KnownSkyblockItemId.PortalToSpruceWoods,
+            KnownSkyblockItemId.PortalToJungleIsland,
+            KnownSkyblockItemId.PortalToSavannaWoodland,
+            KnownSkyblockItemId.PortalToDarkThicket,
+            KnownSkyblockItemId.PortalToTheGoldMine,
+            KnownSkyblockItemId.PortalToTheDwarvenMines,
+            KnownSkyblockItemId.PortalToTheForge,
+            KnownSkyblockItemId.PortalToTheCrystalHollows,
+            KnownSkyblockItemId.PortalToTheCrystalNucleus,
+            KnownSkyblockItemId.PortalToTheSpidersDen,
+            KnownSkyblockItemId.PortalToTheTopOfTheNest,
+            KnownSkyblockItemId.PortalToArachnesSanctuary,
+            KnownSkyblockItemId.PortalToTheEnd,
+            KnownSkyblockItemId.PortalToTheDragonsNest,
+            KnownSkyblockItemId.PortalToTheVoidSepulture,
+            KnownSkyblockItemId.PortalToTheCrimsonIsle,
+            KnownSkyblockItemId.PortalToTheWasteland,
+            KnownSkyblockItemId.PortalToDragontail,
+            KnownSkyblockItemId.PortalToScarleton,
+            KnownSkyblockItemId.PortalToTheSmolderingTomb,
+            KnownSkyblockItemId.PortalToTheWizardTower,
+            KnownSkyblockItemId.PortalToTheDwarvenBaseCamp,
+            KnownSkyblockItemId.PortalToTheRift,
+            KnownSkyblockItemId.ReinforcedIronArrow,
+            KnownSkyblockItemId.RedstoneTippedArrow
+        )
+
+        val allInventorySkyblockItemIds =
+            TestHelper.readAllSkyblockProfiles().flatMap { it }.flatMap { it.currentMembers }
+                .flatMap { it.allItems }.flatMap { it.items }.filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is KnownSkyblockItemId.UnknownSkyblockItemId }.distinct()
+
+        val allMuseumSkyblockItemIds =
+            TestHelper.readAllMuseumData().flatMap { it.museumData.values }.flatMap { it.allItems }
+                .filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is KnownSkyblockItemId.UnknownSkyblockItemId }.distinct()
+
+        val allSkyblockItemIds = (allInventorySkyblockItemIds + allMuseumSkyblockItemIds).distinct()
+
+        assertTrue(
+            "Some (${KnownSkyblockItemId.entries.size - allSkyblockItemIds.size}/${KnownSkyblockItemId.entries.size}) Skyblock item(s) was/were never found in the test data: ${
+                KnownSkyblockItemId.entries.filterNot { allSkyblockItemIds.contains(it) || nonExistentItems.contains(it) }
+                    .map { "${it.name} (${it.apiName})" }
+            }"
+        ) {
+            (allSkyblockItemIds + nonExistentItems).distinct().size == KnownSkyblockItemId.entries.size
+        }
+
+        assertFalse(
+            "Some items that were ignored were actually found, so they don't have to be ignored anymore: ${
+                allSkyblockItemIds.filter {
+                    nonExistentItems.contains(
+                        it
+                    )
+                }
+            }"
+        ) { allSkyblockItemIds.any { nonExistentItems.contains(it) } }
+
         for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (skyblockProfile in skyblockProfiles) {
                 for (member in skyblockProfile.members) {

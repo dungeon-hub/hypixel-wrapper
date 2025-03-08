@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.skyblock
 
 import com.google.gson.JsonObject
+import net.dungeonhub.hypixel.entities.inventory.InventoryContent
 import net.dungeonhub.hypixel.entities.inventory.MemberInventory
 import net.dungeonhub.hypixel.entities.skyblock.currencies.CurrencyType
 import net.dungeonhub.hypixel.entities.skyblock.currencies.EssenceType
@@ -9,6 +10,7 @@ import net.dungeonhub.hypixel.entities.skyblock.dungeon.MemberDungeonsData
 import net.dungeonhub.hypixel.entities.skyblock.misc.FairySoulData
 import net.dungeonhub.hypixel.entities.skyblock.misc.MemberPlayerData
 import net.dungeonhub.hypixel.entities.skyblock.pet.MemberPetsData
+import net.dungeonhub.hypixel.entities.skyblock.rift.RiftData
 import net.dungeonhub.hypixel.entities.skyblock.slayer.MemberSlayerData
 import net.dungeonhub.hypixel.entities.skyblock.stats.MemberPlayerStats
 import java.math.BigDecimal
@@ -28,6 +30,7 @@ class CurrentMember(
     val fairySoulData: FairySoulData?,
     val inventory: MemberInventory?,
     val petsData: MemberPetsData?,
+    val riftData: RiftData?,
     override val raw: JsonObject
 ) : SkyblockProfileMember(uuid, "current", profile, leveling, playerData, playerStats, slayer, raw) {
     val coins
@@ -35,4 +38,7 @@ class CurrentMember(
 
     val motes
         get() = currencies.entries.firstOrNull { it.key == KnownCurrencyTypes.Motes }?.value
+
+    val allItems: List<InventoryContent>
+        get() = listOfNotNull(inventory?.allItems, riftData?.inventory?.allItems).flatMap { it }
 }
