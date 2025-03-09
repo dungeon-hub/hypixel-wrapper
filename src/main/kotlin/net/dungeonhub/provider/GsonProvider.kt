@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonWriter
 import net.dungeonhub.hypixel.entities.guild.GuildRank
 import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
 import net.dungeonhub.hypixel.entities.inventory.items.KnownEnchantment
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetItem
 import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 import net.dungeonhub.hypixel.entities.player.KnownRank
@@ -23,7 +24,6 @@ import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Co
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
-import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
 import net.dungeonhub.hypixel.entities.skyblock.pet.PetItem
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.SlayerType

@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.DefuseKit
 
 enum class DungeonItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -10,7 +11,7 @@ enum class DungeonItemId(override val apiName: String, override val itemClass: (
     BigfootsLasso("GIANT_FRAGMENT_BIGFOOT"),
     BonzoFragment("BONZO_FRAGMENT"),
     Decoy("DUNGEON_DECOY"),
-    DefuseKit("DEFUSE_KIT"),
+    DefuseKit("DEFUSE_KIT", { DefuseKit(it.raw) }),
     DiamantesHandle("GIANT_FRAGMENT_DIAMOND"),
     DungeonChestKey("DUNGEON_CHEST_KEY"),
     DungeonOrb("DUNGEON_STONE"),

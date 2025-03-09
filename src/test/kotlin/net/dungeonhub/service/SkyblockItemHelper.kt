@@ -16,13 +16,17 @@ object SkyblockItemHelper {
             "rarity_upgrades",
             "donated_museum",
             "soulbound",
-            "rift_transferred"
+            "rift_transferred",
+            "giftbag_claim",
+            "raffle_win",
+            "raffle_year"
         ),
 
         Accessory::class.java to listOf("talisman_enrichment"),
-        Armor::class.java to listOf("artOfPeaceApplied"),
+        Armor::class.java to listOf("artOfPeaceApplied", "color"),
         Bow::class.java to listOf("toxophilite_combat_xp"),
         Deployable::class.java to listOf("jalapeno_count"),
+        DungeonItem::class.java to listOf("dungeon_item_level"),
         EnchantableItem::class.java to listOf("enchantments", "anvil_uses"),
         Gear::class.java to listOf("attributes", "runes", "dungeon_item", "upgrade_level", "year"),
         ItemFromBoss::class.java to listOf("bossId", "spawnedFor"),
@@ -39,15 +43,19 @@ object SkyblockItemHelper {
         Weapon::class.java to listOf("art_of_war_count"),
 
         Abicase::class.java to listOf("model"),
+        Backpack::class.java to listOf("backpack_color"),
         BloodGodCrest::class.java to listOf("blood_god_kills"),
         BookOfProgression::class.java to listOf("upgradedRarity"),
         BucketOfDye::class.java to listOf("dye_donated"),
         BuildersRuler::class.java to listOf("builder's_ruler_data"),
         BuildersWand::class.java to listOf("builder's_wand_data"),
+        DefuseKit::class.java to listOf("trapsDefused"),
+        GhastCloak::class.java to listOf("ghast_blaster"),
         GreatSpookAccessory::class.java to listOf("year", "edition"),
         HegemonyArtifact::class.java to listOf("winning_bid"),
         HurricaneBow::class.java to listOf("bow_kills"),
         MelodysHair::class.java to listOf("tune"),
+        NewYearCake::class.java to listOf("new_years_cake"),
         NewYearCakeBag::class.java to listOf("new_year_cake_bag_data"),
         PandorasBox::class.java to listOf("pandora-rarity"),
         PartyHat::class.java to listOf("party_hat_year", "party_hat_color", "party_hat_emoji"),
@@ -125,7 +133,7 @@ object SkyblockItemHelper {
 
         assertTrue(
             unmappedFields.isEmpty(),
-            "The item ${item.id} (${item.javaClass.simpleName}) doesn't have the following fields mapped, " +
+            "The item ${item.id.javaClass.simpleName}.${item.id} (${item.javaClass.simpleName}) doesn't have the following fields mapped, " +
                     "even tho it should have them: $unmappedFields"
         )
     }

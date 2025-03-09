@@ -1,10 +1,8 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
+import net.dungeonhub.hypixel.entities.inventory.items.PetAsItem
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
-import net.dungeonhub.hypixel.entities.inventory.items.special.Abiphone
-import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersRuler
-import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersWand
-import net.dungeonhub.hypixel.entities.inventory.items.special.EnchantedBook
+import net.dungeonhub.hypixel.entities.inventory.items.special.*
 
 enum class MiscItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -53,11 +51,11 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     AutoSmelter("AUTO_SMELTER"),
     AutopetRules2Pack("AUTOPET_RULES_2"),
     AvariciousChalice("AVARICIOUS_CHALICE"),
-    SmallBackpack("SMALL_BACKPACK"),
-    MediumBackpack("MEDIUM_BACKPACK"),
-    LargeBackpack("LARGE_BACKPACK"),
-    GreaterBackpack("GREATER_BACKPACK"),
-    JumboBackpack("JUMBO_BACKPACK"),
+    SmallBackpack("SMALL_BACKPACK", { Backpack(it.raw) }),
+    MediumBackpack("MEDIUM_BACKPACK", { Backpack(it.raw) }),
+    LargeBackpack("LARGE_BACKPACK", { Backpack(it.raw) }),
+    GreaterBackpack("GREATER_BACKPACK", { Backpack(it.raw) }),
+    JumboBackpack("JUMBO_BACKPACK", { Backpack(it.raw) }),
     BagOfCash("BAG_OF_CASH"),
     BagOfGold("BAG_OF_GOLD"),
     BaseGriffinUpgradeStone("BASE_GRIFFIN_UPGRADE_STONE"),
@@ -467,6 +465,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     GlowingMushroom("GLOWING_MUSHROOM"),
     GlowstoneDistillate("GLOWSTONE_DUST_DISTILLATE"),
     GoblinEgg("GOBLIN_EGG"),
+    LegacyGotPotion("GOD_POTION"),
     GodPotion("GOD_POTION_2"),
     GoldenBounty("GOLDEN_BOUNTY"),
     GoldMagmafish("MAGMA_FISH_GOLD"),
@@ -613,7 +612,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     NetherStar("CORRUPTED_NETHER_STAR"),
     NetherWartDistillate("NETHER_STALK_DISTILLATE"),
     NetherWartPouch("NETHER_WART_POUCH"),
-    NewYearCake("NEW_YEAR_CAKE"),
+    NewYearCake("NEW_YEAR_CAKE", { NewYearCake(it.raw) }),
     NightSaver("NIGHT_SAVER"),
     NightmareNullifier("NIGHTMARE_NULLIFIER"),
     NopeTheFish("NOPE_THE_FISH"),
@@ -640,6 +639,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     PestRepellent("PEST_REPELLENT"),
     PestRepellentMax("PEST_REPELLENT_MAX"),
     PestTrap("PEST_TRAP"),
+    Pet("PET", { PetAsItem(it.raw) }),
     PetCake("PET_CAKE"),
     PlantMatter("PLANT_MATTER"),
     Plasma("PLASMA"),

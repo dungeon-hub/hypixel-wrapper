@@ -40,10 +40,17 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val isRiftTransferred: Boolean
         get() = extraAttributes.getInt("rift_transferred", 0) > 0
 
-    //TODO check / migrate all below
+    // Those fields aren't as common, but they also aren't important
+    val yearClaimedFromGiftbag: Int?
+        get() = extraAttributes.getInt("giftbag_claim", -1).takeIf { it != -1 }
 
-    val dungeonLevel: Int
-        get() = extraAttributes.getInt("dungeon_item_level", 0)
+    val raffleWin: String?
+        get() = extraAttributes.getString("raffle_win")
+
+    val raffleYear: Int?
+        get() = extraAttributes.getInt("raffle_year", -1).takeIf { it != -1 }
+
+    //TODO check / migrate all below
 
     val polarvoid: Int
         get() = extraAttributes.getInt("polarvoid", 0)
@@ -71,9 +78,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
 
     val baseStatBoost: Int
         get() = extraAttributes.getInt("baseStatBoostPercentage", 0)
-
-    val trapsDefused: Int
-        get() = extraAttributes.getInt("trapsDefused", 0)
 
     val blazeTekkChannel: Int
         get() = extraAttributes.getInt("blazetekk_channel", -1)

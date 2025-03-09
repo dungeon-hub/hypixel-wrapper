@@ -2,6 +2,8 @@ package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.GhastCloak
+import net.dungeonhub.hypixel.entities.inventory.items.special.KuudraEquipment
 
 enum class EquipmentItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -40,7 +42,7 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     FlamingFist("FLAMING_FIST", { Gear(it.raw) }),
     FrozenAmulet("FROZEN_AMULET", { Gear(it.raw) }),
     GauntletOfContagion("GAUNTLET_OF_CONTAGION", { Gear(it.raw) }),
-    GhastCloak("GHAST_CLOAK", { Gear(it.raw) }),
+    GhastCloak("GHAST_CLOAK", { GhastCloak(it.raw) }),
     GillsplashBelt("GILLSPLASH_BELT", { Gear(it.raw) }),
     GillsplashCloak("GILLSPLASH_CLOAK", { Gear(it.raw) }),
     GillsplashGloves("GILLSPLASH_GLOVES", { Gear(it.raw) }),
@@ -70,10 +72,10 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     MithrilCloak("MITHRIL_CLOAK", { Gear(it.raw) }),
     MithrilGauntlet("MITHRIL_GAUNTLET", { Gear(it.raw) }),
     MithrilNecklace("MITHRIL_NECKLACE", { Gear(it.raw) }),
-    MoltenBelt("MOLTEN_BELT", { Gear(it.raw) }),
-    MoltenBracelet("MOLTEN_BRACELET", { Gear(it.raw) }),
-    MoltenCloak("MOLTEN_CLOAK", { Gear(it.raw) }),
-    MoltenNecklace("MOLTEN_NECKLACE", { Gear(it.raw) }),
+    MoltenBelt("MOLTEN_BELT", { KuudraEquipment(it.raw) }),
+    MoltenBracelet("MOLTEN_BRACELET", { KuudraEquipment(it.raw) }),
+    MoltenCloak("MOLTEN_CLOAK", { KuudraEquipment(it.raw) }),
+    MoltenNecklace("MOLTEN_NECKLACE", { KuudraEquipment(it.raw) }),
     PartyBelt("PARTY_BELT", { Gear(it.raw) }),
     PartyCloak("PARTY_CLOAK", { Gear(it.raw) }),
     PartyGloves("PARTY_GLOVES", { Gear(it.raw) }),
@@ -113,7 +115,7 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     UpgradedBoneNecklace("STARRED_BONE_NECKLACE", { Gear(it.raw) }),
     UpgradedShadowAssassinCloak("STARRED_SHADOW_ASSASSIN_CLOAK", { Gear(it.raw) }),
     VanquishedBlazeBelt("VANQUISHED_BLAZE_BELT", { Gear(it.raw) }),
-    VanquishedGhastCloak("VANQUISHED_GHAST_CLOAK", { Gear(it.raw) }),
+    VanquishedGhastCloak("VANQUISHED_GHAST_CLOAK", { GhastCloak(it.raw) }),
     VanquishedGlowstoneGauntlet("VANQUISHED_GLOWSTONE_GAUNTLET", { Gear(it.raw) }),
     VanquishedMagmaNecklace("VANQUISHED_MAGMA_NECKLACE", { Gear(it.raw) }),
     VerminBelt("VERMIN_BELT", { Gear(it.raw) }),

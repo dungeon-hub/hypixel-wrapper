@@ -7,26 +7,7 @@ import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
 import net.dungeonhub.hypixel.entities.inventory.items.*
-import net.dungeonhub.hypixel.entities.inventory.items.id.AccessoryItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.AdminItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.ArmorItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.ArrowItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.CosmeticItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.DrillPartId
-import net.dungeonhub.hypixel.entities.inventory.items.id.DungeonItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.ForgeableItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.MementoItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.MiscItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.PotionItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.PowerStoneId
-import net.dungeonhub.hypixel.entities.inventory.items.id.ReforgeStoneId
-import net.dungeonhub.hypixel.entities.inventory.items.id.RiftItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.RiftTimecharmId
-import net.dungeonhub.hypixel.entities.inventory.items.id.UnknownSkyblockItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.VanillaItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.WandItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.WeaponItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.*
 import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersRuler
 import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersWand
 import net.dungeonhub.hypixel.entities.inventory.items.special.NewYearCakeBag
@@ -329,8 +310,12 @@ class TestSkyblockProfile {
                 if (item.id is UnknownSkyblockItemId) {
                     //println(item.rawName + "(" + item.id.apiName + ")")
                 }
+
                 //TODO enable once fully mapped
-                //assertIsNot<UnknownSkyblockItemId>(item.id)
+                /*assertIsNot<UnknownSkyblockItemId>(
+                    item.id,
+                    "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped."
+                )*/
 
                 if (item is Gear) {
                     assertTrue(item.runes.isEmpty() || item.runes.size == 1)

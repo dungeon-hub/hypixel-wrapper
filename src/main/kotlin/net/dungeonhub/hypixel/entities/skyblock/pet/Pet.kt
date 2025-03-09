@@ -7,6 +7,7 @@ import com.google.gson.JsonPrimitive
 import me.nullicorn.nedit.type.NBTCompound
 import me.nullicorn.nedit.type.NBTList
 import net.dungeonhub.hypixel.entities.inventory.SkyblockRarity
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetItem
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.util.*
