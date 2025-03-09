@@ -544,6 +544,7 @@ class TestSkyblockProfile {
             MiscItemId.VeryOfficialYellowRockOfLove,
             MiscItemId.WetPumpkin,
             DungeonItemId.WizardsCrystal,
+            ToolItemId.GameFixer,
 
             // Fairly hard to find, might do at some point
             DrillPartId.SapphirePolishedDrillEngine,
@@ -731,6 +732,11 @@ class TestSkyblockProfile {
             KnownPetItem.Bubblegum,
             KnownPetItem.TierBoost,
             KnownPetItem.FourEyedFish,
+            ToolItemId.BingoLavaRod,
+            ToolItemId.CarnivalRod,
+            ToolItemId.EllesLavaRod,
+            ToolItemId.CarnivalShovel,
+            ToolItemId.EllesPickaxe
         )
 
         val allInventorySkyblockItemIds =
