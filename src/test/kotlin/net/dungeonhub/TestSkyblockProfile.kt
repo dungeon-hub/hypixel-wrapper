@@ -6,14 +6,18 @@ import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
-import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.*
+import net.dungeonhub.hypixel.entities.inventory.items.id.*
+import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersRuler
+import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersWand
+import net.dungeonhub.hypixel.entities.inventory.items.special.NewYearCakeBag
+import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.skyblock.*
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 import net.dungeonhub.hypixel.entities.skyblock.misc.ProfileGameMode
 import net.dungeonhub.hypixel.entities.skyblock.misc.fromSkyblockTime
-import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
@@ -183,8 +187,8 @@ class TestSkyblockProfile {
 
                         assertEquals(54.78, member.playerData.skillAverage)
 
-                        assertEquals(43, member.dungeons?.catacombsLevel)
-                        assertEquals(37.0, member.dungeons?.classAverage)
+                        assertEquals(43, member.dungeons.catacombsLevel)
+                        assertEquals(37.0, member.dungeons.classAverage)
                     }
                 }
             }
@@ -219,8 +223,14 @@ class TestSkyblockProfile {
             for (fullProfileJson in fullProfiles) {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
-                fullProfile.members.filterIsInstance<CurrentMember>().mapNotNull { it.fairySoulData }.forEach {
-                    assertEquals(it.unspentSouls, it.totalCollected - it.totalExchanged)
+                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
+                    if (member.fairySoulData != null) {
+                        assertEquals(
+                            member.fairySoulData.unspentSouls,
+                            member.fairySoulData.totalCollected - member.fairySoulData.totalExchanged,
+                            "Profile member ${member.uuid} on profile ${fullProfile.cuteName} (${fullProfile.profileId}) has an invalid count of fairy souls."
+                        )
+                    }
                 }
             }
         }
@@ -241,39 +251,47 @@ class TestSkyblockProfile {
 
         assertNotNull(member)
         assertNotNull(member.inventory)
-        assertNotNull(member.inventory?.enderChestContent)
-        assertNotNull(member.inventory?.armor)
-        assertNotNull(member.inventory?.equipment)
-        assertNotNull(member.inventory?.personalVault)
-        assertNotNull(member.inventory?.equippedWardrobeSlot)
-        assertNotNull(member.inventory?.wardrobeContents)
+        assertNotNull(member.inventory.enderChestContent)
+        assertNotNull(member.inventory.armor)
+        assertNotNull(member.inventory.equipment)
+        assertNotNull(member.inventory.personalVault)
+        assertNotNull(member.inventory.equippedWardrobeSlot)
+        assertNotNull(member.inventory.wardrobeContents)
 
         assertEquals(
             "Heroic Hyperion ✪✪✪✪✪➌",
-            member.inventory?.inventoryContents!!.items.filterNotNull().first().rawName
+            member.inventory.inventoryContents!!.items.filterNotNull().first().rawName
         )
-        assertEquals("Abiphone XII Mega", member.inventory?.inventoryContents?.items?.filterNotNull()?.last()?.rawName)
+        assertEquals("Abiphone XII Mega", member.inventory.inventoryContents.items.filterNotNull().last().rawName)
     }
 
     @Test
     fun testItemDataParsing() {
+        assertTrue(KnownEnchantment.TheOne.isUltimate())
+
         for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (fullProfile in fullProfiles) {
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
                     if (member.inventory != null) {
                         val inventory = member.inventory
 
-                        checkItems(inventory?.inventoryContents?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.enderChestContent?.items?.filterNotNull() ?: emptyList())
-                        inventory?.backpackIcons?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        inventory?.bagContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory?.armor?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.equipment?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory?.personalVault?.items?.filterNotNull() ?: emptyList())
-                        inventory?.backpackContents?.values?.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory?.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
+                        inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
+                        checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
+                        inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                        checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
                     }
                 }
+            }
+        }
+
+        for (museum in TestHelper.readAllMuseumData()) {
+            for (museumData in museum.museumData.values) {
+                checkItems(museumData.allItems)
             }
         }
     }
@@ -284,19 +302,101 @@ class TestSkyblockProfile {
             assertNotNull(item.name)
             assertNotNull(item.rawName)
             assertNotNull(item.extraAttributes)
+            assertDoesNotThrow { item.lore }
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
-                assertTrue(item.runes.isEmpty() || item.runes.size == 1)
-                assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
-                    GemstoneQuality.entries.contains(
-                        it.gemstoneQuality
-                    )
-                })
-                assertNotNull(item.abilityScrolls)
-                assertNotNull(item.attributes)
-                assertNotNull(item.newYearCakeBagData)
+                if (item.id is UnknownSkyblockItemId) {
+                    //println(item.rawName + "(" + item.id.apiName + ")")
+                }
+
+                //TODO enable once fully mapped
+                /*assertIsNot<UnknownSkyblockItemId>(
+                    item.id,
+                    "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped."
+                )*/
+
+                if (item is Gear) {
+                    assertTrue(item.runes.isEmpty() || item.runes.size == 1)
+                }
+
+                if (item is ItemWithGems) {
+                    assertTrue(item.gems == null || item.gems!!.appliedGemstones.values.all {
+                        GemstoneQuality.entries.contains(
+                            it.gemstoneQuality
+                        )
+                    })
+                }
+
+                if (item is EnchantableItem) {
+                    assertNotNull(item.enchantments)
+                    item.enchantments.forEach {
+                        assertIsNot<KnownEnchantment.UnknownEnchantment>(
+                            it.key,
+                            "Item ${item.id.apiName} has enchantments (${it.key.apiName}), but the wrapper doesn't acknowledge that!"
+                        )
+                    }
+                } else {
+                    //TODO reenable once everything is mapped
+                    /*assertTrue("Item ${item.id.apiName} has enchantments, but the wrapper doesn't acknowledge that!") {
+                        !item.extraAttributes.contains(
+                            "enchantments"
+                        )
+                    }*/
+                }
+
+                if (item is WitherBlade) {
+                    assertNotNull(item.abilityScrolls)
+                } else {
+                    assertTrue { !item.extraAttributes.contains("ability_scroll") }
+                }
+
+                if (item is Gear) {
+                    assertNotNull(item.attributes)
+                } else {
+                    //TODO reenable once everything is mapped
+                    /*assertTrue("Item ${item.id.apiName} has attributes, but the wrapper doesn't acknowledge that!") {
+                        !item.extraAttributes.contains(
+                            "attributes"
+                        )
+                    }*/
+                }
+                if (item is NewYearCakeBag) {
+                    assertNotNull(item.newYearCakeBagData)
+                    checkItems(item.newYearCakeBagData)
+                }
                 assertDoesNotThrow { item.dungeonSkillRequirement }
+
+                //TODO reenable once everything is mapped
+                /*if(item is PersonalCompactor) {
+                    item.compactSlots.forEach {
+                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                            it,
+                            "Unknown item ID in Personal Compactor: ${it.apiName}"
+                        )
+                    }
+                }*/
+
+                //TODO reenable once everything is mapped
+                /*if(item is PersonalDeletor) {
+                    item.deletorSlots.forEach {
+                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                            it,
+                            "Unknown item ID in Personal Compactor: ${it.apiName}"
+                        )
+                    }
+                }*/
+
+                if (item is BuildersWand) {
+                    assertNotNull(item.buildersWandData)
+                }
+
+                if (item is BuildersRuler) {
+                    assertNotNull(item.buildersRulerData)
+                }
+
+                //TODO reenable once everything is mapped
+                //SkyblockItemHelper.checkFields(item)
             }
         }
     }
@@ -314,8 +414,8 @@ class TestSkyblockProfile {
                 val fullProfile = fullProfileJson.toSkyblockProfile()
 
                 fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null && member.inventory?.inventoryContents != null) {
-                        val inventoryContent = member.inventory?.inventoryContents!!.items
+                    if (member.inventory != null && member.inventory.inventoryContents != null) {
+                        val inventoryContent = member.inventory.inventoryContents.items
 
                         val skyblockMenu = inventoryContent[8]
 
@@ -349,7 +449,625 @@ class TestSkyblockProfile {
     }
 
     @Test
-    fun testNoUnknownDataTypes() {
+    fun testAllItemIds() {
+        TestHelper.readItemList().forEach {
+            val apiName = it.getAsJsonPrimitive("id").asString
+
+            val id = KnownSkyblockItemId.fromApiName(apiName)
+
+            // TODO enable once mapped
+            /*assertIsNot<UnknownSkyblockItemId>(
+                id,
+                "Item $apiName has not been added to Skyblock item ID list",
+            )*/
+        }
+    }
+
+    @Test
+    fun testAllItemsInTestData() {
+        val duplicateSkyblockItemIds = HashSet<String>()
+        val uniqueSkyblockItemIds = HashSet<String>()
+
+        for (item in KnownSkyblockItemId.entries.map { it.apiName }) {
+            if (!uniqueSkyblockItemIds.add(item)) {
+                duplicateSkyblockItemIds.add(item)
+            }
+        }
+
+        assertTrue("There are some skyblock item ids that were used multiple times: $duplicateSkyblockItemIds") {
+            duplicateSkyblockItemIds.isEmpty() && uniqueSkyblockItemIds.size == KnownSkyblockItemId.entries.size
+        }
+
+        val nonExistentItems = listOf(
+            // These are unobtainable :(
+            AdminItemId.AdminLavaRod,
+            AdminItemId.AdminsWarmSweater,
+            ArmorItemId.BootsOfTheStars,
+            AdminItemId.BowOfTheUniverse,
+            AdminItemId.EnchantedClockAdmin,
+            AccessoryItemId.EternalCrystal,
+            AdminItemId.FerocitySword150,
+            AdminItemId.FerocitySword50,
+            ArmorItemId.GhastHead,
+            AdminItemId.GiantPileOfCash,
+            ArmorItemId.HelmetOfTheStars,
+            AdminItemId.Kindred,
+            ArmorItemId.PotatoCrown,
+            ArmorItemId.ShimmersparkleChestplate,
+            MementoItemId.ShinyRelic,
+            AdminItemId.SwordOfTheMultiverse,
+            AdminItemId.SwordOfTheStars9000,
+            AdminItemId.SwordOfTheUniverse,
+            AdminItemId.Voodoo,
+            RiftItemId.RemoteTimeChamberRemote,
+            WandItemId.HellstormWand,
+            VanillaItemId.MinecartWithCommandBlock,
+            AdminItemId.SwordOfLiveReloading,
+            AdminItemId.HelmetOfLiveReloading,
+            WeaponItemId.GiantsEyeSword,
+            MiscItemId.KuudraWashingMachine,
+            MiscItemId.DragonEgg,
+
+            // These are quite impossible to find
+            ArmorItemId.BurningHollowHelmet,
+            CosmeticItemId.DittoSkin,
+            ArmorItemId.FieryFervorBoots,
+            ArmorItemId.FieryFervorChestplate,
+            ArmorItemId.FieryFervorHelmet,
+            ArmorItemId.FieryFervorLeggings,
+            ArmorItemId.FieryHollowHelmet,
+            CosmeticItemId.GoldenDanteStatue,
+            ArmorItemId.HotFervorHelmet,
+            ArmorItemId.HotHollowHelmet,
+            VanillaItemId.EmptyMap,
+            RiftItemId.BarrysMontgrayPen,
+            RiftItemId.CaducousExtract,
+            RiftItemId.LivingMetalAnchor,
+            RiftItemId.PreDigestionFish,
+            ForgeableItemId.SecretRailroadPass,
+            WeaponItemId.TimeShuriken,
+            MiscItemId.CarnivalDartTube,
+            MiscItemId.ChunkOfTheMoon,
+            MiscItemId.CapsaicinEyedropsOld,
+            MiscItemId.EnchantedMushroomSoup,
+            MiscItemId.FakeEmeraldAltar,
+            MiscItemId.FlowerMaelstrom,
+            MiscItemId.FramedVolcanicStonefish,
+            RiftTimecharmId.CelestialTimecharm,
+            RiftTimecharmId.ChickenNEggTimecharm,
+            RiftTimecharmId.MirrorverseTimecharm,
+            RiftTimecharmId.SupremeTimecharm,
+            MiscItemId.LetterOfRecommendation,
+            MiscItemId.PoemOfTrueLove,
+            MiscItemId.PoorlyWrappedRock,
+            MiscItemId.SolvedRubixPrism,
+            MiscItemId.VeryOfficialYellowRockOfLove,
+            MiscItemId.WetPumpkin,
+            DungeonItemId.WizardsCrystal,
+            ToolItemId.GameFixer,
+
+            // Fairly hard to find, might do at some point
+            DrillPartId.SapphirePolishedDrillEngine,
+            RiftItemId.BerberisFuelInjector,
+            RiftItemId.HotDog,
+            RiftItemId.AgaricusSoup,
+            RiftItemId.PolarvoidBook,
+            PowerStoneId.HornsOfTorment,
+            PowerStoneId.ObsidianTablet,
+            ReforgeStoneId.PetrifiedStarfall,
+            ReforgeStoneId.PocketIceberg,
+            ReforgeStoneId.PureMithril,
+            ReforgeStoneId.TitaniumTesseract,
+            ForgeableItemId.TungstenRegulator,
+            ReforgeStoneId.BlackDiamond,
+            ReforgeStoneId.BulkyStone,
+            ReforgeStoneId.EntropySuppressor,
+            ReforgeStoneId.FullJawFangingKit,
+            ReforgeStoneId.LargeWalnut,
+            ReforgeStoneId.PresumedGallonOfRedPaint,
+            ReforgeStoneId.RustyAnchor,
+            ReforgeStoneId.SearingStone,
+            ReforgeStoneId.ShinyPrism,
+            RiftItemId.WoB,
+            MiscItemId.ABeginnersGuideToPesthunting,
+            MiscItemId.AbiphoneContactsTrio,
+            MiscItemId.AvariciousChalice,
+            MiscItemId.Beacon3,
+            MiscItemId.Beacon4,
+            MiscItemId.BirchForestBiomeStick,
+            MiscItemId.EndBiomeStick,
+            MiscItemId.MesaBiomeStick,
+            MiscItemId.MushroomBiomeStick,
+            MiscItemId.SavannaBiomeStick,
+            MiscItemId.BloodSoakedCoins,
+            MiscItemId.BloodStainedCoins,
+            MiscItemId.Charcoal,
+            MiscItemId.ChillTheFish,
+            MiscItemId.ClayMinionXIIUpgradeStone,
+            MiscItemId.CluckTheFish,
+            MiscItemId.CompleteCenturyCakeBundle,
+            MiscItemId.CryopowderShard,
+            MiscItemId.DeadBushOfLove,
+            PotionItemId.BitterIcedTea,
+            PotionItemId.DecentCoffee,
+            PotionItemId.KnockOffCola,
+            PotionItemId.PulpousOrangeJuice,
+            PotionItemId.RedThornleafTea,
+            PotionItemId.ScarletonPremium,
+            PotionItemId.TepidGreenTea,
+            PotionItemId.TuttiFruttiFlavoredPoison,
+            MiscItemId.DivansAlloy,
+            MiscItemId.AppleDecoration,
+            MiscItemId.BrownMushroomDecoration,
+            MiscItemId.BushDecoration,
+            MiscItemId.BeetrootDecoration,
+            MiscItemId.BerryDecoration,
+            MiscItemId.AncientFruitDecoration,
+            MiscItemId.BerryBushDecoration,
+            MiscItemId.ChestoBerryDecoration,
+            MiscItemId.LilacFruitDecoration,
+            MiscItemId.AppalledPumpkinDecoration,
+            MiscItemId.EccentricPaintingBundle,
+            MiscItemId.EggHunt,
+            MiscItemId.EnchantedBookBundleVicious,
+            MiscItemId.EnchantedBookBundleBigBrain,
+            MiscItemId.EnchantedBookBundleReflection,
+            MiscItemId.EnchantedBookBundleTheOne,
+            MiscItemId.EnchantedBookBundleChimera,
+            MiscItemId.EnchantedBookBundlePrismatic,
+            MiscItemId.EnchantedBookshelf,
+            MiscItemId.EnchantedClayBlock,
+            MiscItemId.EnchantedCookedSalmon,
+            MiscItemId.EnchantedRabbitHide,
+            MiscItemId.EnchantedRedSandCube,
+            MiscItemId.SpeedEnrichment,
+            MiscItemId.IntelligenceEnrichment,
+            MiscItemId.CriticalDamageEnrichment,
+            MiscItemId.CriticalChanceEnrichment,
+            MiscItemId.DefenseEnrichment,
+            MiscItemId.HealthEnrichment,
+            MiscItemId.AttackSpeedEnrichment,
+            MiscItemId.EverburningFlame,
+            MiscItemId.FishingMinionXIIUpgradeStone,
+            MiscItemId.Flames,
+            MiscItemId.DesertCrystal,
+            MiscItemId.UncommonGriffinUpgradeStone,
+            MiscItemId.RareGriffinUpgradeStone,
+            MiscItemId.EpicGriffinUpgradeStone,
+            MiscItemId.LegendaryGriffinUpgradeStone,
+            MiscItemId.HardGlass,
+            MiscItemId.HasteBlock,
+            MiscItemId.HeatCore,
+            MiscItemId.HurricaneInABottle,
+            MiscItemId.HyperCatalyst,
+            MiscItemId.IceCube,
+            MiscItemId.JalapenoBook,
+            MiscItemId.JumboBackpackUpgrade,
+            MiscItemId.Kloonboat,
+            MiscItemId.LavaWaterOrb,
+            MiscItemId.MaddoxsPhoneNumber,
+            MiscItemId.MushroomWartsStew,
+            MiscItemId.MyceliumDust,
+            MiscItemId.PerfectlyCutDiamond,
+            MiscItemId.PoisonedCandy,
+            MiscItemId.Portalizer,
+            MiscItemId.PotatoWarSilverMedal,
+            MiscItemId.RubyPowerScroll,
+            MiscItemId.AmethystPowerScroll,
+            MiscItemId.OpalPowerScroll,
+            KnownPetItem.PureMithrilGem,
+            MiscItemId.QualityMap,
+            KnownPetItem.RadioactiveVial,
+            MiscItemId.ReaperPepper,
+            MiscItemId.SavingGrace,
+            MiscItemId.SecretGiftForJuliette,
+            MiscItemId.SealsTreatBag,
+            MiscItemId.SharkWaterOrb,
+            MiscItemId.SkeletonTheFish,
+            MiscItemId.SolarPanel,
+            MiscItemId.SoulflowEngine,
+            MiscItemId.SpookTheFish,
+            MiscItemId.SpookyWaterOrb,
+            MiscItemId.StewTheFish,
+            MiscItemId.StonePlatform,
+            MiscItemId.StormInABottle,
+            MiscItemId.TeleporterPill,
+            MiscItemId.TheArtOfPeace,
+            MiscItemId.VolcanicRock,
+            MiscItemId.WeatherNode,
+            MiscItemId.WinterWaterOrb,
+            MiscItemId.WispUpgradeStoneRare,
+            MiscItemId.WispUpgradeStoneEpic,
+            MiscItemId.WispUpgradeStoneLegendary,
+            MiscItemId.WormTheFish,
+            MiscItemId.XLargeStorage,
+            MiscItemId.PortalToTheCastle,
+            MiscItemId.PortalToTheDarkAuction,
+            MiscItemId.PortalToTheCrypts,
+            MiscItemId.PortalToTheMuseum,
+            MiscItemId.PortalToTheBarn,
+            MiscItemId.PortalToMushroomIsland,
+            MiscItemId.PortalToTheTrappersDen,
+            MiscItemId.PortalToBirchPark,
+            MiscItemId.PortalToSpruceWoods,
+            MiscItemId.PortalToJungleIsland,
+            MiscItemId.PortalToSavannaWoodland,
+            MiscItemId.PortalToDarkThicket,
+            MiscItemId.PortalToTheGoldMine,
+            MiscItemId.PortalToTheDwarvenMines,
+            MiscItemId.PortalToTheForge,
+            MiscItemId.PortalToTheCrystalHollows,
+            MiscItemId.PortalToTheCrystalNucleus,
+            MiscItemId.PortalToTheSpidersDen,
+            MiscItemId.PortalToTheTopOfTheNest,
+            MiscItemId.PortalToArachnesSanctuary,
+            MiscItemId.PortalToTheEnd,
+            MiscItemId.PortalToTheDragonsNest,
+            MiscItemId.PortalToTheVoidSepulture,
+            MiscItemId.PortalToTheCrimsonIsle,
+            MiscItemId.PortalToTheWasteland,
+            MiscItemId.PortalToDragontail,
+            MiscItemId.PortalToScarleton,
+            MiscItemId.PortalToTheSmolderingTomb,
+            MiscItemId.PortalToTheWizardTower,
+            MiscItemId.PortalToTheDwarvenBaseCamp,
+            MiscItemId.PortalToTheRift,
+            ArrowItemId.ReinforcedIronArrow,
+            ArrowItemId.RedstoneTippedArrow,
+            DungeonItemId.ReviveStone,
+            KnownPetItem.MiningExpCommon,
+            KnownPetItem.MiningExpUncommon,
+            KnownPetItem.FarmingExpCommon,
+            KnownPetItem.FarmingExpRare,
+            KnownPetItem.FishingExpCommon,
+            KnownPetItem.ForagingExpCommon,
+            KnownPetItem.AllSkillsExpSuperBoost,
+            KnownPetItem.BigTeeth,
+            KnownPetItem.BiggerTeeth,
+            KnownPetItem.GoldClaws,
+            KnownPetItem.HardenedScales,
+            KnownPetItem.SharpenedClaws,
+            KnownPetItem.SerratedClaws,
+            KnownPetItem.Textbook,
+            KnownPetItem.Bubblegum,
+            KnownPetItem.TierBoost,
+            KnownPetItem.FourEyedFish,
+            ToolItemId.BingoLavaRod,
+            ToolItemId.CarnivalRod,
+            ToolItemId.EllesLavaRod,
+            ToolItemId.CarnivalShovel,
+            ToolItemId.EllesPickaxe,
+            MinionItemId.AcaciaMinion1,
+            MinionItemId.AcaciaMinion2,
+            MinionItemId.AcaciaMinion3,
+            MinionItemId.AcaciaMinion5,
+            MinionItemId.AcaciaMinion7,
+            MinionItemId.AcaciaMinion9,
+            MinionItemId.BirchMinion1,
+            MinionItemId.BirchMinion3,
+            MinionItemId.BirchMinion5,
+            MinionItemId.BirchMinion7,
+            MinionItemId.BirchMinion10,
+            MinionItemId.BlazeMinion3,
+            MinionItemId.BlazeMinion4,
+            MinionItemId.BlazeMinion9,
+            MinionItemId.BlazeMinion11,
+            MinionItemId.CactusMinion2,
+            MinionItemId.CactusMinion5,
+            MinionItemId.CactusMinion6,
+            MinionItemId.CactusMinion10,
+            MinionItemId.CarrotMinion1,
+            MinionItemId.CarrotMinion2,
+            MinionItemId.CarrotMinion5,
+            MinionItemId.CarrotMinion6,
+            MinionItemId.CarrotMinion10,
+            MinionItemId.CaveSpiderMinion2,
+            MinionItemId.CaveSpiderMinion3,
+            MinionItemId.CaveSpiderMinion8,
+            MinionItemId.ChickenMinion1,
+            MinionItemId.ChickenMinion3,
+            MinionItemId.ChickenMinion4,
+            MinionItemId.ChickenMinion6,
+            MinionItemId.ChickenMinion7,
+            MinionItemId.ClayMinion2,
+            MinionItemId.ClayMinion3,
+            MinionItemId.ClayMinion4,
+            MinionItemId.ClayMinion5,
+            MinionItemId.ClayMinion6,
+            MinionItemId.CoalMinion2,
+            MinionItemId.CoalMinion3,
+            MinionItemId.CoalMinion8,
+            MinionItemId.CobblestoneMinion5,
+            MinionItemId.CobblestoneMinion6,
+            MinionItemId.CobblestoneMinion8,
+            MinionItemId.CobblestoneMinion10,
+            MinionItemId.CocoaBeansMinion1,
+            MinionItemId.CocoaBeansMinion2,
+            MinionItemId.CocoaBeansMinion3,
+            MinionItemId.CocoaBeansMinion5,
+            MinionItemId.CocoaBeansMinion6,
+            MinionItemId.CocoaBeansMinion10,
+            MinionItemId.CowMinion1,
+            MinionItemId.CowMinion2,
+            MinionItemId.CowMinion3,
+            MinionItemId.CowMinion4,
+            MinionItemId.CowMinion5,
+            MinionItemId.CowMinion6,
+            MinionItemId.CowMinion9,
+            MinionItemId.CreeperMinion2,
+            MinionItemId.CreeperMinion3,
+            MinionItemId.CreeperMinion4,
+            MinionItemId.CreeperMinion5,
+            MinionItemId.CreeperMinion6,
+            MinionItemId.DarkOakMinion1,
+            MinionItemId.DarkOakMinion2,
+            MinionItemId.DarkOakMinion3,
+            MinionItemId.DarkOakMinion6,
+            MinionItemId.DarkOakMinion10,
+            MinionItemId.DiamondMinion1,
+            MinionItemId.DiamondMinion3,
+            MinionItemId.DiamondMinion10,
+            MinionItemId.EmeraldMinion1,
+            MinionItemId.EmeraldMinion2,
+            MinionItemId.EmeraldMinion6,
+            MinionItemId.EmeraldMinion8,
+            MinionItemId.EndStoneMinion1,
+            MinionItemId.EndStoneMinion2,
+            MinionItemId.EndStoneMinion3,
+            MinionItemId.EndStoneMinion4,
+            MinionItemId.EndStoneMinion5,
+            MinionItemId.EndStoneMinion6,
+            MinionItemId.EndStoneMinion7,
+            MinionItemId.EndStoneMinion9,
+            MinionItemId.EndermanMinion2,
+            MinionItemId.EndermanMinion9,
+            MinionItemId.FishingMinion2,
+            MinionItemId.FishingMinion3,
+            MinionItemId.FishingMinion4,
+            MinionItemId.FishingMinion6,
+            MinionItemId.FishingMinion9,
+            MinionItemId.FishingMinion10,
+            MinionItemId.FlowerMinion2,
+            MinionItemId.FlowerMinion4,
+            MinionItemId.FlowerMinion5,
+            MinionItemId.FlowerMinion6,
+            MinionItemId.FlowerMinion7,
+            MinionItemId.FlowerMinion8,
+            MinionItemId.FlowerMinion9,
+            MinionItemId.FlowerMinion10,
+            MinionItemId.GhastMinion1,
+            MinionItemId.GhastMinion4,
+            MinionItemId.GhastMinion5,
+            MinionItemId.GhastMinion10,
+            MinionItemId.GhastMinion11,
+            MinionItemId.GlowstoneMinion1,
+            MinionItemId.GlowstoneMinion2,
+            MinionItemId.GlowstoneMinion3,
+            MinionItemId.GlowstoneMinion4,
+            MinionItemId.GlowstoneMinion5,
+            MinionItemId.GlowstoneMinion7,
+            MinionItemId.GoldMinion3,
+            MinionItemId.GoldMinion9,
+            MinionItemId.GravelMinion1,
+            MinionItemId.GravelMinion2,
+            MinionItemId.GravelMinion3,
+            MinionItemId.GravelMinion5,
+            MinionItemId.GravelMinion9,
+            MinionItemId.GravelMinion10,
+            MinionItemId.HardStoneMinion1,
+            MinionItemId.HardStoneMinion3,
+            MinionItemId.HardStoneMinion5,
+            MinionItemId.HardStoneMinion7,
+            MinionItemId.HardStoneMinion10,
+            MinionItemId.IceMinion2,
+            MinionItemId.IceMinion3,
+            MinionItemId.IceMinion4,
+            MinionItemId.IceMinion5,
+            MinionItemId.IceMinion6,
+            MinionItemId.InfernoMinion3,
+            MinionItemId.InfernoMinion4,
+            MinionItemId.InfernoMinion7,
+            MinionItemId.InfernoMinion9,
+            MinionItemId.InfernoMinion10,
+            MinionItemId.IronMinion2,
+            MinionItemId.IronMinion3,
+            MinionItemId.IronMinion10,
+            MinionItemId.JungleMinion1,
+            MinionItemId.JungleMinion2,
+            MinionItemId.JungleMinion3,
+            MinionItemId.JungleMinion6,
+            MinionItemId.JungleMinion10,
+            MinionItemId.LapisMinion5,
+            MinionItemId.LapisMinion7,
+            MinionItemId.LapisMinion10,
+            MinionItemId.MagmaCubeMinion2,
+            MinionItemId.MagmaCubeMinion3,
+            MinionItemId.MagmaCubeMinion4,
+            MinionItemId.MagmaCubeMinion5,
+            MinionItemId.MagmaCubeMinion6,
+            MinionItemId.MagmaCubeMinion9,
+            MinionItemId.MagmaCubeMinion10,
+            MinionItemId.MelonMinion3,
+            MinionItemId.MelonMinion6,
+            MinionItemId.MelonMinion10,
+            MinionItemId.MithrilMinion1,
+            MinionItemId.MithrilMinion6,
+            MinionItemId.MithrilMinion8,
+            MinionItemId.MithrilMinion9,
+            MinionItemId.MithrilMinion10,
+            MinionItemId.MushroomMinion1,
+            MinionItemId.MushroomMinion3,
+            MinionItemId.MushroomMinion5,
+            MinionItemId.MushroomMinion6,
+            MinionItemId.MushroomMinion7,
+            MinionItemId.MushroomMinion9,
+            MinionItemId.MushroomMinion10,
+            MinionItemId.MyceliumMinion5,
+            MinionItemId.MyceliumMinion6,
+            MinionItemId.MyceliumMinion7,
+            MinionItemId.MyceliumMinion8,
+            MinionItemId.MyceliumMinion9,
+            MinionItemId.MyceliumMinion11,
+            MinionItemId.NetherWartMinion2,
+            MinionItemId.NetherWartMinion3,
+            MinionItemId.NetherWartMinion5,
+            MinionItemId.NetherWartMinion6,
+            MinionItemId.NetherWartMinion10,
+            MinionItemId.OakMinion2,
+            MinionItemId.OakMinion3,
+            MinionItemId.OakMinion6,
+            MinionItemId.OakMinion10,
+            MinionItemId.ObsidianMinion3,
+            MinionItemId.ObsidianMinion5,
+            MinionItemId.ObsidianMinion6,
+            MinionItemId.ObsidianMinion10,
+            MinionItemId.PigMinion2,
+            MinionItemId.PotatoMinion2,
+            MinionItemId.PumpkinMinion2,
+            MinionItemId.PumpkinMinion3,
+            MinionItemId.PumpkinMinion5,
+            MinionItemId.PumpkinMinion6,
+            MinionItemId.PumpkinMinion9,
+            MinionItemId.PumpkinMinion10,
+            MinionItemId.QuartzMinion1,
+            MinionItemId.QuartzMinion3,
+            MinionItemId.QuartzMinion4,
+            MinionItemId.QuartzMinion5,
+            MinionItemId.QuartzMinion7,
+            MinionItemId.RabbitMinion1,
+            MinionItemId.RabbitMinion3,
+            MinionItemId.RabbitMinion5,
+            MinionItemId.RabbitMinion10,
+            MinionItemId.RedSandMinion2,
+            MinionItemId.RedSandMinion3,
+            MinionItemId.RedSandMinion4,
+            MinionItemId.RedSandMinion9,
+            MinionItemId.RedSandMinion10,
+            MinionItemId.RedstoneMinion1,
+            MinionItemId.RedstoneMinion2,
+            MinionItemId.RedstoneMinion10,
+            MinionItemId.RevenantMinion2,
+            MinionItemId.RevenantMinion6,
+            MinionItemId.RevenantMinion8,
+            MinionItemId.RevenantMinion11,
+            MinionItemId.SandMinion1,
+            MinionItemId.SandMinion2,
+            MinionItemId.SandMinion3,
+            MinionItemId.SandMinion9,
+            MinionItemId.SandMinion10,
+            MinionItemId.SheepMinion1,
+            MinionItemId.SheepMinion2,
+            MinionItemId.SheepMinion5,
+            MinionItemId.SheepMinion8,
+            MinionItemId.SkeletonMinion2,
+            MinionItemId.SkeletonMinion6,
+            MinionItemId.SkeletonMinion7,
+            MinionItemId.SkeletonMinion8,
+            MinionItemId.SkeletonMinion10,
+            MinionItemId.SlimeMinion2,
+            MinionItemId.SlimeMinion3,
+            MinionItemId.SlimeMinion5,
+            MinionItemId.SlimeMinion10,
+            MinionItemId.SnowMinion2,
+            MinionItemId.SnowMinion3,
+            MinionItemId.SnowMinion4,
+            MinionItemId.SnowMinion5,
+            MinionItemId.SnowMinion6,
+            MinionItemId.SnowMinion7,
+            MinionItemId.SnowMinion8,
+            MinionItemId.SnowMinion10,
+            MinionItemId.SpiderMinion1,
+            MinionItemId.SpiderMinion2,
+            MinionItemId.SpiderMinion3,
+            MinionItemId.SpiderMinion6,
+            MinionItemId.SpiderMinion7,
+            MinionItemId.SpruceMinion1,
+            MinionItemId.SpruceMinion2,
+            MinionItemId.SpruceMinion3,
+            MinionItemId.SpruceMinion5,
+            MinionItemId.SpruceMinion7,
+            MinionItemId.SpruceMinion9,
+            MinionItemId.SugarCaneMinion1,
+            MinionItemId.SugarCaneMinion2,
+            MinionItemId.SugarCaneMinion5,
+            MinionItemId.SugarCaneMinion6,
+            MinionItemId.SugarCaneMinion8,
+            MinionItemId.SugarCaneMinion10,
+            MinionItemId.TarantulaMinion2,
+            MinionItemId.TarantulaMinion3,
+            MinionItemId.TarantulaMinion8,
+            MinionItemId.TarantulaMinion9,
+            MinionItemId.TarantulaMinion10,
+            MinionItemId.VampireMinion1,
+            MinionItemId.VampireMinion2,
+            MinionItemId.VampireMinion3,
+            MinionItemId.VampireMinion6,
+            MinionItemId.VampireMinion7,
+            MinionItemId.VampireMinion8,
+            MinionItemId.VampireMinion9,
+            MinionItemId.VoidlingMinion3,
+            MinionItemId.VoidlingMinion6,
+            MinionItemId.VoidlingMinion9,
+            MinionItemId.VoidlingMinion10,
+            MinionItemId.WheatMinion2,
+            MinionItemId.WheatMinion3,
+            MinionItemId.WheatMinion8,
+            MinionItemId.WheatMinion9,
+            MinionItemId.ZombieMinion1,
+            MinionItemId.ZombieMinion4,
+            MinionItemId.ZombieMinion6,
+            MinionItemId.ZombieMinion7,
+            MinionItemId.ZombieMinion10,
+            MinionItemId.InfernoFuelMagmaCream,
+            MinionItemId.InfernoFuelGlowstoneDust,
+            MinionItemId.InfernoFuelNetherWart,
+            MinionItemId.InfernoFuelBlazeRod,
+            MinionItemId.InfernoFuelCrudeGabagool,
+            MinionItemId.InfernoHeavyMagmaCream,
+            MinionItemId.InfernoHeavyGlowstoneDust,
+            MinionItemId.InfernoHeavyNetherWart,
+            MinionItemId.InfernoHeavyBlazeRod,
+            MinionItemId.InfernoHeavyCrudeGabagool,
+            MinionItemId.InfernoHypergolicMagmaCream,
+            MinionItemId.InfernoHypergolicGlowstoneDust,
+            MinionItemId.InfernoHypergolicNetherWart,
+            MinionItemId.InfernoHypergolicBlazeRod,
+        )
+
+        val allInventorySkyblockItemIds =
+            TestHelper.readAllSkyblockProfiles().flatMap { it }.flatMap { it.currentMembers }
+                .flatMap { it.allItems }.flatMap { it.items }.filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is UnknownSkyblockItemId }.distinct()
+
+        val allMuseumSkyblockItemIds =
+            TestHelper.readAllMuseumData().flatMap { it.museumData.values }.flatMap { it.allItems }
+                .filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is UnknownSkyblockItemId }.distinct()
+
+        val allSkyblockItemIds = (allInventorySkyblockItemIds + allMuseumSkyblockItemIds).distinct()
+
+        assertTrue(
+            "Some (${KnownSkyblockItemId.entries.size - allSkyblockItemIds.size}/${KnownSkyblockItemId.entries.size}) Skyblock item(s) was/were never found in the test data: ${
+                KnownSkyblockItemId.entries.filterNot { allSkyblockItemIds.contains(it) || nonExistentItems.contains(it) }
+                    .map { "${it.name} (${it.apiName})" }
+            }"
+        ) {
+            (allSkyblockItemIds + nonExistentItems).distinct().size == KnownSkyblockItemId.entries.size
+        }
+
+        assertFalse(
+            "Some items that were ignored were actually found, so they don't have to be ignored anymore: ${
+                allSkyblockItemIds.filter {
+                    nonExistentItems.contains(
+                        it
+                    )
+                }
+            }"
+        ) { allSkyblockItemIds.any { nonExistentItems.contains(it) } }
+    }
+
+    @Test
+    fun testNoInvalidDataTypes() {
         for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (skyblockProfile in skyblockProfiles) {
                 for (member in skyblockProfile.members) {

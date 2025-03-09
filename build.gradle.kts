@@ -102,5 +102,5 @@ tasks.withType<Javadoc> {
 tasks.test {
     useJUnitPlatform()
     minHeapSize = "512m"
-    maxHeapSize = "1024m"
+    maxHeapSize = "2048m"
 }
