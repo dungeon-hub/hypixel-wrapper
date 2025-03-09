@@ -109,7 +109,7 @@ class DiskHistoryStringCache<T>(
 
     companion object {
         var cacheDirectory =
-            "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-cache"
+            "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-cache" //TODO make it so that only one of those exists (together with the one in UUID cache)
 
         fun deleteDirectoryWithContents(rootPath: Path) {
             if (!rootPath.exists()) {
