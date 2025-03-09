@@ -6,7 +6,6 @@ import net.dungeonhub.hypixel.entities.inventory.items.special.Pickonimbus
 
 enum class ToolItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
-    //TODO - https://wiki.hypixel.net/Category:Tool
     GemstoneGauntlet("GEMSTONE_GAUNTLET"),
     AdvancedGardeningAxe("ADVANCED_GARDENING_AXE"),
     BasicGardeningAxe("BASIC_GARDENING_AXE"),
