@@ -472,7 +472,7 @@ class TestSkyblockProfile {
             val id = KnownSkyblockItemId.fromApiName(apiName)
 
             // TODO enable once mapped
-            /*assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+            /*assertIsNot<UnknownSkyblockItemId>(
                 id,
                 "Item $apiName has not been added to Skyblock item ID list",
             )*/
@@ -728,7 +728,8 @@ class TestSkyblockProfile {
             MiscItemId.PortalToTheDwarvenBaseCamp,
             MiscItemId.PortalToTheRift,
             ArrowItemId.ReinforcedIronArrow,
-            ArrowItemId.RedstoneTippedArrow
+            ArrowItemId.RedstoneTippedArrow,
+            DungeonItemId.ReviveStone
         )
 
         val allInventorySkyblockItemIds =
