@@ -49,6 +49,34 @@ class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement
         return historyDirectory
     }
 
+    fun getAllHistoryEntries(): Map<UUID, List<CacheElement<T>>> {
+        val historyDirectory = getHistoryDirectory()
+
+        if (!historyDirectory.exists()) {
+            return emptyMap()
+        }
+
+        return Files.list(historyDirectory).toList().mapNotNull {
+            if (!it.isDirectory()) return@mapNotNull null
+
+            try {
+                UUID.fromString(it.name)
+            } catch (_: IllegalArgumentException) {
+                null
+            }
+        }.associate { uuid ->
+            uuid to Files.list(getHistoryDirectory(uuid)).toList().mapNotNull { dataFile ->
+                if (dataFile.isRegularFile()) {
+                    val json = Files.readString(dataFile)
+
+                    return@mapNotNull GsonProvider.gson.fromJson(json, type.type)
+                }
+
+                return@mapNotNull null
+            }
+        }
+    }
+
     fun getHistoryFile(uuid: UUID, instant: Instant): Path {
         return getHistoryDirectory(uuid).resolve(instant.toEpochMilli().toString() + ".json")
     }

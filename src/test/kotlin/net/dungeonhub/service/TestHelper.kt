@@ -2,6 +2,7 @@ package net.dungeonhub.service
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import net.dungeonhub.hypixel.client.DiskCacheApiClient
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.guild.toGuild
 import net.dungeonhub.hypixel.entities.museum.MuseumData
@@ -74,6 +75,12 @@ object TestHelper {
 
             GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
         }.toList()
+    }
+
+    fun readAllProdSkyblockProfiles(): List<List<SkyblockProfile>> {
+        return DiskCacheApiClient.skyblockProfilesCache.retrieveAllElements()
+            .map { it.value.profiles } + DiskCacheApiClient.skyblockProfilesCache.getAllHistoryEntries()
+            .flatMap { it.value }.map { it.value.profiles }
     }
 
     fun readAllHypixelPlayers(): List<HypixelPlayer> {
