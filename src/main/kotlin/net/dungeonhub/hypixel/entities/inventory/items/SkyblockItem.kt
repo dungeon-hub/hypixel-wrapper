@@ -5,6 +5,8 @@ import me.nullicorn.nedit.type.NBTCompound
 import me.nullicorn.nedit.type.TagType
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
 import net.dungeonhub.hypixel.entities.inventory.isValidItem
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.toItem
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType

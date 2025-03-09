@@ -1,9 +1,9 @@
 package net.dungeonhub.hypixel.entities.inventory.items.special
 
 import me.nullicorn.nedit.type.NBTCompound
-import net.dungeonhub.hypixel.entities.inventory.items.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
-import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 
 //TODO add fields
 //TODO add mapping to potion type
@@ -42,7 +42,7 @@ class Potion(raw: NBTCompound) : SkyblockItem(raw) {
 
     val lastIngredient: SkyblockItemId?
         get() = extraAttributes.getString("last_potion_ingredient")
-            ?.let { KnownSkyblockItemId.Companion.fromApiName(it) }
+            ?.let { KnownSkyblockItemId.fromApiName(it) }
 
     val shouldGiveAlchemyExperience: Boolean
         get() = extraAttributes.getByte("should_give_alchemy_exp", 0) == 1.toByte()

@@ -1,6 +1,7 @@
 package net.dungeonhub.service
 
 import net.dungeonhub.hypixel.entities.inventory.items.*
+import net.dungeonhub.hypixel.entities.inventory.items.id.UnknownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.special.*
 import kotlin.test.assertTrue
 
@@ -116,7 +117,7 @@ object SkyblockItemHelper {
     }
 
     fun checkFields(item: SkyblockItem) {
-        if (item.id is KnownSkyblockItemId.UnknownSkyblockItemId) return
+        if (item.id is UnknownSkyblockItemId) return
 
         val fields = getFields(item)
 

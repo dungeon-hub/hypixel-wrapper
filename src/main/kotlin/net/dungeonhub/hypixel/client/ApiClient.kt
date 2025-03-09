@@ -2,8 +2,8 @@ package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
-import net.dungeonhub.hypixel.entities.inventory.items.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.id.WeaponItemId
 import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
@@ -51,7 +51,7 @@ interface ApiClient {
                 ?: emptyList()
         val terminator: List<Gear> = profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
             ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
-                return@filter item.id == KnownSkyblockItemId.Terminator
+                return@filter item.id == WeaponItemId.Terminator
             }?.filterIsInstance<Gear>() ?: emptyList()
         val goldenDragon: List<Pet> = profileMember.petsData?.pets?.filter { pet ->
             pet.type == "GOLDEN_DRAGON"

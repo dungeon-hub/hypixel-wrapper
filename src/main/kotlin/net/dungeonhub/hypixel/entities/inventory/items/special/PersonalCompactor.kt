@@ -2,8 +2,8 @@ package net.dungeonhub.hypixel.entities.inventory.items.special
 
 import me.nullicorn.nedit.type.NBTCompound
 import net.dungeonhub.hypixel.entities.inventory.items.Accessory
-import net.dungeonhub.hypixel.entities.inventory.items.KnownSkyblockItemId
-import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 
 class PersonalCompactor(raw: NBTCompound) : Accessory(raw) {
     // Pretty funny that this isn't named PERSONAL_COMPACTOR_ACTIVE - Hypixel is pretty lazy lol
