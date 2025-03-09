@@ -8,10 +8,11 @@ API.
 Before you use the library, you should set some settings. This is done by modifying some public variables or setting
 environment variables:
 
-| Field                                    | Description                                                        | Possible values                      | Environment Variable   | Path (for Import)                 |
+| Field                                    | Description                                                        | Possible values                      | Environment Variable   | Package (for Import)              |
 |------------------------------------------|--------------------------------------------------------------------|--------------------------------------|------------------------|-----------------------------------|
 | `HypixelConnection.apiKey`               | Your Hypixel API Key                                               | Any valid UUID (API-Key) as a String | HYPIXEL_API_KEY        | net.dungeonhub.hypixel.connection |
 | `CacheApiClientProvider.cacheTypeString` | The type of caching you want to use by default (Memory by default) | Memory, Disk, Database               | HYPIXEL_API_CACHE_TYPE | net.dungeonhub.hypixel.provider   |
+| `DiskHistoryUUIDCache.cacheDirectory`    | The directory where the disk cache should be stored                | Any valid folder path                |                        | net.dungeonhub.cache.disk         |
 
 ## How to use the Library
 
