@@ -18,7 +18,6 @@ import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 import net.dungeonhub.hypixel.entities.skyblock.misc.ProfileGameMode
 import net.dungeonhub.hypixel.entities.skyblock.misc.fromSkyblockTime
-import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
@@ -655,9 +654,9 @@ class TestSkyblockProfile {
             MiscItemId.RubyPowerScroll,
             MiscItemId.AmethystPowerScroll,
             MiscItemId.OpalPowerScroll,
-            MiscItemId.PureMithrilGem,
+            KnownPetItem.PureMithrilGem,
             MiscItemId.QualityMap,
-            MiscItemId.RadioactiveVial,
+            KnownPetItem.RadioactiveVial,
             MiscItemId.ReaperPepper,
             MiscItemId.SavingGrace,
             MiscItemId.SecretGiftForJuliette,

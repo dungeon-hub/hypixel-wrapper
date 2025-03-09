@@ -2,8 +2,8 @@ package net.dungeonhub.hypixel.entities.skyblock
 
 import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetItem
 import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
-import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.hypixel.service.FormattingService

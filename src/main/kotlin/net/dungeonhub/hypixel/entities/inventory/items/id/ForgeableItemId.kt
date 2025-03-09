@@ -5,7 +5,6 @@ import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 
 enum class ForgeableItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
-    BejeweledCollar("BEJEWELED_COLLAR"),
     BejeweledHandle("BEJEWELED_HANDLE"),
     Chisel("CHISEL", { Gear(it.raw) }),
     DivansDrill("DIVAN_DRILL", { Gear(it.raw) }),
