@@ -464,7 +464,7 @@ class TestSkyblockProfile {
     }
 
     @Test
-    fun testNoInvalidDataTypes() {
+    fun testAllItemsInTestData() {
         val duplicateSkyblockItemIds = HashSet<String>()
         val uniqueSkyblockItemIds = HashSet<String>()
 
@@ -713,7 +713,24 @@ class TestSkyblockProfile {
             MiscItemId.PortalToTheRift,
             ArrowItemId.ReinforcedIronArrow,
             ArrowItemId.RedstoneTippedArrow,
-            DungeonItemId.ReviveStone
+            DungeonItemId.ReviveStone,
+            KnownPetItem.MiningExpCommon,
+            KnownPetItem.MiningExpUncommon,
+            KnownPetItem.FarmingExpCommon,
+            KnownPetItem.FarmingExpRare,
+            KnownPetItem.FishingExpCommon,
+            KnownPetItem.ForagingExpCommon,
+            KnownPetItem.AllSkillsExpSuperBoost,
+            KnownPetItem.BigTeeth,
+            KnownPetItem.BiggerTeeth,
+            KnownPetItem.GoldClaws,
+            KnownPetItem.HardenedScales,
+            KnownPetItem.SharpenedClaws,
+            KnownPetItem.SerratedClaws,
+            KnownPetItem.Textbook,
+            KnownPetItem.Bubblegum,
+            KnownPetItem.TierBoost,
+            KnownPetItem.FourEyedFish,
         )
 
         val allInventorySkyblockItemIds =
@@ -746,7 +763,10 @@ class TestSkyblockProfile {
                 }
             }"
         ) { allSkyblockItemIds.any { nonExistentItems.contains(it) } }
+    }
 
+    @Test
+    fun testNoInvalidDataTypes() {
         for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
             for (skyblockProfile in skyblockProfiles) {
                 for (member in skyblockProfile.members) {
