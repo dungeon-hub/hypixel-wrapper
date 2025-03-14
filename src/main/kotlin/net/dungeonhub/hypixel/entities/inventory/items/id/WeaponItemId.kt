@@ -31,6 +31,7 @@ enum class WeaponItemId(override val apiName: String, override val itemClass: ((
     ChronoPickaxe("CHRONO_PICKAXE", { Weapon(it.raw) }),
     Cleaver("CLEAVER", { Weapon(it.raw) }),
     Conjuring("CONJURING_SWORD", { Weapon(it.raw) }),
+    Cutlass("CUTLASS", { Weapon(it.raw) }),
     DaedalusAxe("DAEDALUS_AXE", { Weapon(it.raw) }),
     DarkClaymore("DARK_CLAYMORE", { Weapon(it.raw) }),
     DeathBow("DEATH_BOW", { Bow(it.raw) }),

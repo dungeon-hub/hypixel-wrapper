@@ -6,8 +6,13 @@ enum class MementoItemId(override val apiName: String, override val itemClass: (
     KnownSkyblockItemId {
     BasketOfHope("POTATO_BASKET"),
     BingosSecrets("SECRET_BINGO_MEMENTO"),
-    CakeSliceOfTheCentury("CENTURY_MEMENTO_RED"),
+    CakeSliceOfTheCenturyBlue("CENTURY_MEMENTO_BLUE"),
+    CakeSliceOfTheCenturyGreen("CENTURY_MEMENTO_GREEN"),
+    CakeSliceOfTheCenturyPink("CENTURY_MEMENTO_PINK"),
+    CakeSliceOfTheCenturyRed("CENTURY_MEMENTO_RED"),
+    CakeSliceOfTheCenturyYellow("CENTURY_MEMENTO_YELLOW"),
     CampaignPoster("CAMPAIGN_POSTER"),
+    CoinsOnFire("BURNING_COINS"), //TODO is this rather an admin item?
     ExpensiveToy("EXPENSIVE_TOY"),
     FrenchBread("FRENCH_BREAD"),
     GoldenCollar("GOLDEN_COLLAR"),

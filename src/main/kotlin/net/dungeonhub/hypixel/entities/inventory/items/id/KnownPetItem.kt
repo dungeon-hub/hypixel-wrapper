@@ -16,6 +16,7 @@ enum class KnownPetItem(
     FarmingExpUncommon("PET_ITEM_FARMING_SKILL_BOOST_UNCOMMON"),
     FarmingExpRare("PET_ITEM_FARMING_SKILL_BOOST_RARE"),
     FarmingExpEpic("PET_ITEM_FARMING_SKILL_BOOST_EPIC"),
+    FarmingExpLegendary("PET_ITEM_FARMING_SKILL_BOOST_LEGENDARY"),
     FishingExpCommon("PET_ITEM_FISHING_SKILL_BOOST_COMMON"),
     FishingExpUncommon("PET_ITEM_FISHING_SKILL_BOOST_UNCOMMON"),
     FishingExpRare("PET_ITEM_FISHING_SKILL_BOOST_RARE"),
@@ -26,8 +27,9 @@ enum class KnownPetItem(
     CombatExpEpic("PET_ITEM_COMBAT_SKILL_BOOST_EPIC"),
     ForagingExpCommon("PET_ITEM_FORAGING_SKILL_BOOST_COMMON"),
     ForagingExpEpic("PET_ITEM_FORAGING_SKILL_BOOST_EPIC"),
-    AllSkillsExp("PET_ITEM_ALL_SKILLS_BOOST_COMMON"),
+    AllSkillsExpCommon("PET_ITEM_ALL_SKILLS_BOOST_COMMON"),
     AllSkillsExpSuperBoost("ALL_SKILLS_SUPER_BOOST"),
+    AllSkillsExpEpic("PET_ITEM_ALL_SKILLS_BOOST_EPIC"),
 
     //Stats Items
     BigTeeth("PET_ITEM_BIG_TEETH_COMMON"),
