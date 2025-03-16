@@ -696,7 +696,7 @@ class TestSkyblockProfile {
             VanillaItemId.RedBanner,
             VanillaItemId.WhiteBanner,
             VanillaItemId.YellowBanner,
-            WeaponItemId.SkeletonLordBow,
+            DisplayItemId.SkeletonLordBow,
             AdminItemId.PerfectHopper,
             AdminItemId.BoxOfBoosterCookies,
             AdminItemId.GiantFlesh,
