@@ -15,6 +15,7 @@ open class Gear(raw: NBTCompound) : SkyblockItem(raw), EnchantableItem, Reforgea
             it.mapValues { attribute -> attribute.value as Int }
         } ?: emptyMap()
 
+    //TODO map to rune type
     val runes: Map<String, Int>
         get() = extraAttributes.getCompound("runes")?.let {
             it.mapValues { rune -> rune.value as Int }
