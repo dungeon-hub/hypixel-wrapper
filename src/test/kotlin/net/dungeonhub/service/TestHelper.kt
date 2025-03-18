@@ -22,6 +22,7 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
+import java.util.stream.Stream
 import kotlin.io.path.name
 import kotlin.io.path.nameWithoutExtension
 
@@ -48,39 +49,43 @@ object TestHelper {
         return GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
     }
 
-    fun readAllSkyblockProfileObjects(): List<SkyblockProfiles> {
+    fun readAllSkyblockProfileObjects(): Stream<SkyblockProfiles> {
         val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
 
-        return Files.list(Paths.get(profilesDirectory)).filter {
+        return Files.list(Paths.get(profilesDirectory)).toList().stream().filter {
             try {
                 UUID.fromString(it.name.replace(".json", ""))
                 return@filter true
             } catch (_: Exception) {
                 return@filter false
             }
-        }.toList().associate { file ->
+        }.map { file ->
             val fullProfilesJson = readFile("full-profiles/${file.name}")
 
             val uuid = UUID.fromString(file.name.replace(".json", ""))
 
-            uuid to GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
+            uuid to GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map {
+                it.toSkyblockProfile()
+            }
         }.map { (key, value) -> SkyblockProfiles(key, value) }
     }
 
-    fun readAllSkyblockProfiles(): List<List<SkyblockProfile>> {
+    fun readAllSkyblockProfiles(): Stream<List<SkyblockProfile>> {
         val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
 
-        return Files.list(Paths.get(profilesDirectory)).map { file ->
+        return Files.list(Paths.get(profilesDirectory)).toList().stream().map { file ->
             val fullProfilesJson = readFile("full-profiles/${file.name}")
 
             GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).map { it.toSkyblockProfile() }
-        }.toList()
+        }
     }
 
-    fun readAllProdSkyblockProfiles(): List<List<SkyblockProfile>> {
-        return DiskCacheApiClient.skyblockProfilesCache.retrieveAllElements()
-            .map { it.value.profiles } + DiskCacheApiClient.skyblockProfilesCache.getAllHistoryEntries()
-            .flatMap { it.value }.map { it.value.profiles }
+    fun readAllProdSkyblockProfiles(): Stream<Pair<UUID, List<SkyblockProfile>>> {
+        return Stream.concat(
+            DiskCacheApiClient.skyblockProfilesCache.retrieveAllElements()
+                .map { it.value.owner to it.value.profiles },
+            DiskCacheApiClient.skyblockProfilesCache.getAllHistoryEntries()
+                .flatMap { it.second }.map { it.value.owner to it.value.profiles })
     }
 
     fun readAllHypixelPlayers(): List<HypixelPlayer> {

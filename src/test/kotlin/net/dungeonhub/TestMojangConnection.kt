@@ -23,12 +23,12 @@ class TestMojangConnection {
         val notchName = "Notch"
         val notchUUID = UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5")
 
-        assertTrue(MojangConnection.cache.retrieveAll().isEmpty())
+        assertTrue(MojangConnection.cache.retrieveAll().findAny().isEmpty)
 
         assertEquals(notchUUID, MojangConnection.getUUIDByName("notch"))
         assertEquals(notchUUID, MojangConnection.getUUIDByName("NOTCH"))
 
-        assertEquals(1, MojangConnection.cache.retrieveAll().size)
+        assertEquals(1, MojangConnection.cache.retrieveAll().count())
         assertEquals(notchName, MojangConnection.cache.retrieve(notchUUID)?.name)
     }
 

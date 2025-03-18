@@ -2,6 +2,7 @@ package net.dungeonhub.cache.disk
 
 import com.google.gson.reflect.TypeToken
 import net.dungeonhub.cache.Cache
+import net.dungeonhub.cache.filterNotNull
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import java.io.File
@@ -9,6 +10,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.time.Instant
 import java.util.*
+import java.util.stream.Stream
 import kotlin.io.path.exists
 import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
@@ -49,31 +51,31 @@ class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement
         return historyDirectory
     }
 
-    fun getAllHistoryEntries(): Map<UUID, List<CacheElement<T>>> {
+    fun getAllHistoryEntries(): Stream<Pair<UUID, Stream<CacheElement<T>>>> {
         val historyDirectory = getHistoryDirectory()
 
         if (!historyDirectory.exists()) {
-            return emptyMap()
+            return Stream.empty()
         }
 
-        return Files.list(historyDirectory).toList().mapNotNull {
-            if (!it.isDirectory()) return@mapNotNull null
+        return Files.list(historyDirectory).map {
+            if (!it.isDirectory()) return@map null
 
             try {
                 UUID.fromString(it.name)
             } catch (_: IllegalArgumentException) {
                 null
             }
-        }.associate { uuid ->
-            uuid to Files.list(getHistoryDirectory(uuid)).toList().mapNotNull { dataFile ->
+        }.filterNotNull().map { uuid ->
+            uuid to Files.list(getHistoryDirectory(uuid)).toList().stream().map { dataFile: Path ->
                 if (dataFile.isRegularFile()) {
                     val json = Files.readString(dataFile)
 
-                    return@mapNotNull GsonProvider.gson.fromJson(json, type.type)
+                    return@map GsonProvider.gson.fromJson(json, type.type) as CacheElement<T>?
                 }
 
-                return@mapNotNull null
-            }
+                return@map null
+            }.filterNotNull()
         }
     }
 
@@ -93,11 +95,11 @@ class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement
         return null
     }
 
-    override fun retrieveAllElements(): List<CacheElement<T>> {
+    override fun retrieveAllElements(): Stream<CacheElement<T>> {
         val cacheDirectory = Path.of(cacheDirectory, name)
 
         if (!cacheDirectory.exists()) {
-            return emptyList()
+            return Stream.empty()
         }
 
         return Files.list(cacheDirectory).map {
@@ -112,7 +114,7 @@ class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement
             }
 
             return@map null
-        }.toList().filterNotNull()
+        }.filterNotNull()
     }
 
     override fun invalidateEntry(key: UUID) {

@@ -503,6 +503,127 @@ class TestSkyblockProfile {
             duplicateSkyblockItemNames.isEmpty() && uniqueSkyblockItemNames.size == KnownSkyblockItemId.entries.size
         }
 
+
+        val allInventorySkyblockItemIds =
+            TestHelper.readAllSkyblockProfiles().flatMap { it.stream() }.flatMap { it.currentMembers.stream() }
+                .flatMap { it.allItems.stream() }.flatMap { it.items.stream() }.filter { it is SkyblockItem }
+                .map { (it as SkyblockItem).id }.filter { it !is UnknownSkyblockItemId }.distinct().toList()
+
+        val allMuseumSkyblockItemIds =
+            TestHelper.readAllMuseumData().flatMap { it.museumData.values }.flatMap { it.allItems }
+                .filterIsInstance<SkyblockItem>().map { it.id }
+                .filterNot { it is UnknownSkyblockItemId }.distinct()
+
+        val allSkyblockItemIds = (allInventorySkyblockItemIds + allMuseumSkyblockItemIds).distinct()
+
+        assertTrue(
+            "Some (${KnownSkyblockItemId.entries.size - allSkyblockItemIds.size}/${KnownSkyblockItemId.entries.size}) Skyblock item(s) was/were never found in the test data: ${
+                KnownSkyblockItemId.entries.filterNot { allSkyblockItemIds.contains(it) || nonExistentItems.contains(it) }
+                    .map { "${it.name} (${it.apiName})" }
+            }"
+        ) {
+            (allSkyblockItemIds + nonExistentItems).distinct().size == KnownSkyblockItemId.entries.size
+        }
+
+        assertFalse(
+            "Some items that were ignored were actually found, so they don't have to be ignored anymore: ${
+                allSkyblockItemIds.filter {
+                    nonExistentItems.contains(
+                        it
+                    )
+                }
+            }"
+        ) { allSkyblockItemIds.any { nonExistentItems.contains(it) } }
+    }
+
+    @Test
+    fun testNoInvalidDataTypes() {
+        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
+            for (skyblockProfile in skyblockProfiles) {
+                for (member in skyblockProfile.members) {
+                    member.slayer?.slayerProgress?.keys?.forEach {
+                        assertIsNot<KnownSlayerType.UnknownSlayerType>(it)
+                    }
+
+                    assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
+
+                    member.playerData?.experience?.keys?.forEach {
+                        assertIsNot<KnownSkill.UnknownSkill>(it)
+                    }
+
+                    if (member is CurrentMember) {
+                        member.essence.keys.forEach {
+                            assertIsNot<KnownEssenceType.UnknownEssenceType>(it)
+                        }
+
+                        member.currencies.keys.forEach {
+                            assertIsNot<KnownCurrencyTypes.UnknownCurrencyType>(it)
+                        }
+
+                        member.dungeons?.dungeonTypes?.keys?.forEach {
+                            assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
+                        }
+
+                        member.petsData?.pets?.forEach { pet ->
+                            //TODO check for pet type once implemented
+                            assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    fun testSlayerLevel() {
+        assertEquals(9, KnownSlayerType.Zombie.toLevel(100000000))
+        assertEquals(0, KnownSlayerType.Zombie.toLevel(1))
+        assertEquals(0, KnownSlayerType.Zombie.toLevel(0))
+        assertEquals(1, KnownSlayerType.Zombie.toLevel(7))
+        assertEquals(5, KnownSlayerType.Zombie.toLevel(5000))
+        assertEquals(4, KnownSlayerType.Zombie.toLevel(4999))
+    }
+
+    @Test
+    fun testStatsOverview() {
+        val apiConnection = HypixelApiConnection(strategy = ApiClientStrategy.Cache)
+
+        val uuid = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
+        val profile = TestHelper.readFullSkyblockProfile()
+
+        (apiConnection.client as MemoryCacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
+
+        val statsOverview = apiConnection.getStatsOverview(uuid)
+
+        assertNotNull(statsOverview)
+        assertEquals("Blueberry", statsOverview.profileName)
+        assertEquals(uuid, statsOverview.uuid)
+        assertEquals(
+            "\uD83D\uDDE1\uFE0F: Heroic Hyperion ✪✪✪✪✪➌\n" +
+                    "\uD83C\uDFF9: Precise Terminator ✪✪✪✪✪➋ (Duplex 5)\n" +
+                    "\uD83C\uDFF9: Hasty Terminator ✪✪✪✪✪➋ (Fatal Tempo 1)\n" +
+                    "\uD83D\uDC09: [Lvl 200] Greg (Minos Relic)\n" +
+                    "\uD83D\uDC09: [Lvl 181] Greg (Dwarf Turtle Shelmet)\n" +
+                    "\n" +
+                    "<:skyblock_level:1330399754181414994> Skyblock Level: 418.83\n" +
+                    "<:diamond_sword:1330399391839686656> Skill Average: 54.78\n" +
+                    "\n" +
+                    "<:batphone:1330399234813329458> Slayers:\uD83E\uDDDF 9 \uD83D\uDD78\uFE0F 9 \uD83D\uDC3A 9 \uD83D\uDD2E 9 \uD83D\uDD25 9 \uD83E\uDE78 5\n" +
+                    "<:redstone_key:1330398890725478510> Catacombs: 43 (Class Average 37)\n" +
+                    "\n" +
+                    "<:piggy_bank:1330399968221204560> Purse: 19.04m\n" +
+                    "<:personal_bank:1330399998512468018> Bank: 400.72m", statsOverview.description
+        )
+    }
+
+    companion object {
+        private val nullResponseClient: RestApiClient
+            get() {
+                val client = spy(RestApiClient)
+                doReturn(null).whenever(client).fetchSkyblockProfiles(any())
+                return client
+            }
+
         val nonExistentItems = listOf(
             // These are unobtainable :(
             AdminItemId.AdminLavaRod,
@@ -1144,125 +1265,5 @@ class TestSkyblockProfile {
             KnownDyeId.PeriwinkleDye,
             KnownDyeId.SangriaDye
         )
-
-        val allInventorySkyblockItemIds =
-            TestHelper.readAllSkyblockProfiles().flatMap { it }.flatMap { it.currentMembers }
-                .flatMap { it.allItems }.flatMap { it.items }.filterIsInstance<SkyblockItem>().map { it.id }
-                .filterNot { it is UnknownSkyblockItemId }.distinct()
-
-        val allMuseumSkyblockItemIds =
-            TestHelper.readAllMuseumData().flatMap { it.museumData.values }.flatMap { it.allItems }
-                .filterIsInstance<SkyblockItem>().map { it.id }
-                .filterNot { it is UnknownSkyblockItemId }.distinct()
-
-        val allSkyblockItemIds = (allInventorySkyblockItemIds + allMuseumSkyblockItemIds).distinct()
-
-        assertTrue(
-            "Some (${KnownSkyblockItemId.entries.size - allSkyblockItemIds.size}/${KnownSkyblockItemId.entries.size}) Skyblock item(s) was/were never found in the test data: ${
-                KnownSkyblockItemId.entries.filterNot { allSkyblockItemIds.contains(it) || nonExistentItems.contains(it) }
-                    .map { "${it.name} (${it.apiName})" }
-            }"
-        ) {
-            (allSkyblockItemIds + nonExistentItems).distinct().size == KnownSkyblockItemId.entries.size
-        }
-
-        assertFalse(
-            "Some items that were ignored were actually found, so they don't have to be ignored anymore: ${
-                allSkyblockItemIds.filter {
-                    nonExistentItems.contains(
-                        it
-                    )
-                }
-            }"
-        ) { allSkyblockItemIds.any { nonExistentItems.contains(it) } }
-    }
-
-    @Test
-    fun testNoInvalidDataTypes() {
-        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
-            for (skyblockProfile in skyblockProfiles) {
-                for (member in skyblockProfile.members) {
-                    member.slayer?.slayerProgress?.keys?.forEach {
-                        assertIsNot<KnownSlayerType.UnknownSlayerType>(it)
-                    }
-
-                    assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
-
-                    member.playerData?.experience?.keys?.forEach {
-                        assertIsNot<KnownSkill.UnknownSkill>(it)
-                    }
-
-                    if (member is CurrentMember) {
-                        member.essence.keys.forEach {
-                            assertIsNot<KnownEssenceType.UnknownEssenceType>(it)
-                        }
-
-                        member.currencies.keys.forEach {
-                            assertIsNot<KnownCurrencyTypes.UnknownCurrencyType>(it)
-                        }
-
-                        member.dungeons?.dungeonTypes?.keys?.forEach {
-                            assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
-                        }
-
-                        member.petsData?.pets?.forEach { pet ->
-                            //TODO check for pet type once implemented
-                            assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Test
-    fun testSlayerLevel() {
-        assertEquals(9, KnownSlayerType.Zombie.toLevel(100000000))
-        assertEquals(0, KnownSlayerType.Zombie.toLevel(1))
-        assertEquals(0, KnownSlayerType.Zombie.toLevel(0))
-        assertEquals(1, KnownSlayerType.Zombie.toLevel(7))
-        assertEquals(5, KnownSlayerType.Zombie.toLevel(5000))
-        assertEquals(4, KnownSlayerType.Zombie.toLevel(4999))
-    }
-
-    @Test
-    fun testStatsOverview() {
-        val apiConnection = HypixelApiConnection(strategy = ApiClientStrategy.Cache)
-
-        val uuid = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
-        val profile = TestHelper.readFullSkyblockProfile()
-
-        (apiConnection.client as MemoryCacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
-
-        val statsOverview = apiConnection.getStatsOverview(uuid)
-
-        assertNotNull(statsOverview)
-        assertEquals("Blueberry", statsOverview.profileName)
-        assertEquals(uuid, statsOverview.uuid)
-        assertEquals(
-            "\uD83D\uDDE1\uFE0F: Heroic Hyperion ✪✪✪✪✪➌\n" +
-                    "\uD83C\uDFF9: Precise Terminator ✪✪✪✪✪➋ (Duplex 5)\n" +
-                    "\uD83C\uDFF9: Hasty Terminator ✪✪✪✪✪➋ (Fatal Tempo 1)\n" +
-                    "\uD83D\uDC09: [Lvl 200] Greg (Minos Relic)\n" +
-                    "\uD83D\uDC09: [Lvl 181] Greg (Dwarf Turtle Shelmet)\n" +
-                    "\n" +
-                    "<:skyblock_level:1330399754181414994> Skyblock Level: 418.83\n" +
-                    "<:diamond_sword:1330399391839686656> Skill Average: 54.78\n" +
-                    "\n" +
-                    "<:batphone:1330399234813329458> Slayers:\uD83E\uDDDF 9 \uD83D\uDD78\uFE0F 9 \uD83D\uDC3A 9 \uD83D\uDD2E 9 \uD83D\uDD25 9 \uD83E\uDE78 5\n" +
-                    "<:redstone_key:1330398890725478510> Catacombs: 43 (Class Average 37)\n" +
-                    "\n" +
-                    "<:piggy_bank:1330399968221204560> Purse: 19.04m\n" +
-                    "<:personal_bank:1330399998512468018> Bank: 400.72m", statsOverview.description
-        )
-    }
-
-    companion object {
-        private val nullResponseClient: RestApiClient
-            get() {
-                val client = spy(RestApiClient)
-                doReturn(null).whenever(client).fetchSkyblockProfiles(any())
-                return client
-            }
     }
 }

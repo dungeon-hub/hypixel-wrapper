@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.assertDoesNotThrow
 import java.io.File
 import java.util.*
+import java.util.concurrent.ForkJoinPool
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -66,7 +67,7 @@ class TestDiskCache {
 
     @Test
     fun testSerialization() {
-        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
+        TestHelper.readAllSkyblockProfiles().forEach { skyblockProfiles ->
             for (profile in skyblockProfiles) {
                 val profileJson = GsonProvider.gson.toJson(profile)
 
@@ -89,21 +90,25 @@ class TestDiskCache {
     fun testDiskCacheSkyblock() {
         val apiClient = DiskCacheApiClient
 
-        for (skyblockProfiles in TestHelper.readAllSkyblockProfileObjects()) {
-            assertDoesNotThrow { apiClient.skyblockProfilesCache.store(skyblockProfiles) }
+        val customPool = ForkJoinPool(4)
+        customPool.submit {
+            TestHelper.readAllSkyblockProfileObjects().parallel().forEach { skyblockProfiles ->
+                assertDoesNotThrow { apiClient.skyblockProfilesCache.store(skyblockProfiles) }
 
-            val loadedProfile = assertDoesNotThrow { apiClient.skyblockProfilesCache.retrieve(skyblockProfiles.owner) }
+                val loadedProfile =
+                    assertDoesNotThrow { apiClient.skyblockProfilesCache.retrieve(skyblockProfiles.owner) }
 
-            assertNotNull(loadedProfile)
+                assertNotNull(loadedProfile)
 
-            for(profile in loadedProfile.profiles) {
-                for(member in profile.members.filterIsInstance<CurrentMember>()) {
-                    for(inventoryContent in member.inventory?.allItems ?: listOf()) {
-                        assertNotNull(inventoryContent.items)
+                for (profile in loadedProfile.profiles) {
+                    for (member in profile.members.filterIsInstance<CurrentMember>()) {
+                        for (inventoryContent in member.inventory?.allItems ?: listOf()) {
+                            assertNotNull(inventoryContent.items)
+                        }
                     }
                 }
             }
-        }
+        }.get()
     }
 
     companion object {

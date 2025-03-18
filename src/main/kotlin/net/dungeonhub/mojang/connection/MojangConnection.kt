@@ -32,14 +32,14 @@ object MojangConnection {
 
     @Throws(PlayerNotFoundException::class)
     fun getUUIDByName(name: String): UUID {
-        val cachedEntry = cache.retrieveAllElements().firstOrNull { playerElement ->
+        val cachedEntry = cache.retrieveAllElements().filter { playerElement ->
             if (playerElement.timeAdded.isBefore(Instant.now().minusSeconds(EXPIRATION_TIME))) {
                 cache.invalidateEntry(playerElement.value.id)
-                return@firstOrNull false
+                return@filter false
             }
 
             playerElement.value.name.equals(name, ignoreCase = true)
-        }
+        }.findFirst().orElse(null)
 
         if (cachedEntry != null) {
             return cachedEntry.value.id
@@ -69,14 +69,14 @@ object MojangConnection {
 
     @Throws(PlayerNotFoundException::class)
     fun getNameByUUID(uuid: UUID): String {
-        val cachedEntry = cache.retrieveAllElements().firstOrNull { playerElement ->
+        val cachedEntry = cache.retrieveAllElements().filter { playerElement ->
             if (playerElement.timeAdded.isBefore(Instant.now().minusSeconds(EXPIRATION_TIME))) {
                 cache.invalidateEntry(playerElement.value.id)
-                return@firstOrNull false
+                return@filter false
             }
 
             playerElement.value.id == uuid
-        }
+        }.findFirst().orElse(null)
 
         if (cachedEntry != null) {
             return cachedEntry.value.name
