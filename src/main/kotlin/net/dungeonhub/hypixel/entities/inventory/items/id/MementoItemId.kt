@@ -21,7 +21,9 @@ enum class MementoItemId(override val apiName: String, override val itemClass: (
     PaintersPalette("PAINTERS_PALETTE"),
     PieceOfWizardPortal("WIZARD_PORTAL_MEMENTO"),
     ShinyRelic("SHINY_RELIC"),
-    ThereAndBackAgain("RIFT_COMPLETION_MEMENTO");
+    ThereAndBackAgain("RIFT_COMPLETION_MEMENTO"),
+    MediocreDrawingOfAFish("MEDIOCRE_FISH_DRAWING"),
+    SplendidDrawingOfAFish("SPLENDID_FISH_DRAWING");
 
     constructor(apiName: String) : this(apiName, { it })
 }

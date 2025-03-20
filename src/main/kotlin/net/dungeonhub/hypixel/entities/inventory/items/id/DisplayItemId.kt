@@ -94,6 +94,7 @@ enum class DisplayItemId(override val apiName: String, override val itemClass: (
     MushroomCollection("MUSHROOM_COLLECTION"),
     OnyxCrystal("ONYX_CRYSTAL"),
     OpalCrystal("OPAL_CRYSTAL"),
+    OpenKuudraShop("KUUDRA_SHOP_ITEM"),
     PeridotCrystal("PERIDOT_CRYSTAL"),
     RagnarokAbility("RAGNAROK_ABILITY"),
     ResourceCrystal("RESOURCE_REGENERATOR_CRYSTAL"),

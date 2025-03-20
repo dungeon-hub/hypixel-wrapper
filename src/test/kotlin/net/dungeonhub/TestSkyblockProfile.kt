@@ -306,15 +306,10 @@ class TestSkyblockProfile {
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
-                if (item.id is UnknownSkyblockItemId) {
-                    //println(item.rawName + "(" + item.id.apiName + ")")
-                }
-
-                //TODO enable once fully mapped
-                /*assertIsNot<UnknownSkyblockItemId>(
+                assertIsNot<UnknownSkyblockItemId>(
                     item.id,
                     "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped."
-                )*/
+                )
 
                 if (item is Gear) {
                     assertTrue(item.runes.isEmpty() || item.runes.size == 1)
@@ -430,7 +425,7 @@ class TestSkyblockProfile {
                             if (skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
                                 assertEquals("§aSkyBlock Menu §7(Right Click)", skyblockMenu.name)
                                 assertEquals("SkyBlock Menu (Right Click)", skyblockMenu.rawName)
-                            } else if(skyblockMenu.name == "§bMagical Map") { //Dungeons Map
+                            } else if (skyblockMenu.name == "§bMagical Map") { //Dungeons Map
                                 assertEquals("§bMagical Map", skyblockMenu.name)
                                 assertEquals("Magical Map", skyblockMenu.rawName)
                             } else {
@@ -972,7 +967,8 @@ class TestSkyblockProfile {
             MiscItemId.AvariciousChalice,
             MiscItemId.Beacon4,
             MiscItemId.BirchForestBiomeStick,
-            MiscItemId.ChillTheFish,
+            MiscItemId.ChillTheFish1,
+            MiscItemId.ChillTheFish2,
             MiscItemId.ClayMinionXIIUpgradeStone,
             MiscItemId.DeadBushOfLove,
             PotionItemId.BitterIcedTea,

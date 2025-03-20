@@ -14,6 +14,7 @@ interface KnownSkyblockItemId : SkyblockItemId {
             ArmorItemId.entries,
             ArrowItemId.entries,
             BrewingIngredientId.entries,
+            BuggedItemId.entries,
             CollectionItemId.entries,
             ConsumableItemId.entries,
             CosmeticItemId.entries,
@@ -38,6 +39,7 @@ interface KnownSkyblockItemId : SkyblockItemId {
             RiftTimecharmId.entries,
             ShearItemId.entries,
             ToolItemId.entries,
+            TrophyFishItemId.entries,
             VanillaItemId.entries,
             WandItemId.entries,
             WeaponItemId.entries
