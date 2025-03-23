@@ -89,7 +89,7 @@ enum class KnownPetItem(
     TierBoost("PET_ITEM_TIER_BOOST"),
 
     //Pet specific
-    Saddle("PET_ITEM_SADDLE"),
+    PetSaddle("PET_ITEM_SADDLE"),
     FlyingPig("PET_ITEM_FLYING_PIG"),
     FourEyedFish("FOUR_EYED_FISH"),
     DeadCatFood("DEAD_CAT_FOOD"),

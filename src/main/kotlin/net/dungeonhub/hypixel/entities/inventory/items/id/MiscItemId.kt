@@ -194,7 +194,6 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     Catalyst("CATALYST"),
     CenturyPartyInvitation("CENTURY_PARTY_INVITATION"),
     CenturyTheFish("CENTURY_THE_FISH"),
-    Charcoal("CHARCOAL"),
     Charminizer("CHARMINIZER"),
     ChillTheFish1("CHILL_THE_FISH"),
     ChillTheFish2("CHILL_THE_FISH_2"),

@@ -968,7 +968,6 @@ class TestSkyblockProfile {
             MiscItemId.Beacon4,
             MiscItemId.BirchForestBiomeStick,
             MiscItemId.ChillTheFish1,
-            MiscItemId.ChillTheFish2,
             MiscItemId.ClayMinionXIIUpgradeStone,
             MiscItemId.DeadBushOfLove,
             PotionItemId.BitterIcedTea,
@@ -989,7 +988,6 @@ class TestSkyblockProfile {
             MiscItemId.HealthEnrichment,
             MiscItemId.EverburningFlame,
             MiscItemId.FishingMinionXIIUpgradeStone,
-            MiscItemId.DesertCrystal,
             MiscItemId.EpicGriffinUpgradeStone,
             MiscItemId.LegendaryGriffinUpgradeStone,
             MiscItemId.HurricaneInABottle,
@@ -1186,7 +1184,6 @@ class TestSkyblockProfile {
             CosmeticItemId.HeonzoDoggoWolfSkin,
             CosmeticItemId.IceCreamCart,
             CosmeticItemId.LifeguardChair,
-            CosmeticItemId.LunarRabbitSkin,
             CosmeticItemId.MediumShelves,
             CosmeticItemId.PumpkinDresser,
             CosmeticItemId.Surfboard,
@@ -1246,8 +1243,6 @@ class TestSkyblockProfile {
             MiscItemId.PortableWoolWeaver,
             VanillaItemId.ClayBrick,
             WeaponItemId.Cutlass,
-            CosmeticItemId.FlamingoPhoenixSkin,
-            CosmeticItemId.PurpleCrushedSheepSkin,
             KnownDyeId.BrickRedDye,
             KnownDyeId.ByzantiumDye,
             KnownDyeId.CeladonDye,
@@ -1259,7 +1254,14 @@ class TestSkyblockProfile {
             KnownDyeId.MidnightDye,
             KnownDyeId.PeltDye,
             KnownDyeId.PeriwinkleDye,
-            KnownDyeId.SangriaDye
+            KnownDyeId.SangriaDye,
+            MiscItemId.TravelScrollToDarkAuction,
+            MiscItemId.TravelScrollToMushroomIsland,
+            MiscItemId.TravelScrollToTheGoldMine,
+            MiscItemId.TravelScrollToTheCrystalHollows,
+            MiscItemId.TravelScrollToArachnesSanctuary,
+            MiscItemId.TravelScrollToTheSmolderingTomb,
+            MiscItemId.TravelScrollToTheDwarvenBaseCamp
         )
     }
 }
