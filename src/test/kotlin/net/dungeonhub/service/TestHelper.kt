@@ -22,11 +22,14 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
+import java.util.concurrent.ForkJoinPool
 import java.util.stream.Stream
 import kotlin.io.path.name
 import kotlin.io.path.nameWithoutExtension
 
 object TestHelper {
+    private const val THREADS = 4
+
     fun readFile(fileName: String): String {
         return javaClass.classLoader.getResourceAsStream(fileName)!!.reader(StandardCharsets.UTF_8).readText()
     }
@@ -122,5 +125,12 @@ object TestHelper {
     fun readItemList(): List<JsonObject> {
         return GsonProvider.gson.fromJson(readFile("resources/skyblock_items.json"), JsonObject::class.java)
             .getAsJsonArray("items").map { it.asJsonObject }
+    }
+
+    fun runParallel(threads: Int = THREADS, block: (() -> (Unit))) {
+        val customPool = ForkJoinPool(threads)
+        customPool.submit {
+            block()
+        }.join()
     }
 }

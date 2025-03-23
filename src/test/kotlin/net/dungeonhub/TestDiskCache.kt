@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.assertDoesNotThrow
 import java.io.File
 import java.util.*
-import java.util.concurrent.ForkJoinPool
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -67,13 +66,15 @@ class TestDiskCache {
 
     @Test
     fun testSerialization() {
-        TestHelper.readAllSkyblockProfiles().forEach { skyblockProfiles ->
-            for (profile in skyblockProfiles) {
-                val profileJson = GsonProvider.gson.toJson(profile)
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfiles().parallel().forEach { skyblockProfiles ->
+                for (profile in skyblockProfiles) {
+                    val profileJson = GsonProvider.gson.toJson(profile)
 
-                val profileFromJson = GsonProvider.gson.fromJson(profileJson, SkyblockProfile::class.java)
+                    val profileFromJson = GsonProvider.gson.fromJson(profileJson, SkyblockProfile::class.java)
 
-                assertNotNull(profileFromJson)
+                    assertNotNull(profileFromJson)
+                }
             }
         }
 
@@ -90,8 +91,7 @@ class TestDiskCache {
     fun testDiskCacheSkyblock() {
         val apiClient = DiskCacheApiClient
 
-        val customPool = ForkJoinPool(4)
-        customPool.submit {
+        TestHelper.runParallel {
             TestHelper.readAllSkyblockProfileObjects().parallel().forEach { skyblockProfiles ->
                 assertDoesNotThrow { apiClient.skyblockProfilesCache.store(skyblockProfiles) }
 
@@ -108,7 +108,7 @@ class TestDiskCache {
                     }
                 }
             }
-        }.get()
+        }
     }
 
     companion object {

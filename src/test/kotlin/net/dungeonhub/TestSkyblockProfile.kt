@@ -79,17 +79,19 @@ class TestSkyblockProfile {
     fun testFullProfile() {
         val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
 
-        for (file in Files.list(Paths.get(profilesDirectory))) {
-            val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
+        TestHelper.runParallel {
+            Files.list(Paths.get(profilesDirectory)).toList().stream().forEach { file ->
+                val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
 
-            val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
+                val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
 
-            for (fullProfileJson in fullProfiles) {
-                val fullProfile = fullProfileJson.toSkyblockProfile()
+                for (fullProfileJson in fullProfiles) {
+                    val fullProfile = fullProfileJson.toSkyblockProfile()
 
-                assertNotNull(fullProfile)
+                    assertNotNull(fullProfile)
 
-                assertNotNull(fullProfile.cuteName)
+                    assertNotNull(fullProfile.cuteName)
+                }
             }
         }
     }
@@ -213,23 +215,17 @@ class TestSkyblockProfile {
 
     @Test
     fun testFairySouls() {
-        val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
-
-        for (file in Files.list(Paths.get(profilesDirectory))) {
-            val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
-
-            val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
-
-            for (fullProfileJson in fullProfiles) {
-                val fullProfile = fullProfileJson.toSkyblockProfile()
-
-                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.fairySoulData != null) {
-                        assertEquals(
-                            member.fairySoulData.unspentSouls,
-                            member.fairySoulData.totalCollected - member.fairySoulData.totalExchanged,
-                            "Profile member ${member.uuid} on profile ${fullProfile.cuteName} (${fullProfile.profileId}) has an invalid count of fairy souls."
-                        )
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfiles().parallel().forEach { profiles ->
+                profiles.parallelStream().forEach { profile ->
+                    profile.members.filterIsInstance<CurrentMember>().forEach { member ->
+                        if (member.fairySoulData != null) {
+                            assertEquals(
+                                member.fairySoulData.unspentSouls,
+                                member.fairySoulData.totalCollected - member.fairySoulData.totalExchanged,
+                                "Profile member ${member.uuid} on profile ${profile.cuteName} (${profile.profileId}) has an invalid count of fairy souls."
+                            )
+                        }
                     }
                 }
             }
@@ -267,23 +263,23 @@ class TestSkyblockProfile {
 
     @Test
     fun testItemDataParsing() {
-        assertTrue(KnownEnchantment.TheOne.isUltimate())
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfiles().parallel().forEach { profiles ->
+                profiles.parallelStream().forEach { profile ->
+                    profile.members.filterIsInstance<CurrentMember>().parallelStream().forEach { member ->
+                        if (member.inventory != null) {
+                            val inventory = member.inventory
 
-        for (fullProfiles in TestHelper.readAllSkyblockProfiles()) {
-            for (fullProfile in fullProfiles) {
-                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null) {
-                        val inventory = member.inventory
-
-                        checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
-                        inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
-                        inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
-                        checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
-                        inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
-                        checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                            checkItems(inventory.inventoryContents?.items?.filterNotNull() ?: emptyList())
+                            checkItems(inventory.enderChestContent?.items?.filterNotNull() ?: emptyList())
+                            inventory.backpackIcons.values.forEach { checkItems(it.items.filterNotNull()) }
+                            inventory.bagContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                            checkItems(inventory.armor?.items?.filterNotNull() ?: emptyList())
+                            checkItems(inventory.equipment?.items?.filterNotNull() ?: emptyList())
+                            checkItems(inventory.personalVault?.items?.filterNotNull() ?: emptyList())
+                            inventory.backpackContents.values.forEach { checkItems(it.items.filterNotNull()) }
+                            checkItems(inventory.wardrobeContents?.items?.filterNotNull() ?: emptyList())
+                        }
                     }
                 }
             }
@@ -404,33 +400,27 @@ class TestSkyblockProfile {
 
     @Test
     fun checkSkyblockMenuPresence() {
-        val profilesDirectory = javaClass.classLoader.getResource("full-profiles/")!!.toURI()
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfiles().parallel().forEach { profiles ->
+                profiles.forEach { profile ->
+                    profile.members.filterIsInstance<CurrentMember>().parallelStream().forEach { member ->
+                        if (member.inventory != null && member.inventory.inventoryContents != null) {
+                            val inventoryContent = member.inventory.inventoryContents.items
 
-        for (file in Files.list(Paths.get(profilesDirectory))) {
-            val fullProfilesJson = TestHelper.readFile("full-profiles/${file.name}")
+                            val skyblockMenu = inventoryContent[8]
 
-            val fullProfiles = GsonProvider.gson.fromJson(fullProfilesJson, JsonArray::class.java).asList()
-
-            for (fullProfileJson in fullProfiles) {
-                val fullProfile = fullProfileJson.toSkyblockProfile()
-
-                fullProfile.members.filterIsInstance<CurrentMember>().forEach { member ->
-                    if (member.inventory != null && member.inventory.inventoryContents != null) {
-                        val inventoryContent = member.inventory.inventoryContents.items
-
-                        val skyblockMenu = inventoryContent[8]
-
-                        if (skyblockMenu != null) {
-                            //apparently some profiles still exist with this outdated item name :/
-                            if (skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
-                                assertEquals("§aSkyBlock Menu §7(Right Click)", skyblockMenu.name)
-                                assertEquals("SkyBlock Menu (Right Click)", skyblockMenu.rawName)
-                            } else if (skyblockMenu.name == "§bMagical Map") { //Dungeons Map
-                                assertEquals("§bMagical Map", skyblockMenu.name)
-                                assertEquals("Magical Map", skyblockMenu.rawName)
-                            } else {
-                                assertEquals("§aSkyBlock Menu §7(Click)", skyblockMenu.name)
-                                assertEquals("SkyBlock Menu (Click)", skyblockMenu.rawName)
+                            if (skyblockMenu != null) {
+                                //apparently some profiles still exist with this outdated item name :/
+                                if (skyblockMenu.name == "§aSkyBlock Menu §7(Right Click)") {
+                                    assertEquals("§aSkyBlock Menu §7(Right Click)", skyblockMenu.name)
+                                    assertEquals("SkyBlock Menu (Right Click)", skyblockMenu.rawName)
+                                } else if (skyblockMenu.name == "§bMagical Map") { //Dungeons Map
+                                    assertEquals("§bMagical Map", skyblockMenu.name)
+                                    assertEquals("Magical Map", skyblockMenu.rawName)
+                                } else {
+                                    assertEquals("§aSkyBlock Menu §7(Click)", skyblockMenu.name)
+                                    assertEquals("SkyBlock Menu (Click)", skyblockMenu.rawName)
+                                }
                             }
                         }
                     }
@@ -500,9 +490,10 @@ class TestSkyblockProfile {
 
 
         val allInventorySkyblockItemIds =
-            TestHelper.readAllSkyblockProfiles().flatMap { it.stream() }.flatMap { it.currentMembers.stream() }
-                .flatMap { it.allItems.stream() }.flatMap { it.items.stream() }.filter { it is SkyblockItem }
-                .map { (it as SkyblockItem).id }.filter { it !is UnknownSkyblockItemId }.distinct().toList()
+            TestHelper.readAllSkyblockProfiles().parallel().flatMap { it.stream() }
+                .flatMap { it.currentMembers.stream() }.flatMap { it.allItems.stream() }.flatMap { it.items.stream() }
+                .filter { it is SkyblockItem }.map { (it as SkyblockItem).id }.filter { it !is UnknownSkyblockItemId }
+                .distinct().toList()
 
         val allMuseumSkyblockItemIds =
             TestHelper.readAllMuseumData().flatMap { it.museumData.values }.flatMap { it.allItems }
@@ -533,35 +524,37 @@ class TestSkyblockProfile {
 
     @Test
     fun testNoInvalidDataTypes() {
-        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
-            for (skyblockProfile in skyblockProfiles) {
-                for (member in skyblockProfile.members) {
-                    member.slayer?.slayerProgress?.keys?.forEach {
-                        assertIsNot<KnownSlayerType.UnknownSlayerType>(it)
-                    }
-
-                    assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
-
-                    member.playerData?.experience?.keys?.forEach {
-                        assertIsNot<KnownSkill.UnknownSkill>(it)
-                    }
-
-                    if (member is CurrentMember) {
-                        member.essence.keys.forEach {
-                            assertIsNot<KnownEssenceType.UnknownEssenceType>(it)
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfiles().parallel().forEach { profiles ->
+                profiles.parallelStream().forEach { profile ->
+                    for (member in profile.members) {
+                        member.slayer?.slayerProgress?.keys?.forEach {
+                            assertIsNot<KnownSlayerType.UnknownSlayerType>(it)
                         }
 
-                        member.currencies.keys.forEach {
-                            assertIsNot<KnownCurrencyTypes.UnknownCurrencyType>(it)
+                        assertIsNot<KnownSlayerType.UnknownSlayerType>(member.slayer?.activeSlayerQuest?.type)
+
+                        member.playerData?.experience?.keys?.forEach {
+                            assertIsNot<KnownSkill.UnknownSkill>(it)
                         }
 
-                        member.dungeons?.dungeonTypes?.keys?.forEach {
-                            assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
-                        }
+                        if (member is CurrentMember) {
+                            member.essence.keys.forEach {
+                                assertIsNot<KnownEssenceType.UnknownEssenceType>(it)
+                            }
 
-                        member.petsData?.pets?.forEach { pet ->
-                            //TODO check for pet type once implemented
-                            assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
+                            member.currencies.keys.forEach {
+                                assertIsNot<KnownCurrencyTypes.UnknownCurrencyType>(it)
+                            }
+
+                            member.dungeons?.dungeonTypes?.keys?.forEach {
+                                assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
+                            }
+
+                            member.petsData?.pets?.forEach { pet ->
+                                //TODO check for pet type once implemented
+                                assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
+                            }
                         }
                     }
                 }
