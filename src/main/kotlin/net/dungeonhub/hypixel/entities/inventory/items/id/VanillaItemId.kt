@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.EnchantedBook
 
 enum class VanillaItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -18,6 +19,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     Andesite("STONE:5"),
     Anvil("ANVIL"),
     Apple("APPLE"),
+    ArmorStand("ARMOR_STAND"),
     AzureBluet("RED_ROSE:3"),
     BakedPotato("BAKED_POTATO"),
     BeaconBlock("BEACON"),
@@ -49,7 +51,8 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     Boat("BOAT"),
     Bone("BONE"),
     BoneMeal("INK_SACK:15"),
-    Book("BOOK"),
+    Book("BOOK", { EnchantedBook(it.raw) }),
+    BookAndQuill("BOOK_AND_QUILL"),
     Bookshelf("BOOKSHELF"),
     Bowl("BOWL"),
     Bread("BREAD"),
@@ -142,6 +145,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     FermentedSpiderEye("FERMENTED_SPIDER_EYE"),
     Fern("LONG_GRASS:2"),
     FireCharge("FIREBALL"),
+    FireworkStar("FIREWORK_CHARGE"),
     Flint("FLINT"),
     FlintAndSteel("FLINT_AND_STEEL"),
     FlowerPot("FLOWER_POT_ITEM"),
@@ -385,6 +389,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     Torch("TORCH"),
     TrappedChest("TRAPPED_CHEST"),
     TripwireHook("TRIPWIRE_HOOK"),
+    VanillaNetherStar("NETHER_STAR"),
     VeryDamagedAnvil("ANVIL:2"),
     VillagerSpawnEgg("MONSTER_EGG:120"),
     Vines("VINE"),
@@ -398,6 +403,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     WhiteStainedGlassPane("STAINED_GLASS_PANE"),
     WhiteTulip("RED_ROSE:6"),
     WhiteWool("WOOL"),
+    WitherSkeletonSkull("SKULL_ITEM:1"),
     WoodenButton("WOOD_BUTTON"),
     WoodenPressurePlate("WOOD_PLATE"),
     WoodenTrapdoor("TRAP_DOOR"),
@@ -406,7 +412,8 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     YellowHardenedClay("STAINED_CLAY:4"),
     YellowStainedGlass("STAINED_GLASS:4"),
     YellowStainedGlassPane("STAINED_GLASS_PANE:4"),
-    YellowWool("WOOL:4");
+    YellowWool("WOOL:4"),
+    ZombieSkull("SKULL_ITEM:2");
 
     constructor(apiName: String) : this(apiName, { it })
 }

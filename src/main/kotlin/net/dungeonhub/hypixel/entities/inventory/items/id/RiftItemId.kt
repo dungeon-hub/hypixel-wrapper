@@ -4,6 +4,7 @@ import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 
 enum class RiftItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
+    AgaricusCap("AGARICUS_CAP"),
     AgaricusCapBunch("AGARICUS_CAP_BUNCH"),
     AgaricusChumcap("AGARICUS_CHUM_CAP"),
     AgaricusSoup("AGARICUS_SOUP"),
@@ -18,6 +19,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     CaducousExtract("CADUCOUS_EXTRACT"),
     CaducousFeeder("CADUCOUS_FEEDER"),
     CaducousLegume("CADUCOUS_LEGUME"),
+    CaducousStem("CADUCOUS_STEM"),
     CaducousStemBunch("CADUCOUS_STEM_BUNCH"),
     CovenSeal("COVEN_SEAL"),
     Cruxmotion("CRUXMOTION"),
@@ -42,6 +44,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     FrozenWaterPungi("FROZEN_WATER_PUNGI"),
     GnirtS("MIRRORED_STRING"),
     GunthesizerLichen("GUNTHESIZER_LICHEN"),
+    HalfEatenCarrot("HALF_EATEN_CARROT"),
     HealingMelon("HEALING_MELON"),
     Hemobomb("HEMOBOMB"),
     Hemoglass("HEMOGLASS"),
@@ -64,6 +67,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     LivingMetalBootspawn("LM_EGG_BOOTS"),
     LivingMetalCapspawn("LM_EGG_CAP"),
     LivingMetalChestspawn("LM_EGG_CHEST"),
+    LivingMetalHeart("METAL_HEART"),
     LivingMetalPantspawn("LM_EGG_LEGS"),
     LlabemilS("MIRRORED_SLIME_BALL"),
     LusciousHealingMelon("LUSCIOUS_HEALING_MELON"),
@@ -97,6 +101,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     SuperLeechModifier("SUPER_LEECH_MODIFIER"),
     TightPantsFragment("TIGHT_PANTS_FRAGMENT"),
     TimeGun("TIME_GUN"),
+    Timite("TIMITE"),
     TreelikeWool("BEDWARS_WOOL"),
     TurbomaxVacuumCleaner("TURBOMAX_VACUUM"),
     UbiksCube("UBIKS_CUBE"),
@@ -107,6 +112,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     VoltCrux("VOLT_CRUX"),
     WLogoFragment("S_LOGO_FRAGMENT"),
     WardingDiamathame("WAND_OF_WARDING"),
+    WiltedBerberis("WILTED_BERBERIS"),
     WiltedBerberisBunch("WILTED_BERBERIS_BUNCH"),
     WizardsBreadcrumbs("WIZARD_BREADCRUMBS"),
     WoB("MIRRORED_BOW"),

@@ -2,10 +2,12 @@ package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.PetAsItem
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.Weapon
 import net.dungeonhub.hypixel.entities.inventory.items.special.*
 
 enum class MiscItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
+    OldAmalgamatedCrimsonite("AMALGAMATED_CRIMSONITE"),
     EerieTreat("EERIE_TREAT"),
     EerieToy("EERIE_TOY"),
     DungeonJournal("DUNGEON_LORE_DIARY"),
@@ -323,11 +325,11 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     EnchantedBoneMeal("ENCHANTED_BONE_MEAL"),
     EnchantedBookBundleVicious("ENCHANTED_BOOK_BUNDLE_VICIOUS"),
     EnchantedBookBundleBigBrain("ENCHANTED_BOOK_BUNDLE_BIG_BRAIN"),
-    EnchantedBookBundleSmallBrain("ENCHANTED_BOOK_BUNDLE_SMALL_BRAIN"),
+    EnchantedBookBundleSmallBrain("ENCHANTED_BOOK_BUNDLE_SMALL_BRAIN", { EnchantedBookBundle(it.raw) }),
     EnchantedBookBundleReflection("ENCHANTED_BOOK_BUNDLE_REFLECTION"),
-    EnchantedBookBundleQuantum("ENCHANTED_BOOK_BUNDLE_QUANTUM"),
+    EnchantedBookBundleQuantum("ENCHANTED_BOOK_BUNDLE_QUANTUM", { EnchantedBookBundle(it.raw) }),
     EnchantedBookBundleTheOne("ENCHANTED_BOOK_BUNDLE_THE_ONE"),
-    EnchantedBookBundleRainbow("ENCHANTED_BOOK_BUNDLE_RAINBOW"),
+    EnchantedBookBundleRainbow("ENCHANTED_BOOK_BUNDLE_RAINBOW", { EnchantedBookBundle(it.raw) }),
     EnchantedBookBundleChimera("ENCHANTED_BOOK_BUNDLE_CHIMERA"),
     EnchantedBookBundlePrismatic("ENCHANTED_BOOK_BUNDLE_PRISMATIC"),
     EnchantedBookBundleCounterStrike("ENCHANTED_BOOK_BUNDLE_COUNTER_STRIKE"),
@@ -744,7 +746,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     PricelessTheFish("PRICELESS_THE_FISH"),
     Prismapump("PRISMAPUMP"),
     PumpkinGuts("PUMPKIN_GUTS"),
-    PumpkinLauncher("PUMPKIN_LAUNCHER"),
+    PumpkinLauncher("PUMPKIN_LAUNCHER", { Weapon(it.raw) }),
     PurpleCandy("PURPLE_CANDY"),
     PuzzleCube("PUZZLE_CUBE"),
     PyroclasticScale("PYROCLASTIC_SCALE"),

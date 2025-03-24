@@ -8,10 +8,7 @@ import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
 import net.dungeonhub.hypixel.entities.inventory.items.*
 import net.dungeonhub.hypixel.entities.inventory.items.id.*
-import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersRuler
-import net.dungeonhub.hypixel.entities.inventory.items.special.BuildersWand
-import net.dungeonhub.hypixel.entities.inventory.items.special.NewYearCakeBag
-import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
+import net.dungeonhub.hypixel.entities.inventory.items.special.*
 import net.dungeonhub.hypixel.entities.skyblock.*
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
@@ -358,25 +355,23 @@ class TestSkyblockProfile {
                 }
                 assertDoesNotThrow { item.dungeonSkillRequirement }
 
-                //TODO reenable once everything is mapped
-                /*if(item is PersonalCompactor) {
+                if (item is PersonalCompactor) {
                     item.compactSlots.forEach {
-                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                        assertIsNot<UnknownSkyblockItemId>(
                             it,
                             "Unknown item ID in Personal Compactor: ${it.apiName}"
                         )
                     }
-                }*/
+                }
 
-                //TODO reenable once everything is mapped
-                /*if(item is PersonalDeletor) {
+                if (item is PersonalDeletor) {
                     item.deletorSlots.forEach {
-                        assertIsNot<KnownSkyblockItemId.UnknownSkyblockItemId>(
+                        assertIsNot<UnknownSkyblockItemId>(
                             it,
                             "Unknown item ID in Personal Compactor: ${it.apiName}"
                         )
                     }
-                }*/
+                }
 
                 if (item is BuildersWand) {
                     assertNotNull(item.buildersWandData)
@@ -448,15 +443,11 @@ class TestSkyblockProfile {
 
         val allItemIds = allItems.map { it.getAsJsonPrimitive("id").asString }
 
-        //TODO remove
-        //println(allItemIds.map { KnownSkyblockItemId.fromApiName(it) }.filterIsInstance<UnknownSkyblockItemId>().map { it.apiName })
-
         allItemIds.map { KnownSkyblockItemId.fromApiName(it) }.forEach { id ->
-            // TODO enable once mapped
-            /*assertIsNot<UnknownSkyblockItemId>(
+            assertIsNot<UnknownSkyblockItemId>(
                 id,
                 "Item ${id.apiName} has not been added to Skyblock item ID list",
-            )*/
+            )
         }
     }
 
@@ -831,6 +822,94 @@ class TestSkyblockProfile {
             AdminItemId.MasterSkullTierEight,
             AdminItemId.MasterSkullTierNine,
             AdminItemId.MasterSkullTierTen,
+            BuggedItemId.BoneMeal2,
+            BuggedItemId.EnchantedCarrotOnAStick2,
+            AdminItemId.EndermanHat,
+            AdminItemId.CompassTalisman,
+            AdminItemId.BrokenHandle,
+            AdminItemId.EpeeDePatrice,
+            AdminItemId.ChewedPieceOfGum,
+            AdminItemId.BlueCandy,
+            AdminItemId.GreaterStorageUpgrade,
+            AdminItemId.PolymorphWand,
+            AdminItemId.RedCrossPotion,
+            AdminItemId.FairyFlute,
+            AdminItemId.JarOfPickles,
+            AdminItemId.MusicDiscRevenge,
+            AdminItemId.DirtyRug,
+            AdminItemId.MagmaBucketUpgrade,
+            AdminItemId.ClownTheFish,
+            AdminItemId.MoldyBread,
+            AdminItemId.GrizzlyPaw,
+            AdminItemId.FairyWingsCharm,
+            AdminItemId.ElectricWand,
+            AdminItemId.Firestone,
+            AdminItemId.BottleOfNightmare,
+            AdminItemId.EnchantedBeef,
+            AdminItemId.VenomousSword,
+            AdminItemId.BigSpringBoots,
+            AdminItemId.BiggerSpringBoots,
+            AdminItemId.Hammer,
+            AdminItemId.AimingBow,
+            AdminItemId.MithrilTech,
+            AdminItemId.MiningIsland,
+            AdminItemId.EnchantedGriffinFeather,
+            AdminItemId.FreshSpringWater,
+            AdminItemId.RandomBook,
+            AdminItemId.BarnIsland,
+            AdminItemId.HarvestingSword,
+            AdminItemId.OldBoot,
+            AdminItemId.IncorrectSnubfinDolphinSkin,
+            AdminItemId.FireFlowerTool,
+            AdminItemId.FakeGoldRing,
+            AdminItemId.CottonCandy,
+            AdminItemId.TravelScrollToTheBlazeFarm,
+            AdminItemId.AutowandSleeve,
+            AdminItemId.TravelScrollToDragontail,
+            AdminItemId.TravelScrollToTheKuudraPassage,
+            AdminItemId.TravelScrollToScarleton,
+            AdminItemId.OrganicBrownMushroom,
+            AdminItemId.OrganicCactus,
+            AdminItemId.OrganicCarrot,
+            AdminItemId.OrganicCocoaBeans,
+            AdminItemId.OrganicEgg,
+            AdminItemId.OrganicMelon,
+            AdminItemId.OrganicMilk,
+            AdminItemId.OrganicMushroom,
+            AdminItemId.OrganicNetherWart,
+            AdminItemId.OrganicPotato,
+            AdminItemId.OrganicPumpkin,
+            AdminItemId.OrganicRedMushroom,
+            AdminItemId.OrganicSugarCane,
+            AdminItemId.OrganicWheat,
+            AdminItemId.OrganicWool,
+            AdminItemId.Copper,
+            AdminItemId.Fertilizer,
+            AdminItemId.GatewayWand,
+            AdminItemId.ArgofayTrinket,
+            AdminItemId.TestVampireChestplate,
+            AdminItemId.TestRiftWand,
+            AdminItemId.DraconicBlade,
+            AdminItemId.SeismicWaveStick,
+            AdminItemId.MagicalStaff,
+            AdminItemId.DiamondRefinery,
+            AdminItemId.SpellbookTest,
+            DisplayItemId.BossSpiritBow,
+            DisplayItemId.DungeonRedSupportOrb,
+            DisplayItemId.GhostAxeAbility,
+            DisplayItemId.HarvestingUpgrade,
+            DisplayItemId.HorsemansScythe,
+            DisplayItemId.MediumTalismanBag,
+            DisplayItemId.PurchaseRevivePerk,
+            DisplayItemId.ReviveDeadPerk,
+            DisplayItemId.ReviveFinalKillPerk,
+            DisplayItemId.ReviveStoneOrb,
+            DisplayItemId.SapphireCrystal,
+            DisplayItemId.ThrowingAxeAbility,
+            DisplayItemId.UnknownItem,
+            DisplayItemId.VanguardBoots,
+            DisplayItemId.VanguardLeggings,
+            DisplayItemId.WatcherBoots,
             CosmeticItemId.SlothMinionSkin,
             DisplayItemId.JadeCrystal,
             DisplayItemId.CitrineCrystal,
@@ -1254,7 +1333,29 @@ class TestSkyblockProfile {
             MiscItemId.TravelScrollToTheCrystalHollows,
             MiscItemId.TravelScrollToArachnesSanctuary,
             MiscItemId.TravelScrollToTheSmolderingTomb,
-            MiscItemId.TravelScrollToTheDwarvenBaseCamp
+            MiscItemId.TravelScrollToTheDwarvenBaseCamp,
+            CollectionItemId.ChiliPepper,
+            CosmeticItemId.BullheadMegalodon,
+            CosmeticItemId.HamBarnSkin,
+            CosmeticItemId.CountsManorBarnSkin,
+            CosmeticItemId.BrownSheepSkin,
+            CosmeticItemId.AquaSheepSkin,
+            DisplayItemId.Thunderstorm,
+            DisplayItemId.FallenStarChestplate,
+            DisplayItemId.FallenStarLeggings,
+            DisplayItemId.FallenStarBoots,
+            DisplayItemId.CryptSkullKey,
+            DisplayItemId.GoldenKey,
+            DisplayItemId.TheWatchersHead,
+            DisplayItemId.PopUpWallAbility,
+            DisplayItemId.AmberCrystal,
+            MiscItemId.OldAmalgamatedCrimsonite,
+            VanillaItemId.ArmorStand,
+            VanillaItemId.BookAndQuill,
+            VanillaItemId.FireworkStar,
+            VanillaItemId.VanillaNetherStar,
+            VanillaItemId.WitherSkeletonSkull,
+            VanillaItemId.ZombieSkull
         )
     }
 }

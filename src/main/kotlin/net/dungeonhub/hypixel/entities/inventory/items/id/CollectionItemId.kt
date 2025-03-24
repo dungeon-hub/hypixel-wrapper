@@ -8,6 +8,7 @@ enum class CollectionItemId(override val apiName: String, override val itemClass
     BlazeRod("BLAZE_ROD"),
     BrownMushroom("BROWN_MUSHROOM"),
     Carrots("CARROT"),
+    ChiliPepper("CHILI_PEPPER"),
     ClayBall("CLAY_BALL"),
     Coal("COAL"),
     Cobblestone("COBBLESTONE"),

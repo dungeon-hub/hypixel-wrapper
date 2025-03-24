@@ -37,7 +37,9 @@ enum class BuggedItemId(override val apiName: String, override val itemClass: (S
     EndermanSpawnEgg("MONSTER_EGG:58"),
     NullFlower1("YELLOW_FLOWER:4"),
     NullFlower2("RED_ROSE:15"),
-    NullHay("HAY_BLOCK:3");
+    NullHay("HAY_BLOCK:3"),
+    BoneMeal2("BONE_MEAL"),
+    EnchantedCarrotOnAStick2("ENCHANTED_CARROT_ON_A_STICK");
 
     constructor(apiName: String) : this(apiName, { it })
 }
