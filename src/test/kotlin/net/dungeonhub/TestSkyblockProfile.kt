@@ -338,16 +338,16 @@ class TestSkyblockProfile {
                     assertTrue { !item.extraAttributes.contains("ability_scroll") }
                 }
 
-                if (item is Gear) {
+                if (item is ItemWithAttributes) {
                     assertNotNull(item.attributes)
                 } else {
-                    //TODO reenable once everything is mapped
-                    /*assertTrue("Item ${item.id.apiName} has attributes, but the wrapper doesn't acknowledge that!") {
+                    assertTrue("Item ${item.id.apiName} has attributes, but the wrapper doesn't acknowledge that!") {
                         !item.extraAttributes.contains(
                             "attributes"
                         )
-                    }*/
+                    }
                 }
+
                 if (item is NewYearCakeBag) {
                     assertNotNull(item.newYearCakeBagData)
                     checkItems(item.newYearCakeBagData)

@@ -53,7 +53,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     ArrowSwapper("ARROW_SWAPPER"),
     AscensionRope("ASCENSION_ROPE"),
     Atominizer("ATOMINIZER"),
-    AttributeShard("ATTRIBUTE_SHARD"),
+    AttributeShard("ATTRIBUTE_SHARD", { AttributeShard(it.raw) }),
     AutoSmelter("AUTO_SMELTER"),
     AutopetRules2Pack("AUTOPET_RULES_2"),
     AvariciousChalice("AVARICIOUS_CHALICE"),

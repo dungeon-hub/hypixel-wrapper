@@ -8,13 +8,8 @@ import me.nullicorn.nedit.type.NBTCompound
 /**
  * Gear is used as an abstract class for weapons, armor, tools, fishing rods and equipment
  */
-open class Gear(raw: NBTCompound) : SkyblockItem(raw), EnchantableItem, ReforgeableItem, ItemWithAbility, ItemWithGems {
-    //TODO map to attribute type
-    val attributes: Map<String, Int>
-        get() = extraAttributes.getCompound("attributes")?.let {
-            it.mapValues { attribute -> attribute.value as Int }
-        } ?: emptyMap()
-
+open class Gear(raw: NBTCompound) : SkyblockItem(raw), EnchantableItem, ReforgeableItem, ItemWithAbility, ItemWithGems,
+    ItemWithAttributes {
     //TODO map to rune type
     val runes: Map<String, Int>
         get() = extraAttributes.getCompound("runes")?.let {
