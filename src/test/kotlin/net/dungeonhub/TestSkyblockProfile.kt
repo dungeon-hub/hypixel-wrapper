@@ -325,12 +325,11 @@ class TestSkyblockProfile {
                         )
                     }
                 } else {
-                    //TODO reenable once everything is mapped
-                    /*assertTrue("Item ${item.id.apiName} has enchantments, but the wrapper doesn't acknowledge that!") {
+                    assertTrue("Item ${item.id.apiName} has enchantments, but the wrapper doesn't acknowledge that!") {
                         !item.extraAttributes.contains(
                             "enchantments"
                         )
-                    }*/
+                    }
                 }
 
                 if (item is WitherBlade) {

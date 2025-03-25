@@ -2,6 +2,7 @@ package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.special.EnchantedBook
+import net.dungeonhub.hypixel.entities.inventory.items.special.GlowstoneBlock
 
 enum class VanillaItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -154,7 +155,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     GlassBottle("GLASS_BOTTLE"),
     GlassPane("THIN_GLASS"),
     GlisteringMelon("SPECKLED_MELON"),
-    Glowstone("GLOWSTONE"),
+    Glowstone("GLOWSTONE", { GlowstoneBlock(it.raw) }),
     GoldHorseArmor("GOLD_BARDING"),
     GoldIngot("GOLD_INGOT"),
     GoldNugget("GOLD_NUGGET"),

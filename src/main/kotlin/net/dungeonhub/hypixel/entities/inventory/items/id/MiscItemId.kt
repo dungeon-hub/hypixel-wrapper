@@ -328,7 +328,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     EnchantedBookBundleSmallBrain("ENCHANTED_BOOK_BUNDLE_SMALL_BRAIN", { EnchantedBookBundle(it.raw) }),
     EnchantedBookBundleReflection("ENCHANTED_BOOK_BUNDLE_REFLECTION"),
     EnchantedBookBundleQuantum("ENCHANTED_BOOK_BUNDLE_QUANTUM", { EnchantedBookBundle(it.raw) }),
-    EnchantedBookBundleTheOne("ENCHANTED_BOOK_BUNDLE_THE_ONE"),
+    EnchantedBookBundleTheOne("ENCHANTED_BOOK_BUNDLE_THE_ONE", { EnchantedBookBundle(it.raw) }),
     EnchantedBookBundleRainbow("ENCHANTED_BOOK_BUNDLE_RAINBOW", { EnchantedBookBundle(it.raw) }),
     EnchantedBookBundleChimera("ENCHANTED_BOOK_BUNDLE_CHIMERA"),
     EnchantedBookBundlePrismatic("ENCHANTED_BOOK_BUNDLE_PRISMATIC"),
