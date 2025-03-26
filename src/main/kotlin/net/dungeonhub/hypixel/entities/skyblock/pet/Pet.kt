@@ -12,11 +12,10 @@ import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.util.*
 
-//TODO map type to pet type
 class Pet(
     val uuid: UUID?,
     val uniqueId: UUID?,
-    val type: String,
+    val type: PetType,
     val exp: Double,
     val active: Boolean,
     val tier: SkyblockRarity,
@@ -243,7 +242,7 @@ fun JsonObject.toPet(): Pet {
     return Pet(
         getAsJsonPrimitiveOrNull("uuid")?.asString?.let { UUID.fromString(it) },
         getAsJsonPrimitiveOrNull("uniqueId")?.asString?.let { UUID.fromString(it) },
-        getAsJsonPrimitive("type").asString,
+        KnownPetType.fromApiName(getAsJsonPrimitive("type").asString),
         getAsJsonPrimitive("exp").asDouble,
         getAsJsonPrimitive("active").asBoolean,
         SkyblockRarity.fromApiName(getAsJsonPrimitive("tier").asString),

@@ -524,6 +524,25 @@ class TestSkyblockProfile {
     }
 
     @Test
+    fun testAllPetsInTestData() {
+        TestHelper.runParallel {
+            val allPetTypes = TestHelper.readAllSkyblockProfiles().parallel().flatMap { profiles ->
+                profiles.parallelStream().flatMap { profile ->
+                    (profile.members.filterIsInstance<CurrentMember>().mapNotNull { it.petsData?.pets }
+                        .flatMap { it } + profile.members.filterIsInstance<CurrentMember>()
+                        .mapNotNull { it.riftData?.deadCats?.montezuma }).map { it.type }.stream()
+                }
+            }.distinct().toList()
+
+            val missingPetTypes = KnownPetType.entries.filter { !allPetTypes.contains(it) }
+
+            assertTrue(
+                "Some pet types weren't included in the test data: ${missingPetTypes.map { it.apiName }}",
+            ) { missingPetTypes.isEmpty() }
+        }
+    }
+
+    @Test
     fun testNoInvalidDataTypes() {
         TestHelper.runParallel {
             TestHelper.readAllSkyblockProfiles().parallel().forEach { profiles ->
@@ -553,7 +572,18 @@ class TestSkyblockProfile {
                             }
 
                             member.petsData?.pets?.forEach { pet ->
-                                //TODO check for pet type once implemented
+                                assertIsNot<KnownPetType.UnknownPetType>(
+                                    pet.type,
+                                    "Pet ${pet.type.apiName} isn't recognized"
+                                )
+                                assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
+                            }
+
+                            member.riftData?.deadCats?.montezuma?.let { pet ->
+                                assertIsNot<KnownPetType.UnknownPetType>(
+                                    pet.type,
+                                    "Pet ${pet.type.apiName} isn't recognized"
+                                )
                                 assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
                             }
                         }

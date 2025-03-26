@@ -12,6 +12,7 @@ import net.dungeonhub.hypixel.entities.skyblock.ProfileStatsOverview
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.hypixel.service.FormattingService
@@ -54,7 +55,7 @@ interface ApiClient {
                 return@filter item.id == WeaponItemId.Terminator
             }?.filterIsInstance<Gear>() ?: emptyList()
         val goldenDragon: List<Pet> = profileMember.petsData?.pets?.filter { pet ->
-            pet.type == "GOLDEN_DRAGON"
+            pet.type == KnownPetType.GoldenDragon
         } ?: emptyList()
 
         val skyblockLevel: Double = profileMember.leveling.experience.toDouble() / 100

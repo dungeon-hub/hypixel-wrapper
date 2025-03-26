@@ -24,7 +24,9 @@ import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Co
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
+import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.pet.PetItem
+import net.dungeonhub.hypixel.entities.skyblock.pet.PetType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.SlayerType
 import java.io.IOException
@@ -43,6 +45,8 @@ object GsonProvider {
         .registerTypeAdapter(GuildRank::class.java, PolymorphDeserializer<GuildRank>())
         .registerTypeAdapter(KnownPetItem::class.java, PetItemSerializer())
         .registerTypeAdapter(PetItem::class.java, PetItemSerializer())
+        .registerTypeAdapter(KnownPetType::class.java, PetTypeSerializer())
+        .registerTypeAdapter(PetType::class.java, PetTypeSerializer())
         .registerTypeAdapter(KnownSkill::class.java, SkillSerializer())
         .registerTypeAdapter(Skill::class.java, SkillSerializer())
         .registerTypeAdapter(KnownCurrencyTypes::class.java, CurrencySerializer())
@@ -92,6 +96,25 @@ object GsonProvider {
         override fun deserialize(json: JsonElement, typeOfT: Type?, context: JsonDeserializationContext?): PetItem {
             return KnownPetItem.fromApiName(json.asString)
         }
+    }
+
+    private class PetTypeSerializer : JsonSerializer<PetType>, JsonDeserializer<PetType> {
+        override fun serialize(
+            src: PetType,
+            typeOfSrc: Type?,
+            context: JsonSerializationContext?
+        ): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
+
+        override fun deserialize(
+            json: JsonElement,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): PetType {
+            return KnownPetType.fromApiName(json.asString)
+        }
+
     }
 
     private class RankSerializer : JsonSerializer<Rank>, JsonDeserializer<Rank> {
