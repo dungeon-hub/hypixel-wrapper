@@ -2,6 +2,8 @@ package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.special.DefuseKit
+import net.dungeonhub.hypixel.entities.inventory.items.special.JournalEntry
+import net.dungeonhub.hypixel.entities.inventory.items.special.TrainingWeights
 
 enum class DungeonItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -24,7 +26,7 @@ enum class DungeonItemId(override val apiName: String, override val itemClass: (
     Infinileap("INFINITE_SPIRIT_LEAP"),
     InflatableJerry("INFLATABLE_JERRY"),
     JollyPinkRock("GIANT_FRAGMENT_BOULDER"),
-    JournalEntry("DUNGEON_LORE_PAPER"),
+    JournalEntry("DUNGEON_LORE_PAPER", { JournalEntry(it.raw) }),
     LASRsEye("GIANT_FRAGMENT_LASER"),
     LesserOrbOfHealing("LESSER_ORB_OF_HEALING"),
     LividFragment("LIVID_FRAGMENT"),
@@ -50,7 +52,7 @@ enum class DungeonItemId(override val apiName: String, override val itemClass: (
     StormTheFish("STORM_THE_FISH"),
     SummoningRing("SUMMONING_RING"),
     ThornFragment("THORN_FRAGMENT"),
-    TrainingWeights("TRAINING_WEIGHTS"),
+    TrainingWeights("TRAINING_WEIGHTS", { TrainingWeights(it.raw) }),
     Trap("DUNGEON_TRAP"),
     UltimateWitherScroll("ULTIMATE_WITHER_SCROLL"),
     WitherCatalyst("WITHER_CATALYST"),

@@ -1,5 +1,6 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
+import net.dungeonhub.hypixel.entities.inventory.items.Gear
 import net.dungeonhub.hypixel.entities.inventory.items.PetAsItem
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.Weapon
@@ -156,7 +157,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     BlastOLantern("PUMPKIN_BOMB"),
     BlazeAshes("BLAZE_ASHES"),
     BlazeRodDistillate("BLAZE_ROD_DISTILLATE"),
-    BlazetekkHamRadio("BLAZETEKK_HAM_RADIO"),
+    BlazetekkHamRadio("BLAZETEKK_HAM_RADIO", { BlazetekkHamRadio(it.raw) }),
     BlockOfCoal("COAL_BLOCK"),
     BlockOfDiamond("DIAMOND_BLOCK"),
     BlockOfEmerald("EMERALD_BLOCK"),
@@ -174,7 +175,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     BoosterCookie("BOOSTER_COOKIE"),
     FreeBoosterCookie("FREE_COOKIE"),
     RefundBoosterCookie("REFUND_COOKIE"),
-    BottleOfJyrre("NEW_BOTTLE_OF_JYRRE"),
+    BottleOfJyrre("NEW_BOTTLE_OF_JYRRE", { BottleOfJyrre(it.raw) }),
     RefinedBottleOfJyrre("REFINED_BOTTLE_OF_JYRRE"),
     BouncyBeachBall("BOUNCY_BEACH_BALL"),
     BoxOfSeeds("BOX_OF_SEEDS"),
@@ -186,7 +187,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     BundleOfMagmaArrows("ARROW_BUNDLE_MAGMA"),
     BurningEye("BURNING_EYE"),
     BuzzinBeatsVinyl("VINYL_BUZZIN_BEATS"),
-    CakeSoul("CAKE_SOUL"),
+    CakeSoul("CAKE_SOUL", { CakeSoul(it.raw) }),
     CandyTheFish("CANDY_THE_FISH"),
     CapsaicinEyedrops("CAPSAICIN_EYEDROPS_NO_CHARGES"),
     CapsaicinEyedropsOld("CAPSAICIN_EYEDROPS"),
@@ -551,7 +552,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     GreatCarrotCandy("GREAT_CARROT_CANDY"),
     GreatSpookPotion("GREAT_SPOOK_POTION"),
     GreatSpookReforgingManual("GREAT_SPOOK_REFORGING_MANUAL"),
-    GreatSpookStaff("GREAT_SPOOK_STAFF"),
+    GreatSpookStaff("GREAT_SPOOK_STAFF", { Gear(it.raw) }),
     GreatWhiteSharkTooth("GREAT_WHITE_SHARK_TOOTH"),
     GreatWhiteToothMeal("GREAT_WHITE_TOOTH_MEAL"),
     GreenCandy("GREEN_CANDY"),
@@ -630,7 +631,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     LeatherCloth("LEATHER_CLOTH"),
     LesserSoulflowEngine("LESSER_SOULFLOW_ENGINE"),
     LetterOfRecommendation("DEAN_LETTER_OF_RECOMMENDATION"),
-    LostBottleOfJyrre("BOTTLE_OF_JYRRE"),
+    LostBottleOfJyrre("BOTTLE_OF_JYRRE", { BottleOfJyrre(it.raw) }),
     LoudmouthBass("LOUDMOUTH_BASS"),
     LuckyCloverCore("PET_ITEM_LUCKY_CLOVER_DROP"),
     LuminoFiber("LUMINO_FIBER"),
@@ -850,7 +851,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     SpookyWaterOrb("SPOOKY_WATER_ORB"),
     Sprayonator("SPRAYONATOR"),
     Squash("SQUASH"),
-    SqueakyMousemat("SQUEAKY_MOUSEMAT"),
+    SqueakyMousemat("SQUEAKY_MOUSEMAT", { SqueakyMousemat(it.raw) }),
     Starfall("STARFALL"),
     StewTheFish("STEW_THE_FISH"),
     StockOfStonks("STOCK_OF_STONKS"),
@@ -901,7 +902,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     Treasurite("TREASURITE"),
     TrickOrTreatBag("TRICK_OR_TREAT_BAG"),
     TrueEssence("TRUE_ESSENCE"),
-    TuningFork("TUNING_FORK"),
+    TuningFork("TUNING_FORK", { TuningFork(it.raw) }),
     TuskFossil("TUSK_FOSSIL"),
     UglyFossil("UGLY_FOSSIL"),
     UltimateCarrotCandy("ULTIMATE_CARROT_CANDY"),
@@ -933,7 +934,7 @@ enum class MiscItemId(override val apiName: String, override val itemClass: ((Sk
     WingsOfHarmonyVinyl("VINYL_WINGS_OF_HARMONY"),
     WinterFragment("WINTER_FRAGMENT"),
     WinterWaterOrb("WINTER_WATER_ORB"),
-    WishingCompass("WISHING_COMPASS"),
+    WishingCompass("WISHING_COMPASS", { WishingCompass(it.raw) }),
     WispUpgradeStoneRare("UPGRADE_STONE_FROST"),
     WispUpgradeStoneEpic("UPGRADE_STONE_GLACIAL"),
     WispUpgradeStoneLegendary("UPGRADE_STONE_SUBZERO"),

@@ -1,9 +1,8 @@
 package net.dungeonhub.hypixel.entities.inventory.items.special
 
 import me.nullicorn.nedit.type.NBTCompound
-import net.dungeonhub.hypixel.entities.inventory.items.Gear
 
-class StaffOfTheRisingSun(raw: NBTCompound) : Gear(raw) {
+class StaffOfTheRisingSun(raw: NBTCompound) : Wand(raw) {
     val leaderVotes: Int
         get() = extraAttributes.getInt("leaderVotes", 0)
 

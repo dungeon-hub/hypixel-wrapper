@@ -28,33 +28,61 @@ object SkyblockItemHelper {
         Deployable::class.java to listOf("jalapeno_count"),
         DungeonItem::class.java to listOf("dungeon_item_level"),
         EnchantableItem::class.java to listOf("enchantments", "anvil_uses"),
-        Gear::class.java to listOf("runes", "dungeon_item", "upgrade_level", "year"),
+        FishingTool::class.java to listOf("expertise_kills"),
+        Gear::class.java to listOf(
+            "dungeon_item",
+            "upgrade_level",
+            "year",
+            "dungeon_skill_req",
+            "baseStatBoostPercentage",
+            "item_tier"
+        ),
         ItemFromBoss::class.java to listOf("bossId", "spawnedFor"),
         ItemFromKuudra::class.java to listOf("boss_tier"),
         ItemWithAbility::class.java to listOf("power_ability_scroll"),
         ItemWithAttributes::class.java to listOf("attributes"),
         ItemWithGems::class.java to listOf("gems"),
         ItemWithHotPotatoBooks::class.java to listOf("hot_potato_count"),
+        ItemWithRune::class.java to listOf("runes"),
         ManaDisintegratable::class.java to listOf("mana_disintegrator_count"),
+        Minion::class.java to listOf(
+            "resources_generated",
+            "mithril_infusion",
+            "free_will",
+            "generator_tier",
+            "total_generations"
+        ),
         PetAsItem::class.java to listOf("petInfo", "year"),
         ReforgeableItem::class.java to listOf("modifier"),
         ShinyItem::class.java to listOf("is_shiny"),
         SkinAppliable::class.java to listOf("dye_item", "skin"),
+        Sword::class.java to listOf("champion_combat_xp"),
         TeleportationSword::class.java to listOf("ethermerge", "tuned_transmission"),
-        Weapon::class.java to listOf("art_of_war_count"),
+        Weapon::class.java to listOf("art_of_war_count", "stats_book"),
 
         Abicase::class.java to listOf("model"),
         Backpack::class.java to listOf("backpack_color"),
+        BlazeDagger::class.java to listOf("td_attune_mode"),
+        BlazetekkHamRadio::class.java to listOf("blazetekk_channel"),
         BloodGodCrest::class.java to listOf("blood_god_kills"),
         BookOfProgression::class.java to listOf("upgradedRarity"),
+        BottleOfJyrre::class.java to listOf("bottle_of_jyrre_seconds", "bottle_of_jyrre_last_update"),
         BucketOfDye::class.java to listOf("dye_donated"),
         BuildersRuler::class.java to listOf("builder's_ruler_data"),
         BuildersWand::class.java to listOf("builder's_wand_data"),
+        CakeSoul::class.java to listOf(
+            "captured_player",
+            "captured_date",
+            "initiator_player",
+            "cake_owner",
+            "soul_durability"
+        ),
         DefuseKit::class.java to listOf("trapsDefused"),
         GhastCloak::class.java to listOf("ghast_blaster"),
         GreatSpookAccessory::class.java to listOf("year", "edition"),
         HegemonyArtifact::class.java to listOf("winning_bid"),
         HurricaneBow::class.java to listOf("bow_kills"),
+        JournalEntry::class.java to listOf("dungeon_paper_id"),
         MelodysHair::class.java to listOf("tune"),
         NewYearCake::class.java to listOf("new_years_cake"),
         NewYearCakeBag::class.java to listOf("new_year_cake_bag_data"),
@@ -107,13 +135,19 @@ object SkyblockItemHelper {
         ),
         PulseRing::class.java to listOf("thunder_charge"),
         RaidersAxe::class.java to listOf("raider_kills"),
+        RanchersBoots::class.java to listOf("ranchers_speed"),
         Runebook::class.java to listOf("runic_kills"),
+        Sack::class.java to listOf("sack_pss"),
+        SqueakyMousemat::class.java to listOf("mousemat_yaw", "mousemat_pitch"),
         StaffOfTheRisingSun::class.java to listOf("leaderVotes", "leaderPosition"),
+        TrainingWeights::class.java to listOf("trainingWeightsHeldTime"),
         TrapperCrest::class.java to listOf("pelts_earned"),
+        TuningFork::class.java to listOf("tuning_fork_tuning"),
+        WishingCompass::class.java to listOf("wishing_compass_uses"),
         WitherBlade::class.java to listOf("ability_scroll")
     )
 
-    fun getFields(item: SkyblockItem): List<String> {
+    fun getMappedFields(item: SkyblockItem): List<String> {
         val result = mutableListOf<String>()
 
         for ((key, value) in itemFields) {
@@ -128,9 +162,13 @@ object SkyblockItemHelper {
     fun checkFields(item: SkyblockItem) {
         if (item.id is UnknownSkyblockItemId) return
 
-        val fields = getFields(item)
+        val fields = getMappedFields(item)
 
         val unmappedFields = item.extraAttributes.map { it.key }.filter { !fields.contains(it) }
+
+        if (!unmappedFields.isEmpty()) {
+            println(item.id.apiName + ": " + item.extraAttributes.filter { !fields.contains(it.key) })
+        }
 
         assertTrue(
             unmappedFields.isEmpty(),

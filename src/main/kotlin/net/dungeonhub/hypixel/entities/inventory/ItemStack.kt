@@ -18,6 +18,9 @@ open class ItemStack(val raw: NBTCompound) {
 
     val extraAttributes: NBTCompound
         get() = tag.getCompound("ExtraAttributes") ?: NBTCompound()
+
+    val durabilityLost: Short?
+        get() = tag.getShort("Damage", -1).takeIf { it != (-1).toShort() }
 }
 
 fun NBTCompound.toItem(): ItemStack? {

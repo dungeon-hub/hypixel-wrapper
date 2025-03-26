@@ -24,7 +24,7 @@ class Guild(
     val ranks: List<GuildRank>,
     val preferredGames: List<GameType>,
     val guildExp: Map<GameType, Int>,
-    val achievements: Map<String, Int>, //TODO map key to achievement?
+    val achievements: Map<String, Int>,
     val coins: Int,
     val coinsEver: Int
 ) {

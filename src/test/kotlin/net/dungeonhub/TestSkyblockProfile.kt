@@ -15,6 +15,7 @@ import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 import net.dungeonhub.hypixel.entities.skyblock.misc.ProfileGameMode
 import net.dungeonhub.hypixel.entities.skyblock.misc.fromSkyblockTime
+import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
@@ -296,6 +297,7 @@ class TestSkyblockProfile {
             assertNotNull(item.rawName)
             assertNotNull(item.extraAttributes)
             assertDoesNotThrow { item.lore }
+            assertDoesNotThrow { item.durabilityLost }
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
@@ -306,6 +308,7 @@ class TestSkyblockProfile {
 
                 if (item is Gear) {
                     assertTrue(item.runes.isEmpty() || item.runes.size == 1)
+                    assertDoesNotThrow { item.dungeonSkillRequirement }
                 }
 
                 if (item is ItemWithGems) {
@@ -352,7 +355,6 @@ class TestSkyblockProfile {
                     assertNotNull(item.newYearCakeBagData)
                     checkItems(item.newYearCakeBagData)
                 }
-                assertDoesNotThrow { item.dungeonSkillRequirement }
 
                 if (item is PersonalCompactor) {
                     item.compactSlots.forEach {
@@ -384,6 +386,15 @@ class TestSkyblockProfile {
                     assertIsNot<UnknownSkyblockItemId>(item.appliedDye)
                     //TODO reenable once everything is mapped
                     //assertIsNot<UnknownSkinItemId>(item.appliedSkin)
+                }
+
+                if (item is BottleOfJyrre) {
+                    assertDoesNotThrow { item.lastUpdated }
+                    assertDoesNotThrow { item.secondsHeld }
+                }
+
+                if (item is JournalEntry) {
+                    assertDoesNotThrow { item.journalType }
                 }
 
                 //TODO reenable once everything is mapped

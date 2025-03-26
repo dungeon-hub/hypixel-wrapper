@@ -8,8 +8,6 @@ import net.dungeonhub.hypixel.entities.inventory.isValidItem
 import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.toItem
-import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
-import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 import java.io.ByteArrayInputStream
 import java.time.Instant
 import java.util.*
@@ -55,9 +53,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val polarvoid: Int
         get() = extraAttributes.getInt("polarvoid", 0)
 
-    val expertiseKills: Int
-        get() = extraAttributes.getInt("expertise_kills", 0)
-
     val lavaCreaturesKilled: List<String>
         get() = extraAttributes.getList("lava_creatures_killed")?.map { it.toString() } ?: emptyList()
 
@@ -70,18 +65,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val drillFuel: Int
         get() = extraAttributes.getInt("drill_fuel", 0)
 
-    val statsBook: Int
-        get() = extraAttributes.getInt("stats_book", 0)
-
-    val championXp: Double
-        get() = extraAttributes.getDouble("champion_combat_xp", 0.0)
-
-    val baseStatBoost: Int
-        get() = extraAttributes.getInt("baseStatBoostPercentage", 0)
-
-    val blazeTekkChannel: Int
-        get() = extraAttributes.getInt("blazetekk_channel", -1)
-
     val blocksWalked: Int
         get() = extraAttributes.getInt("blocks_walked", 0)
 
@@ -93,11 +76,6 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
 
     val ranchersSpeed: Int
         get() = extraAttributes.getInt("ranchers_speed", 0)
-
-    val dungeonSkillRequirement: Pair<DungeonType, Int>?
-        get() = extraAttributes.getString("dungeon_skill_req")?.split(":")?.let {
-            KnownDungeonType.fromApiName(it.first().lowercase()) to Integer.valueOf(it.last())
-        }
 
     companion object {
         fun fromNbtCompound(compound: NBTCompound): SkyblockItem? {

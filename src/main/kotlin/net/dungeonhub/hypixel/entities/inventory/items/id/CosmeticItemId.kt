@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.RuneItem
 
 enum class CosmeticItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -522,7 +523,7 @@ enum class CosmeticItemId(override val apiName: String, override val itemClass: 
     RoseRabbitSkin("PET_SKIN_RABBIT_ROSE"),
     RubberChickenSkin("PET_SKIN_CHICKEN_RUBBER"),
     RugBeeBeeSkin("PET_SKIN_BEE_RUGBEE"),
-    Rune("RUNE"),
+    Rune("RUNE", { RuneItem(it.raw) }),
     SaberToothTigerSkin("PET_SKIN_TIGER_SABER_TOOTH"),
     SafariGiraffeSkin("PET_SKIN_GIRAFFE_SAFARI"),
     SandCastleBarnSkin("SAND_CASTLE_BARN_SKIN"),
@@ -623,7 +624,7 @@ enum class CosmeticItemId(override val apiName: String, override val itemClass: 
     USBeeBeeSkin("PET_SKIN_BEE_USB"),
     UndeadEnderDragonSkin("PET_SKIN_ENDER_DRAGON_UNDEAD"),
     UndeadMinionSkin("UNDEAD_PERSONALITY"),
-    UniqueRune("UNIQUE_RUNE"),
+    UniqueRune("UNIQUE_RUNE", { RuneItem(it.raw) }),
     VampireBatSkin("PET_SKIN_BAT_VAMPIRE"),
     VioletSeaSlugSkin("PET_SKIN_SLUG_VIOLET_SEA_SLUG"),
     VoidConquerorEndermanSkin("PET_SKIN_ENDERMAN_SLAYER"),

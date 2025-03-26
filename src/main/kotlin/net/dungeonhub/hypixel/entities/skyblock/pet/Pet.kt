@@ -22,7 +22,7 @@ class Pet(
     val tier: SkyblockRarity,
     val heldItem: PetItem?,
     val candyUsed: Int,
-    val skin: String?,
+    val skin: String?, //TODO map to enum
     val extraData: JsonObject?
 ) {
     //TODO make decent
