@@ -1,7 +1,7 @@
 package net.dungeonhub.hypixel.entities.guild
 
 import com.google.gson.JsonObject
-import net.dungeonhub.mojang.entity.toUUIDUnsafe
+import net.dungeonhub.mojang.entity.toUUID
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.time.Instant
@@ -19,7 +19,7 @@ class GuildMember(
 
 fun JsonObject.toGuildMember(ranks: List<GuildRank>): GuildMember {
     return GuildMember(
-        getAsJsonPrimitive("uuid").asString.toUUIDUnsafe(),
+        getAsJsonPrimitive("uuid").asString.toUUID(),
         ranks.firstOrNull { it.name == getAsJsonPrimitive("rank").asString },
         getAsJsonPrimitiveOrNull("joinedAt")?.asLong?.let { Instant.ofEpochMilli(it) },
         getAsJsonPrimitiveOrNull("mutedAt")?.asLong?.takeIf { it != 0L }?.let { Instant.ofEpochMilli(it) },

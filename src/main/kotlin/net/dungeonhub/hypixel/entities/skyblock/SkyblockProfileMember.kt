@@ -2,9 +2,9 @@ package net.dungeonhub.hypixel.entities.skyblock
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.hypixel.entities.inventory.toMemberInventoryData
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.toDungeonsData
 import net.dungeonhub.hypixel.entities.skyblock.misc.MemberPlayerData
@@ -16,7 +16,7 @@ import net.dungeonhub.hypixel.entities.skyblock.slayer.MemberSlayerData
 import net.dungeonhub.hypixel.entities.skyblock.slayer.toSlayerData
 import net.dungeonhub.hypixel.entities.skyblock.stats.MemberPlayerStats
 import net.dungeonhub.hypixel.entities.skyblock.stats.toPlayerStats
-import net.dungeonhub.mojang.entity.toUUIDUnsafe
+import net.dungeonhub.mojang.entity.toUUID
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
@@ -46,7 +46,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
         val uuid = if (has("player_id")) {
             UUID.fromString(getAsJsonPrimitive("player_id").asString)
         } else {
-            it.key.toUUIDUnsafe()
+            it.key.toUUID()
         }
         val profileData = it.value.asJsonObject.getAsJsonObject("profile")
 

@@ -1,8 +1,8 @@
 package net.dungeonhub.hypixel.entities.museum
 
 import com.google.gson.JsonObject
-import net.dungeonhub.mojang.entity.toUUIDUnsafe
-import java.util.UUID
+import net.dungeonhub.mojang.entity.toUUID
+import java.util.*
 
 class MuseumData(
     val profileId: UUID,
@@ -13,7 +13,7 @@ fun JsonObject.toMuseumData(profileId: UUID): MuseumData {
     return MuseumData(
         profileId,
         entrySet().associate { (key, value) ->
-            key.toUUIDUnsafe() to value.asJsonObject.toPlayerMuseumData()
+            key.toUUID() to value.asJsonObject.toPlayerMuseumData()
         }
     )
 }
