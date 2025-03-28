@@ -383,7 +383,7 @@ class TestSkyblockProfile {
                 }
 
                 if (item is SkinAppliable) {
-                    assertIsNot<UnknownSkyblockItemId>(item.appliedDye)
+                    assertIsNot<KnownDyeId.UnknownDyeId>(item.appliedDye)
                     //TODO reenable once everything is mapped
                     //assertIsNot<UnknownSkinItemId>(item.appliedSkin)
                 }
