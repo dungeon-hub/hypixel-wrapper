@@ -12,7 +12,6 @@ import java.io.ByteArrayInputStream
 import java.time.Instant
 import java.util.*
 
-//TODO add more fields that were missing
 //TODO map attribute type
 open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory {
     val id: SkyblockItemId = KnownSkyblockItemId.fromApiName(extraAttributes.getString("id"))
@@ -48,34 +47,8 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
     val raffleYear: Int?
         get() = extraAttributes.getInt("raffle_year", -1).takeIf { it != -1 }
 
-    //TODO check / migrate all below
-
-    val polarvoid: Int
-        get() = extraAttributes.getInt("polarvoid", 0)
-
-    val lavaCreaturesKilled: List<String>
-        get() = extraAttributes.getList("lava_creatures_killed")?.map { it.toString() } ?: emptyList()
-
-    val brokenBlocks: Int
-        get() = extraAttributes.getInt("blocksBroken", 0)
-
-    val promisingPickaxeBreaks: Int
-        get() = extraAttributes.getInt("promising_pickaxe_breaks", 0)
-
-    val drillFuel: Int
-        get() = extraAttributes.getInt("drill_fuel", 0)
-
-    val blocksWalked: Int
-        get() = extraAttributes.getInt("blocks_walked", 0)
-
-    val compactBlocks: Int
-        get() = extraAttributes.getInt("compact_blocks", 0)
-
-    val bookWormBooks: Int
-        get() = extraAttributes.getInt("bookworm_books", 0)
-
-    val ranchersSpeed: Int
-        get() = extraAttributes.getInt("ranchers_speed", 0)
+    val yearObtained: Int?
+        get() = extraAttributes.getInt("yearObtained", -1).takeIf { it != -1 }
 
     companion object {
         fun fromNbtCompound(compound: NBTCompound): SkyblockItem? {
@@ -106,77 +79,10 @@ fun ByteArray.parseItemList(): List<ItemStack> {
     return emptyList()
 }
 
-/*fun NBTCompound.isSkyblockItem(): Boolean {
-    if (!isValidItem()) return false
-
-    val tag = getCompound("tag") ?: return false
-
-    return tag.getCompound("ExtraAttributes")?.getString("id") != null
-}*/
-
 fun NBTCompound.isSkyblockItem(): Boolean {
     if (!isValidItem()) return false
 
     val tag = getCompound("tag") ?: return false
-
-    val ea = HashMap(tag.getCompound("ExtraAttributes") ?: HashMap())
-
-    ea.remove("id")
-    ea.remove("blocksBroken")
-    ea.remove("drill_fuel")
-    ea.remove("champion_combat_xp")
-    ea.remove("uuid")
-    ea.remove("stats_book")
-    ea.remove("bookworm_books")
-    ea.remove("trapsDefused")
-    ea.remove("timestamp")
-    ea.remove("new_year_cake_bag_data")
-    ea.remove("ranchers_speed")
-    ea.remove("raider_kills")
-    ea.remove("builder's_wand_data")
-    ea.remove("blazetekk_channel")
-    ea.remove("promising_pickaxe_breaks")
-    ea.remove("blocks_walked")
-    ea.remove("ethermerge")
-    ea.remove("compact_blocks")
-    ea.remove("tuned_transmission")
-    ea.remove("power_ability_scroll")
-    ea.remove("baseStatBoostPercentage")
-    ea.remove("rarity_upgrades")
-    ea.remove("originTag")
-    ea.remove("mana_disintegrator_count")
-    ea.remove("donated_museum")
-    ea.remove("modifier")
-    ea.remove("hot_potato_count")
-    ea.remove("enchantments")
-    ea.remove("dungeon_item")
-    ea.remove("runes")
-    ea.remove("upgrade_level")
-    ea.remove("anvil_uses")
-    ea.remove("gems")
-    ea.remove("petInfo")
-    ea.remove("ability_scroll")
-    ea.remove("dungeon_item_level")
-    ea.remove("art_of_war_count")
-    ea.remove("attributes")
-    ea.remove("toxophilite_combat_xp")
-    ea.remove("is_shiny")
-    ea.remove("rift_transferred")
-    ea.remove("jalapeno_count")
-    ea.remove("talisman_enrichment")
-    ea.remove("bossId")
-    ea.remove("spawnedFor")
-    ea.remove("skin")
-    ea.remove("dye_item")
-    ea.remove("polarvoid")
-    ea.remove("expertise_kills")
-    ea.remove("lava_creatures_killed")
-    ea.remove("dungeon_skill_req")
-    ea.remove("artOfPeaceApplied")
-
-    if (ea.isNotEmpty()) {
-        //println(ea)
-    }
 
     return tag.getCompound("ExtraAttributes")?.getString("id") != null
 }

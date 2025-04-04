@@ -6,4 +6,7 @@ import me.nullicorn.nedit.type.NBTCompound
 open class Sword(raw: NBTCompound) : Weapon(raw) {
     val championXp: Double?
         get() = extraAttributes.getDouble("champion_combat_xp", -1.0).takeIf { it != -1.0 }
+
+    val woodSingularity: Boolean
+        get() = extraAttributes.getInt("wood_singularity_count", 0) == 1
 }

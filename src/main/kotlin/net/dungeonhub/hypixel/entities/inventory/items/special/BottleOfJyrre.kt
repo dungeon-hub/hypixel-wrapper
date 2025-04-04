@@ -1,11 +1,10 @@
 package net.dungeonhub.hypixel.entities.inventory.items.special
 
 import me.nullicorn.nedit.type.NBTCompound
-import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import java.time.Instant
 
-class BottleOfJyrre(raw: NBTCompound) : SkyblockItem(raw) {
-    val secondsHeld: Int
+class BottleOfJyrre(raw: NBTCompound) : TimeBagItem(raw) {
+    override val secondsHeld: Int
         get() = extraAttributes.getInt("bottle_of_jyrre_seconds", 0)
 
     val lastUpdated: Instant?

@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.HollowWand
 import net.dungeonhub.hypixel.entities.inventory.items.special.StaffOfTheRisingSun
 import net.dungeonhub.hypixel.entities.inventory.items.special.Wand
 
@@ -14,7 +15,7 @@ enum class WandItemId(override val apiName: String, override val itemClass: ((Sk
     FireVeilWand("FIRE_VEIL_WAND", { Wand(it.raw) }),
     GyrokineticWand("GYROKINETIC_WAND", { Wand(it.raw) }),
     HellstormWand("HELLSTORM_STAFF", { Wand(it.raw) }),
-    HollowWand("HOLLOW_WAND", { Wand(it.raw) }),
+    HollowWand("HOLLOW_WAND", { HollowWand(it.raw) }),
     StaffOfTheRisingMoon("STAFF_OF_THE_RISING_MOON", { Wand(it.raw) }),
     StaffOfTheRisingSun("HOPE_OF_THE_RESISTANCE", { StaffOfTheRisingSun(it.raw) }),
     GeneralsStaffOfTheRisingSun("GENERALS_HOPE_OF_THE_RESISTANCE", { StaffOfTheRisingSun(it.raw) }),

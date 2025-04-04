@@ -397,6 +397,71 @@ class TestSkyblockProfile {
                     assertDoesNotThrow { item.journalType }
                 }
 
+                if (item is Memento) {
+                    assertDoesNotThrow { item.recipientName }
+                    assertDoesNotThrow { item.recipientUuid }
+                    assertDoesNotThrow { item.dateObtained }
+                    assertDoesNotThrow { item.edition }
+                }
+
+                if (item is CenturyMemento) {
+                    assertDoesNotThrow { item.tickets }
+                    assertDoesNotThrow { item.winningTeam }
+                    assertDoesNotThrow { item.recipientTeam }
+                    assertTrue { item.id.apiName.endsWith(item.recipientTeam) }
+                }
+
+                if (item is BingosSecretMemento) {
+                    assertDoesNotThrow { item.goalName }
+                    assertDoesNotThrow { item.bingoEvent }
+                }
+
+                if (item is PandorasBox) {
+                    assertDoesNotThrow { item.pandoraRarity }
+                }
+
+                if (item is Drill) {
+                    assertDoesNotThrow { item.upgradeModule }
+                    assertIsNot<UnknownSkyblockItemId>(item.upgradeModule)
+                    if (item.upgradeModule != null) assertIs<DrillPartId>(item.upgradeModule)
+
+                    assertDoesNotThrow { item.engine }
+                    assertIsNot<UnknownSkyblockItemId>(item.engine)
+                    if (item.engine != null) assertIs<DrillPartId>(item.engine)
+
+                    assertDoesNotThrow { item.fuelTank }
+                    assertIsNot<UnknownSkyblockItemId>(item.fuelTank)
+                    if (item.fuelTank != null) assertIs<DrillPartId>(item.fuelTank)
+                }
+
+                if (item is Sprayonator) {
+                    assertDoesNotThrow { item.sprayItem }
+                    assertIsNot<UnknownSkyblockItemId>(item.sprayItem)
+                }
+
+                if (item is KuudraTeethPlaque) {
+                    assertDoesNotThrow { item.rarity }
+                }
+
+                if (item is FishingTool) {
+                    assertDoesNotThrow { item.lavaCreaturesKilled }
+                }
+
+                if (item is RaffleTicket) {
+                    assertDoesNotThrow { item.raffleUUID }
+                }
+
+                if (item is Postcard) {
+                    assertDoesNotThrow { item.minionTier }
+                    assertNotNull(item.minionTier)
+                    assertDoesNotThrow { item.minionType }
+                    assertNotNull(item.minionType)
+                }
+
+                if (item is NecromancyItem) {
+                    assertDoesNotThrow { item.souls }
+                }
+
                 //TODO reenable once everything is mapped
                 //SkyblockItemHelper.checkFields(item)
             }

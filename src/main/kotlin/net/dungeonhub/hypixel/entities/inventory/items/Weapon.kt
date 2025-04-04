@@ -2,11 +2,8 @@ package net.dungeonhub.hypixel.entities.inventory.items
 
 import me.nullicorn.nedit.type.NBTCompound
 
-//TODO check fields
-open class Weapon(raw: NBTCompound) : Gear(raw), ItemWithHotPotatoBooks, ItemFromBoss, DungeonItem {
-    val hasArtOfWar: Boolean
-        get() = extraAttributes.getInt("art_of_war_count", 0) > 0
-
-    val statsBook: Int?
-        get() = extraAttributes.getInt("stats_book", -1).takeIf { it != -1 }
+open class Weapon(raw: NBTCompound) : Gear(raw), ItemWithHotPotatoBooks, ItemFromBoss, DungeonItem, ItemWithCombatBooks,
+    GearFromOphelia {
+    val soulEaterData: Double?
+        get() = extraAttributes.getDouble("ultimateSoulEaterData", -1.0).takeIf { it != -1.0 }
 }

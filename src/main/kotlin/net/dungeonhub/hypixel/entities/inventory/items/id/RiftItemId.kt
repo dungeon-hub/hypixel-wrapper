@@ -1,6 +1,8 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.Postcard
+import net.dungeonhub.hypixel.entities.inventory.items.special.VoodooDoll
 
 enum class RiftItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -52,7 +54,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     HolyIce("HOLY_ICE"),
     Horsezooka("HORSEZOOKA"),
     HotDog("HOT_DOG"),
-    JinxedVoodooDoll("VOODOO_DOLL_WILTED"),
+    JinxedVoodooDoll("VOODOO_DOLL_WILTED", { VoodooDoll(it.raw) }),
     JuicyHealingMelon("JUICY_HEALING_MELON"),
     JumpElixir("RIFT_JUMP_ELIXIR"),
     KcitS("MIRRORED_STICK"),
@@ -81,7 +83,7 @@ enum class RiftItemId(override val apiName: String, override val itemClass: ((Sk
     PlaceableFairySoul("PLACEABLE_FAIRY_SOUL_RIFT"),
     PlumbersBucket("RIFT_BUCKET"),
     PolarvoidBook("POLARVOID_BOOK"),
-    Postcard("POSTCARD"),
+    Postcard("POSTCARD", { Postcard(it.raw) }),
     PreDigestionFish("PRE_DIGESTION_FISH"),
     ProtoChicken("PROTOCHICKEN"),
     PuffCrux("PUFF_CRUX"),

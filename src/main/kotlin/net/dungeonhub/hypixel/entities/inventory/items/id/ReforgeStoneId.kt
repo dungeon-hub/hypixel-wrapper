@@ -1,6 +1,8 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.DragonDrop
+import net.dungeonhub.hypixel.entities.inventory.items.special.KuudraMandible
 
 enum class ReforgeStoneId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -20,9 +22,9 @@ enum class ReforgeStoneId(override val apiName: String, override val itemClass: 
     DiamondAtom("DIAMOND_ATOM"),
     Diamonite("DIAMONITE"),
     DirtBottle("DIRT_BOTTLE"),
-    DragonClaw("DRAGON_CLAW"),
-    DragonHorn("DRAGON_HORN"),
-    DragonScale("DRAGON_SCALE"),
+    DragonClaw("DRAGON_CLAW", { DragonDrop(it.raw) }),
+    DragonHorn("DRAGON_HORN", { DragonDrop(it.raw) }),
+    DragonScale("DRAGON_SCALE", { DragonDrop(it.raw) }),
     DwarvenGeode("ROCK_GEMSTONE"),
     DwarvenTreasure("DWARVEN_TREASURE"),
     EndStoneGeode("ENDSTONE_GEODE"),
@@ -38,7 +40,7 @@ enum class ReforgeStoneId(override val apiName: String, override val itemClass: 
     Jaderald("JADERALD"),
     JerryStone("JERRY_STONE"),
     KaleidoscopicMineral("SALMON_OPAL"),
-    KuudraMandible("KUUDRA_MANDIBLE"),
+    KuudraMandible("KUUDRA_MANDIBLE", { KuudraMandible(it.raw) }),
     LapisCrystal("LAPIS_CRYSTAL"),
     LargeWalnut("LARGE_WALNUT"),
     LuckyDice("LUCKY_DICE"),

@@ -3,7 +3,7 @@ package net.dungeonhub.hypixel.entities.inventory.items.special
 import me.nullicorn.nedit.type.NBTCompound
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
 
-class GhastCloak(raw: NBTCompound) : Gear(raw) {
-    val ghastsKilled: Int
-        get() = extraAttributes.getInt("ghast_blaster", 0)
+class VanquishedGlowstoneGauntlet(raw: NBTCompound) : Gear(raw) {
+    val glowstoneBroken: Int
+        get() = extraAttributes.getInt("glowing", 0)
 }

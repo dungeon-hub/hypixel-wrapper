@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.Mandraa
 
 enum class PowerStoneId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -19,7 +20,7 @@ enum class PowerStoneId(override val apiName: String, override val itemClass: ((
     HornsOfTorment("HORNS_OF_TORMENT"),
     LuxuriousSpool("LUXURIOUS_SPOOL"),
     MagmaUrchin("MAGMA_URCHIN"),
-    Mandraa("MANDRAA"),
+    Mandraa("MANDRAA", { Mandraa(it.raw) }),
     ObsidianTablet("OBSIDIAN_TABLET"),
     PreciousPearl("PRECIOUS_PEARL"),
     RockCandy("ROCK_CANDY"),

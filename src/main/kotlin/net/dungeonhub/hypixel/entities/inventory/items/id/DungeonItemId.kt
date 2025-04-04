@@ -1,9 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
-import net.dungeonhub.hypixel.entities.inventory.items.special.DefuseKit
-import net.dungeonhub.hypixel.entities.inventory.items.special.JournalEntry
-import net.dungeonhub.hypixel.entities.inventory.items.special.TrainingWeights
+import net.dungeonhub.hypixel.entities.inventory.items.special.*
 
 enum class DungeonItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -23,7 +21,7 @@ enum class DungeonItemId(override val apiName: String, override val itemClass: (
     FumingPotatoBook("FUMING_POTATO_BOOK"),
     GoldorTheFish("GOLDOR_THE_FISH"),
     HealingTissue("HEALING_TISSUE"),
-    Infinileap("INFINITE_SPIRIT_LEAP"),
+    Infinileap("INFINITE_SPIRIT_LEAP", { InfiniteSpiritLeap(it.raw) }),
     InflatableJerry("INFLATABLE_JERRY"),
     JollyPinkRock("GIANT_FRAGMENT_BOULDER"),
     JournalEntry("DUNGEON_LORE_PAPER", { JournalEntry(it.raw) }),
@@ -50,7 +48,7 @@ enum class DungeonItemId(override val apiName: String, override val itemClass: (
     SpiritLeap("SPIRIT_LEAP"),
     SpiritWing("SPIRIT_WING"),
     StormTheFish("STORM_THE_FISH"),
-    SummoningRing("SUMMONING_RING"),
+    SummoningRing("SUMMONING_RING", { SummoningRing(it.raw) }),
     ThornFragment("THORN_FRAGMENT"),
     TrainingWeights("TRAINING_WEIGHTS", { TrainingWeights(it.raw) }),
     Trap("DUNGEON_TRAP"),

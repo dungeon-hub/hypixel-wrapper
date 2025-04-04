@@ -2,8 +2,7 @@ package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
-import net.dungeonhub.hypixel.entities.inventory.items.special.GhastCloak
-import net.dungeonhub.hypixel.entities.inventory.items.special.KuudraEquipment
+import net.dungeonhub.hypixel.entities.inventory.items.special.*
 
 enum class EquipmentItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -42,16 +41,16 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     FlamingFist("FLAMING_FIST", { Gear(it.raw) }),
     FrozenAmulet("FROZEN_AMULET", { Gear(it.raw) }),
     GauntletOfContagion("GAUNTLET_OF_CONTAGION", { Gear(it.raw) }),
-    GhastCloak("GHAST_CLOAK", { GhastCloak(it.raw) }),
+    GhastCloak("GHAST_CLOAK", { Gear(it.raw) }),
     GillsplashBelt("GILLSPLASH_BELT", { Gear(it.raw) }),
     GillsplashCloak("GILLSPLASH_CLOAK", { Gear(it.raw) }),
     GillsplashGloves("GILLSPLASH_GLOVES", { Gear(it.raw) }),
     GlowstoneGauntlet("GLOWSTONE_GAUNTLET", { Gear(it.raw) }),
     GoldenBelt("GOLDEN_BELT", { Gear(it.raw) }),
-    GreatSpookBelt("GREAT_SPOOK_BELT", { Gear(it.raw) }),
-    GreatSpookCloak("GREAT_SPOOK_CLOAK", { Gear(it.raw) }),
-    GreatSpookGloves("GREAT_SPOOK_GLOVES", { Gear(it.raw) }),
-    GreatSpookNecklace("GREAT_SPOOK_NECKLACE", { Gear(it.raw) }),
+    GreatSpookBelt("GREAT_SPOOK_BELT", { GreatSpookEquipment(it.raw) }),
+    GreatSpookCloak("GREAT_SPOOK_CLOAK", { GreatSpookEquipment(it.raw) }),
+    GreatSpookGloves("GREAT_SPOOK_GLOVES", { GreatSpookEquipment(it.raw) }),
+    GreatSpookNecklace("GREAT_SPOOK_NECKLACE", { GreatSpookEquipment(it.raw) }),
     GreenBelt("DOJO_GREEN_BELT", { Gear(it.raw) }),
     IchthyicBelt("ICHTHYIC_BELT", { Gear(it.raw) }),
     IchthyicCloak("ICHTHYIC_CLOAK", { Gear(it.raw) }),
@@ -81,7 +80,7 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     PartyGloves("PARTY_GLOVES", { Gear(it.raw) }),
     PartyNecklace("PARTY_NECKLACE", { Gear(it.raw) }),
     PeltBelt("PELT_BELT", { Gear(it.raw) }),
-    PendantOfDivan("DIVAN_PENDANT", { Gear(it.raw) }),
+    PendantOfDivan("DIVAN_PENDANT", { PendantOfDivan(it.raw) }),
     PestVest("PEST_VEST", { Gear(it.raw) }),
     PesthuntersBelt("PESTHUNTERS_BELT", { Gear(it.raw) }),
     PesthuntersCloak("PESTHUNTERS_CLOAK", { Gear(it.raw) }),
@@ -114,10 +113,10 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     UpgradedAdaptiveBelt("STARRED_ADAPTIVE_BELT", { Gear(it.raw) }),
     UpgradedBoneNecklace("STARRED_BONE_NECKLACE", { Gear(it.raw) }),
     UpgradedShadowAssassinCloak("STARRED_SHADOW_ASSASSIN_CLOAK", { Gear(it.raw) }),
-    VanquishedBlazeBelt("VANQUISHED_BLAZE_BELT", { Gear(it.raw) }),
-    VanquishedGhastCloak("VANQUISHED_GHAST_CLOAK", { GhastCloak(it.raw) }),
-    VanquishedGlowstoneGauntlet("VANQUISHED_GLOWSTONE_GAUNTLET", { Gear(it.raw) }),
-    VanquishedMagmaNecklace("VANQUISHED_MAGMA_NECKLACE", { Gear(it.raw) }),
+    VanquishedBlazeBelt("VANQUISHED_BLAZE_BELT", { VanquishedBlazeBelt(it.raw) }),
+    VanquishedGhastCloak("VANQUISHED_GHAST_CLOAK", { VanquishedGhastCloak(it.raw) }),
+    VanquishedGlowstoneGauntlet("VANQUISHED_GLOWSTONE_GAUNTLET", { VanquishedGlowstoneGauntlet(it.raw) }),
+    VanquishedMagmaNecklace("VANQUISHED_MAGMA_NECKLACE", { VanquishedMagmaNecklace(it.raw) }),
     VerminBelt("VERMIN_BELT", { Gear(it.raw) }),
     WhiteBelt("DOJO_WHITE_BELT", { Gear(it.raw) }),
     YellowBelt("DOJO_YELLOW_BELT", { Gear(it.raw) }),
