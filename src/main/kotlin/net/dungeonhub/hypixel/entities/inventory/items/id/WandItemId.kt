@@ -4,6 +4,7 @@ import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.special.HollowWand
 import net.dungeonhub.hypixel.entities.inventory.items.special.StaffOfTheRisingSun
 import net.dungeonhub.hypixel.entities.inventory.items.special.Wand
+import net.dungeonhub.hypixel.entities.inventory.items.special.WizardWand
 
 enum class WandItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -28,5 +29,5 @@ enum class WandItemId(override val apiName: String, override val itemClass: ((Sk
     WandOfMending("WAND_OF_MENDING", { Wand(it.raw) }),
     WandOfRestoration("WAND_OF_RESTORATION", { Wand(it.raw) }),
     WandOfStrength("WAND_OF_STRENGTH", { Wand(it.raw) }),
-    WizardWand("WIZARD_WAND", { Wand(it.raw) });
+    WizardWand("WIZARD_WAND", { WizardWand(it.raw) });
 }

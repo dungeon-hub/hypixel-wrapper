@@ -1,7 +1,7 @@
 package net.dungeonhub.hypixel.entities.inventory.items.id
 
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
-import net.dungeonhub.hypixel.entities.inventory.items.special.RuneItem
+import net.dungeonhub.hypixel.entities.inventory.items.special.*
 
 enum class CosmeticItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
@@ -181,9 +181,9 @@ enum class CosmeticItemId(override val apiName: String, override val itemClass: 
     Dingy("DINGY"),
     DiningChair("DINING_CHAIR"),
     DiningTable("DINING_TABLE"),
-    DittoBlob("DITTO_BLOB"),
-    DittoSkin("DITTO_SKIN"),
-    DittoSkull("DITTO_SKULL"),
+    DittoBlob("DITTO_BLOB", { DittoBlob(it.raw) }),
+    DittoSkin("DITTO_SKIN", { DittoSkin(it.raw) }),
+    DittoSkull("DITTO_SKULL", { DittoSkull(it.raw) }),
     DogePlushieWolfSkin("PET_SKIN_WOLF_DOGE_PLUSHIE"),
     DogeWolfSkin("PET_SKIN_WOLF_DOGE"),
     DragonEggBackpackSkin("DRAGON_EGG_BACKPACK"),
@@ -575,7 +575,7 @@ enum class CosmeticItemId(override val apiName: String, override val itemClass: 
     SpiritSkin("REAPER_SPIRIT"),
     SpiritWolfSkin("PET_SKIN_WOLF_SPIRIT"),
     SpookyEndermanSkin("PET_SKIN_ENDERMAN"),
-    SprayCan("SPRAY_CAN"),
+    SprayCan("SPRAY_CAN", { SprayCan(it.raw) }),
     SqueakheartRatSkin("PET_SKIN_RAT_SQUEAKHEART"),
     StackedPumpkins("STACKED_PUMPKINS"),
     StarDecorations("STAR_DECORATIONS"),

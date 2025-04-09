@@ -363,6 +363,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     Snow("SNOW"),
     Snowball("SNOW_BALL"),
     SoulSand("SOUL_SAND"),
+    SpawnEgg("MONSTER_EGG"),
     SpiderEye("SPIDER_EYE"),
     Sponge("SPONGE"),
     SpruceDoor("SPRUCE_DOOR_ITEM"),

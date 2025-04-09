@@ -12,4 +12,7 @@ open class BingoCard(raw: NBTCompound) : SkyblockItem(raw) {
 
     val player: String?
         get() = extraAttributes.getString("player")
+
+    val completion: Int?
+        get() = extraAttributes.getInt("completion", -1).takeIf { it != -1 }
 }

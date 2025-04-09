@@ -18,6 +18,7 @@ import net.dungeonhub.hypixel.entities.skyblock.misc.fromSkyblockTime
 import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.provider.GsonProvider
+import net.dungeonhub.service.SkyblockItemHelper
 import net.dungeonhub.service.TestHelper
 import net.dungeonhub.strategy.ApiClientStrategy
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -397,7 +398,7 @@ class TestSkyblockProfile {
                     assertDoesNotThrow { item.journalType }
                 }
 
-                if (item is Memento) {
+                if (item is EditionItem) {
                     assertDoesNotThrow { item.recipientName }
                     assertDoesNotThrow { item.recipientUuid }
                     assertDoesNotThrow { item.dateObtained }
@@ -462,8 +463,35 @@ class TestSkyblockProfile {
                     assertDoesNotThrow { item.souls }
                 }
 
-                //TODO reenable once everything is mapped
-                //SkyblockItemHelper.checkFields(item)
+                if (item is Backpack) {
+                    assertDoesNotThrow { item.backpackData?.items }
+                    item.backpackData?.items?.let { checkItems(it.filterNotNull()) }
+                }
+
+                if (item is RefundBoosterCookie) {
+                    assertDoesNotThrow { item.playerId }
+                }
+
+                if (item is BasketOfSeeds) {
+                    assertDoesNotThrow { item.content }
+                    checkItems(item.content.filterNotNull())
+                }
+
+                if (item is NetherWartPouch) {
+                    assertDoesNotThrow { item.content }
+                    checkItems(item.content.filterNotNull())
+                }
+
+                if (item is DittoBlob) {
+                    assertDoesNotThrow { item.originalItemId }
+                    assertIsNot<UnknownSkyblockItemId>(item.originalItemId)
+                }
+
+                if (item is DarkCacaoTruffle) {
+                    assertDoesNotThrow { item.lastForceEvolvedTime }
+                }
+
+                SkyblockItemHelper.checkFields(item)
             }
         }
     }

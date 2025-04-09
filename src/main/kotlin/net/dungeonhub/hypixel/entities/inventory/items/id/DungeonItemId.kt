@@ -38,7 +38,7 @@ enum class DungeonItemId(override val apiName: String, override val itemClass: (
     Implosion("IMPLOSION_SCROLL"),
     WitherShield("WITHER_SHIELD_SCROLL"),
     ShadowWarp("SHADOW_WARP_SCROLL"),
-    NecronsHandle("NECRON_HANDLE"),
+    NecronsHandle("NECRON_HANDLE", { NecronsHandle(it.raw) }),
     Recombobulator3000("RECOMBOBULATOR_3000"),
     RedstoneKey("SECRET_DUNGEON_REDSTONE_KEY"),
     ReviveStone("REVIVE_STONE"),

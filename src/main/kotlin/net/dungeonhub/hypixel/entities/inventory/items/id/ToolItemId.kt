@@ -56,7 +56,7 @@ enum class ToolItemId(override val apiName: String, override val itemClass: ((Sk
     HoeOfGreatTilling("HOE_OF_GREAT_TILLING", { FarmingTool(it.raw) }),
     HoeOfGreaterTilling("HOE_OF_GREATER_TILLING", { FarmingTool(it.raw) }),
     HoeOfGreatestTilling("HOE_OF_GREATEST_TILLING", { FarmingTool(it.raw) }),
-    HoeOfNoTilling("HOE_OF_NO_TILLING", { FarmingTool(it.raw) }),
+    HoeOfNoTilling("HOE_OF_NO_TILLING", { HoeOfNoTilling(it.raw) }),
     IceRod("ICE_ROD", { FishingRod(it.raw) }),
     InfernoRod("INFERNO_ROD", { FishingRod(it.raw) }),
     InfiniVacuum("INFINI_VACUUM", { PestVacuum(it.raw) }),

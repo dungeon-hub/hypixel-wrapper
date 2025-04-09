@@ -100,7 +100,7 @@ enum class WeaponItemId(override val apiName: String, override val itemClass: ((
     RaiderAxe("RAIDER_AXE", { RaidersAxe(it.raw) }),
     ReaperFalchion("REAPER_SWORD", { Sword(it.raw) }),
     ReaperScythe("REAPER_SCYTHE", { NecromancySword(it.raw) }),
-    RecluseFang("RECLUSE_FANG", { Sword(it.raw) }),
+    RecluseFang("RECLUSE_FANG", { RecluseFang(it.raw) }),
     RevenantFalchion("REVENANT_SWORD", { Sword(it.raw) }),
     RogueSword("ROGUE_SWORD", { Sword(it.raw) }),
     RunaansBow("RUNAANS_BOW", { Bow(it.raw) }),
