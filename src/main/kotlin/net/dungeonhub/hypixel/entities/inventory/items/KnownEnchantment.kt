@@ -1,7 +1,5 @@
 package net.dungeonhub.hypixel.entities.inventory.items
 
-//TODO complete mapping
-//TODO should different types of armor/tools be mapped -> when enchantment is only for helmets/pickaxes
 enum class KnownEnchantment(
     override val apiName: String,
     val ultimate: Boolean,
@@ -79,6 +77,7 @@ enum class KnownEnchantment(
     Protection("protection", false, EnchantmentTarget.Armor),
     Punch("punch", false, EnchantmentTarget.Bows),
     Quantum("quantum", false, EnchantmentTarget.Equipment),
+    QuickBite("quick_bite", false, EnchantmentTarget.FishingRods),
     Rainbow("rainbow", false, EnchantmentTarget.Tools),
     Reflection("reflection", false, EnchantmentTarget.Armor),
     Rejuvenate("rejuvenate", false, EnchantmentTarget.Armor),

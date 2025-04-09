@@ -2,6 +2,7 @@ package net.dungeonhub.hypixel.entities.skyblock
 
 import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
 import net.dungeonhub.hypixel.entities.inventory.items.Gear
+import net.dungeonhub.hypixel.entities.inventory.items.KnownEnchantment
 import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetItem
 import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
@@ -34,15 +35,17 @@ class ProfileStatsOverview(
             if (terminator.isEmpty()) {
                 "$terminatorEmoji: No Terminator!"
             } else {
-                //TODO change once enchants are fully mapped
                 terminator.joinToString("\n") {
                     val ultimateEnchant: Pair<Enchantment, Int>? = it.enchantments.entries.firstOrNull { enchant ->
-                        enchant.key.apiName.startsWith("ultimate_")
+                        enchant.key.isUltimate()
                     }?.toPair()
 
                     "$terminatorEmoji: ${it.rawName}${
                         if (ultimateEnchant != null) {
-                            " (${parseUltimateEnchantment(ultimateEnchant.first.apiName)} ${ultimateEnchant.second})"
+                            " (${
+                                (ultimateEnchant.first as? KnownEnchantment)?.name?.replace(Regex("([A-Z])"), " $1")
+                                    ?.trim() ?: ultimateEnchant.first.apiName
+                            } ${ultimateEnchant.second})"
                         } else {
                             ""
                         }
@@ -77,20 +80,6 @@ class ProfileStatsOverview(
                 2
             )
         })\n\n$purseEmoji Purse: $purse\n$bankEmoji Bank: $bankMoney"
-
-    //TODO do properly
-    fun parseUltimateEnchantment(apiName: String): String {
-        return when (apiName) {
-            "ultimate_reiterate" -> "Duplex"
-            "ultimate_fatal_tempo" -> "Fatal Tempo"
-            "ultimate_soul_eater" -> "Soul Eater"
-            "ultimate_rend" -> "Rend"
-            "ultimate_swarm" -> "Swarm"
-            "ultimate_wise" -> "Ultimate Wise"
-            "ultimate_inferno" -> "Inferno"
-            else -> apiName
-        }
-    }
 
     companion object {
         var witherBladeEmoji = "\uD83D\uDDE1\uFE0F"
