@@ -582,7 +582,6 @@ class TestSkyblockProfile {
             duplicateSkyblockItemNames.isEmpty() && uniqueSkyblockItemNames.size == KnownSkyblockItemId.entries.size
         }
 
-
         val allInventorySkyblockItemIds =
             TestHelper.readAllSkyblockProfiles().parallel().flatMap { it.stream() }
                 .flatMap { it.currentMembers.stream() }.flatMap { it.allItems.stream() }.flatMap { it.items.stream() }
@@ -1488,7 +1487,9 @@ class TestSkyblockProfile {
             VanillaItemId.FireworkStar,
             VanillaItemId.VanillaNetherStar,
             VanillaItemId.WitherSkeletonSkull,
-            VanillaItemId.ZombieSkull
+            VanillaItemId.ZombieSkull,
+            BuggedItemId.NullMap3,
+            VanillaItemId.SpawnEgg
         )
     }
 }
