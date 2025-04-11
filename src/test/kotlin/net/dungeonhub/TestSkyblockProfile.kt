@@ -304,7 +304,7 @@ class TestSkyblockProfile {
                 assertNotNull(item.id)
                 assertIsNot<UnknownSkyblockItemId>(
                     item.id,
-                    "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped."
+                    "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped"
                 )
 
                 if (item is Gear) {
@@ -489,6 +489,12 @@ class TestSkyblockProfile {
 
                 if (item is DarkCacaoTruffle) {
                     assertDoesNotThrow { item.lastForceEvolvedTime }
+                }
+
+                if (item is FishingRod) {
+                    assertDoesNotThrow { item.hook }
+                    assertDoesNotThrow { item.line }
+                    assertDoesNotThrow { item.sinker }
                 }
 
                 SkyblockItemHelper.checkFields(item)

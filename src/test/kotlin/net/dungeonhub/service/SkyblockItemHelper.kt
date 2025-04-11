@@ -85,6 +85,7 @@ object SkyblockItemHelper {
         FermentoHelmet::class.java to listOf("favorite_crop"),
         FinalDestinationArmor::class.java to listOf("eman_kills"),
         FishFood::class.java to listOf("pet_exp"),
+        FishingRod::class.java to listOf("line", "hook", "sinker"),
         FishingTool::class.java to listOf("expertise_kills", "fishes_caught", "lava_creatures_killed"),
         FlexHelmet::class.java to listOf("fh_selected_skin", "fh_seconds_worn", "fh_seconds_worn_rift"),
         FreeBoosterCookie::class.java to listOf("cookie_free_player_id"),
