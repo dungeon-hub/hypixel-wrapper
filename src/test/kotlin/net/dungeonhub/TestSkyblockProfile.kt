@@ -487,7 +487,7 @@ class TestSkyblockProfile {
                     assertIsNot<UnknownSkyblockItemId>(item.originalItemId)
                 }
 
-                if (item is DarkCacaoTruffle) {
+                if (item is TimeBagItem) {
                     assertDoesNotThrow { item.lastForceEvolvedTime }
                 }
 
