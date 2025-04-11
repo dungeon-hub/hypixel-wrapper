@@ -174,6 +174,8 @@ enum class KnownEnchantment(
     ),
     Wisdom("ultimate_wisdom", true, EnchantmentTarget.Armor);
 
+    val displayName = name.replace(Regex("([A-Z])"), " $1").trim()
+
     enum class DeprecatedEnchantment(
         override val apiName: String,
         val ultimate: Boolean,

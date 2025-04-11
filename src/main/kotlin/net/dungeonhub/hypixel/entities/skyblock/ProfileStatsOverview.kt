@@ -43,8 +43,7 @@ class ProfileStatsOverview(
                     "$terminatorEmoji: ${it.rawName}${
                         if (ultimateEnchant != null) {
                             " (${
-                                (ultimateEnchant.first as? KnownEnchantment)?.name?.replace(Regex("([A-Z])"), " $1")
-                                    ?.trim() ?: ultimateEnchant.first.apiName
+                                (ultimateEnchant.first as? KnownEnchantment)?.displayName ?: ultimateEnchant.first.apiName
                             } ${ultimateEnchant.second})"
                         } else {
                             ""
