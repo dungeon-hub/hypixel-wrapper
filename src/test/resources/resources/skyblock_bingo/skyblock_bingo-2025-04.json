@@ -1,0 +1,263 @@
+{
+  "success": true,
+  "lastUpdated": 1744331827390,
+  "id": 40,
+  "name": "April 2025",
+  "start": 1743480000000,
+  "end": 1744084800000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "collect_exp_fishing",
+      "name": "Skilled",
+      "tiers": [
+        50000000,
+        100000000,
+        150000000,
+        200000000,
+        250000000
+      ],
+      "progress": 333241947,
+      "lore": "§7Gain §b250M Fishing§7 experience",
+      "fullLore": [
+        "§7Gain §b250M Fishing§7 experience"
+      ]
+    },
+    {
+      "id": "kill_runic_mob",
+      "name": "Strange Effects",
+      "lore": "§7Kill a §5Runic §7Mob.",
+      "fullLore": [
+        "§7Kill a §5Runic §7Mob."
+      ]
+    },
+    {
+      "id": "collection_obsidian",
+      "name": "Obsidian Collector",
+      "lore": "§7Reach §a33,000 §7Obsidian Collection.",
+      "fullLore": [
+        "§7Reach §a33,000 §7Obsidian Collection."
+      ],
+      "requiredAmount": 33000
+    },
+    {
+      "id": "stat_ferocity",
+      "name": "Ferocious",
+      "lore": "§7Reach §c3 §c⫽ Ferocity§7.",
+      "fullLore": [
+        "§7Reach §c3 §c⫽ Ferocity§7."
+      ],
+      "requiredAmount": 3
+    },
+    {
+      "id": "obtain_pets",
+      "name": "Pet Hoarder",
+      "lore": "§7Obtain §a12 §7unique Pets.",
+      "fullLore": [
+        "§7Obtain §a12 §7unique Pets."
+      ],
+      "requiredAmount": 12
+    },
+    {
+      "id": "UNLOCK_UNIQUE_COLLECTIONS_40",
+      "name": "Diversity",
+      "lore": "§7Unlock §e40 §7unique Collections.",
+      "fullLore": [
+        "§7Unlock §e40 §7unique Collections."
+      ],
+      "requiredAmount": 40
+    },
+    {
+      "id": "harvest_crops",
+      "name": "Agricultural Revolution",
+      "tiers": [
+        2000000,
+        4000000,
+        6000000,
+        8000000,
+        10000000
+      ],
+      "progress": 195815542,
+      "lore": "§7Harvest §a10M §7crops.",
+      "fullLore": [
+        "§7Harvest §a10M §7crops."
+      ]
+    },
+    {
+      "id": "GET_SKILL_alchemy_14",
+      "name": "Brewer",
+      "lore": "§7Obtain level §e14§7 in the §6Alchemy §7Skill.",
+      "fullLore": [
+        "§7Obtain level §e14§7 in the §6Alchemy §7Skill."
+      ]
+    },
+    {
+      "id": "stat_sea_creature_chance",
+      "name": "Sea Summoner",
+      "lore": "§7Reach §330% §3α Sea Creature Chance§7.",
+      "fullLore": [
+        "§7Reach §330% §3α Sea Creature Chance§7."
+      ],
+      "requiredAmount": 30
+    },
+    {
+      "id": "collection_sponge",
+      "name": "Sponge Collector",
+      "lore": "§7Reach §a900 §7Sponge Collection.",
+      "fullLore": [
+        "§7Reach §a900 §7Sponge Collection."
+      ],
+      "requiredAmount": 900
+    },
+    {
+      "id": "multi_enchant_RAIDER_AXE_10",
+      "name": "An Axe To Grind",
+      "lore": "§7Put §e10§7 Enchantments on a §9Raider Axe§7.",
+      "fullLore": [
+        "§7Put §e10§7 Enchantments on a §9Raider Axe§7."
+      ]
+    },
+    {
+      "id": "craft_item_piggy_bank",
+      "name": "New Savings",
+      "lore": "§7Craft a §aPiggy Bank§7.",
+      "fullLore": [
+        "§7Craft a §aPiggy Bank§7."
+      ]
+    },
+    {
+      "id": "COLLECT_JACOB_TICKETS",
+      "name": "A Hard Day's Work",
+      "tiers": [
+        20000,
+        40000,
+        60000,
+        80000,
+        100000
+      ],
+      "progress": 22043,
+      "lore": "§7Collect §a100k §aJacob's Tickets§7 from Farming Events!",
+      "fullLore": [
+        "§7Collect §a100k §aJacob's Tickets§7 from Farming Events!"
+      ]
+    },
+    {
+      "id": "collection_raw_fish:2",
+      "name": "Clownfish Collector",
+      "lore": "§7Reach §a300 §7Clownfish Collection.",
+      "fullLore": [
+        "§7Reach §a300 §7Clownfish Collection."
+      ],
+      "requiredAmount": 300
+    },
+    {
+      "id": "KILL_TRAPPER_MOB",
+      "name": "Setting a Trap",
+      "lore": "§7Kill a §aTrapper Animal§7.",
+      "fullLore": [
+        "§7Kill a §aTrapper Animal§7."
+      ]
+    },
+    {
+      "id": "consume_mushroomsoup_regular",
+      "name": "Taking Flight",
+      "lore": "§7Consume a §bMagical Mushroom Soup§7.",
+      "fullLore": [
+        "§7Consume a §bMagical Mushroom Soup§7."
+      ]
+    },
+    {
+      "id": "bank_coins",
+      "name": "Meiser",
+      "lore": "§7Store §61,000,000 Coins §7in your Bank.",
+      "fullLore": [
+        "§7Store §61,000,000 Coins §7in your Bank."
+      ],
+      "requiredAmount": 1000000
+    },
+    {
+      "id": "craft_item_diamond_spreading",
+      "name": "Now We're In Business",
+      "lore": "§7Craft a §9Diamond Spreading§7.",
+      "fullLore": [
+        "§7Craft a §9Diamond Spreading§7."
+      ]
+    },
+    {
+      "id": "hotm_experience",
+      "name": "Cave Commodity",
+      "tiers": [
+        1000000,
+        2000000,
+        3000000,
+        4000000,
+        5000000
+      ],
+      "progress": 104429260,
+      "lore": "§7Gain §55M Heart of the Mountain Experience§7.",
+      "fullLore": [
+        "§7Gain §55M Heart of the Mountain Experience§7."
+      ]
+    },
+    {
+      "id": "fairy_souls",
+      "name": "Fairy Finder",
+      "lore": "§7Obtain §d25 Fairy Souls§7.",
+      "fullLore": [
+        "§7Obtain §d25 Fairy Souls§7."
+      ],
+      "requiredAmount": 25
+    },
+    {
+      "id": "spawn_golden_goblin",
+      "name": "Strange Eggs",
+      "lore": "§7Spawn a §6Golden Goblin §7from a Goblin Egg.",
+      "fullLore": [
+        "§7Spawn a §6Golden Goblin §7from a Goblin Egg."
+      ]
+    },
+    {
+      "id": "complete_commissions",
+      "name": "Commission Master",
+      "lore": "§7Complete §e15 Commissions§7 in the §2Dwarven Mines§7, §5Crystal Hollows§7, or §bGlacite Tunnels§7.",
+      "fullLore": [
+        "§7Complete §e15 Commissions§7 in the §2Dwarven Mines§7, §5Crystal Hollows§7, or §bGlacite Tunnels§7."
+      ],
+      "requiredAmount": 15
+    },
+    {
+      "id": "wear_armor_lapis_armor",
+      "name": "Lapis Warrior",
+      "lore": "§7Wear §a4 pieces §7of the §aLapis Armor Set§7.",
+      "fullLore": [
+        "§7Wear §a4 pieces §7of the §aLapis Armor Set§7."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "kill_mobs_15000",
+      "name": "Exterminator",
+      "lore": "§7Kill §e15,000 §7mobs.",
+      "fullLore": [
+        "§7Kill §e15,000 §7mobs."
+      ],
+      "requiredAmount": 15000
+    },
+    {
+      "id": "break_block_ores",
+      "name": "Operation: Ore",
+      "tiers": [
+        2000000,
+        4000000,
+        6000000,
+        8000000,
+        10000000
+      ],
+      "progress": 17968694,
+      "lore": "§7Break §e10M Ore§7 Blocks.",
+      "fullLore": [
+        "§7Break §e10M Ore§7 Blocks."
+      ]
+    }
+  ]
+}
