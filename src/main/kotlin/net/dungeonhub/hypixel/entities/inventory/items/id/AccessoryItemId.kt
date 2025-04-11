@@ -48,6 +48,7 @@ enum class AccessoryItemId(override val apiName: String, override val itemClass:
     BloodGodCrest("BLOOD_GOD_CREST", { BloodGodCrest(it.raw) }),
     BlueGiftTalisman("BLUE_GIFT_TALISMAN", { Accessory(it.raw) }),
     BlueJerryTalisman("JERRY_TALISMAN_BLUE", { Accessory(it.raw) }),
+    BluertoothRing("BLUERTOOTH_RING", { Accessory(it.raw) }),
     BluetoothRing("BLUETOOTH_RING", { Accessory(it.raw) }),
     BookOfProgression("BOOK_OF_PROGRESSION", { BookOfProgression(it.raw) }),
     BrokenPiggyBank("BROKEN_PIGGY_BANK", { Accessory(it.raw) }),

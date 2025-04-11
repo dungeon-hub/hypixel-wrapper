@@ -16,14 +16,14 @@ enum class KnownRodPartId(override val apiName: String, override val itemClass: 
 
     //Hook
     CommonHook("COMMON_HOOK"),
-    PhantomHook("PHANTOM_HOOK"),
     HotspotHook("HOTSPOT_HOOK"),
+    PhantomHook("PHANTOM_HOOK"),
     TreasureHook("TREASURE_HOOK"),
 
     //Line
     ShreddedLine("SHREDDED_LINE"),
-    TitanLine("TITAN_LINE"),
-    SpeedyLine("SPEEDY_LINE");
+    SpeedyLine("SPEEDY_LINE"),
+    TitanLine("TITAN_LINE");
 
     constructor(apiName: String) : this(apiName, { it })
 

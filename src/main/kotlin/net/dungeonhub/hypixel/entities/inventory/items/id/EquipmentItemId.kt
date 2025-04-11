@@ -95,6 +95,7 @@ enum class EquipmentItemId(override val apiName: String, override val itemClass:
     PesthuntersGloves("PESTHUNTERS_GLOVES", { Gear(it.raw) }),
     PesthuntersNecklace("PESTHUNTERS_NECKLACE", { Gear(it.raw) }),
     PrismarineNecklace("PRISMARINE_NECKLACE", { Gear(it.raw) }),
+    RedBelt("RED_BELT", { Gear(it.raw) }),
     RiftNecklace("RIFT_NECKLACE_OUTSIDE", { Gear(it.raw) }),
     RiftNecklaceInsideRift("RIFT_NECKLACE_INSIDE", { Gear(it.raw) }),
     SapphireCloak("SAPPHIRE_CLOAK", { Gear(it.raw) }),

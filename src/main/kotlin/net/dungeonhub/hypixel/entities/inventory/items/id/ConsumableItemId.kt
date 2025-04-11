@@ -6,6 +6,7 @@ enum class ConsumableItemId(override val apiName: String, override val itemClass
     KnownSkyblockItemId {
     BlessedBait("BLESSED_BAIT"),
     CarrotBait("CARROT_BAIT"),
+    CanOfWorms("CAN_OF_WORMS"),
     CorruptedBait("CORRUPTED_BAIT"),
     DarkBait("DARK_BAIT"),
     DwarvenOsBlockBran("DWARVEN_OS_BLOCK_BRAN"),
