@@ -17,6 +17,7 @@ enum class MementoItemId(override val apiName: String, override val itemClass: (
     CakeSliceOfTheCenturyYellow("CENTURY_MEMENTO_YELLOW", { CenturyMemento(it.raw) }),
     CampaignPoster("CAMPAIGN_POSTER", { Memento(it.raw) }),
     CoinsOnFire("BURNING_COINS", { Memento(it.raw) }), //TODO is this rather an admin item?
+    DreamspireTorch("DREAMSPIRE_TORCH", { Memento(it.raw) }),
     ExpensiveToy("EXPENSIVE_TOY", { Memento(it.raw) }),
     FrenchBread("FRENCH_BREAD", { Memento(it.raw) }),
     GoldenCollar("GOLDEN_COLLAR", { Memento(it.raw) }),

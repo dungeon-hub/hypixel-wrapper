@@ -384,7 +384,7 @@ class TestSkyblockProfile {
                 }
 
                 if (item is SkinAppliable) {
-                    assertIsNot<KnownDyeId.UnknownDyeId>(item.appliedDye)
+                    assertIsNot<KnownDyeId.UnknownDyeId>(item.appliedDye, "Unknown dye ${item.appliedDye?.apiName}")
                     //TODO reenable once everything is mapped
                     //assertIsNot<UnknownSkinItemId>(item.appliedSkin)
                 }
@@ -674,7 +674,10 @@ class TestSkyblockProfile {
                                     pet.type,
                                     "Pet ${pet.type.apiName} isn't recognized"
                                 )
-                                assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
+                                assertIsNot<KnownPetItem.UnknownPetItem>(
+                                    pet.heldItem,
+                                    "Pet item ${pet.heldItem?.apiName} isn't recognized"
+                                )
                             }
 
                             member.riftData?.deadCats?.montezuma?.let { pet ->
@@ -1170,7 +1173,6 @@ class TestSkyblockProfile {
             // Fairly hard to find, might do at some point
             ForgeableItemId.TungstenRegulator,
             ReforgeStoneId.BlackDiamond,
-            ReforgeStoneId.EntropySuppressor,
             ReforgeStoneId.FullJawFangingKit,
             ReforgeStoneId.PresumedGallonOfRedPaint,
             ReforgeStoneId.RustyAnchor,
@@ -1191,7 +1193,6 @@ class TestSkyblockProfile {
             MiscItemId.EnchantedBookBundleChimera,
             MiscItemId.EnchantedBookBundlePrismatic,
             MiscItemId.EnchantedBookBundleTransylvanian,
-            MiscItemId.EnchantedClayBlock,
             MiscItemId.IntelligenceEnrichment,
             MiscItemId.CriticalChanceEnrichment,
             MiscItemId.DefenseEnrichment,
@@ -1328,8 +1329,6 @@ class TestSkyblockProfile {
             MinionItemId.PumpkinMinion2,
             MinionItemId.PumpkinMinion5,
             MinionItemId.QuartzMinion1,
-            MinionItemId.QuartzMinion3,
-            MinionItemId.QuartzMinion4,
             MinionItemId.RabbitMinion3,
             MinionItemId.RedSandMinion4,
             MinionItemId.RedSandMinion9,
@@ -1345,7 +1344,6 @@ class TestSkyblockProfile {
             MinionItemId.SnowMinion6,
             MinionItemId.SnowMinion10,
             MinionItemId.SpiderMinion2,
-            MinionItemId.SpruceMinion3,
             MinionItemId.SpruceMinion5,
             MinionItemId.SugarCaneMinion1,
             MinionItemId.SugarCaneMinion8,
