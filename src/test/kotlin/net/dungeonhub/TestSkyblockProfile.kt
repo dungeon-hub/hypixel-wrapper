@@ -1505,7 +1505,18 @@ class TestSkyblockProfile {
             KnownRodPartId.TitanLine,
             MiscItemId.HalfEatenMushroom,
             MiscItemId.TitanoboaShed,
-            MiscItemId.BrimstoneHandle
+            MiscItemId.BrimstoneHandle,
+            MiscItemId.BayouWaterOrb,
+            MiscItemId.HotspotWaterOrb,
+            CosmeticItemId.ButterflyBarnSkin,
+            CosmeticItemId.FlowerPotBarnSkin,
+            DeployableItemId.Umberella,
+            MiscItemId.AlligatorSkin,
+            MiscItemId.BlueRing,
+            MiscItemId.ChainOfTheEndTimes,
+            MiscItemId.GoldBottleCap,
+            MiscItemId.PortalToTheBackwaterBayou,
+            MiscItemId.TornCloth
         )
     }
 }
