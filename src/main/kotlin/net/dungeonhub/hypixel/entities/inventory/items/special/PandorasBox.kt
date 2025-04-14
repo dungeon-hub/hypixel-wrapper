@@ -5,6 +5,6 @@ import net.dungeonhub.hypixel.entities.inventory.SkyblockRarity
 import net.dungeonhub.hypixel.entities.inventory.items.Accessory
 
 class PandorasBox(raw: NBTCompound) : Accessory(raw) {
-    val pandoraRarity: SkyblockRarity
-        get() = SkyblockRarity.fromApiName(extraAttributes.getString("pandora-rarity"))
+    val pandoraRarity: SkyblockRarity?
+        get() = extraAttributes.getString("pandora-rarity")?.let(SkyblockRarity::fromApiName)
 }

@@ -62,7 +62,7 @@ class DiskHistoryUUIDCache<T>(val name: String, val type: TypeToken<CacheElement
             if (!it.isDirectory()) return@map null
 
             try {
-                UUID.fromString(it.name)
+                UUID.fromString(it.fileName.toString())
             } catch (_: IllegalArgumentException) {
                 null
             }

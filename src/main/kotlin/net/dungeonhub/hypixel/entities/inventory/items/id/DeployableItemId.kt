@@ -12,5 +12,5 @@ enum class DeployableItemId(override val apiName: String, override val itemClass
     WarningFlare("WARNING_FLARE", { Deployable(it.raw) }),
     AlertFlare("ALERT_FLARE", { Deployable(it.raw) }),
     SOSFlare("SOS_FLARE", { Deployable(it.raw) }),
-    Umberella("UMBERELLA", { SkyblockItem(it.raw) })
+    Umberella("UMBERELLA", { Deployable(it.raw) })
 }
