@@ -685,7 +685,7 @@ enum class ArmorItemId(override val apiName: String, override val itemClass: ((S
     ThunderChestplate("THUNDER_CHESTPLATE", { Armor(it.raw) }),
     ThunderHelmet("THUNDER_HELMET", { Armor(it.raw) }),
     ThunderLeggings("THUNDER_LEGGINGS", { Armor(it.raw) }),
-    TikiMask("TIKI_MASK", { Armor(it.raw) }),
+    TikiMask("TIKI_MASK", { TikiMask(it.raw) }),
     TitansBoots("TITAN_BOOTS", { Armor(it.raw) }),
     TitansChestplate("TITAN_CHESTPLATE", { Armor(it.raw) }),
     TitansHelmet("TITAN_HELMET", { Armor(it.raw) }),

@@ -269,6 +269,7 @@ object SkyblockItemHelper {
         TarantulaArmor::class.java to listOf("spider_kills"),
         TastyMithril::class.java to listOf("gourmand_uuid"),
         TeleportationSword::class.java to listOf("ethermerge", "tuned_transmission"),
+        TikiMask::class.java to listOf("tiki_skin"),
         TimeBagItem::class.java to listOf("seconds_held", "lastForceEvolvedTime"),
         TrainingWeights::class.java to listOf("trainingWeightsHeldTime", "maxed_stats"),
         TrapperCrest::class.java to listOf("pelts_earned"),
