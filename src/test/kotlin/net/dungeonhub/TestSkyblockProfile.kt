@@ -663,6 +663,13 @@ class TestSkyblockProfile {
                                 assertIsNot<KnownDungeonType.UnknownDungeonType>(it)
                             }
 
+                            member.petsData?.petCare?.petsSacrificed?.forEach { petType ->
+                                assertIsNot<KnownPetType.UnknownPetType>(
+                                    petType,
+                                    "Pet ${petType.apiName} isn't recognized"
+                                )
+                            }
+
                             member.petsData?.pets?.forEach { pet ->
                                 assertIsNot<KnownPetType.UnknownPetType>(
                                     pet.type,

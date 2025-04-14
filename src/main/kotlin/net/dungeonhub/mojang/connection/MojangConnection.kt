@@ -5,11 +5,10 @@ import net.dungeonhub.cache.memory.HashMapCache
 import net.dungeonhub.exception.PlayerNotFoundException
 import net.dungeonhub.mojang.entity.Player
 import net.dungeonhub.mojang.entity.toPlayer
-import okhttp3.OkHttpClient
+import net.dungeonhub.provider.HttpClientProvider
 import okhttp3.Request
 import org.slf4j.LoggerFactory
 import java.io.IOException
-import java.time.Duration
 import java.time.Instant
 import java.util.*
 
@@ -18,17 +17,6 @@ object MojangConnection {
     private val logger = LoggerFactory.getLogger(MojangConnection::class.java)
 
     val cache = HashMapCache<Player, UUID> { it.id }
-
-    //TODO add provider
-    fun getHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .retryOnConnectionFailure(true)
-            .connectTimeout(Duration.ofSeconds(30))
-            .readTimeout(Duration.ofSeconds(30))
-            .callTimeout(Duration.ofSeconds(30))
-            .writeTimeout(Duration.ofSeconds(30))
-            .build()
-    }
 
     @Throws(PlayerNotFoundException::class)
     fun getUUIDByName(name: String): UUID {
@@ -51,7 +39,7 @@ object MojangConnection {
             .build()
 
         try {
-            getHttpClient().newCall(request).execute().use { response ->
+            HttpClientProvider.httpClient.newCall(request).execute().use { response ->
                 if (response.isSuccessful && response.body != null) {
                     val player = JsonParser.parseString(response.body!!.string()).asJsonObject.toPlayer()
                     cache.store(player)
@@ -88,7 +76,7 @@ object MojangConnection {
             .build()
 
         try {
-            getHttpClient().newCall(request).execute().use { response ->
+            HttpClientProvider.httpClient.newCall(request).execute().use { response ->
                 if (response.isSuccessful && response.body != null) {
                     val player = JsonParser.parseString(response.body!!.string()).asJsonObject.toPlayer()
                     cache.store(player)

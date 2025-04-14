@@ -4,6 +4,7 @@ import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import net.dungeonhub.mojang.connection.MojangConnection
+import net.dungeonhub.provider.HttpClientProvider
 import net.dungeonhub.service.TestHelper
 import net.dungeonhub.service.TestHelper.toMockResponse
 import okhttp3.Call
@@ -38,7 +39,7 @@ class TestMojangConnection {
         fun prepareMojangConnection() {
             mockkObject(MojangConnection)
 
-            every { MojangConnection.getHttpClient() }.returns(
+            every { HttpClientProvider.httpClient }.returns(
                 mock<OkHttpClient> {
                     on { newCall(any()) }.thenAnswer {
                         mock<Call> {

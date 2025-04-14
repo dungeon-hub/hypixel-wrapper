@@ -36,7 +36,6 @@ import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.KClass
 
-
 object GsonProvider {
     val gson: Gson = GsonBuilder()
         .registerTypeAdapter(Instant::class.java, InstantTypeAdapter())

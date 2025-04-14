@@ -4,7 +4,6 @@ import me.nullicorn.nedit.type.NBTCompound
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 
-//TODO check fields
 //TODO should ItemWithAbility be moved somewhere else?
 //TODO should this really contain tools as well? would be easy to abstract away
 /**
