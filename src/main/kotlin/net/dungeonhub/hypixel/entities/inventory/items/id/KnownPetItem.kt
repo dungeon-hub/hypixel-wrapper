@@ -49,6 +49,8 @@ enum class KnownPetItem(
     BigTeethEpic("PET_ITEM_BIG_TEETH_EPIC"),
     BigTeethLegendary("PET_ITEM_BIG_TEETH_LEGENDARY"),
     BiggerTeeth("BIGGER_TEETH"),
+    BurntTexts("BURNT_TEXTS"),
+    EdibleSeaweed("EDIBLE_SEAWEED"),
     IronClawsCommon("PET_ITEM_IRON_CLAWS_COMMON"),
     IronClawsUncommon("PET_ITEM_IRON_CLAWS_UNCOMMON"),
     IronClawsRare("PET_ITEM_IRON_CLAWS_RARE"),
@@ -95,7 +97,7 @@ enum class KnownPetItem(
     DeadCatFood("DEAD_CAT_FOOD"),
     GrandmasKnittingNeedle("GRANDMAS_KNITTING_NEEDLE"),
 
-    //Mythic upgrade
+    //Mythic upgrade - TODO: are those even present in the pet data?
     VampireFang("PET_ITEM_VAMPIRE_FANG"),
     Jerry3DGlasses("PET_ITEM_TOY_JERRY"),
     RadioactiveVial("RADIOACTIVE_VIAL"),
@@ -107,6 +109,7 @@ enum class KnownPetItem(
     PureMithrilGem("PET_ITEM_PURE_MITHRIL_GEM"),
     MagicTopHat("MAGIC_TOP_HAT"),
     MixedMiteGel("MIXED_MITE_GEL"),
+    ScuttlerShell("SCUTTLER_SHELL"),
 
     //Cosmetic
     UncommonPartyHat("UNCOMMON_PARTY_HAT");

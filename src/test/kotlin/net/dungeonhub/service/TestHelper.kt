@@ -34,14 +34,18 @@ object TestHelper {
         return javaClass.classLoader.getResourceAsStream(fileName)!!.reader(StandardCharsets.UTF_8).readText()
     }
 
-    fun String.toMockResponse(): Response {
+    fun String.toMockResponse(
+        url: String = "https://example.com",
+        code: Int = 200,
+        contentType: String = "application/json"
+    ): Response {
         return Response.Builder()
-            .request(Request.Builder().url("https://example.com").build())
+            .request(Request.Builder().url(url).build())
             .protocol(Protocol.HTTP_1_1)
-            .code(200)
+            .code(code)
             .message("")
             .body(
-                toResponseBody("application/json".toMediaTypeOrNull())
+                toResponseBody(contentType.toMediaTypeOrNull() ?: "application/json".toMediaTypeOrNull())
             )
             .build()
     }

@@ -304,7 +304,7 @@ class TestSkyblockProfile {
                 assertNotNull(item.id)
                 assertIsNot<UnknownSkyblockItemId>(
                     item.id,
-                    "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped."
+                    "Item " + item.rawName + "(" + item.id.apiName + ") isn't mapped"
                 )
 
                 if (item is Gear) {
@@ -384,7 +384,7 @@ class TestSkyblockProfile {
                 }
 
                 if (item is SkinAppliable) {
-                    assertIsNot<KnownDyeId.UnknownDyeId>(item.appliedDye)
+                    assertIsNot<KnownDyeId.UnknownDyeId>(item.appliedDye, "Unknown dye ${item.appliedDye?.apiName}")
                     //TODO reenable once everything is mapped
                     //assertIsNot<UnknownSkinItemId>(item.appliedSkin)
                 }
@@ -487,8 +487,14 @@ class TestSkyblockProfile {
                     assertIsNot<UnknownSkyblockItemId>(item.originalItemId)
                 }
 
-                if (item is DarkCacaoTruffle) {
+                if (item is TimeBagItem) {
                     assertDoesNotThrow { item.lastForceEvolvedTime }
+                }
+
+                if (item is FishingRod) {
+                    assertDoesNotThrow { item.hook }
+                    assertDoesNotThrow { item.line }
+                    assertDoesNotThrow { item.sinker }
                 }
 
                 SkyblockItemHelper.checkFields(item)
@@ -675,7 +681,10 @@ class TestSkyblockProfile {
                                     pet.type,
                                     "Pet ${pet.type.apiName} isn't recognized"
                                 )
-                                assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
+                                assertIsNot<KnownPetItem.UnknownPetItem>(
+                                    pet.heldItem,
+                                    "Pet item ${pet.heldItem?.apiName} isn't recognized"
+                                )
                             }
 
                             member.riftData?.deadCats?.montezuma?.let { pet ->
@@ -1171,7 +1180,6 @@ class TestSkyblockProfile {
             // Fairly hard to find, might do at some point
             ForgeableItemId.TungstenRegulator,
             ReforgeStoneId.BlackDiamond,
-            ReforgeStoneId.EntropySuppressor,
             ReforgeStoneId.FullJawFangingKit,
             ReforgeStoneId.PresumedGallonOfRedPaint,
             ReforgeStoneId.RustyAnchor,
@@ -1192,14 +1200,12 @@ class TestSkyblockProfile {
             MiscItemId.EnchantedBookBundleChimera,
             MiscItemId.EnchantedBookBundlePrismatic,
             MiscItemId.EnchantedBookBundleTransylvanian,
-            MiscItemId.EnchantedClayBlock,
             MiscItemId.IntelligenceEnrichment,
             MiscItemId.CriticalChanceEnrichment,
             MiscItemId.DefenseEnrichment,
             MiscItemId.HealthEnrichment,
             MiscItemId.EverburningFlame,
             MiscItemId.FishingMinionXIIUpgradeStone,
-            MiscItemId.EpicGriffinUpgradeStone,
             MiscItemId.LegendaryGriffinUpgradeStone,
             MiscItemId.HurricaneInABottle,
             MiscItemId.Kloonboat,
@@ -1224,7 +1230,6 @@ class TestSkyblockProfile {
             MiscItemId.WeatherNode,
             MiscItemId.WispUpgradeStoneEpic,
             MiscItemId.WispUpgradeStoneLegendary,
-            MiscItemId.WormTheFish,
             MiscItemId.PortalToTheCastle,
             MiscItemId.PortalToTheDarkAuction,
             MiscItemId.PortalToTheCrypts,
@@ -1255,7 +1260,6 @@ class TestSkyblockProfile {
             KnownPetItem.Bubblegum,
             KnownPetItem.TierBoost,
             KnownPetItem.FourEyedFish,
-            MinionItemId.AcaciaMinion2,
             MinionItemId.AcaciaMinion3,
             MinionItemId.AcaciaMinion5,
             MinionItemId.AcaciaMinion7,
@@ -1271,21 +1275,16 @@ class TestSkyblockProfile {
             MinionItemId.CarrotMinion10,
             MinionItemId.CaveSpiderMinion2,
             MinionItemId.CaveSpiderMinion3,
-            MinionItemId.ChickenMinion3,
             MinionItemId.ChickenMinion6,
             MinionItemId.ChickenMinion7,
             MinionItemId.ClayMinion2,
             MinionItemId.ClayMinion3,
             MinionItemId.ClayMinion4,
-            MinionItemId.CoalMinion3,
             MinionItemId.CobblestoneMinion10,
             MinionItemId.CocoaBeansMinion6,
-            MinionItemId.CowMinion3,
-            MinionItemId.CowMinion4,
             MinionItemId.CowMinion6,
             MinionItemId.CreeperMinion2,
             MinionItemId.CreeperMinion3,
-            MinionItemId.DarkOakMinion2,
             MinionItemId.DarkOakMinion3,
             MinionItemId.EmeraldMinion2,
             MinionItemId.EndStoneMinion1,
@@ -1311,7 +1310,6 @@ class TestSkyblockProfile {
             MinionItemId.GlowstoneMinion7,
             MinionItemId.GravelMinion1,
             MinionItemId.GravelMinion2,
-            MinionItemId.GravelMinion3,
             MinionItemId.HardStoneMinion3,
             MinionItemId.HardStoneMinion7,
             MinionItemId.HardStoneMinion10,
@@ -1323,10 +1321,8 @@ class TestSkyblockProfile {
             MinionItemId.InfernoMinion9,
             MinionItemId.InfernoMinion10,
             MinionItemId.IronMinion2,
-            MinionItemId.JungleMinion2,
             MinionItemId.MagmaCubeMinion2,
             MinionItemId.MagmaCubeMinion4,
-            MinionItemId.MelonMinion3,
             MinionItemId.MelonMinion6,
             MinionItemId.MushroomMinion3,
             MinionItemId.MyceliumMinion6,
@@ -1334,15 +1330,12 @@ class TestSkyblockProfile {
             MinionItemId.NetherWartMinion2,
             MinionItemId.NetherWartMinion6,
             MinionItemId.OakMinion2,
-            MinionItemId.OakMinion3,
             MinionItemId.ObsidianMinion5,
             MinionItemId.PigMinion2,
             MinionItemId.PotatoMinion2,
             MinionItemId.PumpkinMinion2,
             MinionItemId.PumpkinMinion5,
             MinionItemId.QuartzMinion1,
-            MinionItemId.QuartzMinion3,
-            MinionItemId.QuartzMinion4,
             MinionItemId.RabbitMinion3,
             MinionItemId.RedSandMinion4,
             MinionItemId.RedSandMinion9,
@@ -1358,8 +1351,6 @@ class TestSkyblockProfile {
             MinionItemId.SnowMinion6,
             MinionItemId.SnowMinion10,
             MinionItemId.SpiderMinion2,
-            MinionItemId.SpiderMinion6,
-            MinionItemId.SpruceMinion3,
             MinionItemId.SpruceMinion5,
             MinionItemId.SugarCaneMinion1,
             MinionItemId.SugarCaneMinion8,
@@ -1373,7 +1364,6 @@ class TestSkyblockProfile {
             MinionItemId.VoidlingMinion6,
             MinionItemId.VoidlingMinion10,
             MinionItemId.ZombieMinion1,
-            MinionItemId.InfernoFuelMagmaCream,
             MinionItemId.InfernoFuelGlowstoneDust,
             MinionItemId.InfernoFuelNetherWart,
             MinionItemId.InfernoFuelBlazeRod,
@@ -1386,18 +1376,13 @@ class TestSkyblockProfile {
             MinionItemId.InfernoHypergolicGlowstoneDust,
             MinionItemId.InfernoHypergolicNetherWart,
             MinionItemId.InfernoHypergolicBlazeRod,
-            CosmeticItemId.BearBed,
             CosmeticItemId.Bookcase,
             CosmeticItemId.CoconutDrink,
             CosmeticItemId.EggPaintingStation,
             CosmeticItemId.ExtraLargeNutcracker,
             CosmeticItemId.Fireplace,
             CosmeticItemId.HeonzoDoggoWolfSkin,
-            CosmeticItemId.IceCreamCart,
-            CosmeticItemId.LifeguardChair,
             CosmeticItemId.MediumShelves,
-            CosmeticItemId.PumpkinDresser,
-            CosmeticItemId.Surfboard,
             CosmeticItemId.TenthAnniversaryPodiumBestMemeRunnerUp,
             CosmeticItemId.TenthAnniversaryPodiumBestMemeSecond,
             CosmeticItemId.TenthAnniversaryPodiumBestMemeThird,
@@ -1416,8 +1401,6 @@ class TestSkyblockProfile {
             CosmeticItemId.Totem,
             CosmeticItemId.WeaponRackPlus,
             CosmeticItemId.WishingWell,
-            CosmeticItemId.Wreath,
-            CosmeticItemId.YuleLog,
             GemstoneItemId.RoughOpalGemstone,
             GemstoneItemId.FlawedOpalGemstone,
             GemstoneItemId.FineOpalGemstone,
@@ -1473,7 +1456,6 @@ class TestSkyblockProfile {
             MiscItemId.TravelScrollToArachnesSanctuary,
             MiscItemId.TravelScrollToTheSmolderingTomb,
             MiscItemId.TravelScrollToTheDwarvenBaseCamp,
-            CollectionItemId.ChiliPepper,
             CosmeticItemId.BullheadMegalodon,
             CosmeticItemId.HamBarnSkin,
             CosmeticItemId.CountsManorBarnSkin,
@@ -1488,7 +1470,6 @@ class TestSkyblockProfile {
             DisplayItemId.TheWatchersHead,
             DisplayItemId.PopUpWallAbility,
             DisplayItemId.AmberCrystal,
-            MiscItemId.OldAmalgamatedCrimsonite,
             VanillaItemId.ArmorStand,
             VanillaItemId.BookAndQuill,
             VanillaItemId.FireworkStar,
@@ -1496,7 +1477,53 @@ class TestSkyblockProfile {
             VanillaItemId.WitherSkeletonSkull,
             VanillaItemId.ZombieSkull,
             BuggedItemId.NullMap3,
-            VanillaItemId.SpawnEgg
+            VanillaItemId.SpawnEgg,
+            AccessoryItemId.JunkTalisman,
+            AccessoryItemId.JunkRing,
+            CosmeticItemId.BunnyCabinet,
+            CosmeticItemId.BunnyTV,
+            CosmeticItemId.SpringBarnSkin,
+            EquipmentItemId.AnglerBelt,
+            EquipmentItemId.AnglerBracelet,
+            EquipmentItemId.AnglerCloak,
+            EquipmentItemId.AnglerNecklace,
+            MiscItemId.BronzeBowl,
+            MiscItemId.BronzeShipEngine,
+            MiscItemId.BronzeShipHelm,
+            MiscItemId.BronzeShipHull,
+            MiscItemId.MobyDuckCollectorsEdition,
+            MiscItemId.OctopusTendril,
+            MiscItemId.OldLeatherBoot,
+            MiscItemId.RustyCoin,
+            MiscItemId.SeveredPincer,
+            MiscItemId.SingedPowder,
+            MiscItemId.TravelScrollToTheBayou,
+            KnownPetItem.BurntTexts,
+            KnownPetItem.ScuttlerShell,
+            MiscItemId.BrokenRadar,
+            KnownRodPartId.ChumSinker,
+            KnownRodPartId.FestiveSinker,
+            KnownRodPartId.HotspotSinker,
+            KnownRodPartId.PrismarineSinker,
+            KnownRodPartId.SpongeSinker,
+            KnownRodPartId.HotspotHook,
+            KnownRodPartId.PhantomHook,
+            KnownRodPartId.SpeedyLine,
+            KnownRodPartId.TitanLine,
+            MiscItemId.HalfEatenMushroom,
+            MiscItemId.TitanoboaShed,
+            MiscItemId.BrimstoneHandle,
+            MiscItemId.BayouWaterOrb,
+            MiscItemId.HotspotWaterOrb,
+            CosmeticItemId.ButterflyBarnSkin,
+            CosmeticItemId.FlowerPotBarnSkin,
+            DeployableItemId.Umberella,
+            MiscItemId.AlligatorSkin,
+            MiscItemId.BlueRing,
+            MiscItemId.ChainOfTheEndTimes,
+            MiscItemId.GoldBottleCap,
+            MiscItemId.PortalToTheBackwaterBayou,
+            MiscItemId.TornCloth
         )
     }
 }

@@ -48,10 +48,10 @@ interface ApiClient {
     fun getStatsOverview(profileMember: CurrentMember, profile: SkyblockProfile): ProfileStatsOverview? {
         val witherBlades: List<WitherBlade> =
             profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-                ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filterIsInstance<WitherBlade>()
+                ?.mapNotNull { item -> item as? SkyblockItem }?.filterIsInstance<WitherBlade>()
                 ?: emptyList()
         val terminator: List<Gear> = profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-            ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
+            ?.mapNotNull { item -> item as? SkyblockItem }?.filter { item ->
                 return@filter item.id == WeaponItemId.Terminator
             }?.filterIsInstance<Gear>() ?: emptyList()
         val goldenDragon: List<Pet> = profileMember.petsData?.pets?.filter { pet ->

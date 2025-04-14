@@ -37,6 +37,7 @@ interface KnownSkyblockItemId : SkyblockItemId {
             ReforgeStoneId.entries,
             RiftItemId.entries,
             RiftTimecharmId.entries,
+            KnownRodPartId.entries,
             ShearItemId.entries,
             ToolItemId.entries,
             TrophyFishItemId.entries,

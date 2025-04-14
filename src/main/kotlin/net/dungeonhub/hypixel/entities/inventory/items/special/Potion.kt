@@ -5,8 +5,6 @@ import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 
-//TODO add fields
-//TODO add mapping to potion type
 class Potion(raw: NBTCompound) : SkyblockItem(raw) {
     val potionLevel: Int
         get() = extraAttributes.getInt("potion_level", 0)

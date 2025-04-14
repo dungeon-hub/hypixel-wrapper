@@ -33,6 +33,7 @@ enum class KnownPetType(override val apiName: String) : PetType {
     Griffin("GRIFFIN"),
     Guardian("GUARDIAN"),
     Hedgehog("HEDGEHOG"),
+    HermitCrab("HERMIT_CRAB"),
     Horse("HORSE"),
     Hound("HOUND"),
     Jellyfish("JELLYFISH"),

@@ -54,6 +54,7 @@ enum class WeaponItemId(override val apiName: String, override val itemClass: ((
     FireFreezeStaff("FIRE_FREEZE_STAFF", { Sword(it.raw) }),
     FireFuryStaff("FIRE_FURY_STAFF", { Sword(it.raw) }),
     FiredustDagger("FIREDUST_DAGGER", { BlazeDagger(it.raw) }),
+    FlamingFlay("FLAMING_FLAY", { Sword(it.raw) }),
     FlamingSword("FLAMING_SWORD", { Sword(it.raw) }),
     FloridZombieSword("FLORID_ZOMBIE_SWORD", { Sword(it.raw) }),
     FlowerOfTruth("FLOWER_OF_TRUTH", { Sword(it.raw) }),

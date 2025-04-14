@@ -37,6 +37,7 @@ enum class KnownDyeId(override val apiName: String, override val itemClass: ((Sk
     NadeshikoDye("DYE_NADESHIKO"),
     NecronDye("DYE_NECRON"),
     NyanzaDye("DYE_NYANZA"),
+    OceanDye("DYE_OCEAN"),
     PastelSkyDye("DYE_PASTEL_SKY"),
     PearlescentDye("DYE_PEARLESCENT"),
     PeltDye("DYE_PELT"),
