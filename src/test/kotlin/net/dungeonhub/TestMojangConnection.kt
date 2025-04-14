@@ -37,7 +37,7 @@ class TestMojangConnection {
         @BeforeAll
         @JvmStatic
         fun prepareMojangConnection() {
-            mockkObject(MojangConnection)
+            mockkObject(HttpClientProvider)
 
             every { HttpClientProvider.httpClient }.returns(
                 mock<OkHttpClient> {
