@@ -262,6 +262,7 @@ enum class CosmeticItemId(override val apiName: String, override val itemClass: 
     GlossyMineralHelmetRoyalSkin("GLOSSY_MINERAL_HELMET_ROYAL"),
     GlowSquidSkin("PET_SKIN_SQUID_GLOW"),
     GlowingGrapePowerOrbSkin("GLOWING_GRAPE_FLUX"),
+    GoblinSquidSkin("PET_SKIN_SQUID_GOBLIN"),
     GoldChestPlus("GOLD_CHEST"),
     GoldGiftBackpackSkin("GIFT_GOLD_BACKPACK"),
     GoldMacawParrotSkin("PET_SKIN_PARROT_GOLD_MACAW"),
