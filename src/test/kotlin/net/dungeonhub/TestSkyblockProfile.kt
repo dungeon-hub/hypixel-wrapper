@@ -1516,7 +1516,9 @@ class TestSkyblockProfile {
             MiscItemId.ChainOfTheEndTimes,
             MiscItemId.GoldBottleCap,
             MiscItemId.PortalToTheBackwaterBayou,
-            MiscItemId.TornCloth
+            MiscItemId.TornCloth,
+            KnownDyeId.OasisDye,
+            KnownDyeId.SunsetDye
         )
     }
 }
