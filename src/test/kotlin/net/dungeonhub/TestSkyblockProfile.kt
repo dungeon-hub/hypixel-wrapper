@@ -497,6 +497,16 @@ class TestSkyblockProfile {
                     assertDoesNotThrow { item.sinker }
                 }
 
+                if (item is BucketOfDye) {
+                    assertDoesNotThrow { item.donatedDye }
+                    assertIsNot<KnownDyeId.UnknownDyeId>(item.donatedDye)
+                }
+
+                if (item is PetAsItem) {
+                    assertDoesNotThrow { item.petInfo?.skin }
+                    assertIsNot<KnownPetSkinId.UnknownPetSkinId>(item.petInfo?.skin)
+                }
+
                 SkyblockItemHelper.checkFields(item)
             }
         }
@@ -641,6 +651,16 @@ class TestSkyblockProfile {
     }
 
     @Test
+    fun testKnownPetSkinIds() {
+        KnownPetSkinId.entries.forEach {
+            assertDoesNotThrow { it.appliedName }
+            assertNotNull(it.appliedName)
+
+            assertTrue { it.apiName.startsWith("PET_SKIN_") }
+        }
+    }
+
+    @Test
     fun testNoInvalidDataTypes() {
         TestHelper.runParallel {
             TestHelper.readAllSkyblockProfiles().parallel().forEach { profiles ->
@@ -684,6 +704,10 @@ class TestSkyblockProfile {
                                 assertIsNot<KnownPetItem.UnknownPetItem>(
                                     pet.heldItem,
                                     "Pet item ${pet.heldItem?.apiName} isn't recognized"
+                                )
+                                assertIsNot<KnownPetSkinId.UnknownPetSkinId>(
+                                    pet.skin,
+                                    "Pet skin ${pet.skin?.apiName} isn't recognized"
                                 )
                             }
 
@@ -804,7 +828,7 @@ class TestSkyblockProfile {
             DisplayItemId.ExplosiveShotAbility,
             AdminItemId.TreeHook,
             AdminItemId.NeurotoxinNeedle,
-            CosmeticItemId.OrangeSheepSkin,
+            KnownPetSkinId.OrangeSheepSkin,
             DisplayItemId.MediumPotionBag,
             KnownPetItem.FarmingExpLegendary,
             AdminItemId.DashingBoots,
@@ -1379,7 +1403,7 @@ class TestSkyblockProfile {
             CosmeticItemId.EggPaintingStation,
             CosmeticItemId.ExtraLargeNutcracker,
             CosmeticItemId.Fireplace,
-            CosmeticItemId.HeonzoDoggoWolfSkin,
+            KnownPetSkinId.HeonzoDoggoWolfSkin,
             CosmeticItemId.MediumShelves,
             CosmeticItemId.TenthAnniversaryPodiumBestMemeRunnerUp,
             CosmeticItemId.TenthAnniversaryPodiumBestMemeSecond,
@@ -1454,11 +1478,11 @@ class TestSkyblockProfile {
             MiscItemId.TravelScrollToArachnesSanctuary,
             MiscItemId.TravelScrollToTheSmolderingTomb,
             MiscItemId.TravelScrollToTheDwarvenBaseCamp,
-            CosmeticItemId.BullheadMegalodon,
+            KnownPetSkinId.BullheadMegalodon,
             CosmeticItemId.HamBarnSkin,
             CosmeticItemId.CountsManorBarnSkin,
-            CosmeticItemId.BrownSheepSkin,
-            CosmeticItemId.AquaSheepSkin,
+            KnownPetSkinId.BrownSheepSkin,
+            KnownPetSkinId.AquaSheepSkin,
             DisplayItemId.Thunderstorm,
             DisplayItemId.FallenStarChestplate,
             DisplayItemId.FallenStarLeggings,
@@ -1518,7 +1542,10 @@ class TestSkyblockProfile {
             MiscItemId.PortalToTheBackwaterBayou,
             MiscItemId.TornCloth,
             KnownDyeId.OasisDye,
-            KnownDyeId.SunsetDye
+            KnownDyeId.SunsetDye,
+            KnownPetSkinId.MyceliyumBurgerMooshroomCowSkin,
+            KnownPetSkinId.HollowRockSkin,
+            KnownPetSkinId.IceFairySubzeroWispSkin
         )
     }
 }

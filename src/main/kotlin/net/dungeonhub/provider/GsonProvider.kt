@@ -7,9 +7,7 @@ import com.google.gson.stream.JsonWriter
 import net.dungeonhub.hypixel.entities.guild.GuildRank
 import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
 import net.dungeonhub.hypixel.entities.inventory.items.KnownEnchantment
-import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetItem
-import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
-import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
+import net.dungeonhub.hypixel.entities.inventory.items.id.*
 import net.dungeonhub.hypixel.entities.player.KnownRank
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.player.Rank
@@ -46,6 +44,8 @@ object GsonProvider {
         .registerTypeAdapter(PetItem::class.java, PetItemSerializer())
         .registerTypeAdapter(KnownPetType::class.java, PetTypeSerializer())
         .registerTypeAdapter(PetType::class.java, PetTypeSerializer())
+        .registerTypeAdapter(PetSkinId::class.java, PetSkinIdSerializer())
+        .registerTypeAdapter(KnownPetSkinId::class.java, PetSkinIdSerializer())
         .registerTypeAdapter(KnownSkill::class.java, SkillSerializer())
         .registerTypeAdapter(Skill::class.java, SkillSerializer())
         .registerTypeAdapter(KnownCurrencyTypes::class.java, CurrencySerializer())
@@ -113,7 +113,24 @@ object GsonProvider {
         ): PetType {
             return KnownPetType.fromApiName(json.asString)
         }
+    }
 
+    private class PetSkinIdSerializer : JsonSerializer<PetSkinId>, JsonDeserializer<PetSkinId> {
+        override fun serialize(
+            src: PetSkinId,
+            typeOfSrc: Type?,
+            context: JsonSerializationContext?
+        ): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
+
+        override fun deserialize(
+            json: JsonElement,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): PetSkinId {
+            return KnownPetSkinId.fromApiName(json.asString)
+        }
     }
 
     private class RankSerializer : JsonSerializer<Rank>, JsonDeserializer<Rank> {
