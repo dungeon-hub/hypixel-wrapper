@@ -203,7 +203,6 @@ object SkyblockItemHelper {
             "effects",
             "potion_name",
             "dungeon_potion",
-            "shop_dungeon_floor_completion_required",
             "enhanced",
             "extended",
             "last_potion_ingredient",

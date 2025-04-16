@@ -115,7 +115,7 @@ enum class KnownEnchantment(
     Transylvanian("transylvanian", false, EnchantmentTarget.Armor),
     TripleStrike("triple_strike", false, EnchantmentTarget.Swords),
     TrueProtection("true_protection", false, EnchantmentTarget.Armor),
-    TurboCacti("turbo_cacti", false, EnchantmentTarget.Tools),
+    TurboCacti("turbo_cactus", false, EnchantmentTarget.Tools),
     TurboCane("turbo_cane", false, EnchantmentTarget.Tools),
     TurboCarrot("turbo_carrot", false, EnchantmentTarget.Tools),
     TurboCocoa("turbo_coco", false, EnchantmentTarget.Tools),
@@ -184,12 +184,7 @@ enum class KnownEnchantment(
         Telekinesis(
             "telekinesis", false, EnchantmentTarget.Swords, EnchantmentTarget.Bows, EnchantmentTarget.Tools,
             EnchantmentTarget.FishingRods, EnchantmentTarget.Wands
-        ),
-        TurboCactus(
-            "turbo_cactus",
-            false,
-            EnchantmentTarget.Tools
-        ); //TODO check if thats actually just an old name or if the wiki is just incorrect (again)
+        );
     }
 
     enum class EnchantmentTarget {

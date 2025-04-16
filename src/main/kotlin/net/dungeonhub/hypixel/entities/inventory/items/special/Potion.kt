@@ -1,11 +1,12 @@
 package net.dungeonhub.hypixel.entities.inventory.items.special
 
 import me.nullicorn.nedit.type.NBTCompound
+import net.dungeonhub.hypixel.entities.inventory.items.GearFromOphelia
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.id.KnownSkyblockItemId
 import net.dungeonhub.hypixel.entities.inventory.items.id.SkyblockItemId
 
-class Potion(raw: NBTCompound) : SkyblockItem(raw) {
+class Potion(raw: NBTCompound) : SkyblockItem(raw), GearFromOphelia {
     val potionLevel: Int
         get() = extraAttributes.getInt("potion_level", 0)
 
@@ -28,9 +29,6 @@ class Potion(raw: NBTCompound) : SkyblockItem(raw) {
 
     val dungeonPotion: Boolean
         get() = extraAttributes.getByte("dungeon_potion", 0) == 1.toByte()
-
-    val dungeonFloorRequirement: Int //TODO export into extra class -> is that also for shop items like wither goggles?
-        get() = extraAttributes.getInt("shop_dungeon_floor_completion_required", 0)
 
     val enhanced: Boolean?
         get() = extraAttributes.getInt("enhanced", -1).takeIf { it != -1 }?.equals(1)
