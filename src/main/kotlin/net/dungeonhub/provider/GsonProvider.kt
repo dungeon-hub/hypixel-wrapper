@@ -68,13 +68,18 @@ object GsonProvider {
         .setExclusionStrategies(SuperClassExclusionStrategies(SkyblockProfileMember::class.java))
         .create()
 
-    //Thanks https://github.com/iSharipov/gson-adapters
+    //Thanks to https://github.com/iSharipov/gson-adapters
     private class PolymorphDeserializer<T> : JsonDeserializer<T> {
         @Throws(JsonParseException::class)
         override fun deserialize(json: JsonElement, type: Type, context: JsonDeserializationContext): T {
             try {
                 val typeClass = Class.forName(type.typeName)
-                val jsonType: JsonType = typeClass.getDeclaredAnnotation(JsonType::class.java)
+                val jsonType: JsonType? = typeClass.getDeclaredAnnotation(JsonType::class.java)
+
+                if (jsonType == null) {
+                    throw JsonParseException("Failed to deserialize json due to a missing annotation")
+                }
+
                 val property = json.asJsonObject[jsonType.property].asString
                 val subtypes: Array<JsonSubtype> = jsonType.subtypes
                 val subType = Arrays.stream(subtypes)
@@ -82,7 +87,7 @@ object GsonProvider {
                     .orElseThrow { IllegalArgumentException() }.clazz.java
                 return context.deserialize(json, subType)
             } catch (e: Exception) {
-                throw JsonParseException("Failed deserialize json", e)
+                throw JsonParseException("Failed to deserialize json", e)
             }
         }
     }
