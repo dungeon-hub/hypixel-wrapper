@@ -13,6 +13,10 @@ class AuctionStats(
     val highestBid: Double,
     val goldSpent: Double,
 
+    /**
+     * This maps the total bought auctions to the rarity of those auctions.
+     * This should contain exactly one entry where the SkyblockRarity is null; this is the total amount.
+     */
     val totalBought: Map<SkyblockRarity?, Int>,
 
     //Seller stats
@@ -23,6 +27,10 @@ class AuctionStats(
     val goldEarned: Double,
     val fees: Double,
 
+    /**
+     * This maps the total sold auctions to the rarity of those auctions.
+     * This should contain exactly one entry where the SkyblockRarity is null; this is the total amount.
+     */
     val totalSold: Map<SkyblockRarity?, Int>
 )
 
@@ -33,7 +41,7 @@ fun JsonObject.toAuctionStats(): AuctionStats {
         getAsJsonPrimitiveOrNull("highest_bid")?.asDouble ?: 0.0,
         getAsJsonPrimitiveOrNull("gold_spent")?.asDouble ?: 0.0,
         getAsJsonObjectOrNull("total_bought")?.entrySet()?.associate {
-            (if(it.key != "total") SkyblockRarity.fromApiName(it.key) else null) to it.value.asInt
+            (if (it.key != "total") SkyblockRarity.fromApiName(it.key) else null) to it.value.asInt
         } ?: emptyMap(),
         getAsJsonPrimitiveOrNull("created")?.asInt ?: 0,
         getAsJsonPrimitiveOrNull("completed")?.asInt ?: 0,
@@ -41,7 +49,7 @@ fun JsonObject.toAuctionStats(): AuctionStats {
         getAsJsonPrimitiveOrNull("gold_earned")?.asDouble ?: 0.0,
         getAsJsonPrimitiveOrNull("fees")?.asDouble ?: 0.0,
         getAsJsonObjectOrNull("total_sold")?.entrySet()?.associate {
-            (if(it.key != "total") SkyblockRarity.fromApiName(it.key) else null) to it.value.asInt
+            (if (it.key != "total") SkyblockRarity.fromApiName(it.key) else null) to it.value.asInt
         } ?: emptyMap()
     )
 }

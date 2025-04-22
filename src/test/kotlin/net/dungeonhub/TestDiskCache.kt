@@ -66,13 +66,15 @@ class TestDiskCache {
 
     @Test
     fun testSerialization() {
-        for (skyblockProfiles in TestHelper.readAllSkyblockProfiles()) {
-            for (profile in skyblockProfiles) {
-                val profileJson = GsonProvider.gson.toJson(profile)
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfiles().parallel().forEach { skyblockProfiles ->
+                for (profile in skyblockProfiles) {
+                    val profileJson = GsonProvider.gson.toJson(profile)
 
-                val profileFromJson = GsonProvider.gson.fromJson(profileJson, SkyblockProfile::class.java)
+                    val profileFromJson = GsonProvider.gson.fromJson(profileJson, SkyblockProfile::class.java)
 
-                assertNotNull(profileFromJson)
+                    assertNotNull(profileFromJson)
+                }
             }
         }
 
@@ -89,17 +91,20 @@ class TestDiskCache {
     fun testDiskCacheSkyblock() {
         val apiClient = DiskCacheApiClient
 
-        for (skyblockProfiles in TestHelper.readAllSkyblockProfileObjects()) {
-            assertDoesNotThrow { apiClient.skyblockProfilesCache.store(skyblockProfiles) }
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfileObjects().parallel().forEach { skyblockProfiles ->
+                assertDoesNotThrow { apiClient.skyblockProfilesCache.store(skyblockProfiles) }
 
-            val loadedProfile = assertDoesNotThrow { apiClient.skyblockProfilesCache.retrieve(skyblockProfiles.owner) }
+                val loadedProfile =
+                    assertDoesNotThrow { apiClient.skyblockProfilesCache.retrieve(skyblockProfiles.owner) }
 
-            assertNotNull(loadedProfile)
+                assertNotNull(loadedProfile)
 
-            for(profile in loadedProfile.profiles) {
-                for(member in profile.members.filterIsInstance<CurrentMember>()) {
-                    for(inventoryContent in member.inventory?.allItems ?: listOf()) {
-                        assertNotNull(inventoryContent.items)
+                for (profile in loadedProfile.profiles) {
+                    for (member in profile.members.filterIsInstance<CurrentMember>()) {
+                        for (inventoryContent in member.inventory?.allItems ?: listOf()) {
+                            assertNotNull(inventoryContent.items)
+                        }
                     }
                 }
             }

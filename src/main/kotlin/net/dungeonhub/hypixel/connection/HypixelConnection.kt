@@ -1,18 +1,17 @@
 package net.dungeonhub.hypixel.connection
 
 import net.dungeonhub.exception.FailedToLoadException
+import net.dungeonhub.provider.HttpClientProvider
 import net.hypixel.api.HypixelAPI
 import net.hypixel.api.http.HypixelHttpClient
 import net.hypixel.api.http.HypixelHttpResponse
 import net.hypixel.api.http.RateLimit
 import net.hypixel.api.reply.StatusReply
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.IOException
-import java.time.Duration
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -20,15 +19,6 @@ object HypixelConnection : HypixelHttpClient {
     var apiKey: String? = System.getenv("HYPIXEL_API_KEY")
 
     private val logger: Logger = LoggerFactory.getLogger(HypixelConnection::class.java)
-
-    //TODO provider
-    private val httpClient: OkHttpClient = OkHttpClient.Builder()
-        .retryOnConnectionFailure(true)
-        .connectTimeout(Duration.ofSeconds(30))
-        .readTimeout(Duration.ofSeconds(30))
-        .callTimeout(Duration.ofSeconds(30))
-        .writeTimeout(Duration.ofSeconds(30))
-        .build()
 
     val hypixelApi: HypixelAPI = HypixelAPI(this)
 
@@ -39,7 +29,7 @@ object HypixelConnection : HypixelHttpClient {
                 .get()
                 .build()
             try {
-                httpClient.newCall(request).execute().use { response ->
+                HttpClientProvider.httpClient.newCall(request).execute().use { response ->
                     if (response.body != null) {
                         return@completeAsync HypixelHttpResponse(response.code, response.body!!.string(), null)
                     }
@@ -59,7 +49,7 @@ object HypixelConnection : HypixelHttpClient {
                 .get()
                 .build()
             try {
-                httpClient.newCall(request).execute().use { response ->
+                HttpClientProvider.httpClient.newCall(request).execute().use { response ->
                     if (response.body != null) {
                         return@completeAsync HypixelHttpResponse(
                             response.code, response.body!!.string(),

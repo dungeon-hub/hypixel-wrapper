@@ -7,21 +7,23 @@ import com.google.gson.JsonPrimitive
 import me.nullicorn.nedit.type.NBTCompound
 import me.nullicorn.nedit.type.NBTList
 import net.dungeonhub.hypixel.entities.inventory.SkyblockRarity
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetItem
+import net.dungeonhub.hypixel.entities.inventory.items.id.KnownPetSkinId
+import net.dungeonhub.hypixel.entities.inventory.items.id.PetSkinId
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.util.*
 
-//TODO map type to pet type
 class Pet(
     val uuid: UUID?,
     val uniqueId: UUID?,
-    val type: String,
+    val type: PetType,
     val exp: Double,
     val active: Boolean,
     val tier: SkyblockRarity,
     val heldItem: PetItem?,
     val candyUsed: Int,
-    val skin: String?,
+    val skin: PetSkinId?,
     val extraData: JsonObject?
 ) {
     //TODO make decent
@@ -230,8 +232,8 @@ class Pet(
         ).map { it.toDouble() }
 
     fun gdragExpToLevel(xp: Double): Int {
-        for((index, requiredXp) in goldenDragonLevels.withIndex()) {
-            if(xp < requiredXp) return index
+        for ((index, requiredXp) in goldenDragonLevels.withIndex()) {
+            if (xp < requiredXp) return index
         }
 
         return goldenDragonLevels.size
@@ -242,13 +244,13 @@ fun JsonObject.toPet(): Pet {
     return Pet(
         getAsJsonPrimitiveOrNull("uuid")?.asString?.let { UUID.fromString(it) },
         getAsJsonPrimitiveOrNull("uniqueId")?.asString?.let { UUID.fromString(it) },
-        getAsJsonPrimitive("type").asString,
+        KnownPetType.fromApiName(getAsJsonPrimitive("type").asString),
         getAsJsonPrimitive("exp").asDouble,
         getAsJsonPrimitive("active").asBoolean,
         SkyblockRarity.fromApiName(getAsJsonPrimitive("tier").asString),
-        getAsJsonPrimitiveOrNull("heldItem")?.asString?.let { KnownPetItem.fromApiName(it) },
+        getAsJsonPrimitiveOrNull("heldItem")?.asString?.let(KnownPetItem::fromApiName),
         getAsJsonPrimitiveOrNull("candyUsed")?.asInt ?: 0,
-        getAsJsonPrimitiveOrNull("skin")?.asString,
+        getAsJsonPrimitiveOrNull("skin")?.asString?.let(KnownPetSkinId::fromAppliedName),
         getAsJsonObjectOrNull("extra")
     )
 }

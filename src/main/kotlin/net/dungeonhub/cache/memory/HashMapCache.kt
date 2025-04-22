@@ -2,6 +2,7 @@ package net.dungeonhub.cache.memory
 
 import net.dungeonhub.cache.Cache
 import java.time.Instant
+import java.util.stream.Stream
 
 class HashMapCache<T, K>(val keyFunction: (T) -> K) : Cache<T, K> {
     private val cache = HashMap<K, CacheElement<T>>()
@@ -10,8 +11,8 @@ class HashMapCache<T, K>(val keyFunction: (T) -> K) : Cache<T, K> {
         return cache[key]
     }
 
-    override fun retrieveAllElements(): List<CacheElement<T>> {
-        return cache.values.toList()
+    override fun retrieveAllElements(): Stream<CacheElement<T>> {
+        return cache.values.stream()
     }
 
     override fun store(value: T) {
