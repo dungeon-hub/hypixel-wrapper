@@ -1,4 +1,4 @@
-package net.dungeonhub.hypixel.entities.skyblock.stats
+package net.dungeonhub.hypixel.entities.skyblock.statsoverview
 
 import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
 import net.dungeonhub.hypixel.entities.inventory.items.KnownEnchantment
@@ -13,17 +13,17 @@ import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.bankEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.catacombsEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.goldenDragonEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.magicalPowerEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.purseEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.skillAverageEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.skyblockLevelEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.slayerEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.slayerEmojies
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.terminatorEmoji
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview.Companion.witherBladeEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.bankEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.catacombsEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.goldenDragonEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.magicalPowerEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.purseEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.skillAverageEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.skyblockLevelEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.slayerEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.slayerEmojies
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.terminatorEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.witherBladeEmoji
 import net.dungeonhub.hypixel.service.FormattingService
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 

@@ -6,7 +6,7 @@ import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
-import net.dungeonhub.hypixel.entities.skyblock.stats.ProfileStatsOverview
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview
 import java.util.*
 
 interface ApiClient {

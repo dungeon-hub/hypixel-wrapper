@@ -1,4 +1,4 @@
-package net.dungeonhub.hypixel.entities.skyblock.stats
+package net.dungeonhub.hypixel.entities.skyblock.statsoverview
 
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
