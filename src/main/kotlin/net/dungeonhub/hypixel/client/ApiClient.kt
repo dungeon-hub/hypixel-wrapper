@@ -1,18 +1,12 @@
 package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.hypixel.entities.guild.Guild
-import net.dungeonhub.hypixel.entities.inventory.SkyblockItem
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
-import net.dungeonhub.hypixel.entities.skyblock.ProfileStatsOverview
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
-import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
-import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
-import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
-import net.dungeonhub.hypixel.service.FormattingService
-import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview
 import java.util.*
 
 interface ApiClient {
@@ -38,49 +32,10 @@ interface ApiClient {
 
         val member = selectedProfile.getCurrentMember(uuid) ?: return null
 
-        return getStatsOverview(member, selectedProfile)
+        return getStatsOverview(selectedProfile, member)
     }
 
-    fun getStatsOverview(profileMember: CurrentMember, profile: SkyblockProfile): ProfileStatsOverview? {
-        val witherBlades: List<SkyblockItem> =
-            profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-                ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
-                    return@filter listOf("HYPERION", "VALKYRIE", "SCYLLA", "ASTRAEA").contains(item.id)
-                } ?: emptyList()
-        val terminator: List<SkyblockItem> = profileMember.inventory?.allItems?.flatMap { inventory -> inventory.items }
-            ?.mapNotNull { item -> if (item is SkyblockItem) item else null }?.filter { item ->
-                return@filter item.id == "TERMINATOR"
-            } ?: emptyList()
-        val goldenDragon: List<Pet> = profileMember.petsData?.pets?.filter { pet ->
-            pet.type == "GOLDEN_DRAGON"
-        } ?: emptyList()
-
-        val skyblockLevel: Double = profileMember.leveling.experience.toDouble() / 100
-        val skillAverage: Double = profileMember.playerData.skillAverage
-        val slayerData: Map<KnownSlayerType, Int> = KnownSlayerType.entries.associateWith { slayerType ->
-            slayerType.toLevel(profileMember.slayer?.slayerProgress?.get(slayerType)?.xp ?: 0)
-        }
-        val catacombsLevel: Int = profileMember.dungeons?.catacombsLevel ?: 0
-        val classAverage: Double = profileMember.dungeons?.classAverage ?: 0.0
-
-        val purse: String = profileMember.currencies[KnownCurrencyTypes.Coins]?.toLong()
-            ?.let { FormattingService.makeNumberReadable(it, 2) } ?: "Empty"
-        val bankMoney: String = profile.banking?.getAsJsonPrimitiveOrNull("balance")?.asDouble?.toLong()
-            ?.let { FormattingService.makeNumberReadable(it, 2) } ?: "Empty"
-
-        return ProfileStatsOverview(
-            profileMember.uuid,
-            profile.cuteName ?: profile.profileId.toString(),
-            witherBlades,
-            terminator,
-            goldenDragon,
-            skyblockLevel,
-            skillAverage,
-            slayerData,
-            catacombsLevel,
-            classAverage,
-            purse,
-            bankMoney
-        )
+    fun getStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember): ProfileStatsOverview? {
+        return ProfileStatsOverview(profile, profileMember)
     }
 }

@@ -1,7 +1,7 @@
 package net.dungeonhub.hypixel.entities.player
 
 import com.google.gson.JsonObject
-import net.dungeonhub.mojang.entity.toUUIDUnsafe
+import net.dungeonhub.mojang.entity.toUUID
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import java.time.Instant
@@ -24,7 +24,7 @@ class HypixelPlayer(
 fun JsonObject.toHypixelPlayer(): HypixelPlayer {
     return HypixelPlayer(
         getAsJsonPrimitive("_id").asString,
-        getAsJsonPrimitive("uuid").asString.toUUIDUnsafe(),
+        getAsJsonPrimitive("uuid").asString.toUUID(),
         getAsJsonPrimitive("playername").asString,
         getAsJsonPrimitive("displayname").asString,
         getAsJsonPrimitiveOrNull("firstLogin")?.asLong?.let { Instant.ofEpochMilli(it) },

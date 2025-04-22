@@ -4,6 +4,7 @@ import com.google.gson.JsonObject
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
+// TODO field ender_chest_page_icons
 class MemberInventory(
     val inventoryContents: InventoryContent?,
     val enderChestContent: InventoryContent?,

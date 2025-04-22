@@ -5,6 +5,9 @@ import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
 import net.dungeonhub.hypixel.entities.guild.GuildRank
+import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
+import net.dungeonhub.hypixel.entities.inventory.items.KnownEnchantment
+import net.dungeonhub.hypixel.entities.inventory.items.id.*
 import net.dungeonhub.hypixel.entities.player.KnownRank
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
 import net.dungeonhub.hypixel.entities.player.Rank
@@ -19,8 +22,9 @@ import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Co
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownEssenceType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.DungeonType
 import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
-import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetItem
+import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.pet.PetItem
+import net.dungeonhub.hypixel.entities.skyblock.pet.PetType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import net.dungeonhub.hypixel.entities.skyblock.slayer.SlayerType
 import java.io.IOException
@@ -30,7 +34,6 @@ import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.KClass
 
-
 object GsonProvider {
     val gson: Gson = GsonBuilder()
         .registerTypeAdapter(Instant::class.java, InstantTypeAdapter())
@@ -39,6 +42,10 @@ object GsonProvider {
         .registerTypeAdapter(GuildRank::class.java, PolymorphDeserializer<GuildRank>())
         .registerTypeAdapter(KnownPetItem::class.java, PetItemSerializer())
         .registerTypeAdapter(PetItem::class.java, PetItemSerializer())
+        .registerTypeAdapter(KnownPetType::class.java, PetTypeSerializer())
+        .registerTypeAdapter(PetType::class.java, PetTypeSerializer())
+        .registerTypeAdapter(PetSkinId::class.java, PetSkinIdSerializer())
+        .registerTypeAdapter(KnownPetSkinId::class.java, PetSkinIdSerializer())
         .registerTypeAdapter(KnownSkill::class.java, SkillSerializer())
         .registerTypeAdapter(Skill::class.java, SkillSerializer())
         .registerTypeAdapter(KnownCurrencyTypes::class.java, CurrencySerializer())
@@ -53,17 +60,26 @@ object GsonProvider {
         .registerTypeAdapter(SocialMediaType::class.java, SocialMediaTypeSerializer())
         .registerTypeAdapter(KnownRank::class.java, RankSerializer())
         .registerTypeAdapter(Rank::class.java, RankSerializer())
+        .registerTypeAdapter(SkyblockItemId::class.java, SkyblockItemIdSerializer())
+        .registerTypeAdapter(KnownSkyblockItemId::class.java, SkyblockItemIdSerializer())
+        .registerTypeAdapter(Enchantment::class.java, EnchantmentSerializer())
+        .registerTypeAdapter(KnownEnchantment::class.java, EnchantmentSerializer())
         .enableComplexMapKeySerialization()
         .setExclusionStrategies(SuperClassExclusionStrategies(SkyblockProfileMember::class.java))
         .create()
 
-    //Thanks https://github.com/iSharipov/gson-adapters
+    //Thanks to https://github.com/iSharipov/gson-adapters
     private class PolymorphDeserializer<T> : JsonDeserializer<T> {
         @Throws(JsonParseException::class)
         override fun deserialize(json: JsonElement, type: Type, context: JsonDeserializationContext): T {
             try {
                 val typeClass = Class.forName(type.typeName)
-                val jsonType: JsonType = typeClass.getDeclaredAnnotation(JsonType::class.java)
+                val jsonType: JsonType? = typeClass.getDeclaredAnnotation(JsonType::class.java)
+
+                if (jsonType == null) {
+                    throw JsonParseException("Failed to deserialize json due to a missing annotation")
+                }
+
                 val property = json.asJsonObject[jsonType.property].asString
                 val subtypes: Array<JsonSubtype> = jsonType.subtypes
                 val subType = Arrays.stream(subtypes)
@@ -71,7 +87,7 @@ object GsonProvider {
                     .orElseThrow { IllegalArgumentException() }.clazz.java
                 return context.deserialize(json, subType)
             } catch (e: Exception) {
-                throw JsonParseException("Failed deserialize json", e)
+                throw JsonParseException("Failed to deserialize json", e)
             }
         }
     }
@@ -86,19 +102,89 @@ object GsonProvider {
         }
     }
 
+    private class PetTypeSerializer : JsonSerializer<PetType>, JsonDeserializer<PetType> {
+        override fun serialize(
+            src: PetType,
+            typeOfSrc: Type?,
+            context: JsonSerializationContext?
+        ): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
+
+        override fun deserialize(
+            json: JsonElement,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): PetType {
+            return KnownPetType.fromApiName(json.asString)
+        }
+    }
+
+    private class PetSkinIdSerializer : JsonSerializer<PetSkinId>, JsonDeserializer<PetSkinId> {
+        override fun serialize(
+            src: PetSkinId,
+            typeOfSrc: Type?,
+            context: JsonSerializationContext?
+        ): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
+
+        override fun deserialize(
+            json: JsonElement,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): PetSkinId {
+            return KnownPetSkinId.fromApiName(json.asString)
+        }
+    }
+
     private class RankSerializer : JsonSerializer<Rank>, JsonDeserializer<Rank> {
         override fun serialize(src: Rank, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Rank {
             return KnownRank.fromApiName(json!!.asString)
         }
     }
 
-    private class SocialMediaTypeSerializer : JsonSerializer<SocialMediaType>, JsonDeserializer<SocialMediaType> {
-        override fun serialize(src: SocialMediaType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+    private class EnchantmentSerializer : JsonSerializer<Enchantment>, JsonDeserializer<Enchantment> {
+        override fun serialize(src: Enchantment, type: Type, context: JsonSerializationContext?): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
+        override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Enchantment? {
+            return KnownEnchantment.fromApiName(json.asString)
+        }
+    }
+
+    private class SkyblockItemIdSerializer : JsonSerializer<SkyblockItemId>, JsonDeserializer<SkyblockItemId> {
+        override fun serialize(
+            src: SkyblockItemId,
+            typeOfSrc: Type?,
+            context: JsonSerializationContext?
+        ): JsonElement? {
+            return JsonPrimitive(src.apiName)
+        }
+
+        override fun deserialize(
+            json: JsonElement,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): SkyblockItemId? {
+            return KnownSkyblockItemId.fromApiName(json.asString)
+        }
+    }
+
+    private class SocialMediaTypeSerializer : JsonSerializer<SocialMediaType>, JsonDeserializer<SocialMediaType> {
+        override fun serialize(
+            src: SocialMediaType,
+            typeOfSrc: Type?,
+            context: JsonSerializationContext?
+        ): JsonElement {
+            return JsonPrimitive(src.apiName)
+        }
+
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
@@ -112,6 +198,7 @@ object GsonProvider {
         override fun serialize(src: Skill, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Skill {
             return KnownSkill.fromApiName(json!!.asString)
         }
@@ -121,6 +208,7 @@ object GsonProvider {
         override fun serialize(src: SlayerType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
         override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): SlayerType {
             return KnownSlayerType.fromApiName(json!!.asString)
         }
@@ -130,6 +218,7 @@ object GsonProvider {
         override fun serialize(src: CurrencyType, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
@@ -143,6 +232,7 @@ object GsonProvider {
         override fun serialize(src: DungeonType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,
@@ -156,6 +246,7 @@ object GsonProvider {
         override fun serialize(src: EssenceType, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
             return JsonPrimitive(src.apiName)
         }
+
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,

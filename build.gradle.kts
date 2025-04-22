@@ -36,7 +36,7 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
-    testImplementation("io.mockk:mockk:1.13.17")
+    testImplementation("io.mockk:mockk:1.14.0")
 }
 
 centralPortal {
@@ -102,5 +102,5 @@ tasks.withType<Javadoc> {
 tasks.test {
     useJUnitPlatform()
     minHeapSize = "512m"
-    maxHeapSize = "1024m"
+    maxHeapSize = "2048m"
 }

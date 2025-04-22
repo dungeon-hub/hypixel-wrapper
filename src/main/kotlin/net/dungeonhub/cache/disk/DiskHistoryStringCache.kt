@@ -2,12 +2,14 @@ package net.dungeonhub.cache.disk
 
 import com.google.gson.reflect.TypeToken
 import net.dungeonhub.cache.Cache
+import net.dungeonhub.cache.filterNotNull
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.time.Instant
+import java.util.stream.Stream
 import kotlin.io.path.exists
 import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
@@ -66,11 +68,11 @@ class DiskHistoryStringCache<T>(
         return null
     }
 
-    override fun retrieveAllElements(): List<CacheElement<T>> {
+    override fun retrieveAllElements(): Stream<CacheElement<T>> {
         val cacheDirectory = Path.of(cacheDirectory, name)
 
         if (!cacheDirectory.exists()) {
-            return emptyList()
+            return Stream.empty()
         }
 
         return Files.list(cacheDirectory).map {
@@ -79,7 +81,7 @@ class DiskHistoryStringCache<T>(
             }
 
             return@map null
-        }.toList().filterNotNull()
+        }.filterNotNull()
     }
 
     override fun invalidateEntry(key: String) {

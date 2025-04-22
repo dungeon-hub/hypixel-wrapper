@@ -24,7 +24,7 @@ class Guild(
     val ranks: List<GuildRank>,
     val preferredGames: List<GameType>,
     val guildExp: Map<GameType, Int>,
-    val achievements: Map<String, Int>, //TODO map key to achievement?
+    val achievements: Map<String, Int>,
     val coins: Int,
     val coinsEver: Int
 ) {
@@ -61,7 +61,7 @@ fun JsonObject.toGuild(): Guild {
         description = getAsJsonPrimitiveOrNull("description")?.asString,
         tag = getAsJsonPrimitiveOrNull("tag")?.asString,
         tagColor = getAsJsonPrimitiveOrNull("tagColor")?.asString,
-        creationDate = creationDate, //TODO should this rather be zoneddatetime -> then gson would have to have a type adapter for that
+        creationDate = creationDate,
         experience = getAsJsonPrimitive("exp").asLong,
         isPubliclyListed = getAsJsonPrimitiveOrNull("publiclyListed")?.asBoolean == true,
         isJoinable = getAsJsonPrimitiveOrNull("joinable")?.asBoolean == true,
