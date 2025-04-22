@@ -718,6 +718,18 @@ class TestSkyblockProfile {
                                 )
                                 assertIsNot<KnownPetItem.UnknownPetItem>(pet.heldItem)
                             }
+
+                            member.playerStats?.auctions?.let { auctionStats ->
+                                assertDoesNotThrow { auctionStats.totalBought }
+                                if (auctionStats.totalBought.size > 1 /*sometimes it doesn't contain a total - why?*/ && auctionStats.totalBought.keys.any { it == null }) {
+                                    assertEquals(1, auctionStats.totalBought.keys.count { it == null })
+                                }
+
+                                assertDoesNotThrow { auctionStats.totalSold }
+                                if (auctionStats.totalSold.size > 1 && auctionStats.totalSold.keys.any { it == null }) {
+                                    assertEquals(1, auctionStats.totalSold.keys.count { it == null })
+                                }
+                            }
                         }
                     }
                 }
