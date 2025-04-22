@@ -758,6 +758,7 @@ class TestSkyblockProfile {
                     "\n" +
                     "<:skyblock_level:1330399754181414994> Skyblock Level: 418.83\n" +
                     "<:diamond_sword:1330399391839686656> Skill Average: 54.78\n" +
+                    "\uD83D\uDCAA Magical Power: 1469\n" +
                     "\n" +
                     "<:batphone:1330399234813329458> Slayers:\uD83E\uDDDF 9 \uD83D\uDD78\uFE0F 9 \uD83D\uDC3A 9 \uD83D\uDD2E 9 \uD83D\uDD25 9 \uD83E\uDE78 5\n" +
                     "<:redstone_key:1330398890725478510> Catacombs: 43 (Class Average 37)\n" +
