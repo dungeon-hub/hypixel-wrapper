@@ -9,7 +9,6 @@ enum class KnownRank(
     private val prefix: String,
     val color: FormattingCode,
     override val isSpecial: Boolean = false,
-    override val isStaff: Boolean = false
 ) : Rank {
     Default("NONE", "§7", FormattingCode.Gray),
     Vip("VIP", "§a[VIP]", FormattingCode.Green),
@@ -18,8 +17,7 @@ enum class KnownRank(
     MvpPlus("MVP_PLUS", "§b[MVP§c+§b]", FormattingCode.Aqua),
     MvpPlusPlus("SUPERSTAR", "§6[MVP§c++§6]", FormattingCode.Gold),
     YouTube("YOUTUBER", "§c[§fYOUTUBE§c]", FormattingCode.Red, isSpecial = true),
-    GameMaster("GAME_MASTER", "§2[GM]", FormattingCode.DarkGreen, isSpecial = true, isStaff = true),
-    Admin("ADMIN", "§c[ADMIN]", FormattingCode.Red, isSpecial = true, isStaff = true);
+    Staff("STAFF", "§c[§bዞ§c]", FormattingCode.Red, isSpecial = true);
 
     val displayName = name.replace("Plus", "+")
 
@@ -40,8 +38,7 @@ enum class KnownRank(
 
     class UnknownRank(
         override val apiName: String,
-        override val isSpecial: Boolean = false,
-        override val isStaff: Boolean = false
+        override val isSpecial: Boolean = false
     ) : Rank
 
     companion object {
