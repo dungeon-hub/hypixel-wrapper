@@ -427,9 +427,9 @@
   "eulaCoins": true,
   "firstLogin": 1367395472000,
   "friendRequests": [],
-  "karma": 6177430,
+  "karma": 6187930,
   "mostRecentlyTippedUuid": "866d694e0f784a8c9566ddb2fc671695",
-  "networkExp": 8969002.0,
+  "networkExp": 8970326.0,
   "newPackageRank": "MVP_PLUS",
   "packageRank": "VIP",
   "parkourCompletions": {
@@ -1928,7 +1928,7 @@
   },
   "stats": {
     "Arcade": {
-      "coins": 2578547.0,
+      "coins": 2578661.0,
       "sw_kills": 6,
       "sw_shots_fired": 279,
       "sw_empire_kills": 5,
@@ -2043,7 +2043,7 @@
       }
     },
     "Arena": {
-      "coins": 59020
+      "coins": 59050
     },
     "Battleground": {
       "aquamancer_plays": 153,
@@ -2052,7 +2052,7 @@
       "berserker_plays": 2,
       "broken_inventory": 26,
       "chosen_class": "mage",
-      "coins": 119616,
+      "coins": 119631,
       "cryomancer_plays": 305,
       "current_weapon": 1424620279984,
       "damage": 16455779,
@@ -2736,7 +2736,7 @@
       "grenadeKills": 0
     },
     "Paintball": {
-      "coins": 102715,
+      "coins": 102745,
       "deaths": 57,
       "kills": 37,
       "shots_fired": 642,
@@ -2749,7 +2749,7 @@
     "Quake": {
       "barrel": "SMALL_BALL",
       "case": "WOOD_HOE",
-      "coins": 189810,
+      "coins": 189840,
       "deaths": 10685,
       "kills": 11889,
       "killstreaks": 224,
@@ -2827,7 +2827,7 @@
       "lastTourneyAd": 1639929226739
     },
     "TNTGames": {
-      "coins": 67229,
+      "coins": 67244,
       "deaths_bowspleef": 5,
       "deaths_capture": 16,
       "kills_capture": 16,
@@ -2876,7 +2876,7 @@
       "lastTourneyAd": 1628978515759
     },
     "VampireZ": {
-      "coins": 99548,
+      "coins": 99578,
       "updated_stats": true,
       "most_vampire_kills_new": 0,
       "human_deaths": 2,
@@ -2885,14 +2885,14 @@
       "vampire_deaths": 9
     },
     "Walls": {
-      "coins": 59801,
+      "coins": 59831,
       "deaths": 16,
       "kills": 13,
       "losses": 16,
       "wins": 3
     },
     "Walls3": {
-      "coins": 120423,
+      "coins": 120483,
       "chosen_class": "Herobrine",
       "packages": [
         "achievement_fix_flag",
@@ -3058,7 +3058,7 @@
       "class_points_version": 1
     },
     "UHC": {
-      "coins": 83257,
+      "coins": 83332,
       "deaths": 43,
       "score": 16,
       "kills": 16,
@@ -3140,7 +3140,7 @@
       "laps_completed": 70,
       "coins_picked_up": 954,
       "parts": "{GingerbreadPart:{PartType:FRAME,PartRarity:AWESOME,Attributes:[{KartAttributeType:HANDLING,Level:2},{KartAttributeType:START_POSITION,Level:4},{KartAttributeType:TRACTION,Level:2}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:AWESOME,Attributes:[{KartAttributeType:HANDLING,Level:3},{KartAttributeType:TRACTION,Level:4},{KartAttributeType:START_POSITION,Level:1}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:AWESOME,Attributes:[{KartAttributeType:TOP_SPEED,Level:5},{KartAttributeType:ACCELERATION,Level:1},{KartAttributeType:RECOVERY,Level:1}]}};{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:AWESOME,Attributes:[{KartAttributeType:BOOSTER_SPEED,Level:2},{KartAttributeType:BRAKES,Level:4},{KartAttributeType:DRIFTING_EFFICIENCY,Level:1}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:SUPER,Attributes:[{KartAttributeType:HANDLING,Level:1},{KartAttributeType:TRACTION,Level:4}]}};{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:SUPER,Attributes:[{KartAttributeType:BOOSTER_SPEED,Level:3},{KartAttributeType:DRIFTING_EFFICIENCY,Level:2}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:SUPER,Attributes:[{KartAttributeType:ACCELERATION,Level:2},{KartAttributeType:RECOVERY,Level:3}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:SUPER,Attributes:[{KartAttributeType:HANDLING,Level:3},{KartAttributeType:TRACTION,Level:1}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:SUPER,Attributes:[{KartAttributeType:START_POSITION,Level:1},{KartAttributeType:TRACTION,Level:3}]}};{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:SUPER,Attributes:[{KartAttributeType:BRAKES,Level:3},{KartAttributeType:BOOSTER_SPEED,Level:1}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:AWESOME,Attributes:[{KartAttributeType:ACCELERATION,Level:1},{KartAttributeType:TOP_SPEED,Level:1},{KartAttributeType:RECOVERY,Level:1}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:SUPER,Attributes:[{KartAttributeType:RECOVERY,Level:2},{KartAttributeType:TOP_SPEED,Level:1}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:AWESOME,Attributes:[{KartAttributeType:TRACTION,Level:1},{KartAttributeType:HANDLING,Level:1},{KartAttributeType:START_POSITION,Level:1}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:SUPER,Attributes:[{KartAttributeType:TOP_SPEED,Level:1},{KartAttributeType:ACCELERATION,Level:2}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:SUPER,Attributes:[{KartAttributeType:TOP_SPEED,Level:2},{KartAttributeType:ACCELERATION,Level:1}]}}",
-      "coins": 108165,
+      "coins": 108195,
       "banana_hits_sent": 29,
       "banana_hits_received": 54,
       "particle_trail": "RED_DUST",
@@ -3209,7 +3209,7 @@
       "blocks_broken": 3231,
       "deaths_team_normal": 1004,
       "games": 589,
-      "coins": 406024,
+      "coins": 581099,
       "survived_players_team": 13051,
       "kills_team_normal": 1689,
       "losses_kit_mining_team_default": 30,
@@ -3522,7 +3522,6 @@
       "kills_weekly_b": 117,
       "votes_Tribal": 1,
       "kills_weekly_a": 56,
-      "solo_nourishment": 0,
       "killstreak": 4,
       "winstreak": 2,
       "highestKillstreak": 4,
@@ -3571,7 +3570,6 @@
       "skywars_chests": 0,
       "solo_knowledge": 0,
       "levelFormatted": "§f9⋆",
-      "team_nourishment": 0,
       "skywars_experience": 5589,
       "arrows_shot_team": 52,
       "longest_bow_kill_team": 2,
@@ -3750,7 +3748,17 @@
       "team_fat": 0,
       "toggle_solo_bulldozer": true,
       "toggle_team_nourishment": false,
-      "toggle_solo_resistance_boost": true
+      "toggle_solo_resistance_boost": true,
+      "xp_kit_advanced_solo_enchanter": 50,
+      "xp_kit_advanced_solo_hunter": 914,
+      "xp_kit_attacking_team_knight": 5096,
+      "xp_kit_attacking_team_snowman": 20,
+      "xp_kit_basic_solo_armorsmith": 248,
+      "xp_kit_basic_solo_ecologist": 1016,
+      "xp_kit_defending_team_armorer": 388,
+      "xp_kit_defending_team_baseball-player": 112,
+      "xp_kit_mega_mega_skeletor": 82,
+      "xp_kit_supporting_team_healer": 64
     },
     "TrueCombat": {
       "win_streak": 0,
@@ -4188,8 +4196,6 @@
         "murderer",
         "detective"
       ],
-      "detective_chance": 9,
-      "murderer_chance": 7,
       "coins_pickedup_MURDER_CLASSIC": 74,
       "wins": 12,
       "wins_library_MURDER_CLASSIC": 2,
@@ -4457,7 +4463,6 @@
       "deaths_ancient_tomb_MURDER_CLASSIC": 1,
       "wins_towerfall": 1,
       "wins_towerfall_MURDER_CLASSIC": 1,
-      "alpha_chance": 1,
       "deaths_mountain_MURDER_CLASSIC": 1
     },
     "BuildBattle": {
@@ -6727,31 +6732,31 @@
     ]
   },
   "petConsumables": {
-    "BAKED_POTATO": 968,
-    "FEATHER": 2858,
+    "BAKED_POTATO": 969,
+    "FEATHER": 2861,
     "HAY_BLOCK": 949,
-    "BREAD": 912,
-    "SLIME_BALL": 2890,
+    "BREAD": 913,
+    "SLIME_BALL": 2891,
     "COOKED_BEEF": 952,
-    "RED_ROSE": 883,
-    "WATER_BUCKET": 5706,
-    "MELON": 961,
-    "STICK": 2845,
-    "WOOD_SWORD": 2756,
-    "MILK_BUCKET": 5671,
-    "GOLD_RECORD": 2859,
-    "LEASH": 2682,
-    "LAVA_BUCKET": 5645,
-    "BONE": 930,
+    "RED_ROSE": 885,
+    "WATER_BUCKET": 5709,
+    "MELON": 962,
+    "STICK": 2848,
+    "WOOD_SWORD": 2758,
+    "MILK_BUCKET": 5675,
+    "GOLD_RECORD": 2861,
+    "LEASH": 2683,
+    "LAVA_BUCKET": 5647,
+    "BONE": 931,
     "MAGMA_CREAM": 948,
-    "APPLE": 885,
-    "MUSHROOM_SOUP": 952,
+    "APPLE": 886,
+    "MUSHROOM_SOUP": 953,
     "COOKIE": 934,
     "PORK": 948,
-    "PUMPKIN_PIE": 931,
+    "PUMPKIN_PIE": 932,
     "CARROT_ITEM": 932,
     "ROTTEN_FLESH": 962,
-    "RAW_FISH": 953,
+    "RAW_FISH": 954,
     "CAKE": 976,
     "WHEAT": 940
   },
@@ -7082,7 +7087,7 @@
   "achievementSync": {
     "quake_tiered": 1
   },
-  "achievementPoints": 3390,
+  "achievementPoints": 3375,
   "tourney": {
     "first_join_lobby": 1557254405122,
     "mcgo_defusal_0": {
@@ -7438,7 +7443,7 @@
   },
   "fortuneBuff": 9,
   "currentClickEffect": "HOT_POTATO",
-  "rank": "ADMIN",
+  "rank": "STAFF",
   "monthlyRankColor": "AQUA",
   "achievementTotem": {
     "canCustomize": true,

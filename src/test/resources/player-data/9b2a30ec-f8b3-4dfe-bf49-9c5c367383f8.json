@@ -129,7 +129,6 @@
   "networkExp": 265884.0,
   "packageRank": "VIP",
   "playername": "rezzus",
-  "prefix": "§c[OWNER]",
   "quests": {
     "warlords_ctf": {
       "active": {
@@ -150,7 +149,7 @@
       }
     }
   },
-  "rank": "ADMIN",
+  "rank": "STAFF",
   "stats": {
     "Arcade": {
       "bounty_kills_oneinthequiver": 0,

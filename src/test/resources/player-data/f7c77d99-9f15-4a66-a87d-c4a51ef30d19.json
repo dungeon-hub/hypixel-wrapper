@@ -126,7 +126,7 @@
     "christmas2017_no_christmas": 15,
     "arcade_galaxy_wars_kills": 45,
     "arcade_throw_out_kills": 2,
-    "skyblock_sb_levels": 23
+    "skyblock_sb_levels": 24
   },
   "achievementsOneTime": [
     "quake_looking_fancy",
@@ -385,12 +385,12 @@
   "friendRequests": [],
   "gadget": "MOBGUN",
   "hypixel_tutorial_tutorial": true,
-  "karma": 9458053,
+  "karma": 9473553,
   "mostRecentMinecraftVersion": 47,
   "mostRecentlyThanked": "hypixel",
   "mostRecentlyTipped": "fapercraftomg",
   "mostRecentlyTippedUuid": "13cc609445fe45418614a9a9d9a15cc8",
-  "networkExp": 6.6330573E7,
+  "networkExp": 6.6332188E7,
   "newPackageRank": "MVP_PLUS",
   "packageRank": "NONE",
   "parkourCompletions": {
@@ -408,7 +408,6 @@
     ]
   },
   "playername": "hypixel",
-  "prefix": "§c[OWNER]",
   "quests": {
     "blitzerk": {
       "active": {
@@ -537,7 +536,7 @@
       }
     }
   },
-  "rank": "ADMIN",
+  "rank": "STAFF",
   "seeRequests": false,
   "spectators_invisible": true,
   "stats": {
@@ -545,7 +544,7 @@
       "blood": false,
       "bounty_head": "EMOTION",
       "bounty_kills_oneinthequiver": 1,
-      "coins": 4559547.0,
+      "coins": 4559699.0,
       "deaths_oneinthequiver": 3,
       "deaths_throw_out": 2,
       "flash": false,
@@ -624,7 +623,7 @@
     "Arena": {
       "active_rune": "energy",
       "chest_opens": 205,
-      "coins": 679460,
+      "coins": 679520,
       "coins_spent": 208750,
       "damage_2v2": 194376,
       "damage_4v4": 12662,
@@ -729,7 +728,7 @@
       "berserker_plays": 2,
       "broken_inventory": 4979,
       "chosen_class": "warrior",
-      "coins": 87917,
+      "coins": 87947,
       "crafted": 2,
       "crafted_epic": 1,
       "crafted_legendary": 1,
@@ -1757,7 +1756,7 @@
       "blood": false,
       "chosen_taunt": "I_REFUSE",
       "chosen_victorydance": "BLAZING_SPEED",
-      "coins": 226739,
+      "coins": 226769,
       "creepertamer": 1,
       "deaths": 108,
       "fisherman": 1,
@@ -1793,7 +1792,7 @@
       "carbine_cost_reduction": 2,
       "carbine_damage_increase": 6,
       "carbine_recoil_reduction": 3,
-      "coins": 231288,
+      "coins": 231318,
       "cop_kills": 243,
       "criminal_kills": 220,
       "deaths": 38,
@@ -1840,7 +1839,7 @@
       "lastTourneyAd": 1614729196652
     },
     "Paintball": {
-      "coins": 115640,
+      "coins": 115700,
       "deaths": 70,
       "kills": 34,
       "killstreaks": 2,
@@ -1857,7 +1856,7 @@
       "armor": "soldier",
       "barrel": "SMALL_BALL",
       "case": "WOOD_HOE",
-      "coins": 101616,
+      "coins": 101676,
       "daily_kills": 17,
       "deaths": 143,
       "kills": 173,
@@ -1915,7 +1914,7 @@
       "deaths_teams": 7
     },
     "TNTGames": {
-      "coins": 102220,
+      "coins": 102280,
       "deaths_bowspleef": 21,
       "deaths_capture": 14,
       "kills_capture": 3,
@@ -1964,7 +1963,7 @@
       "lastTourneyAd": 1710529919492
     },
     "UHC": {
-      "coins": 350846,
+      "coins": 350891,
       "deaths": 14,
       "heads_eaten": 1,
       "kills": 2,
@@ -1999,7 +1998,7 @@
     },
     "VampireZ": {
       "advanced_swag": 3,
-      "coins": 842878,
+      "coins": 842938,
       "expert_swag": 3,
       "explosive_killer": 2,
       "fireproofing": 2,
@@ -2011,7 +2010,7 @@
       "updated_stats": true
     },
     "Walls": {
-      "coins": 158985,
+      "coins": 159045,
       "deaths": 1,
       "losses": 4,
       "packages": [
@@ -2027,7 +2026,7 @@
       "blaze_a": 4,
       "blood": false,
       "chosen_class": "Pigman",
-      "coins": 40106,
+      "coins": 40166,
       "deaths": 25,
       "deaths_Dreadlord": 2,
       "deaths_Golem": 16,
@@ -2226,7 +2225,7 @@
       "banana_hits_received": 33,
       "coins_picked_up": 732,
       "parts": "{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:AWESOME,Attributes:[{KartAttributeType:BOOSTER_SPEED,Level:2},{KartAttributeType:BRAKES,Level:5},{KartAttributeType:DRIFTING_EFFICIENCY,Level:3}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:SUPER,Attributes:[{KartAttributeType:HANDLING,Level:5},{KartAttributeType:START_POSITION,Level:4}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:AWESOME,Attributes:[{KartAttributeType:START_POSITION,Level:3},{KartAttributeType:HANDLING,Level:4},{KartAttributeType:TRACTION,Level:2}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:AWESOME,Attributes:[{KartAttributeType:START_POSITION,Level:4},{KartAttributeType:TRACTION,Level:1},{KartAttributeType:HANDLING,Level:2}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:SUPER,Attributes:[{KartAttributeType:TRACTION,Level:1},{KartAttributeType:HANDLING,Level:5}]}};{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:SUPER,Attributes:[{KartAttributeType:BRAKES,Level:1},{KartAttributeType:BOOSTER_SPEED,Level:3}]}};{GingerbreadPart:{PartType:TURBOCHARGER,PartRarity:BASIC,Attributes:[{KartAttributeType:BOOSTER_SPEED,Level:3}]}};{GingerbreadPart:{PartType:ENGINE,PartRarity:BASIC,Attributes:[{KartAttributeType:RECOVERY,Level:3}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:BASIC,Attributes:[{KartAttributeType:TRACTION,Level:3}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:BASIC,Attributes:[{KartAttributeType:START_POSITION,Level:1}]}};{GingerbreadPart:{PartType:FRAME,PartRarity:BASIC,Attributes:[{KartAttributeType:START_POSITION,Level:1}]}}",
-      "coins": 273209,
+      "coins": 273269,
       "bronze_trophy": 3,
       "banana_hits_sent": 46,
       "wins": 4,
@@ -2465,7 +2464,7 @@
         "update_shard_removal_bedrock",
         "angels_descent_tree_2022"
       ],
-      "coins": 5452386.0,
+      "coins": 6017446.0,
       "paid_souls": 1056,
       "souls": 255,
       "team_ender_mastery": 0,
@@ -2610,9 +2609,7 @@
       "games_kit_ranked_ranked_champion": 2,
       "mega_instant_smelting": 0,
       "team_marksmanship": 0,
-      "team_nourishment": 0,
       "solo_resistance_boost": 0,
-      "mega_nourishment": 0,
       "solo_mining_expertise": 0,
       "deaths_kit_ranked_ranked_bowman": 2,
       "games_kit_ranked_ranked_bowman": 1,
@@ -2724,12 +2721,11 @@
       "arrows_hit_lab_solo": 2,
       "egg_thrown_lab": 4,
       "skywars_easter_boxes": 0,
-      "skywars_experience": 79,
+      "skywars_experience": 87,
       "skywars_chests": 0,
       "team_arrow_recovery": 0,
       "solo_marksmanship": 0,
       "solo_speed_boost": 0,
-      "solo_nourishment": 0,
       "solo_blazing_arrows": 0,
       "levelFormatted": "§73⋆",
       "activeKit_SOLO_random": false,
@@ -2882,7 +2878,16 @@
       "toggle_solo_necromancer": false,
       "toggle_solo_black_magic": false,
       "toggle_solo_robbery": false,
-      "levelFormattedWithBrackets": "§7[3⋆] "
+      "levelFormattedWithBrackets": "§7[3⋆] ",
+      "xp_kit_advanced_solo_enderman": 2,
+      "xp_kit_advanced_solo_hunter": 2,
+      "xp_kit_attacking_team_hunter": 2,
+      "xp_kit_attacking_team_knight": 20,
+      "xp_kit_basic_solo_armorsmith": 2,
+      "xp_kit_basic_solo_rookie": 2,
+      "xp_kit_basic_solo_scout": 12,
+      "xp_kit_enderchest_solo_enderchest": 12,
+      "xp_kit_ranked_ranked_champion": 4
     },
     "TrueCombat": {
       "win_streak": 0,
@@ -3316,7 +3321,7 @@
       },
       "damage_dealt": 4008,
       "losses_teams": 9,
-      "coins": 49347,
+      "coins": 49377,
       "losses_weekly_b": 11,
       "losses_monthly_b": 14,
       "kills_teams": 19,
@@ -9068,7 +9073,6 @@
   },
   "multiTunnel": [],
   "network_update_book": "v0.75",
-  "buildTeam": true,
   "achievementRewardsNew": {
     "for_points_200": 1510351089726,
     "for_points_300": 1510351091186,
@@ -9094,7 +9098,7 @@
       "UHC__threat_challenge": 1
     }
   },
-  "achievementPoints": 2445,
+  "achievementPoints": 2430,
   "tourney": {
     "first_join_lobby": 1542754822733,
     "quake_solo2_0": {
