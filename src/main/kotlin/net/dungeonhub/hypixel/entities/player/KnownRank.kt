@@ -17,8 +17,7 @@ enum class KnownRank(
     MvpPlus("MVP_PLUS", "§b[MVP§c+§b]", FormattingCode.Aqua),
     MvpPlusPlus("SUPERSTAR", "§6[MVP§c++§6]", FormattingCode.Gold),
     YouTube("YOUTUBER", "§c[§fYOUTUBE§c]", FormattingCode.Red, isSpecial = true),
-    //TODO get actual staff symbol
-    Staff("STAFF", "§c[§bH§c]", FormattingCode.Red, isSpecial = true);
+    Staff("STAFF", "§c[§bዞ§c]", FormattingCode.Red, isSpecial = true);
 
     val displayName = name.replace("Plus", "+")
 
