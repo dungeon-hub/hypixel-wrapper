@@ -110,13 +110,12 @@ class TestPlayerData {
             UUID.fromString("b876ec32-e396-476b-a115-8438d83c67d4") to KnownRank.YouTube,
             UUID.fromString("ec70bcaf-702f-4bb8-b48d-276fa52a780c") to KnownRank.YouTube,
 
-            UUID.fromString("f58debd5-9f50-4222-8f60-22211d4c140c") to KnownRank.GameMaster,
-            UUID.fromString("c31f8346-78a8-403b-9006-0b69f57f7626") to KnownRank.GameMaster,
-
-            UUID.fromString("bcd2033c-63ec-4bf8-8aca-680b22461340") to KnownRank.Admin,
-            UUID.fromString("16751f79-c0b1-4e53-a0b5-90d31fc1d80d") to KnownRank.Admin,
-            UUID.fromString("9b2a30ec-f8b3-4dfe-bf49-9c5c367383f8") to KnownRank.Admin,
-            UUID.fromString("f7c77d99-9f15-4a66-a87d-c4a51ef30d19") to KnownRank.Admin
+            UUID.fromString("16751f79-c0b1-4e53-a0b5-90d31fc1d80d") to KnownRank.Staff,
+            UUID.fromString("9b2a30ec-f8b3-4dfe-bf49-9c5c367383f8") to KnownRank.Staff,
+            UUID.fromString("bcd2033c-63ec-4bf8-8aca-680b22461340") to KnownRank.Staff,
+            UUID.fromString("c31f8346-78a8-403b-9006-0b69f57f7626") to KnownRank.Staff,
+            UUID.fromString("f58debd5-9f50-4222-8f60-22211d4c140c") to KnownRank.Staff,
+            UUID.fromString("f7c77d99-9f15-4a66-a87d-c4a51ef30d19") to KnownRank.Staff
         )
 
         for (hypixelPlayer in TestHelper.readAllHypixelPlayers()) {
