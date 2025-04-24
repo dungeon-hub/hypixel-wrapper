@@ -86,8 +86,8 @@ class TestPlayerData {
     @Test
     fun testCorrectRanks() {
         val ranks = mapOf<UUID, Rank>(
-            UUID.fromString("1e0f27c7-5385-40f3-b4d5-707a91726249") to KnownRank.Default,
             UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5") to KnownRank.Default,
+            UUID.fromString("1e0f27c7-5385-40f3-b4d5-707a91726249") to KnownRank.Default,
             UUID.fromString("368ce085-0749-432f-9ab8-6bebd6409ea0") to KnownRank.Default,
             UUID.fromString("f5aa9582-6862-4b94-a2cb-9ee288ee0f9a") to KnownRank.Default,
 
@@ -98,11 +98,11 @@ class TestPlayerData {
             UUID.fromString("6d445e94-f3ae-4bc8-aac9-bf5bd4d76337") to KnownRank.Mvp,
 
             UUID.fromString("12e8d4cc-1ab1-4290-938b-cf978bee1972") to KnownRank.MvpPlus,
-            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to KnownRank.MvpPlus,
-            UUID.fromString("e4704ec0-63cc-435f-9971-1b20577617dc") to KnownRank.MvpPlus,
-            UUID.fromString("91821440-2b71-4cdb-8364-611c3e435e4b") to KnownRank.MvpPlus,
-            UUID.fromString("39659d02-f0b4-4d39-99f2-eb3566fad1f1") to KnownRank.MvpPlus,
             UUID.fromString("1a5130bf-2ac5-44ca-a6c6-b1f8afd008bf") to KnownRank.MvpPlus,
+            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to KnownRank.MvpPlus,
+            UUID.fromString("39659d02-f0b4-4d39-99f2-eb3566fad1f1") to KnownRank.MvpPlus,
+            UUID.fromString("91821440-2b71-4cdb-8364-611c3e435e4b") to KnownRank.MvpPlus,
+            UUID.fromString("e4704ec0-63cc-435f-9971-1b20577617dc") to KnownRank.MvpPlus,
 
             UUID.fromString("92d940ad-10e8-4d9d-a795-adcf5fd6b0c6") to KnownRank.MvpPlusPlus,
 
