@@ -1540,7 +1540,6 @@ class TestSkyblockProfile {
             KnownRodPartId.FestiveSinker,
             KnownRodPartId.PrismarineSinker,
             KnownRodPartId.SpongeSinker,
-            KnownRodPartId.SpeedyLine,
             KnownRodPartId.TitanLine,
             MiscItemId.HalfEatenMushroom,
             MiscItemId.TitanoboaShed,
@@ -1558,7 +1557,8 @@ class TestSkyblockProfile {
             KnownDyeId.SunsetDye,
             KnownPetSkinId.MyceliyumBurgerMooshroomCowSkin,
             KnownPetSkinId.HollowRockSkin,
-            KnownPetSkinId.IceFairySubzeroWispSkin
+            KnownPetSkinId.IceFairySubzeroWispSkin,
+            KnownPetSkinId.BlackAngoraRiftFerretSkin
         )
     }
 }

@@ -26,6 +26,7 @@ enum class KnownPetSkinId(override val apiName: String, override val itemClass: 
     BeeDazzledBeeSkin("PET_SKIN_BEE_BEEDAZZLED"),
     BeeLovedBeeSkin("PET_SKIN_BEE_BEELOVED"),
     BigBrainZombieSkin("PET_SKIN_ZOMBIE_BIG_BRAIN"),
+    BlackAngoraRiftFerretSkin("PET_SKIN_FERRET_BLACK_ANGORA"),
     BlackLionSkin("PET_SKIN_LION_BLACK"),
     BlackPlushieElephantSkin("PET_SKIN_ELEPHANT_BLACK_PLUSHIE"),
     BlackSheepSkin("PET_SKIN_SHEEP_BLACK"),
