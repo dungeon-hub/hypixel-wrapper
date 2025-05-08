@@ -1569,8 +1569,7 @@ class TestSkyblockProfile {
             KnownDyeId.SunsetDye,
             KnownPetSkinId.MyceliyumBurgerMooshroomCowSkin,
             KnownPetSkinId.HollowRockSkin,
-            KnownPetSkinId.IceFairySubzeroWispSkin,
-            KnownPetSkinId.BlackAngoraRiftFerretSkin
+            KnownPetSkinId.IceFairySubzeroWispSkin
         )
     }
 }
