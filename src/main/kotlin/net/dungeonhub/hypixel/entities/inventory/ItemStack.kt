@@ -13,6 +13,9 @@ open class ItemStack(val raw: NBTCompound) {
     val rawName: String
         get() = name.replace(Regex("§[0-9a-fk-or]"), "").trim()
 
+    val count: Int
+        get() = raw.getByte("Count", 1).toInt()
+
     val lore: List<String>
         get() = tag.getList("display.Lore")?.map { it.toString() } ?: emptyList()
 

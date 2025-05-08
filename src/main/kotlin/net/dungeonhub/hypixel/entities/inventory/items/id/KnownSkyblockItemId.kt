@@ -31,6 +31,8 @@ interface KnownSkyblockItemId : SkyblockItemId {
             MinionItemId.entries,
             MiscItemId.entries,
             MixinItemId.entries,
+            KnownAbilityScrollId.entries,
+            KnownEnrichmentId.entries,
             KnownPetItem.entries,
             KnownPetSkinId.entries,
             PotionItemId.entries,
