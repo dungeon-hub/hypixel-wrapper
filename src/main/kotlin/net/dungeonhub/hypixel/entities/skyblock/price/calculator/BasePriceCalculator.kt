@@ -11,6 +11,7 @@ interface BasePriceCalculator {
         val calculators = listOf<BasePriceCalculator>(
             AbilityItemPriceCalculator,
             AccessoryPriceCalculator,
+            ArmorOfDivanPriceCalculator,
             ArmorPriceCalculator,
             AttributeItemPriceCalculator,
             CombatBookItemPriceCalculator,
@@ -20,9 +21,16 @@ interface BasePriceCalculator {
             GearPriceCalculator,
             GemItemPriceCalculator,
             HotPotatoBookPriceCalculator,
+            ItemPetPriceCalculator,
+            ManaDisintegratablePriceCalculator,
             MidasWeaponPriceCalculator,
+            PowderCoatableItemPriceCalculator,
             RuneItemPriceCalculator,
-            SkyblockItemPriceCalculator
+            ShensAuctionItemPriceCalculator,
+            SkinAppliablePriceCalculator,
+            SkyblockItemPriceCalculator,
+            SwordPriceCalculator,
+            TeleportationSwordPriceCalculator
         )
     }
 }

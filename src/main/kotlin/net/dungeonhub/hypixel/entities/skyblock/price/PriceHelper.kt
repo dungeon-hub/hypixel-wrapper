@@ -7,7 +7,6 @@ import kotlin.math.roundToLong
 
 object PriceHelper {
     //TODO needed?: essence: 0.75
-    //TODO shensAuctionPrice: 0.85
     //TODO gemstoneSlots: 0.6
     //TODO helmet skins: 0.8
     private val applicationWorth = mapOf<List<KnownSkyblockItemId>, Double>(
@@ -33,7 +32,7 @@ object PriceHelper {
         listOf(MiscItemId.AttributeShard) to 1.0,
         KnownRodPartId.entries to 1.0,
         DrillPartId.entries to 1.0,
-        listOf(MiscItemId.EtherwarpConduit) to 1.0,
+        listOf(MiscItemId.EtherwarpConduit, MiscItemId.EtherwarpMerger) to 1.0,
         listOf(
             DungeonItemId.FirstMasterStar,
             DungeonItemId.SecondMasterStar,
