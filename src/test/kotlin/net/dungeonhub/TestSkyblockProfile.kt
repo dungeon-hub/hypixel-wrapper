@@ -1547,7 +1547,6 @@ class TestSkyblockProfile {
             KnownRodPartId.ChumSinker,
             KnownRodPartId.FestiveSinker,
             KnownRodPartId.PrismarineSinker,
-            KnownRodPartId.SpongeSinker,
             KnownRodPartId.TitanLine,
             MiscItemId.HalfEatenMushroom,
             MiscItemId.TitanoboaShed,
