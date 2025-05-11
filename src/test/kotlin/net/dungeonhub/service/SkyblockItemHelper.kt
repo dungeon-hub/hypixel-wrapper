@@ -166,7 +166,8 @@ object SkyblockItemHelper {
             "personal_compact_10",
             "personal_compact_11",
             "personal_compactor_0", /*ignore those, they are legacy data I guess*/
-            "personal_compactor_1"
+            "personal_compactor_1",
+            "personal_compactor_2"
         ),
         PersonalDeletor::class.java to listOf(
             "PERSONAL_DELETOR_ACTIVE",

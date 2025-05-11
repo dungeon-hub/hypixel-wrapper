@@ -60,7 +60,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                 it.value.asJsonObject.getAsJsonObjectOrNull("player_stats")?.toPlayerStats(),
                 it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
                 it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
-                this
+                it.value.asJsonObject
             )
         }
 
@@ -74,7 +74,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                 it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
                     ?: defaultLeveling,
                 it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
-                this
+                it.value.asJsonObject
             )
         }
 
@@ -102,7 +102,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("inventory")?.toMemberInventoryData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("rift")?.toRiftData(),
-            this
+            it.value.asJsonObject
         )
     }
 }

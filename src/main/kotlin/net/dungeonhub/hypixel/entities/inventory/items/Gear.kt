@@ -34,8 +34,6 @@ open class Gear(raw: NBTCompound) : SkyblockItem(raw), EnchantableItem, Reforgea
     val itemDurability: Int?
         get() = extraAttributes.getInt("item_durability", -1).takeIf { it != -1 }
 
-    //TODO map this in a new class only?
-    // This is the year in which the event item was obtained, for example for the Great Spook items
     val year: Int?
         get() = extraAttributes.getInt("year", 0).takeIf { it != 0 }
 }

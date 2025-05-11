@@ -299,6 +299,7 @@ class TestSkyblockProfile {
             assertNotNull(item.extraAttributes)
             assertDoesNotThrow { item.lore }
             assertDoesNotThrow { item.durabilityLost }
+            assertDoesNotThrow { item.count }
 
             if (item is SkyblockItem) {
                 assertNotNull(item.id)
@@ -505,6 +506,17 @@ class TestSkyblockProfile {
                 if (item is PetAsItem) {
                     assertDoesNotThrow { item.petInfo?.skin }
                     assertIsNot<KnownPetSkinId.UnknownPetSkinId>(item.petInfo?.skin)
+                }
+
+                if (item is ItemWithAbility) {
+                    assertIsNot<KnownAbilityScrollId.UnknownAbilityScroll>(item.abilityScroll)
+                }
+
+                if (item is Accessory) {
+                    assertIsNot<KnownEnrichmentId.UnknownEnrichment>(
+                        item.enrichment,
+                        "Unknown enrichment id ${item.enrichment?.appliedId}"
+                    )
                 }
 
                 SkyblockItemHelper.checkFields(item)
@@ -962,8 +974,8 @@ class TestSkyblockProfile {
             CosmeticItemId.EnderMinionSkin,
             VanillaItemId.IronHorseArmor,
             MiscItemId.PortableBuilder,
-            MiscItemId.JadePowerScroll,
-            MiscItemId.TopazPowerScroll,
+            KnownAbilityScrollId.JadePowerScroll,
+            KnownAbilityScrollId.TopazPowerScroll,
             MiscItemId.NetherIsland,
             KnownPetItem.ForagingExpUncommon,
             VanillaItemId.BlueBanner,
@@ -1189,7 +1201,6 @@ class TestSkyblockProfile {
             ArmorItemId.HotFervorHelmet,
             ArmorItemId.HotHollowHelmet,
             VanillaItemId.EmptyMap,
-            RiftItemId.CaducousExtract,
             RiftItemId.PreDigestionFish,
             WeaponItemId.TimeShuriken,
             MiscItemId.CarnivalDartTube,
@@ -1237,21 +1248,19 @@ class TestSkyblockProfile {
             MiscItemId.EnchantedBookBundleChimera,
             MiscItemId.EnchantedBookBundlePrismatic,
             MiscItemId.EnchantedBookBundleTransylvanian,
-            MiscItemId.IntelligenceEnrichment,
-            MiscItemId.CriticalChanceEnrichment,
-            MiscItemId.DefenseEnrichment,
-            MiscItemId.HealthEnrichment,
+            KnownEnrichmentId.IntelligenceEnrichment,
+            KnownEnrichmentId.DefenseEnrichment,
+            KnownEnrichmentId.HealthEnrichment,
             MiscItemId.FishingMinionXIIUpgradeStone,
             MiscItemId.LegendaryGriffinUpgradeStone,
-            MiscItemId.HurricaneInABottle,
             MiscItemId.Kloonboat,
             MiscItemId.MaddoxsPhoneNumber,
             MiscItemId.MushroomWartsStew,
             MiscItemId.MyceliumDust,
             MiscItemId.PerfectlyCutDiamond,
             MiscItemId.PotatoWarSilverMedal,
-            MiscItemId.RubyPowerScroll,
-            MiscItemId.AmethystPowerScroll,
+            KnownAbilityScrollId.RubyPowerScroll,
+            KnownAbilityScrollId.AmethystPowerScroll,
             MiscItemId.QualityMap,
             KnownPetItem.RadioactiveVial,
             MiscItemId.ReaperPepper,
@@ -1518,15 +1527,10 @@ class TestSkyblockProfile {
             CosmeticItemId.BunnyCabinet,
             CosmeticItemId.BunnyTV,
             CosmeticItemId.SpringBarnSkin,
-            EquipmentItemId.AnglerBelt,
-            EquipmentItemId.AnglerBracelet,
-            EquipmentItemId.AnglerCloak,
-            EquipmentItemId.AnglerNecklace,
             MiscItemId.BronzeBowl,
             MiscItemId.BronzeShipEngine,
             MiscItemId.BronzeShipHelm,
             MiscItemId.BronzeShipHull,
-            MiscItemId.MobyDuckCollectorsEdition,
             MiscItemId.OctopusTendril,
             MiscItemId.OldLeatherBoot,
             MiscItemId.RustyCoin,
@@ -1539,7 +1543,6 @@ class TestSkyblockProfile {
             KnownRodPartId.ChumSinker,
             KnownRodPartId.FestiveSinker,
             KnownRodPartId.PrismarineSinker,
-            KnownRodPartId.SpongeSinker,
             KnownRodPartId.TitanLine,
             MiscItemId.HalfEatenMushroom,
             MiscItemId.TitanoboaShed,
@@ -1557,8 +1560,7 @@ class TestSkyblockProfile {
             KnownDyeId.SunsetDye,
             KnownPetSkinId.MyceliyumBurgerMooshroomCowSkin,
             KnownPetSkinId.HollowRockSkin,
-            KnownPetSkinId.IceFairySubzeroWispSkin,
-            KnownPetSkinId.BlackAngoraRiftFerretSkin
+            KnownPetSkinId.IceFairySubzeroWispSkin
         )
     }
 }
