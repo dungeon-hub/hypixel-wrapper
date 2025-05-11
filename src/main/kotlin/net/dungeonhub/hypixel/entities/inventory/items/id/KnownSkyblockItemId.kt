@@ -33,6 +33,7 @@ interface KnownSkyblockItemId : SkyblockItemId {
             MixinItemId.entries,
             KnownAbilityScrollId.entries,
             KnownEnrichmentId.entries,
+            KnownNecronsScroll.entries,
             KnownPetItem.entries,
             KnownPetSkinId.entries,
             PotionItemId.entries,

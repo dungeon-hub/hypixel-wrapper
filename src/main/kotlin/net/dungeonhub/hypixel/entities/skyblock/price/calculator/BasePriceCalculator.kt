@@ -14,9 +14,12 @@ interface BasePriceCalculator {
             ArmorOfDivanPriceCalculator,
             ArmorPriceCalculator,
             AttributeItemPriceCalculator,
+            BucketOfDyePriceCalculator,
             CombatBookItemPriceCalculator,
             DeployablePriceCalculator,
+            DrillPriceCalculator,
             EnchantableItemPriceCalculator,
+            FarmingToolPriceCalculator,
             FishingRodPriceCalculator,
             GearPriceCalculator,
             GemItemPriceCalculator,
@@ -24,13 +27,17 @@ interface BasePriceCalculator {
             ItemPetPriceCalculator,
             ManaDisintegratablePriceCalculator,
             MidasWeaponPriceCalculator,
+            MinionPriceCalculator,
+            PestVacuumPriceCalculator,
             PowderCoatableItemPriceCalculator,
+            ReforgeableItemPriceCalculator,
             RuneItemPriceCalculator,
             ShensAuctionItemPriceCalculator,
             SkinAppliablePriceCalculator,
             SkyblockItemPriceCalculator,
             SwordPriceCalculator,
-            TeleportationSwordPriceCalculator
+            TeleportationSwordPriceCalculator,
+            WitherBladePriceCalculator
         )
     }
 }

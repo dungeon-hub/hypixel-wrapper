@@ -24,7 +24,8 @@ open class Drill(raw: NBTCompound) : MiningTool(raw), PowderCoatableItem {
      * @see DrillPartId
      */
     val engine: SkyblockItemId?
-        get() = extraAttributes.getString("drill_part_engine")?.let { KnownSkyblockItemId.fromApiName(it.uppercase()) }
+        get() = extraAttributes.getString("drill_part_engine")
+            ?.let { KnownSkyblockItemId.fromApiName(it.uppercase()) }
 
     /**
      * @see DrillPartId

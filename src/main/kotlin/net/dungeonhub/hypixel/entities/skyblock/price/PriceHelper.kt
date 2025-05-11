@@ -1,5 +1,7 @@
 package net.dungeonhub.hypixel.entities.skyblock.price
 
+import net.dungeonhub.hypixel.entities.inventory.items.Enchantment
+import net.dungeonhub.hypixel.entities.inventory.items.KnownEnchantment
 import net.dungeonhub.hypixel.entities.inventory.items.SkyblockItem
 import net.dungeonhub.hypixel.entities.inventory.items.id.*
 import net.dungeonhub.hypixel.entities.skyblock.price.calculator.BasePriceCalculator
@@ -20,6 +22,15 @@ object PriceHelper {
         listOf(MiscItemId.TransmissionTuner) to 0.7,
         listOf(MiscItemId.PocketSackInASack) to 0.7,
         listOf(MiscItemId.Silex) to 0.75,
+        listOf(
+            MiscItemId.GoldenBounty,
+            MiscItemId.ABeginnersGuideToPesthunting,
+            MiscItemId.ChainOfTheEndTimes,
+            MiscItemId.GoldBottleCap,
+            MiscItemId.TroubledBubble,
+            MiscItemId.SeveredPincer,
+            MiscItemId.OctopusTendril
+        ) to 0.8,
         listOf(MiscItemId.TheArtOfPeace) to 0.8,
         listOf(ForgeableItemId.DivansPowderCoating) to 0.8,
         listOf(MiscItemId.JalapenoBook) to 0.8,
@@ -42,7 +53,7 @@ object PriceHelper {
         ) to 1.0,
         GemstoneItemId.entries to 1.0,
         listOf(MiscItemId.HotPotatoBook) to 1.0,
-        listOf(DungeonItemId.Implosion, DungeonItemId.WitherShield, DungeonItemId.ShadowWarp) to 1.0,
+        KnownNecronsScroll.entries to 1.0,
         listOf(RiftItemId.PolarvoidBook) to 1.0,
         ReforgeStoneId.entries to 1.0,
         listOf(
@@ -55,8 +66,17 @@ object PriceHelper {
         KnownPetSkinId.entries to 0.8
     )
 
+    private val enchantmentWorth = mapOf(
+        KnownEnchantment.CounterStrike to 0.2,
+        KnownEnchantment.BigBrain to 0.35,
+        KnownEnchantment.Inferno to 0.35,
+        KnownEnchantment.Overload to 0.35,
+        KnownEnchantment.SoulEater to 0.35,
+        KnownEnchantment.FatalTempo to 0.65
+    )
+
     fun getPrice(skyblockItem: SkyblockItem): Long {
-        var price = getBasePrice(skyblockItem.id)
+        var price = getBasePrice(skyblockItem.uniqueName).takeIf { it != 0L } ?: getBasePrice(skyblockItem.id)
 
         for (calculator in BasePriceCalculator.calculators) {
             if (calculator.appliesToItem(skyblockItem)) {
@@ -67,9 +87,13 @@ object PriceHelper {
         return price
     }
 
-    fun getBasePrice(skyblockItemId: SkyblockItemId): Long {
-        //TODO implement -> cofl?
+    fun getBasePrice(uniqueName: String): Long {
+        //TODO implement -> SkyHelper GitHub?
         return 0
+    }
+
+    fun getBasePrice(skyblockItemId: SkyblockItemId): Long {
+        return getBasePrice(skyblockItemId.apiName)
     }
 
     fun getAppliedPrice(skyblockItemId: SkyblockItemId): Long {
@@ -84,5 +108,9 @@ object PriceHelper {
         }
 
         return 1.0
+    }
+
+    fun getEnchantmentWorth(enchantment: Enchantment): Double {
+        return enchantmentWorth[enchantment] ?: getApplicationWorth(MiscItemId.EnchantedBook)
     }
 }

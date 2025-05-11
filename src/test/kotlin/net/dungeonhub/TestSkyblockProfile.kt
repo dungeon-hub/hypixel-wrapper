@@ -338,7 +338,8 @@ class TestSkyblockProfile {
                 }
 
                 if (item is WitherBlade) {
-                    assertNotNull(item.abilityScrolls)
+                    assertNotNull(item.necronsScrolls)
+                    assertDoesNotThrow { item.necronsScrolls }
                 } else {
                     assertTrue { !item.extraAttributes.contains("ability_scroll") }
                 }

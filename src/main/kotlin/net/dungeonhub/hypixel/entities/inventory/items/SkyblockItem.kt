@@ -14,7 +14,7 @@ import java.util.*
 
 //TODO map attribute type
 open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory {
-    val id: SkyblockItemId = KnownSkyblockItemId.fromApiName(extraAttributes.getString("id"))
+    override val id: SkyblockItemId = KnownSkyblockItemId.fromApiName(extraAttributes.getString("id"))
 
     val uuid: UUID?
         get() = extraAttributes.getString("uuid")?.let { UUID.fromString(it) }
@@ -58,12 +58,17 @@ open class SkyblockItem(raw: NBTCompound) : ItemStack(raw), SkyblockItemFactory 
 
             val skyblockItem = SkyblockItem(compound)
 
-            return if (skyblockItem.id is KnownSkyblockItemId) skyblockItem.id.itemClass(skyblockItem) else skyblockItem
+            return (skyblockItem.id as? KnownSkyblockItemId)?.itemClass(skyblockItem) ?: skyblockItem
         }
     }
 }
 
 interface SkyblockItemFactory {
+    val id: SkyblockItemId
+
+    val uniqueName: String
+        get() = id.apiName
+
     val raw: NBTCompound
 
     val extraAttributes: NBTCompound
