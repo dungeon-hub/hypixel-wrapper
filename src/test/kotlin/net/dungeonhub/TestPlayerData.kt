@@ -87,8 +87,10 @@ class TestPlayerData {
     fun testCorrectRanks() {
         val ranks = mapOf<UUID, Rank>(
             UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5") to KnownRank.Default,
+            UUID.fromString("1a38c104-ddae-4726-af31-98e1c35b4986") to KnownRank.Default,
             UUID.fromString("1e0f27c7-5385-40f3-b4d5-707a91726249") to KnownRank.Default,
             UUID.fromString("368ce085-0749-432f-9ab8-6bebd6409ea0") to KnownRank.Default,
+            UUID.fromString("61699b2e-d327-4a01-9f1e-0ea8c3f06bc6") to KnownRank.Default,
             UUID.fromString("f5aa9582-6862-4b94-a2cb-9ee288ee0f9a") to KnownRank.Default,
 
             UUID.fromString("b1109faf-7225-4f0b-8e42-e4d1ed3bdada") to KnownRank.Vip,
@@ -108,6 +110,7 @@ class TestPlayerData {
 
             UUID.fromString("312bd230-8cb0-4ec7-9bb4-6cbc1c5ee3e3") to KnownRank.YouTube,
             UUID.fromString("b876ec32-e396-476b-a115-8438d83c67d4") to KnownRank.YouTube,
+            UUID.fromString("e80e8194-323e-4142-9851-5e1bcb8a3508") to KnownRank.YouTube,
             UUID.fromString("ec70bcaf-702f-4bb8-b48d-276fa52a780c") to KnownRank.YouTube,
 
             UUID.fromString("16751f79-c0b1-4e53-a0b5-90d31fc1d80d") to KnownRank.Staff,
