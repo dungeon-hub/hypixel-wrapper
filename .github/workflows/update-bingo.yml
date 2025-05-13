@@ -22,8 +22,7 @@ jobs:
         run: echo "NOW=$(date +'%Y-%m')" >> $GITHUB_ENV
 
       - name: Switch branch
-
-        run: git checkout bingo-${{ env.NOW }}
+        run: git checkout -b bingo-${{ env.NOW }} main
 
       - name: Copy files, commit and push
 
