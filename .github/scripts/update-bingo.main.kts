@@ -1,3 +1,8 @@
+@file:DependsOn("com.google.code.gson:gson:2.13.1")
+
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import java.nio.file.FileAlreadyExistsException
@@ -10,9 +15,14 @@ import kotlin.io.path.writeText
 
 val bingoEndpoint = URL("https://api.hypixel.net/v2/resources/skyblock/bingo")
 
+val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+
 fun getBingoData(): String {
     println("Fetching the current Bingo data...")
-    return bingoEndpoint.readText(StandardCharsets.UTF_8)
+    val json = bingoEndpoint.readText(StandardCharsets.UTF_8)
+
+    print("Formatting the data...")
+    return gson.toJson(gson.fromJson(json, JsonObject::class.java))
 }
 
 fun getBingoFile(): Path {
