@@ -1,4 +1,5 @@
-name: update-bingo.yml
+name: Update Bingo Event Data
+
 on:
   schedule:
     - cron: "0 10 3 * *"
