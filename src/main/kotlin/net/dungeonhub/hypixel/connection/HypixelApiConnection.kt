@@ -2,6 +2,9 @@ package net.dungeonhub.hypixel.connection
 
 import net.dungeonhub.hypixel.client.ApiClient
 import net.dungeonhub.hypixel.client.FallbackApiClient
+import net.dungeonhub.hypixel.client.resources.ResourceApiClient
+import net.dungeonhub.hypixel.client.resources.StaticResourceApiClient
+import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
 import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
@@ -10,7 +13,8 @@ import net.dungeonhub.strategy.ApiClientStrategy
 import java.time.Duration
 import java.util.*
 
-class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.CacheWithRestFallback) : ApiClient {
+class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.CacheWithRestFallback) : ApiClient,
+    ResourceApiClient {
     var client = strategy.client
         private set
 
@@ -45,5 +49,9 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
 
     fun withCacheExpiration(cacheExpiration: Duration): HypixelApiConnection {
         return withCacheExpiration(cacheExpiration.toMinutes().toInt())
+    }
+
+    override fun getCurrentBingoEvent(): CurrentBingoEvent? {
+        return StaticResourceApiClient.getCurrentBingoEvent()
     }
 }

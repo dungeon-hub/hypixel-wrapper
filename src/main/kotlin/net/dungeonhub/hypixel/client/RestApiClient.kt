@@ -2,8 +2,11 @@ package net.dungeonhub.hypixel.client
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import net.dungeonhub.hypixel.client.resources.ResourceApiClient
 import net.dungeonhub.hypixel.connection.HypixelConnection
+import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
 import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
+import net.dungeonhub.hypixel.entities.bingo.toCurrentBingoEvent
 import net.dungeonhub.hypixel.entities.bingo.toSkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.guild.toGuild
@@ -16,7 +19,7 @@ import net.dungeonhub.provider.getAsJsonObjectOrNull
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.util.*
 
-object RestApiClient : ApiClient {
+object RestApiClient : ApiClient, ResourceApiClient {
     const val API_PREFIX = "https://api.hypixel.net/v2/"
 
     override fun getPlayerData(uuid: UUID): HypixelPlayer? {
@@ -69,5 +72,19 @@ object RestApiClient : ApiClient {
         val jsonObject = GsonProvider.gson.fromJson(response.body, JsonObject::class.java)
 
         return jsonObject.toSkyblockBingoData(uuid)
+    }
+
+    override fun getCurrentBingoEvent(): CurrentBingoEvent? {
+        val url = (API_PREFIX + "resources/skyblock/bingo").toHttpUrl()
+
+        val response = HypixelConnection.makeRequest(url.toString()).join()
+
+        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
+            return null
+        }
+
+        val jsonObject = GsonProvider.gson.fromJson(response.body, JsonObject::class.java)
+
+        return jsonObject.toCurrentBingoEvent()
     }
 }
