@@ -12,7 +12,7 @@ object StaticResourceApiClient : ResourceApiClient {
 
     override fun getCurrentBingoEvent(): CurrentBingoEvent? {
         if (currentBingoEvent == null
-            || currentBingoEvent?.timeAdded?.plusSeconds(SECONDS_PER_DAY)?.isBefore(Instant.now()) == false
+            || currentBingoEvent?.timeAdded?.plusSeconds(SECONDS_PER_DAY)?.isBefore(Instant.now()) == true
         ) {
             currentBingoEvent = RestApiClient.getCurrentBingoEvent()?.let { CacheElement(Instant.now(), it) }
         }
