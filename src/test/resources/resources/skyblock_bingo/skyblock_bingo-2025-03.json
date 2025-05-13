@@ -1,0 +1,260 @@
+{
+  "success": true,
+  "lastUpdated": 1741273738788,
+  "id": 39,
+  "name": "March 2025",
+  "start": 1740805200000,
+  "end": 1741410000000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "collect_exp_farming",
+      "name": "Skilled",
+      "tiers": [
+        150000000,
+        300000000,
+        450000000,
+        600000000,
+        750000000
+      ],
+      "progress": 6335629832,
+      "lore": "§7Gain §b750M Farming§7 experience",
+      "fullLore": [
+        "§7Gain §b750M Farming§7 experience"
+      ]
+    },
+    {
+      "id": "EQUIP_ROCK_COMMON",
+      "name": "Rock Solid",
+      "lore": "§7Equip a §fCommon §7or higher tiered §fRock Pet§7.",
+      "fullLore": [
+        "§7Equip a §fCommon §7or higher tiered §fRock Pet§7."
+      ]
+    },
+    {
+      "id": "multi_enchant_RAIDER_AXE_10",
+      "name": "An Axe To Grind",
+      "lore": "§7Put §e10§7 Enchantments on a §9Raider Axe§7.",
+      "fullLore": [
+        "§7Put §e10§7 Enchantments on a §9Raider Axe§7."
+      ]
+    },
+    {
+      "id": "UNLOCK_DUNGEON_CHEST_WOOD",
+      "name": "Wooden Treasure",
+      "lore": "§7Unlock a §fWood§7 Dungeon Chest.",
+      "fullLore": [
+        "§7Unlock a §fWood§7 Dungeon Chest."
+      ]
+    },
+    {
+      "id": "GET_SKILL_combat_20",
+      "name": "Warrior",
+      "lore": "§7Obtain level §e20§7 in the §6Combat §7Skill.",
+      "fullLore": [
+        "§7Obtain level §e20§7 in the §6Combat §7Skill."
+      ]
+    },
+    {
+      "id": "craft_item_hot_potato_book",
+      "name": "Potatorific",
+      "lore": "§7Craft a §5Hot Potato Book§7.",
+      "fullLore": [
+        "§7Craft a §5Hot Potato Book§7."
+      ]
+    },
+    {
+      "id": "kill_team_treasurite",
+      "name": "Let the StarFall",
+      "tiers": [
+        100000,
+        200000,
+        300000,
+        400000,
+        500000
+      ],
+      "progress": 153794,
+      "lore": "§7Kill §a500k Team Treasurite members§7.",
+      "fullLore": [
+        "§7Kill §a500k Team Treasurite members§7."
+      ]
+    },
+    {
+      "id": "collection_ink_sack:3",
+      "name": "Cocoa Beans Collector",
+      "lore": "§7Reach §a185,000 §7Cocoa Beans Collection.",
+      "fullLore": [
+        "§7Reach §a185,000 §7Cocoa Beans Collection."
+      ],
+      "requiredAmount": 185000
+    },
+    {
+      "id": "FIND_EXPERIMENT_PAIRS_3",
+      "name": "Pair Up!",
+      "lore": "§7Find §93 Pairs §7in the §9Experimentation Table§7.",
+      "fullLore": [
+        "§7Find §93 Pairs §7in the §9Experimentation Table§7."
+      ],
+      "requiredAmount": 3
+    },
+    {
+      "id": "training_weights",
+      "name": "Weird Flex",
+      "lore": "§7Gain §c5 ❁ Strength§7 from a §aTraining Weight§7.",
+      "fullLore": [
+        "§7Gain §c5 ❁ Strength§7 from a §aTraining Weight§7."
+      ]
+    },
+    {
+      "id": "obtain_item_theoretical_hoe",
+      "name": "E=mc²",
+      "lore": "§7Obtain a §fMathematical Hoe Blueprint§7.",
+      "fullLore": [
+        "§7Obtain a §fMathematical Hoe Blueprint§7."
+      ]
+    },
+    {
+      "id": "bestiary_level_5",
+      "name": "Collecting Data",
+      "lore": "§7Reach §3Bestiary §7Milestone 5§7.",
+      "fullLore": [
+        "§7Reach §3Bestiary §7Milestone 5§7."
+      ],
+      "requiredAmount": 5
+    },
+    {
+      "id": "summon_sea_creatures",
+      "name": "Poseidon",
+      "tiers": [
+        20000,
+        40000,
+        60000,
+        80000,
+        100000
+      ],
+      "progress": 144721,
+      "lore": "§7Summon §a100k §3Sea Creatures§7.",
+      "fullLore": [
+        "§7Summon §a100k §3Sea Creatures§7."
+      ]
+    },
+    {
+      "id": "collection_rotten_flesh",
+      "name": "Rotten Flesh Collector",
+      "lore": "§7Reach §a47,500 §7Rotten Flesh Collection.",
+      "fullLore": [
+        "§7Reach §a47,500 §7Rotten Flesh Collection."
+      ],
+      "requiredAmount": 47500
+    },
+    {
+      "id": "complete_commissions",
+      "name": "Commission Master",
+      "lore": "§7Complete §e4 Commissions§7 in the §2Dwarven Mines§7, §5Crystal Hollows§7, or §bGlacite Tunnels§7.",
+      "fullLore": [
+        "§7Complete §e4 Commissions§7 in the §2Dwarven Mines§7, §5Crystal Hollows§7, or §bGlacite Tunnels§7."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "craft_item_small_backpack",
+      "name": "Carry-On",
+      "lore": "§7Craft a §aSmall Backpack§7.",
+      "fullLore": [
+        "§7Craft a §aSmall Backpack§7."
+      ]
+    },
+    {
+      "id": "collection_raw_fish:1",
+      "name": "Raw Salmon Collector",
+      "lore": "§7Reach §a9,000 §7Raw Salmon Collection.",
+      "fullLore": [
+        "§7Reach §a9,000 §7Raw Salmon Collection."
+      ],
+      "requiredAmount": 9000
+    },
+    {
+      "id": "bank_coins",
+      "name": "Meiser",
+      "lore": "§7Store §6250,000 Coins §7in your Bank.",
+      "fullLore": [
+        "§7Store §6250,000 Coins §7in your Bank."
+      ],
+      "requiredAmount": 250000
+    },
+    {
+      "id": "pet_experience",
+      "name": "Pet ",
+      "tiers": [
+        500000000,
+        1000000000,
+        1500000000,
+        2000000000,
+        2500000000
+      ],
+      "progress": 18334869118,
+      "lore": "§7Gain §a2.5B §7Pet experience.",
+      "fullLore": [
+        "§7Gain §a2.5B §7Pet experience."
+      ]
+    },
+    {
+      "id": "spawn_golden_goblin",
+      "name": "Strange Eggs",
+      "lore": "§7Spawn a §6Golden Goblin §7from a Goblin Egg.",
+      "fullLore": [
+        "§7Spawn a §6Golden Goblin §7from a Goblin Egg."
+      ]
+    },
+    {
+      "id": "collect_powder_mithril",
+      "name": "Powder Collector",
+      "lore": "§7Collect 25,000 §2Mithril Powder§7.",
+      "fullLore": [
+        "§7Collect 25,000 §2Mithril Powder§7."
+      ],
+      "requiredAmount": 25000
+    },
+    {
+      "id": "summon_arachne",
+      "name": "Spider Queen",
+      "lore": "§7Summon §6Arachne§7.",
+      "fullLore": [
+        "§7Summon §6Arachne§7."
+      ]
+    },
+    {
+      "id": "craft_minions",
+      "name": "Minion Machine",
+      "lore": "§7Obtain §a15 §7unique Minions.",
+      "fullLore": [
+        "§7Obtain §a15 §7unique Minions."
+      ],
+      "requiredAmount": 15
+    },
+    {
+      "id": "complete_nucleus",
+      "name": "Divan's Chance",
+      "lore": "§7Place all 5 crystals in the Nucleus in the §dCrystal Hollows§7.",
+      "fullLore": [
+        "§7Place all 5 crystals in the Nucleus in the §dCrystal Hollows§7."
+      ]
+    },
+    {
+      "id": "BLOW_CRYPTS",
+      "name": "KABOOM!",
+      "tiers": [
+        15000,
+        30000,
+        45000,
+        60000,
+        75000
+      ],
+      "progress": 63291,
+      "lore": "§7Blow up §e75k§7 Crypts in The Catacombs.",
+      "fullLore": [
+        "§7Blow up §e75k§7 Crypts in The Catacombs."
+      ]
+    }
+  ]
+}

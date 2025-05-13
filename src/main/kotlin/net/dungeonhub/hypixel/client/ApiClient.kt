@@ -1,5 +1,6 @@
 package net.dungeonhub.hypixel.client
 
+import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
@@ -19,6 +20,8 @@ interface ApiClient {
     fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles?
 
     fun getGuild(name: String): Guild?
+
+    fun getBingoData(uuid: UUID): SkyblockBingoData?
 
     fun getStatsOverview(uuid: UUID): ProfileStatsOverview? {
         val profiles = getSkyblockProfiles(uuid)

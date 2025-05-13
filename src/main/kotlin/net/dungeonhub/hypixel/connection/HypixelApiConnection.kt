@@ -2,6 +2,10 @@ package net.dungeonhub.hypixel.connection
 
 import net.dungeonhub.hypixel.client.ApiClient
 import net.dungeonhub.hypixel.client.FallbackApiClient
+import net.dungeonhub.hypixel.client.resources.ResourceApiClient
+import net.dungeonhub.hypixel.client.resources.StaticResourceApiClient
+import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
+import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
@@ -9,13 +13,15 @@ import net.dungeonhub.strategy.ApiClientStrategy
 import java.time.Duration
 import java.util.*
 
-class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.CacheWithRestFallback) : ApiClient {
+class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.CacheWithRestFallback) : ApiClient,
+    ResourceApiClient {
     var client = strategy.client
         private set
 
     override fun getPlayerData(uuid: UUID): HypixelPlayer? = strategy.client.getPlayerData(uuid)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = strategy.client.getSkyblockProfiles(uuid)
     override fun getGuild(name: String): Guild? = strategy.client.getGuild(name)
+    override fun getBingoData(uuid: UUID): SkyblockBingoData? = strategy.client.getBingoData(uuid)
 
     var cacheExpiration: Int?
         get() {
@@ -43,5 +49,9 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
 
     fun withCacheExpiration(cacheExpiration: Duration): HypixelApiConnection {
         return withCacheExpiration(cacheExpiration.toMinutes().toInt())
+    }
+
+    override fun getCurrentBingoEvent(): CurrentBingoEvent? {
+        return StaticResourceApiClient.getCurrentBingoEvent()
     }
 }

@@ -1,6 +1,7 @@
 package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.cache.Cache
+import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
@@ -18,6 +19,10 @@ class FallbackApiClient(val first: ApiClientWithCache, val second: ApiClient, va
     override fun getGuild(name: String): Guild? =
         (if (first.guildCache.isExpired(name)) null else first.getGuild(name))
             ?: second.getGuild(name)
+
+    override fun getBingoData(uuid: UUID): SkyblockBingoData? =
+        (if (first.bingoDataCache.isExpired(uuid)) null else first.getBingoData(uuid))
+            ?: second.getBingoData(uuid)
 
     fun withCacheExpiration(minutes: Int): FallbackApiClient {
         return FallbackApiClient(first, second, minutes)

@@ -6,6 +6,7 @@ import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
+import net.dungeonhub.hypixel.entities.inventory.SkyblockRarity
 import net.dungeonhub.hypixel.entities.inventory.items.*
 import net.dungeonhub.hypixel.entities.inventory.items.id.*
 import net.dungeonhub.hypixel.entities.inventory.items.special.*
@@ -790,6 +791,27 @@ class TestSkyblockProfile {
                     "<:piggy_bank:1330399968221204560> Purse: 19.04m\n" +
                     "<:personal_bank:1330399998512468018> Bank: 400.72m", statsOverview.description
         )
+    }
+
+    @Test
+    fun testBingoRankCalculation() {
+        val bingoRanks = mapOf(
+            UUID.fromString("c932b869-d479-4471-a36d-4ec6c1ef1fa2") to SkyblockRarity.Legendary,
+            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to SkyblockRarity.Legendary,
+            UUID.fromString("92d940ad-10e8-4d9d-a795-adcf5fd6b0c6") to SkyblockRarity.Legendary,
+            UUID.fromString("0425ae3e-3be4-4761-81e0-45be04ad2606") to SkyblockRarity.Uncommon,
+            UUID.fromString("91821440-2b71-4cdb-8364-611c3e435e4b") to SkyblockRarity.Epic,
+        )
+
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfileObjects().forEach {
+                assertDoesNotThrow { it.bingoRank }
+
+                if (bingoRanks.containsKey(it.owner)) {
+                    assertEquals(bingoRanks[it.owner], it.bingoRank)
+                }
+            }
+        }
     }
 
     companion object {
