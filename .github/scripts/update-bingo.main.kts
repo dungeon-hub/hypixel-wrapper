@@ -15,7 +15,7 @@ import kotlin.io.path.writeText
 
 val bingoEndpoint = URL("https://api.hypixel.net/v2/resources/skyblock/bingo")
 
-val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+val gson: Gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
 
 fun getBingoData(): String {
     println("Fetching the current Bingo data...")
