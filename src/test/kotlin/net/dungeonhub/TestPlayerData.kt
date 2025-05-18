@@ -114,6 +114,7 @@ class TestPlayerData {
             UUID.fromString("ec70bcaf-702f-4bb8-b48d-276fa52a780c") to KnownRank.YouTube,
 
             UUID.fromString("16751f79-c0b1-4e53-a0b5-90d31fc1d80d") to KnownRank.Staff,
+            UUID.fromString("8bb6dd7f-b3de-43ec-af7e-1be7975e7bca") to KnownRank.Staff,
             UUID.fromString("9b2a30ec-f8b3-4dfe-bf49-9c5c367383f8") to KnownRank.Staff,
             UUID.fromString("bcd2033c-63ec-4bf8-8aca-680b22461340") to KnownRank.Staff,
             UUID.fromString("c31f8346-78a8-403b-9006-0b69f57f7626") to KnownRank.Staff,
