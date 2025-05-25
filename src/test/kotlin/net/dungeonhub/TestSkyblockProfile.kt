@@ -1347,7 +1347,6 @@ class TestSkyblockProfile {
             MinionItemId.ClayMinion2,
             MinionItemId.ClayMinion3,
             MinionItemId.ClayMinion4,
-            MinionItemId.CobblestoneMinion10,
             MinionItemId.CocoaBeansMinion6,
             MinionItemId.CowMinion6,
             MinionItemId.CreeperMinion2,
