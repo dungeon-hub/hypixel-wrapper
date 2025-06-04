@@ -1,6 +1,7 @@
 package net.dungeonhub.cache
 
 import net.dungeonhub.cache.memory.CacheElement
+import java.util.function.Function
 import java.util.stream.Stream
 
 interface Cache<T, K> {
@@ -26,4 +27,8 @@ fun <T> Stream<T?>.filterNotNull(): Stream<T> {
         @Suppress("UNCHECKED_CAST") // It is indeed checked, see the previous statement
         it as T
     }
+}
+
+fun <T, R> Stream<T>.mapNotNull(mapper: Function<in T, out R?>): Stream<R> {
+    return this.map(mapper).filterNotNull()
 }
