@@ -8,6 +8,7 @@ enum class AccessoryItemId(override val apiName: String, override val itemClass:
     KnownSkyblockItemId {
     TwoIQPoints("TWO_IQ_POINT", { Accessory(it.raw) }),
     FifthAnniversaryBalloonHat("BALLOON_HAT_2024", { PartyHat(it.raw) }),
+    SixthAnniversaryBalloonHat("BALLOON_HAT_2025", { PartyHat(it.raw) }),
     Abicase("ABICASE", { Abicase(it.raw) }),
     AgarimooArtifact("AGARIMOO_ARTIFACT", { Accessory(it.raw) }),
     AgarimooRing("AGARIMOO_RING", { Accessory(it.raw) }),
