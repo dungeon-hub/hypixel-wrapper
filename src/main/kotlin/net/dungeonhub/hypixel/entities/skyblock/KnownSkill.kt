@@ -66,7 +66,7 @@ enum class KnownSkill(
 ) : Skill {
     Combat("SKILL_COMBAT", 60),
     Carpentry("SKILL_CARPENTRY", 50),
-    Foraging("SKILL_FORAGING", 50),
+    Foraging("SKILL_FORAGING", 54),
     Taming("SKILL_TAMING", 60),
     Enchanting("SKILL_ENCHANTING", 60),
     Farming("SKILL_FARMING", 60),
@@ -136,7 +136,9 @@ enum class KnownSkill(
             94500
         ),
         true
-    );
+    ),
+    //TODO why is isnt this the API??
+    /*Hunting("SKILL_HUNTING", 50)*/;
 
     enum class DeprecatedSkill(override val apiName: String) : Skill {
         Dungeoneering("SKILL_DUNGEONEERING");
