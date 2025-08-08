@@ -9,7 +9,7 @@ import java.util.*
 
 class PastMember(
     override val uuid: UUID,
-    override val profile: JsonObject,
+    override val profile: MemberProfileData,
     override val leveling: MemberLeveling,
     override val playerData: MemberPlayerData,
     override val playerStats: MemberPlayerStats?,
