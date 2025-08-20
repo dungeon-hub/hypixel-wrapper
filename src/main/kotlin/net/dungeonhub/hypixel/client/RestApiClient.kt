@@ -1,7 +1,7 @@
 package net.dungeonhub.hypixel.client
 
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
+import com.google.gson.JsonElement
 import net.dungeonhub.hypixel.client.resources.ResourceApiClient
 import net.dungeonhub.hypixel.connection.HypixelConnection
 import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
@@ -54,9 +54,13 @@ object RestApiClient : ApiClient, ResourceApiClient {
             return null
         }
 
-        val jsonObject = GsonProvider.gson.fromJson(response.body, JsonObject::class.java)
+        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
 
-        return jsonObject.getAsJsonObjectOrNull("guild")?.toGuild()
+        if (!jsonElement.isJsonObject) {
+            return null
+        }
+
+        return jsonElement.asJsonObject.getAsJsonObjectOrNull("guild")?.toGuild()
     }
 
     override fun getBingoData(uuid: UUID): SkyblockBingoData? {
@@ -69,9 +73,13 @@ object RestApiClient : ApiClient, ResourceApiClient {
             return null
         }
 
-        val jsonObject = GsonProvider.gson.fromJson(response.body, JsonObject::class.java)
+        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
 
-        return jsonObject.toSkyblockBingoData(uuid)
+        if (!jsonElement.isJsonObject) {
+            return null
+        }
+
+        return jsonElement.asJsonObject.toSkyblockBingoData(uuid)
     }
 
     override fun getCurrentBingoEvent(): CurrentBingoEvent? {
@@ -83,8 +91,12 @@ object RestApiClient : ApiClient, ResourceApiClient {
             return null
         }
 
-        val jsonObject = GsonProvider.gson.fromJson(response.body, JsonObject::class.java)
+        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
 
-        return jsonObject.toCurrentBingoEvent()
+        if (!jsonElement.isJsonObject) {
+            return null
+        }
+
+        return jsonElement.asJsonObject.toCurrentBingoEvent()
     }
 }
