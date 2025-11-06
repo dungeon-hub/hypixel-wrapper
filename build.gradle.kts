@@ -31,6 +31,9 @@ dependencies {
     //Logging
     implementation("org.slf4j:slf4j-api:2.0.17")
 
+    //Database
+    implementation("org.mongodb:mongodb-driver-sync:5.1.0")
+
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))

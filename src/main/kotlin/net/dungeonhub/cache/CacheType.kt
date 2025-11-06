@@ -1,5 +1,7 @@
 package net.dungeonhub.cache
 
+import net.dungeonhub.cache.database.MongoCacheProvider
+
 enum class CacheType {
     Memory,
     Disk,
@@ -7,5 +9,10 @@ enum class CacheType {
     Redis;
 
     val active: Boolean
-        get() = TODO("implement")
+        get() = when (this) {
+            Memory -> true
+            Disk -> true
+            Database -> MongoCacheProvider.isConfigured
+            Redis -> false
+        }
 }

@@ -3,6 +3,8 @@ package net.dungeonhub.hypixel.client
 import com.google.gson.reflect.TypeToken
 import net.dungeonhub.cache.Cache
 import net.dungeonhub.cache.CacheType
+import net.dungeonhub.cache.database.MongoCache
+import net.dungeonhub.cache.database.MongoCacheProvider
 import net.dungeonhub.cache.disk.DiskHistoryCache
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.cache.memory.HashMapCache
@@ -58,7 +60,11 @@ class CacheApiClient : ApiClientWithCache {
                     keyFunction,
                     keyParser
                 )
-                CacheType.Database -> TODO()
+                CacheType.Database -> MongoCache(
+                    MongoCacheProvider.getCollection(resourceType.resourceName),
+                    typeToken,
+                    keyFunction
+                )
                 CacheType.Redis -> TODO()
             }
         }
