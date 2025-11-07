@@ -8,14 +8,13 @@ import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.model.Filters
-import com.mongodb.client.model.ReplaceOptions
+import com.mongodb.client.model.Sorts
 import net.dungeonhub.cache.Cache
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import org.bson.Document
 import java.time.Instant
 import java.util.Date
-import java.lang.reflect.ParameterizedType
 import java.util.stream.Stream
 
 class MongoCache<T, K>(
@@ -29,19 +28,27 @@ class MongoCache<T, K>(
 
     override fun retrieveElement(key: K): CacheElement<T>? {
         val keyString = keySerializer(key)
-        val document = collection.find(Filters.eq(KEY_FIELD, keyString)).first() ?: return null
+        val document = collection
+            .find(Filters.eq(KEY_FIELD, keyString))
+            .sort(Sorts.descending(TIMESTAMP_FIELD))
+            .first() ?: return null
         return deserialize(document)
     }
 
     override fun retrieveAllElements(): Stream<CacheElement<T>> {
-        val elements = mutableListOf<CacheElement<T>>()
+        val latestByKey = linkedMapOf<String, CacheElement<T>>()
         collection.find().iterator().use { cursor ->
             while (cursor.hasNext()) {
                 val document = cursor.next()
-                deserialize(document)?.let(elements::add)
+                val key = document.getString(KEY_FIELD) ?: document[KEY_FIELD]?.toString() ?: continue
+                val element = deserialize(document) ?: continue
+                val current = latestByKey[key]
+                if (current == null || !current.timeAdded.isAfter(element.timeAdded)) {
+                    latestByKey[key] = element
+                }
             }
         }
-        return elements.stream()
+        return latestByKey.values.stream()
     }
 
     override fun store(value: T) {
@@ -51,18 +58,14 @@ class MongoCache<T, K>(
         val valueElement = GsonProvider.gson.toJsonTree(value)
         val document = Document()
         document[KEY_FIELD] = serializedKey
-        document[TIMESTAMP_FIELD] = timestamp.toEpochMilli()
+        document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
-        collection.replaceOne(
-            Filters.eq(KEY_FIELD, serializedKey),
-            document,
-            ReplaceOptions().upsert(true)
-        )
+        collection.insertOne(document)
     }
 
     override fun invalidateEntry(key: K) {
         val serializedKey = keySerializer(key)
-        collection.deleteOne(Filters.eq(KEY_FIELD, serializedKey))
+        collection.deleteMany(Filters.eq(KEY_FIELD, serializedKey))
     }
 
     private fun deserialize(document: Document): CacheElement<T>? {
@@ -70,8 +73,11 @@ class MongoCache<T, K>(
         val rawValue = if (document.containsKey(VALUE_FIELD)) document[VALUE_FIELD] else return null
         return try {
             val valueJson = bsonValueToJsonElement(rawValue)
-            val value = GsonProvider.gson.fromJson<T>(valueJson, valueType)
-            CacheElement(timeAdded = timestamp, value = value)
+            val elementJson = JsonObject().apply {
+                addProperty("timeAdded", timestamp.toEpochMilli())
+                add("value", valueJson)
+            }
+            GsonProvider.gson.fromJson<CacheElement<T>>(elementJson, typeToken.type)
         } catch (_: JsonSyntaxException) {
             null
         } catch (_: ClassCastException) {
@@ -84,11 +90,6 @@ class MongoCache<T, K>(
         private const val TIMESTAMP_FIELD = "timestamp"
         private const val VALUE_FIELD = "value"
     }
-
-    private val valueType = (typeToken.type as? ParameterizedType)
-        ?.actualTypeArguments
-        ?.firstOrNull()
-        ?: Any::class.java
 
     private fun jsonElementToBsonValue(element: JsonElement): Any? = when {
         element.isJsonNull -> null
@@ -103,7 +104,9 @@ class MongoCache<T, K>(
 
     private fun primitiveToValue(primitive: JsonPrimitive): Any? = when {
         primitive.isBoolean -> primitive.asBoolean
-        primitive.isNumber -> primitive.asNumber
+        primitive.isNumber -> primitive.asString.toLongOrNull()
+            ?: primitive.asString.toDoubleOrNull()
+            ?: primitive.asBigDecimal()
         primitive.isString -> primitive.asString
         else -> primitive.asString
     }

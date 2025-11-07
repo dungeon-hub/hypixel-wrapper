@@ -10,13 +10,13 @@ import com.mongodb.client.MongoCursor
 import com.mongodb.client.MongoIterable
 import com.mongodb.client.model.Collation
 import com.mongodb.client.model.CursorType
-import com.mongodb.client.model.DeleteResult
 import com.mongodb.client.model.ExplainVerbosity
-import com.mongodb.client.model.ReplaceOptions
-import com.mongodb.client.result.UpdateResult
+import com.mongodb.client.result.DeleteResult
+import com.mongodb.client.result.InsertOneResult
 import net.dungeonhub.cache.database.MongoCache
 import net.dungeonhub.cache.memory.CacheElement
 import org.bson.Document
+import org.bson.BsonObjectId
 import org.bson.conversions.Bson
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.BeforeEach
@@ -39,7 +39,7 @@ import com.mongodb.client.MongoBatchCursor
 class TestMongoCache {
     private data class SampleEntity(val id: UUID, val name: String)
 
-    private lateinit var storedDocuments: MutableMap<String, Document>
+    private lateinit var storedDocuments: MutableMap<String, MutableList<Document>>
     private lateinit var collection: MongoCollection<Document>
     private lateinit var cache: MongoCache<SampleEntity, UUID>
 
@@ -52,26 +52,33 @@ class TestMongoCache {
 
         every { collection.withDocumentClass(Document::class.java) } returns collection
 
-        every { collection.replaceOne(any(), any<Document>(), any<ReplaceOptions>()) } answers {
-            val document = secondArg<Document>()
+        every { collection.insertOne(any<Document>()) } answers {
+            val document = firstArg<Document>()
             val key = document.getString(KEY_FIELD) ?: ObjectId().toHexString()
-            storedDocuments[key] = Document(document)
-            UpdateResult.acknowledged(1, 1, null)
+            val history = storedDocuments.getOrPut(key) { mutableListOf() }
+            history.add(Document(document))
+            InsertOneResult.acknowledged(BsonObjectId(ObjectId()))
         }
 
         every { collection.find(any<Bson>()) } answers {
             val key = extractKey(firstArg())
-            val document = key?.let { storedDocuments[it] }
-            SimpleFindIterable(document?.let(::listOf) ?: emptyList())
+            val documents = key?.let { storedDocuments[it] }?.map(::Document) ?: emptyList()
+            SimpleFindIterable(documents)
         }
 
         every { collection.find() } answers {
-            SimpleFindIterable(storedDocuments.values.map(::Document))
+            val documents = storedDocuments.values.flatten().map(::Document)
+            SimpleFindIterable(documents)
         }
 
-        every { collection.deleteOne(any<Bson>()) } answers {
+        every { collection.deleteMany(any<Bson>()) } answers {
             val key = extractKey(firstArg())
-            val removed = if (key != null && storedDocuments.remove(key) != null) 1L else 0L
+            val removed = if (key != null) {
+                val removedHistory = storedDocuments.remove(key)
+                removedHistory?.size?.toLong() ?: 0L
+            } else {
+                0L
+            }
             DeleteResult.acknowledged(removed)
         }
 
@@ -109,13 +116,37 @@ class TestMongoCache {
     }
 
     @Test
+    fun `maintains history and returns most recent entry`() {
+        val key = UUID.randomUUID()
+        val first = SampleEntity(key, "first")
+        val second = SampleEntity(key, "second")
+
+        cache.store(first)
+        cache.store(second)
+
+        val history = storedDocuments[key.toString()]
+        assertNotNull(history)
+        assertEquals(2, history.size)
+
+        val latestTimestamp = history.lastOrNull()?.get(TIMESTAMP_FIELD) as? Instant
+        if (latestTimestamp != null && history.size >= 2) {
+            history[0][TIMESTAMP_FIELD] = latestTimestamp.minusSeconds(1)
+        }
+
+        val cached = cache.retrieve(key)
+        assertEquals(second, cached)
+    }
+
+    @Test
     fun `ignores malformed cache payloads`() {
         val key = UUID.randomUUID()
-        storedDocuments[key.toString()] = Document(
-            mapOf(
-                KEY_FIELD to key.toString(),
-                TIMESTAMP_FIELD to Instant.now().toEpochMilli(),
-                VALUE_FIELD to "{"
+        storedDocuments[key.toString()] = mutableListOf(
+            Document(
+                mapOf(
+                    KEY_FIELD to key.toString(),
+                    TIMESTAMP_FIELD to Instant.now(),
+                    VALUE_FIELD to "{"
+                )
             )
         )
 
@@ -181,7 +212,27 @@ class TestMongoCache {
 
         override fun projection(projection: Bson): FindIterable<Document> = this
 
-        override fun sort(sort: Bson): FindIterable<Document> = this
+        override fun sort(sort: Bson): FindIterable<Document> {
+            val sortDocument = sort.toBsonDocument(Document::class.java, MongoClientSettings.getDefaultCodecRegistry())
+            val timestampOrder = sortDocument.get(TIMESTAMP_FIELD)?.asInt32()?.value ?: 0
+            val sorted = when {
+                timestampOrder < 0 -> documents.sortedByDescending { it.extractTimestamp() }
+                timestampOrder > 0 -> documents.sortedBy { it.extractTimestamp() }
+                else -> documents
+            }
+            return SimpleFindIterable(sorted)
+        }
+
+        private fun Document.extractTimestamp(): Instant {
+            val value = get(TIMESTAMP_FIELD)
+            return when (value) {
+                is Instant -> value
+                is Number -> Instant.ofEpochMilli(value.toLong())
+                is java.util.Date -> value.toInstant()
+                is String -> runCatching { Instant.parse(value) }.getOrDefault(Instant.MIN)
+                else -> Instant.MIN
+            }
+        }
 
         override fun noCursorTimeout(noCursorTimeout: Boolean): FindIterable<Document> = this
 
