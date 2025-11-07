@@ -137,9 +137,13 @@ class TestMongoCache {
         @BeforeAll
         fun startEmbeddedMongo() {
             val port = Network.freeServerPort(InetAddress.getByName("localhost"))
+            val ipv6 = runCatching { Network.localhostIsIPv6() }.getOrDefault(false)
+
+            val net = Net("127.0.0.1", port, ipv6)
+
             val config = MongodConfig.builder()
                 .version(Version.Main.PRODUCTION)
-                .net(Net(port, Network.localhostIsIPv6()))
+                .net(net)
                 .build()
 
             val starter = MongodStarter.getDefaultInstance()
