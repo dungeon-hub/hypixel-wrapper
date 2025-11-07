@@ -26,6 +26,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import io.mockk.every
 import io.mockk.mockk
+import java.time.Instant
 import java.util.Spliterator
 import java.util.UUID
 import java.util.concurrent.TimeUnit
@@ -53,7 +54,7 @@ class TestMongoCache {
 
         every { collection.replaceOne(any(), any<Document>(), any<ReplaceOptions>()) } answers {
             val document = secondArg<Document>()
-            val key = document.getString(ID_FIELD) ?: ObjectId().toHexString()
+            val key = document.getString(KEY_FIELD) ?: ObjectId().toHexString()
             storedDocuments[key] = Document(document)
             UpdateResult.acknowledged(1, 1, null)
         }
@@ -110,7 +111,13 @@ class TestMongoCache {
     @Test
     fun `ignores malformed cache payloads`() {
         val key = UUID.randomUUID()
-        storedDocuments[key.toString()] = Document(mapOf(ID_FIELD to key.toString(), PAYLOAD_FIELD to "{"))
+        storedDocuments[key.toString()] = Document(
+            mapOf(
+                KEY_FIELD to key.toString(),
+                TIMESTAMP_FIELD to Instant.now().toEpochMilli(),
+                VALUE_FIELD to "{"
+            )
+        )
 
         assertNull(cache.retrieveElement(key))
 
@@ -120,7 +127,7 @@ class TestMongoCache {
 
     private fun extractKey(filter: Bson): String? {
         val bsonDocument = filter.toBsonDocument(Document::class.java, codecRegistry)
-        val idValue = bsonDocument.get(ID_FIELD) ?: return null
+        val idValue = bsonDocument.get(KEY_FIELD) ?: return null
         return when {
             idValue.isString -> idValue.asString().value
             else -> idValue.toString()
@@ -286,7 +293,8 @@ class TestMongoCache {
     }
 
     companion object {
-        private const val ID_FIELD = "_id"
-        private const val PAYLOAD_FIELD = "payload"
+        private const val KEY_FIELD = "key"
+        private const val TIMESTAMP_FIELD = "timestamp"
+        private const val VALUE_FIELD = "value"
     }
 }
