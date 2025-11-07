@@ -2,6 +2,8 @@ package net.dungeonhub.hypixel.entities.skyblock
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import net.dungeonhub.hypixel.entities.skyblock.currencies.ProfileBankingData
+import net.dungeonhub.hypixel.entities.skyblock.currencies.toProfileBankingData
 import net.dungeonhub.hypixel.entities.skyblock.misc.ProfileGameMode
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
@@ -11,7 +13,7 @@ import java.util.UUID
 class SkyblockProfile(
     val profileId: UUID,
     val members: List<SkyblockProfileMember>,
-    val banking: JsonObject?,
+    val banking: ProfileBankingData?,
     val communityUpgrades: JsonObject?,
     val cuteName: String?,
     val selected: Boolean?,
@@ -30,7 +32,7 @@ fun JsonElement.toSkyblockProfile(): SkyblockProfile {
     val profile = SkyblockProfile(
         UUID.fromString(asJsonObject["profile_id"].asString),
         asJsonObject["members"].asJsonObject.loadProfileMembers(),
-        asJsonObject.getAsJsonObjectOrNull("banking"),
+        asJsonObject.getAsJsonObjectOrNull("banking")?.toProfileBankingData(),
         asJsonObject.getAsJsonObjectOrNull("community_upgrades"),
         asJsonObject.getOrNull("cute_name")?.asString,
         asJsonObject.getOrNull("selected")?.asBoolean,
