@@ -106,7 +106,7 @@ class MongoCache<T, K>(
         primitive.isBoolean -> primitive.asBoolean
         primitive.isNumber -> primitive.asString.toLongOrNull()
             ?: primitive.asString.toDoubleOrNull()
-            ?: primitive.asBigDecimal()
+            ?: primitive.asBigDecimal
         primitive.isString -> primitive.asString
         else -> primitive.asString
     }

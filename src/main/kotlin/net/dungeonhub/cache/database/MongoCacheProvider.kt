@@ -8,7 +8,7 @@ import org.bson.Document
 
 object MongoCacheProvider {
     private const val DEFAULT_DATABASE_NAME = "hypixel-wrapper-cache"
-    private const val DEFAULT_COLLECTION_PREFIX = "hypixel"
+    private const val DEFAULT_COLLECTION_PREFIX = "hypixel-wrapper"
 
     var connectionString: String? = System.getenv("HYPIXEL_API_CACHE_DATABASE_URI")
     var databaseName: String = System.getenv("HYPIXEL_API_CACHE_DATABASE_NAME") ?: DEFAULT_DATABASE_NAME
