@@ -13,6 +13,9 @@ environment variables:
 | `HypixelConnection.apiKey`               | Your Hypixel API Key                                               | Any valid UUID (API-Key) as a String | HYPIXEL_API_KEY        | net.dungeonhub.hypixel.connection |
 | `CacheApiClientProvider.cacheTypeString` | The type of caching you want to use by default (Memory by default) | Memory, Disk, Database               | HYPIXEL_API_CACHE_TYPE | net.dungeonhub.hypixel.provider   |
 | `DiskHistoryUUIDCache.cacheDirectory`    | The directory where the disk cache should be stored                | Any valid folder path                |                        | net.dungeonhub.cache.disk         |
+| `MongoCacheProvider.connectionString`    | Connection string used for the MongoDB cache                       | Any valid MongoDB connection string  | HYPIXEL_API_CACHE_DATABASE_URI | net.dungeonhub.cache.database |
+| `MongoCacheProvider.databaseName`        | The MongoDB database used for cache storage                        | Any valid database name              | HYPIXEL_API_CACHE_DATABASE_NAME | net.dungeonhub.cache.database |
+| `MongoCacheProvider.collectionPrefix`    | Prefix used for MongoDB cache collections                          | Any string (empty allowed)           | HYPIXEL_API_CACHE_DATABASE_PREFIX | net.dungeonhub.cache.database |
 
 ## How to use the Library
 

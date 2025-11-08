@@ -33,7 +33,7 @@ import java.util.*
 abstract class SkyblockProfileMember(
     open val uuid: UUID,
     val type: String,
-    open val profile: JsonObject,
+    open val profile: MemberProfileData,
     open val leveling: MemberLeveling,
     open val playerData: MemberPlayerData?,
     open val playerStats: MemberPlayerStats?,
@@ -48,9 +48,9 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
         } else {
             it.key.toUUID()
         }
-        val profileData = it.value.asJsonObject.getAsJsonObject("profile")
+        val profileData = it.value.asJsonObject.getAsJsonObject("profile").toMemberProfileData()
 
-        if (profileData.getAsJsonObjectOrNull("deletion_notice") != null) {
+        if (profileData.deletionNotice != null) {
             return@map PastMember(
                 uuid,
                 profileData,
@@ -64,8 +64,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             )
         }
 
-        val invitationConfirmation =
-            profileData.getAsJsonObjectOrNull("coop_invitation")?.getAsJsonPrimitiveOrNull("confirmed")?.asBoolean
+        val invitationConfirmation = profileData.coopInvitation?.getAsJsonPrimitiveOrNull("confirmed")?.asBoolean
 
         if (invitationConfirmation == false) {
             return@map PendingMember(
