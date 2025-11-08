@@ -1,8 +1,9 @@
 package net.dungeonhub
 
 import com.google.gson.JsonObject
+import net.dungeonhub.cache.CacheType
 import net.dungeonhub.cache.disk.DiskHistoryCache
-import net.dungeonhub.hypixel.client.DiskCacheApiClient
+import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
@@ -13,7 +14,9 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.assertDoesNotThrow
 import java.io.File
+import java.nio.file.Path
 import java.util.*
+import kotlin.io.path.exists
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -22,7 +25,7 @@ import kotlin.test.assertNull
 class TestDiskCache {
     @Test
     fun testDiskCacheSaving() {
-        val apiClient = DiskCacheApiClient
+        val apiClient = CacheApiClient(CacheType.Disk)
 
         val rawData = listOf(
             UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
@@ -89,7 +92,7 @@ class TestDiskCache {
 
     @Test
     fun testDiskCacheSkyblock() {
-        val apiClient = DiskCacheApiClient
+        val apiClient = CacheApiClient(CacheType.Disk)
 
         TestHelper.runParallel {
             TestHelper.readAllSkyblockProfileObjects().parallel().forEach { skyblockProfiles ->
@@ -122,7 +125,10 @@ class TestDiskCache {
         @JvmStatic
         @AfterAll
         fun tearDown() {
-            DiskCacheApiClient.clearCache()
+            val cacheDirectory = Path.of(DiskHistoryCache.cacheDirectory)
+            if (cacheDirectory.exists()) {
+                DiskHistoryCache.deleteDirectoryContents(cacheDirectory)
+            }
         }
     }
 }

@@ -12,32 +12,37 @@ import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.provider.CacheApiClientProvider
 import java.util.*
 
-class CacheApiClient : ApiClientWithCache {
+class CacheApiClient(cacheType: CacheType? = null) : ApiClientWithCache {
     override val playerDataCache = buildCache(
         CachedResource.PlayerData,
         object : TypeToken<CacheElement<HypixelPlayer>>() {},
         { it.uuid },
-        { UUID.fromString(it) }
+        { UUID.fromString(it) },
+        cacheType
     )
     override val skyblockProfilesCache = buildCache(
         CachedResource.SkyblockProfiles,
         object : TypeToken<CacheElement<SkyblockProfiles>>() {},
         { it.owner },
-        { UUID.fromString(it) }
+        { UUID.fromString(it) },
+        cacheType
     )
     override val guildCache = buildCache(
         CachedResource.Guilds,
         object : TypeToken<CacheElement<Guild>>() {},
         { it.name },
-        { it }
+        { it },
+        cacheType
     )
     override val bingoDataCache = buildCache(
         CachedResource.BingoData,
         object : TypeToken<CacheElement<SkyblockBingoData>>() {},
         { it.player },
-        { UUID.fromString(it) }
+        { UUID.fromString(it) },
+        cacheType
     )
 
     companion object {
@@ -45,10 +50,11 @@ class CacheApiClient : ApiClientWithCache {
             resourceType: CachedResource,
             typeToken: TypeToken<CacheElement<T>>,
             keyFunction: (T) -> K,
-            keyParser: (String) -> K?
+            keyParser: (String) -> K?,
+            selectedCacheType: CacheType?
         ): Cache<T, K> {
-            val cacheTypes = resourceType.cacheTypes
-            val cacheType = cacheTypes.firstOrNull { it.active } ?: CacheType.Memory // TODO should this rather be a no-op cache then? :P
+            val cacheType = (selectedCacheType ?: CacheApiClientProvider.cacheType)?.takeIf { it.active }
+                ?: CacheType.Memory
 
             return when (cacheType) {
                 CacheType.Memory -> HashMapCache(
@@ -65,7 +71,6 @@ class CacheApiClient : ApiClientWithCache {
                     typeToken,
                     keyFunction
                 )
-                CacheType.Redis -> TODO()
             }
         }
     }

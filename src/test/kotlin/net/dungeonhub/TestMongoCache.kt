@@ -1,15 +1,6 @@
 package net.dungeonhub
 
-import net.dungeonhub.cache.database.MongoCacheProvider
 import com.google.gson.JsonObject
-import net.dungeonhub.hypixel.client.CachedResource
-import net.dungeonhub.hypixel.client.DatabaseCacheApiClient
-import net.dungeonhub.hypixel.entities.guild.Guild
-import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
-import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
-import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
-import net.dungeonhub.provider.GsonProvider
-import net.dungeonhub.service.TestHelper
 import de.flapdoodle.embed.mongo.MongodExecutable
 import de.flapdoodle.embed.mongo.MongodProcess
 import de.flapdoodle.embed.mongo.MongodStarter
@@ -17,14 +8,19 @@ import de.flapdoodle.embed.mongo.config.MongodConfig
 import de.flapdoodle.embed.mongo.config.Net
 import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assumptions
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.assertDoesNotThrow
+import net.dungeonhub.cache.CacheType
+import net.dungeonhub.cache.database.MongoCacheProvider
+import net.dungeonhub.hypixel.client.CacheApiClient
+import net.dungeonhub.hypixel.client.CachedResource
+import net.dungeonhub.hypixel.entities.guild.Guild
+import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
+import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
+import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
+import net.dungeonhub.provider.GsonProvider
+import net.dungeonhub.service.TestHelper
+import org.junit.jupiter.api.*
 import java.net.InetAddress
-import java.util.UUID
+import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -34,7 +30,7 @@ class TestMongoCache {
 
     @Test
     fun testDatabaseCacheSaving() {
-        val apiClient = DatabaseCacheApiClient
+        val apiClient = CacheApiClient(CacheType.Database)
 
         val rawData = listOf(
             UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
@@ -98,7 +94,7 @@ class TestMongoCache {
 
     @Test
     fun testDatabaseCacheSkyblock() {
-        val apiClient = DatabaseCacheApiClient
+        val apiClient = CacheApiClient(CacheType.Database)
 
         TestHelper.runParallel {
             TestHelper.readAllSkyblockProfileObjects().parallel().forEach { skyblockProfiles ->
