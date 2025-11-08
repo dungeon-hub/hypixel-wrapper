@@ -1,31 +1,36 @@
 package net.dungeonhub
 
 import com.google.gson.JsonObject
+import de.flapdoodle.embed.mongo.MongodExecutable
+import de.flapdoodle.embed.mongo.MongodProcess
+import de.flapdoodle.embed.mongo.MongodStarter
+import de.flapdoodle.embed.mongo.config.MongodConfig
+import de.flapdoodle.embed.mongo.config.Net
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.process.runtime.Network
 import net.dungeonhub.cache.CacheType
-import net.dungeonhub.cache.disk.DiskHistoryCache
+import net.dungeonhub.cache.database.MongoCacheProvider
 import net.dungeonhub.hypixel.client.CacheApiClient
+import net.dungeonhub.hypixel.client.CachedResource
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.assertDoesNotThrow
-import java.io.File
-import java.nio.file.Path
+import org.junit.jupiter.api.*
+import java.net.InetAddress
 import java.util.*
-import kotlin.io.path.exists
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
-class TestDiskCache {
+class TestMongoCache {
+
     @Test
-    fun testDiskCacheSaving() {
-        val apiClient = CacheApiClient(CacheType.Disk)
+    fun testDatabaseCacheSaving() {
+        val apiClient = CacheApiClient(CacheType.Database)
 
         val rawData = listOf(
             UUID.fromString("1686c45d-f082-4811-b1c8-b1db7810e255") to TestHelper.readFile("player-data/1686c45d-f082-4811-b1c8-b1db7810e255.json"),
@@ -37,7 +42,6 @@ class TestDiskCache {
             UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to "taubsie"
         )
 
-        //Check if cache is empty
         for (pair in rawData) {
             assertNull(apiClient.getPlayerData(pair.first))
         }
@@ -48,14 +52,12 @@ class TestDiskCache {
 
         assertEquals(0, apiClient.playerDataCache.retrieveAllElements().count())
 
-        //Store example data in cache
         for (pair in rawData) {
             val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
 
             apiClient.playerDataCache.store(player.toHypixelPlayer())
         }
 
-        //Check if cache is filled
         for (pair in rawData) {
             assertNotNull(apiClient.getPlayerData(pair.first))
         }
@@ -91,8 +93,8 @@ class TestDiskCache {
     }
 
     @Test
-    fun testDiskCacheSkyblock() {
-        val apiClient = CacheApiClient(CacheType.Disk)
+    fun testDatabaseCacheSkyblock() {
+        val apiClient = CacheApiClient(CacheType.Database)
 
         TestHelper.runParallel {
             TestHelper.readAllSkyblockProfileObjects().parallel().forEach { skyblockProfiles ->
@@ -114,20 +116,60 @@ class TestDiskCache {
         }
     }
 
+    @BeforeEach
+    fun cleanBefore() {
+        cleanCollections()
+    }
+
+    @AfterEach
+    fun cleanAfter() {
+        cleanCollections()
+    }
+
     companion object {
+        private lateinit var mongodExecutable: MongodExecutable
+        private var mongodProcess: MongodProcess? = null
+
         @JvmStatic
         @BeforeAll
-        fun build() {
-            DiskHistoryCache.cacheDirectory =
-                "${System.getProperty("user.home")}${File.separator}dungeon-hub${File.separator}hypixel-wrapper-test"
+        fun startEmbeddedMongo() {
+            Assumptions.assumeFalse(System.getenv("CI") == "true", "Skipping embedded MongoDB tests in CI/CD environment due to an unknown incompatibility")
+
+            val port = Network.freeServerPort(InetAddress.getByName("localhost"))
+            val ipv6 = runCatching { Network.localhostIsIPv6() }.getOrDefault(false)
+
+            val net = Net("127.0.0.1", port, ipv6)
+
+            val config = MongodConfig.builder()
+                .version(Version.Main.PRODUCTION)
+                .net(net)
+                .build()
+
+            val starter = MongodStarter.getDefaultInstance()
+            mongodExecutable = starter.prepare(config)
+            mongodProcess = mongodExecutable.start()
+
+            MongoCacheProvider.connectionString = "mongodb://localhost:$port"
+            MongoCacheProvider.databaseName = "test-${UUID.randomUUID()}"
+            MongoCacheProvider.collectionPrefix = "test"
         }
 
         @JvmStatic
         @AfterAll
-        fun tearDown() {
-            val cacheDirectory = Path.of(DiskHistoryCache.cacheDirectory)
-            if (cacheDirectory.exists()) {
-                DiskHistoryCache.deleteDirectoryContents(cacheDirectory)
+        fun stopEmbeddedMongo() {
+            cleanCollections()
+
+            runCatching { mongodProcess?.stop() }
+            runCatching { mongodExecutable.stop() }
+            MongoCacheProvider.connectionString = null
+        }
+
+        private fun cleanCollections() {
+            if (!MongoCacheProvider.isConfigured) {
+                return
+            }
+            CachedResource.entries.forEach { resource ->
+                runCatching { MongoCacheProvider.getCollection(resource.resourceName).drop() }
             }
         }
     }

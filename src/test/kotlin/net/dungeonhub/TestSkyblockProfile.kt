@@ -1,7 +1,7 @@
 package net.dungeonhub
 
 import com.google.gson.JsonArray
-import net.dungeonhub.hypixel.client.MemoryCacheApiClient
+import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
@@ -767,7 +767,7 @@ class TestSkyblockProfile {
         val uuid = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
         val profile = TestHelper.readFullSkyblockProfile()
 
-        (apiConnection.client as MemoryCacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
+        (apiConnection.client as CacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
 
         val statsOverview = apiConnection.getStatsOverview(uuid)
 
