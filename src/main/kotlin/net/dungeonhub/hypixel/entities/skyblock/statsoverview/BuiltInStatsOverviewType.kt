@@ -25,7 +25,6 @@ import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOvervi
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.terminatorEmoji
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.witherBladeEmoji
 import net.dungeonhub.hypixel.service.FormattingService
-import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
 enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfile, profileMember: CurrentMember) -> String) :
     StatsOverviewType {
@@ -137,9 +136,15 @@ enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfil
         "$purseEmoji Purse: $purse"
     }),
     Bank({ profile: SkyblockProfile, profileMember: CurrentMember ->
-        //TODO check personal bank as well
-        val bankMoney: String = profile.banking?.getAsJsonPrimitiveOrNull("balance")?.asDouble?.toLong()
-            ?.let { FormattingService.makeNumberReadable(it, 2) } ?: "Empty"
+        val coopBankMoney = profile.banking?.balance
+
+        val personalBankMoney = profileMember.profile.bankAccount
+
+        val bankMoney = if (coopBankMoney != null || personalBankMoney != null) {
+            FormattingService.makeNumberReadable(((coopBankMoney ?: 0.0) + (personalBankMoney ?: 0.0)).toLong(), 2)
+        } else {
+            "Empty"
+        }
 
         "$bankEmoji Bank: $bankMoney"
     })

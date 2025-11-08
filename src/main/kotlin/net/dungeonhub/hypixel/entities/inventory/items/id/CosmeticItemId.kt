@@ -5,6 +5,7 @@ import net.dungeonhub.hypixel.entities.inventory.items.special.*
 
 enum class CosmeticItemId(override val apiName: String, override val itemClass: ((SkyblockItem) -> SkyblockItem)) :
     KnownSkyblockItemId {
+    AblazeSkin("YOG_ABLAZE"),
     AdmiralSkin("SHADOW_ASSASSIN_ADMIRAL"),
     AdventCalendarDisplay("ADVENT_CALENDAR_DISPLAY"),
     ArmorStandCosmetic("ARMOR_SHOWCASE"),

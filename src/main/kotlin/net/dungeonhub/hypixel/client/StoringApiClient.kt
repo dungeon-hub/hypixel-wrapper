@@ -9,6 +9,7 @@ class StoringApiClient(val apiClient: ApiClient, val storage: ApiClientWithCache
     override fun getPlayerData(uuid: UUID): HypixelPlayer? = storeAndReturn(apiClient.getPlayerData(uuid), storage.playerDataCache)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = storeAndReturn(apiClient.getSkyblockProfiles(uuid), storage.skyblockProfilesCache)
     override fun getGuild(name: String) = storeAndReturn(apiClient.getGuild(name.lowercase()), storage.guildCache)
+    override fun getBingoData(uuid: UUID) = storeAndReturn(apiClient.getBingoData(uuid), storage.bingoDataCache)
 
     private fun <T, K> storeAndReturn(value: T?, cache: Cache<T, K>): T? {
         if (value == null) return null

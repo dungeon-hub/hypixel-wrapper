@@ -1,0 +1,263 @@
+{
+  "success": true,
+  "lastUpdated": 1762164899426,
+  "id": 47,
+  "name": "November 2025",
+  "start": 1761969600000,
+  "end": 1762574400000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "loot_drop",
+      "name": "Lucky Looter",
+      "tiers": [
+        50000,
+        100000,
+        150000,
+        200000,
+        250000
+      ],
+      "progress": 347408,
+      "lore": "§7Loot §e250k §7drops with a chance of §e1% §7or lower",
+      "fullLore": [
+        "§7Loot §e250k §7drops with a chance of §e1% §7or lower"
+      ]
+    },
+    {
+      "id": "OBTAIN_JACOB_BRONZE",
+      "name": "Podium Position",
+      "lore": "§7Obtain a §cBronze§7 or higher §cMedal§7 in Jacob's Farming Contest.",
+      "fullLore": [
+        "§7Obtain a §cBronze§7 or higher §cMedal§7 in Jacob's Farming Contest."
+      ]
+    },
+    {
+      "id": "stat_strength",
+      "name": "Strongman",
+      "lore": "§7Reach §c180 §c❁ Strength§7.",
+      "fullLore": [
+        "§7Reach §c180 §c❁ Strength§7."
+      ],
+      "requiredAmount": 180
+    },
+    {
+      "id": "obtain_item_cat_talisman",
+      "name": "Cat",
+      "lore": "§7Obtain a §aCat Talisman§7.",
+      "fullLore": [
+        "§7Obtain a §aCat Talisman§7."
+      ]
+    },
+    {
+      "id": "craft_minions",
+      "name": "Minion Machine",
+      "lore": "§7Obtain §a100 §7unique Minions.",
+      "fullLore": [
+        "§7Obtain §a100 §7unique Minions."
+      ],
+      "requiredAmount": 100
+    },
+    {
+      "id": "stat_sea_creature_chance",
+      "name": "Sea Summoner",
+      "lore": "§7Reach §330% §3α Sea Creature Chance§7.",
+      "fullLore": [
+        "§7Reach §330% §3α Sea Creature Chance§7."
+      ],
+      "requiredAmount": 30
+    },
+    {
+      "id": "kill_endermen",
+      "name": "Enderman Slayer",
+      "tiers": [
+        500000,
+        1000000,
+        1500000,
+        2000000,
+        2500000
+      ],
+      "progress": 3321993,
+      "lore": "§7Kill §a2.5M Endermen§7.",
+      "fullLore": [
+        "§7Kill §a2.5M Endermen§7."
+      ]
+    },
+    {
+      "id": "spider_relic",
+      "name": "Relic Researcher",
+      "lore": "§7Find 28 §fRelics §7in the Spider's Den.",
+      "fullLore": [
+        "§7Find 28 §fRelics §7in the Spider's Den."
+      ],
+      "requiredAmount": 28
+    },
+    {
+      "id": "slayer_TWO_80",
+      "name": "Slaughterer",
+      "lore": "§7Kill any §atier II Slayer Boss §7within 80 seconds.",
+      "fullLore": [
+        "§7Kill any §atier II Slayer Boss §7within 80 seconds."
+      ]
+    },
+    {
+      "id": "wear_equipment_4",
+      "name": "Battle-Ready",
+      "lore": "§7Wear 4 pieces of Equipment.",
+      "fullLore": [
+        "§7Wear 4 pieces of Equipment."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "collection_ender_stone",
+      "name": "End Stone Collector",
+      "lore": "§7Reach §a60,000 §7End Stone Collection.",
+      "fullLore": [
+        "§7Reach §a60,000 §7End Stone Collection."
+      ],
+      "requiredAmount": 60000
+    },
+    {
+      "id": "bestiary_level_5",
+      "name": "Collecting Data",
+      "lore": "§7Reach §3Bestiary §7Milestone 5§7.",
+      "fullLore": [
+        "§7Reach §3Bestiary §7Milestone 5§7."
+      ],
+      "requiredAmount": 5
+    },
+    {
+      "id": "collect_exp_fishing",
+      "name": "Skilled",
+      "tiers": [
+        50000000,
+        100000000,
+        150000000,
+        200000000,
+        250000000
+      ],
+      "progress": 31626363,
+      "lore": "§7Gain §b250M Fishing§7 experience",
+      "fullLore": [
+        "§7Gain §b250M Fishing§7 experience"
+      ]
+    },
+    {
+      "id": "EQUIP_ROCK_RARE",
+      "name": "Rock Solid",
+      "lore": "§7Equip a §9Rare §7or higher tiered §9Rock Pet§7.",
+      "fullLore": [
+        "§7Equip a §9Rare §7or higher tiered §9Rock Pet§7."
+      ]
+    },
+    {
+      "id": "stat_walk_speed",
+      "name": "I Am Speed",
+      "lore": "§7Reach §f200 §f✦ Speed§7.",
+      "fullLore": [
+        "§7Reach §f200 §f✦ Speed§7."
+      ],
+      "requiredAmount": 200
+    },
+    {
+      "id": "UNLOCK_DUNGEON_CHEST_EMERALD",
+      "name": "Emerald Treasure",
+      "lore": "§7Unlock an §2Emerald§7 Dungeon Chest.",
+      "fullLore": [
+        "§7Unlock an §2Emerald§7 Dungeon Chest."
+      ]
+    },
+    {
+      "id": "skill_average",
+      "name": "Skill Average",
+      "lore": "§7Reach a non-cosmetic Skill Average of §a14§7.",
+      "fullLore": [
+        "§7Reach a non-cosmetic Skill Average of §a14§7."
+      ],
+      "requiredAmount": 14
+    },
+    {
+      "id": "FIND_EXPERIMENT_PAIRS_3",
+      "name": "Pair Up!",
+      "lore": "§7Find §93 Pairs §7in the §9Experimentation Table§7.",
+      "fullLore": [
+        "§7Find §93 Pairs §7in the §9Experimentation Table§7."
+      ],
+      "requiredAmount": 3
+    },
+    {
+      "id": "collect_essence_spider",
+      "name": "Essence Of Spiders",
+      "tiers": [
+        200000,
+        400000,
+        600000,
+        800000,
+        1000000
+      ],
+      "progress": 345707,
+      "lore": "§7Collect §51M Spider Essence§7.",
+      "fullLore": [
+        "§7Collect §51M Spider Essence§7."
+      ]
+    },
+    {
+      "id": "obtain_item_wedding_ring_2",
+      "name": "Love Is All Around",
+      "lore": "§7Obtain a §aMediocre Ring of Love§7.",
+      "fullLore": [
+        "§7Obtain a §aMediocre Ring of Love§7."
+      ]
+    },
+    {
+      "id": "consume_mushroomsoup_regular",
+      "name": "Taking Flight",
+      "lore": "§7Consume a §bMagical Mushroom Soup§7.",
+      "fullLore": [
+        "§7Consume a §bMagical Mushroom Soup§7."
+      ]
+    },
+    {
+      "id": "training_weights",
+      "name": "Weird Flex",
+      "lore": "§7Gain §c5 ❁ Strength§7 from a §aTraining Weight§7.",
+      "fullLore": [
+        "§7Gain §c5 ❁ Strength§7 from a §aTraining Weight§7."
+      ]
+    },
+    {
+      "id": "wear_accessories",
+      "name": "Bedazzled",
+      "lore": "§7Equip §a7 §7unique Accessories.",
+      "fullLore": [
+        "§7Equip §a7 §7unique Accessories."
+      ],
+      "requiredAmount": 7
+    },
+    {
+      "id": "obtain_pets",
+      "name": "Pet Hoarder",
+      "lore": "§7Obtain §a12 §7unique Pets.",
+      "fullLore": [
+        "§7Obtain §a12 §7unique Pets."
+      ],
+      "requiredAmount": 12
+    },
+    {
+      "id": "collect_essence_dragon",
+      "name": "Essence Of Dragons",
+      "tiers": [
+        200000,
+        400000,
+        600000,
+        800000,
+        1000000
+      ],
+      "progress": 291352,
+      "lore": "§7Collect §51M Dragon Essence§7.",
+      "fullLore": [
+        "§7Collect §51M Dragon Essence§7."
+      ]
+    }
+  ]
+}

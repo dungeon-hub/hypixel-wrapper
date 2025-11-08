@@ -1,0 +1,103 @@
+{
+  "_id": "5167ecb90cf237febaea7969",
+  "achievements": {
+    "tntgames_bow_spleef_wins": 0,
+    "tntgames_tnt_run_wins": 0,
+    "general_wins": 8,
+    "tntgames_wizards_wins": 3,
+    "quake_wins": 0,
+    "quake_kills": 72,
+    "paintball_kills": 112,
+    "paintball_wins": 5,
+    "general_coins": 3195,
+    "paintball_coins": 3195
+  },
+  "achievementsOneTime": [
+    "general_first_join",
+    "general_vip",
+    "general_vip_plus",
+    "general_youtuber",
+    "general_first_chat",
+    "general_first_game",
+    "tntgames_wizards_first_win",
+    "paintball_unlock_killstreaks",
+    "paintball_no_killstreaks"
+  ],
+  "displayname": "Dinnerbone",
+  "eulaCoins": true,
+  "firstLogin": 1365765305000,
+  "friendRequests": [
+    "mcxblanews",
+    "ymona33"
+  ],
+  "lastLogin": 1539796529714,
+  "packageRank": "VIP",
+  "playername": "dinnerbone",
+  "prefix": "§6[MOJANG]",
+  "stats": {
+    "Arcade": {
+      "coins": 9500.0
+    },
+    "Arena": {
+      "coins": 3500
+    },
+    "HungerGames": {
+      "coins": 3500
+    },
+    "Paintball": {
+      "coins": 10380,
+      "deaths": 128,
+      "kills": 112,
+      "shots_fired": 2313,
+      "wins": 5
+    },
+    "Quake": {
+      "coins": 3920,
+      "deaths": 80,
+      "kills": 72
+    },
+    "TNTGames": {
+      "coins": 4045,
+      "deaths_bowspleef": 1,
+      "deaths_capture": 11,
+      "kills_capture": 14,
+      "tags_bowspleef": 5,
+      "wins_capture": 3,
+      "witherwizard_regen": 0
+    },
+    "VampireZ": {
+      "coins": 3500
+    },
+    "Walls": {
+      "coins": 3500
+    },
+    "Walls3": {
+      "coins": 3500
+    },
+    "MCGO": {
+      "coins": 360
+    },
+    "SuperSmash": {
+      "coins": 60
+    },
+    "TrueCombat": {
+      "coins": 180
+    },
+    "GingerBread": {
+      "coins": 60
+    }
+  },
+  "uuid": "61699b2ed3274a019f1e0ea8c3f06bc6",
+  "voting": {
+    "secondary_mcsl": 1,
+    "total_mcsl": 1,
+    "total": 2,
+    "last_mcsl": 1431402908267,
+    "last_vote": 1431402908267,
+    "total_mcsorg": 1,
+    "secondary_mcsorg": 1,
+    "last_mcsorg": 1487837292072,
+    "votesToday": 1
+  },
+  "networkExp": 10480.0
+}

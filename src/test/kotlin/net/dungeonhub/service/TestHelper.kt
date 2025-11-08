@@ -2,7 +2,10 @@ package net.dungeonhub.service
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import net.dungeonhub.hypixel.client.DiskCacheApiClient
+import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
+import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
+import net.dungeonhub.hypixel.entities.bingo.toCurrentBingoEvent
+import net.dungeonhub.hypixel.entities.bingo.toSkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.guild.toGuild
 import net.dungeonhub.hypixel.entities.museum.MuseumData
@@ -87,14 +90,6 @@ object TestHelper {
         }
     }
 
-    fun readAllProdSkyblockProfiles(): Stream<Pair<UUID, List<SkyblockProfile>>> {
-        return Stream.concat(
-            DiskCacheApiClient.skyblockProfilesCache.retrieveAllElements()
-                .map { it.value.owner to it.value.profiles },
-            DiskCacheApiClient.skyblockProfilesCache.getAllHistoryEntries()
-                .flatMap { it.second }.map { it.value.owner to it.value.profiles })
-    }
-
     fun readAllHypixelPlayers(): List<HypixelPlayer> {
         val profilesDirectory = javaClass.classLoader.getResource("player-data/")!!.toURI()
 
@@ -123,6 +118,29 @@ object TestHelper {
 
             GsonProvider.gson.fromJson(museumJson, JsonObject::class.java)
                 .toMuseumData(UUID.fromString(file.nameWithoutExtension))
+        }.toList()
+    }
+
+    fun readAllBingoData(): List<SkyblockBingoData> {
+        val bingoDirectory = javaClass.classLoader.getResource("bingo-data/")!!.toURI()
+
+        return Files.list(Paths.get(bingoDirectory)).map { file ->
+            val bingoJson = readFile("bingo-data/${file.name}")
+
+            val uuid = UUID.fromString(file.name.replace(".json", ""))
+
+            GsonProvider.gson.fromJson(bingoJson, JsonObject::class.java)
+                .toSkyblockBingoData(uuid)
+        }.toList()
+    }
+
+    fun readAllBingoEvents(): List<CurrentBingoEvent> {
+        val bingoDirectory = javaClass.classLoader.getResource("resources/skyblock_bingo/")!!.toURI()
+
+        return Files.list(Paths.get(bingoDirectory)).map { file ->
+            val eventJson = readFile("resources/skyblock_bingo/${file.name}")
+
+            GsonProvider.gson.fromJson(eventJson, JsonObject::class.java).toCurrentBingoEvent()
         }.toList()
     }
 

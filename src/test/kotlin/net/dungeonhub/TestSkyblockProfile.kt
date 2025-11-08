@@ -1,11 +1,12 @@
 package net.dungeonhub
 
 import com.google.gson.JsonArray
-import net.dungeonhub.hypixel.client.MemoryCacheApiClient
+import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.client.RestApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
+import net.dungeonhub.hypixel.entities.inventory.SkyblockRarity
 import net.dungeonhub.hypixel.entities.inventory.items.*
 import net.dungeonhub.hypixel.entities.inventory.items.id.*
 import net.dungeonhub.hypixel.entities.inventory.items.special.*
@@ -767,7 +768,7 @@ class TestSkyblockProfile {
         val uuid = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
         val profile = TestHelper.readFullSkyblockProfile()
 
-        (apiConnection.client as MemoryCacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
+        (apiConnection.client as CacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
 
         val statsOverview = apiConnection.getStatsOverview(uuid)
 
@@ -791,6 +792,27 @@ class TestSkyblockProfile {
                     "<:piggy_bank:1330399968221204560> Purse: 19.04m\n" +
                     "<:personal_bank:1330399998512468018> Bank: 400.72m", statsOverview.description
         )
+    }
+
+    @Test
+    fun testBingoRankCalculation() {
+        val bingoRanks = mapOf(
+            UUID.fromString("c932b869-d479-4471-a36d-4ec6c1ef1fa2") to SkyblockRarity.Legendary,
+            UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98") to SkyblockRarity.Legendary,
+            UUID.fromString("92d940ad-10e8-4d9d-a795-adcf5fd6b0c6") to SkyblockRarity.Legendary,
+            UUID.fromString("0425ae3e-3be4-4761-81e0-45be04ad2606") to SkyblockRarity.Uncommon,
+            UUID.fromString("91821440-2b71-4cdb-8364-611c3e435e4b") to SkyblockRarity.Epic,
+        )
+
+        TestHelper.runParallel {
+            TestHelper.readAllSkyblockProfileObjects().forEach {
+                assertDoesNotThrow { it.bingoRank }
+
+                if (bingoRanks.containsKey(it.owner)) {
+                    assertEquals(bingoRanks[it.owner], it.bingoRank)
+                }
+            }
+        }
     }
 
     companion object {
@@ -1202,7 +1224,6 @@ class TestSkyblockProfile {
             ArmorItemId.HotFervorHelmet,
             ArmorItemId.HotHollowHelmet,
             VanillaItemId.EmptyMap,
-            RiftItemId.CaducousExtract,
             RiftItemId.PreDigestionFish,
             WeaponItemId.TimeShuriken,
             MiscItemId.CarnivalDartTube,
@@ -1251,12 +1272,10 @@ class TestSkyblockProfile {
             MiscItemId.EnchantedBookBundlePrismatic,
             MiscItemId.EnchantedBookBundleTransylvanian,
             KnownEnrichmentId.IntelligenceEnrichment,
-            KnownEnrichmentId.CriticalChanceEnrichment,
             KnownEnrichmentId.DefenseEnrichment,
             KnownEnrichmentId.HealthEnrichment,
             MiscItemId.FishingMinionXIIUpgradeStone,
             MiscItemId.LegendaryGriffinUpgradeStone,
-            MiscItemId.HurricaneInABottle,
             MiscItemId.Kloonboat,
             MiscItemId.MaddoxsPhoneNumber,
             MiscItemId.MushroomWartsStew,
@@ -1329,7 +1348,6 @@ class TestSkyblockProfile {
             MinionItemId.ClayMinion2,
             MinionItemId.ClayMinion3,
             MinionItemId.ClayMinion4,
-            MinionItemId.CobblestoneMinion10,
             MinionItemId.CocoaBeansMinion6,
             MinionItemId.CowMinion6,
             MinionItemId.CreeperMinion2,
@@ -1399,7 +1417,6 @@ class TestSkyblockProfile {
             MinionItemId.SnowMinion4,
             MinionItemId.SnowMinion6,
             MinionItemId.SnowMinion10,
-            MinionItemId.SpiderMinion2,
             MinionItemId.SpruceMinion5,
             MinionItemId.SugarCaneMinion1,
             MinionItemId.SugarCaneMinion8,
@@ -1527,19 +1544,13 @@ class TestSkyblockProfile {
             BuggedItemId.NullMap3,
             VanillaItemId.SpawnEgg,
             AccessoryItemId.JunkTalisman,
-            AccessoryItemId.JunkRing,
             CosmeticItemId.BunnyCabinet,
             CosmeticItemId.BunnyTV,
             CosmeticItemId.SpringBarnSkin,
-            EquipmentItemId.AnglerBelt,
-            EquipmentItemId.AnglerBracelet,
-            EquipmentItemId.AnglerCloak,
-            EquipmentItemId.AnglerNecklace,
             MiscItemId.BronzeBowl,
             MiscItemId.BronzeShipEngine,
             MiscItemId.BronzeShipHelm,
             MiscItemId.BronzeShipHull,
-            MiscItemId.MobyDuckCollectorsEdition,
             MiscItemId.OctopusTendril,
             MiscItemId.OldLeatherBoot,
             MiscItemId.RustyCoin,
@@ -1552,7 +1563,6 @@ class TestSkyblockProfile {
             KnownRodPartId.ChumSinker,
             KnownRodPartId.FestiveSinker,
             KnownRodPartId.PrismarineSinker,
-            KnownRodPartId.SpongeSinker,
             KnownRodPartId.TitanLine,
             MiscItemId.HalfEatenMushroom,
             MiscItemId.TitanoboaShed,
@@ -1570,8 +1580,7 @@ class TestSkyblockProfile {
             KnownDyeId.SunsetDye,
             KnownPetSkinId.MyceliyumBurgerMooshroomCowSkin,
             KnownPetSkinId.HollowRockSkin,
-            KnownPetSkinId.IceFairySubzeroWispSkin,
-            KnownPetSkinId.BlackAngoraRiftFerretSkin
+            KnownPetSkinId.IceFairySubzeroWispSkin
         )
     }
 }

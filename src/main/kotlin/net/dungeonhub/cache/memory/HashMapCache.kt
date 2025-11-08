@@ -2,18 +2,15 @@ package net.dungeonhub.cache.memory
 
 import net.dungeonhub.cache.Cache
 import java.time.Instant
+import java.util.concurrent.ConcurrentHashMap
 import java.util.stream.Stream
 
 class HashMapCache<T, K>(val keyFunction: (T) -> K) : Cache<T, K> {
-    private val cache = HashMap<K, CacheElement<T>>()
+    private val cache: MutableMap<K, CacheElement<T>> = ConcurrentHashMap()
 
-    override fun retrieveElement(key: K): CacheElement<T>? {
-        return cache[key]
-    }
+    override fun retrieveElement(key: K): CacheElement<T>? = cache[key]
 
-    override fun retrieveAllElements(): Stream<CacheElement<T>> {
-        return cache.values.stream()
-    }
+    override fun retrieveAllElements(): Stream<CacheElement<T>> = cache.values.stream()
 
     override fun store(value: T) {
         cache[keyFunction(value)] = CacheElement(timeAdded = Instant.now(), value = value)
