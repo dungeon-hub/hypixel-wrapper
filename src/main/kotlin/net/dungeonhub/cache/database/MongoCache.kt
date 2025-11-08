@@ -7,6 +7,8 @@ import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.mongodb.client.MongoCollection
+import com.mongodb.client.model.Accumulators
+import com.mongodb.client.model.Aggregates
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Sorts
 import net.dungeonhub.cache.Cache
@@ -15,7 +17,9 @@ import net.dungeonhub.provider.GsonProvider
 import org.bson.Document
 import java.time.Instant
 import java.util.Date
+import java.util.Spliterators
 import java.util.stream.Stream
+import java.util.stream.StreamSupport
 
 class MongoCache<T, K>(
     collection: MongoCollection<Document>,
@@ -36,19 +40,50 @@ class MongoCache<T, K>(
     }
 
     override fun retrieveAllElements(): Stream<CacheElement<T>> {
-        val latestByKey = linkedMapOf<String, CacheElement<T>>()
-        collection.find().iterator().use { cursor ->
-            while (cursor.hasNext()) {
-                val document = cursor.next()
-                val key = document.getString(KEY_FIELD) ?: document[KEY_FIELD]?.toString() ?: continue
-                val element = deserialize(document) ?: continue
-                val current = latestByKey[key]
-                if (current == null || current.timeAdded.isBefore(element.timeAdded)) {
-                    latestByKey[key] = element
+        val pipeline = listOf(
+            Aggregates.sort(Sorts.descending(TIMESTAMP_FIELD)),
+            Aggregates.group("$${KEY_FIELD}", Accumulators.first("doc", "$\$ROOT")),
+            Aggregates.replaceRoot("\$doc")
+        )
+
+        val cursor = collection.aggregate(pipeline, Document::class.java).iterator()
+
+        val iterator = object : Iterator<CacheElement<T>> {
+            private var nextComputed = false
+            private var nextValue: CacheElement<T>? = null
+
+            private fun computeNext() {
+                while (cursor.hasNext()) {
+                    val doc = cursor.next()
+                    val element = deserialize(doc)
+                    if (element != null) {
+                        nextValue = element
+                        nextComputed = true
+                        return
+                    }
                 }
+                nextValue = null
+                nextComputed = true
+            }
+
+            override fun hasNext(): Boolean {
+                if (!nextComputed) computeNext()
+                return nextValue != null
+            }
+
+            override fun next(): CacheElement<T> {
+                if (!nextComputed) computeNext()
+                val result = nextValue ?: throw NoSuchElementException()
+                nextComputed = false
+                nextValue = null
+                return result
             }
         }
-        return latestByKey.values.stream()
+
+        val spliterator = Spliterators.spliteratorUnknownSize(iterator, 0)
+        val stream = StreamSupport.stream(spliterator, false)
+
+        return stream.onClose { cursor.close() }
     }
 
     override fun store(value: T) {
