@@ -43,7 +43,7 @@ class MongoCache<T, K>(
                 val key = document.getString(KEY_FIELD) ?: document[KEY_FIELD]?.toString() ?: continue
                 val element = deserialize(document) ?: continue
                 val current = latestByKey[key]
-                if (current == null || !current.timeAdded.isAfter(element.timeAdded)) {
+                if (current == null || current.timeAdded.isBefore(element.timeAdded)) {
                     latestByKey[key] = element
                 }
             }
