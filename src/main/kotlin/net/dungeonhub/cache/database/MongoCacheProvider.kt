@@ -39,4 +39,3 @@ object MongoCacheProvider {
         return database.getCollection(collectionName)
     }
 }
-

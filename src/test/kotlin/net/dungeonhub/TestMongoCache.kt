@@ -133,7 +133,7 @@ class TestMongoCache {
         @JvmStatic
         @BeforeAll
         fun startEmbeddedMongo() {
-            Assumptions.assumeFalse(System.getenv("CI") == "true", "Skipping on CI/CD due to random errors idk")
+            Assumptions.assumeFalse(System.getenv("CI") == "true", "Skipping embedded MongoDB tests in CI/CD environment due to an unknown incompatibility")
 
             val port = Network.freeServerPort(InetAddress.getByName("localhost"))
             val ipv6 = runCatching { Network.localhostIsIPv6() }.getOrDefault(false)
