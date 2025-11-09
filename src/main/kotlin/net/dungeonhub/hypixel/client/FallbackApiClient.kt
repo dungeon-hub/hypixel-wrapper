@@ -17,7 +17,7 @@ class FallbackApiClient(val first: ApiClientWithCache, val second: ApiClient, va
             ?: second.getSkyblockProfiles(uuid)
 
     override fun getGuild(name: String): Guild? =
-        (if (first.guildCache.isExpired(name)) null else first.getGuild(name))
+        (if (first.guildCache.isExpired(name.lowercase())) null else first.getGuild(name))
             ?: second.getGuild(name)
 
     override fun getBingoData(uuid: UUID): SkyblockBingoData? =
