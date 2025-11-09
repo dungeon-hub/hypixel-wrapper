@@ -20,6 +20,7 @@ import java.util.Date
 import java.util.Spliterators
 import java.util.stream.Stream
 import java.util.stream.StreamSupport
+import kotlin.concurrent.thread
 
 class MongoCache<T, K>(
     collection: MongoCollection<Document>,
@@ -95,7 +96,7 @@ class MongoCache<T, K>(
         document[KEY_FIELD] = serializedKey
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
-        collection.insertOne(document)
+        thread(start = true) { collection.insertOne(document) }
     }
 
     override fun invalidateEntry(key: K) {
