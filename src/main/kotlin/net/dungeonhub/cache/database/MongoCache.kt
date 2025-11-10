@@ -15,6 +15,7 @@ import net.dungeonhub.cache.Cache
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import org.bson.Document
+import java.time.Duration
 import java.time.Instant
 import java.util.Date
 import java.util.Spliterators
@@ -26,18 +27,31 @@ class MongoCache<T, K>(
     collection: MongoCollection<Document>,
     private val typeToken: TypeToken<CacheElement<T>>,
     private val keyFunction: (T) -> K,
-    private val keySerializer: (K) -> String = { it.toString() }
+    private val keySerializer: (K) -> String = { it.toString() },
+    private val memoryCacheSize: Int = 5,
+    private val memoryCacheTtl: Duration? = null
 ) : Cache<T, K> {
-
     private val collection: MongoCollection<Document> = collection.withDocumentClass(Document::class.java)
+    private val cacheLock = Any()
+    private val secondLevelCache = object : LinkedHashMap<K, LocalCacheEntry<T>>(memoryCacheSize.coerceAtLeast(1), 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<K, LocalCacheEntry<T>>?): Boolean {
+            return memoryCacheSize in 1..<size
+        }
+    }
 
     override fun retrieveElement(key: K): CacheElement<T>? {
+        getFromMemoryCache(key)?.let { return it }
+
         val keyString = keySerializer(key)
         val document = collection
             .find(Filters.eq(KEY_FIELD, keyString))
             .sort(Sorts.descending(TIMESTAMP_FIELD))
             .first() ?: return null
-        return deserialize(document)
+        val element = deserialize(document)
+        if (element != null) {
+            storeInMemoryCache(key, element)
+        }
+        return element
     }
 
     override fun retrieveAllElements(): Stream<CacheElement<T>> {
@@ -96,12 +110,14 @@ class MongoCache<T, K>(
         document[KEY_FIELD] = serializedKey
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
+        storeInMemoryCache(key, CacheElement(timestamp, value))
         thread(start = true) { collection.insertOne(document) }
     }
 
     override fun invalidateEntry(key: K) {
         val serializedKey = keySerializer(key)
         collection.deleteMany(Filters.eq(KEY_FIELD, serializedKey))
+        invalidateMemoryCache(key)
     }
 
     private fun deserialize(document: Document): CacheElement<T>? {
@@ -121,11 +137,50 @@ class MongoCache<T, K>(
         }
     }
 
+    private fun getFromMemoryCache(key: K): CacheElement<T>? {
+        if (memoryCacheSize <= 0) return null
+
+        val entry = synchronized(cacheLock) {
+            val cached = secondLevelCache[key]
+            if (cached != null && isExpired(cached)) {
+                secondLevelCache.remove(key)
+                null
+            } else {
+                cached
+            }
+        }
+
+        return entry?.element
+    }
+
+    private fun storeInMemoryCache(key: K, element: CacheElement<T>) {
+        if (memoryCacheSize <= 0) return
+        val entry = LocalCacheEntry(Instant.now(), element)
+        synchronized(cacheLock) {
+            secondLevelCache[key] = entry
+        }
+    }
+
+    private fun invalidateMemoryCache(key: K) {
+        if (memoryCacheSize <= 0) return
+        synchronized(cacheLock) {
+            secondLevelCache.remove(key)
+        }
+    }
+
+    private fun isExpired(entry: LocalCacheEntry<T>): Boolean {
+        val ttl = memoryCacheTtl ?: return false
+        val now = Instant.now()
+        return now.isAfter(entry.cachedAt.plus(ttl))
+    }
+
     companion object {
         private const val KEY_FIELD = "key"
         private const val TIMESTAMP_FIELD = "timestamp"
         private const val VALUE_FIELD = "value"
     }
+
+    private data class LocalCacheEntry<T>(val cachedAt: Instant, val element: CacheElement<T>)
 
     private fun jsonElementToBsonValue(element: JsonElement): Any? = when {
         element.isJsonNull -> null
