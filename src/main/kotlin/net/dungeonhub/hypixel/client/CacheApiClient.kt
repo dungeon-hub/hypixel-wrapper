@@ -12,6 +12,7 @@ import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.status.PlayerSession
 import net.dungeonhub.hypixel.provider.CacheApiClientProvider
 import java.util.*
 
@@ -19,6 +20,13 @@ class CacheApiClient(cacheType: CacheType? = null) : ApiClientWithCache {
     override val playerDataCache = buildCache(
         CachedResource.PlayerData,
         object : TypeToken<CacheElement<HypixelPlayer>>() {},
+        { it.uuid },
+        { UUID.fromString(it) },
+        cacheType
+    )
+    override val sessionCache = buildCache(
+        CachedResource.PlayerSession,
+        object : TypeToken<CacheElement<PlayerSession>>() {},
         { it.uuid },
         { UUID.fromString(it) },
         cacheType

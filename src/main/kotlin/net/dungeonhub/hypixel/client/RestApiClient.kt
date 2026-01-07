@@ -14,6 +14,8 @@ import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
+import net.dungeonhub.hypixel.entities.status.PlayerSession
+import net.dungeonhub.hypixel.entities.status.toPlayerSession
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -30,6 +32,24 @@ object RestApiClient : ApiClient, ResourceApiClient {
         }
 
         return player.raw.toHypixelPlayer()
+    }
+
+    override fun getSession(uuid: UUID): PlayerSession? {
+        val url = (API_PREFIX + "status").toHttpUrl().newBuilder().addEncodedQueryParameter("uuid", uuid.toString()).build()
+
+        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
+
+        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
+            return null
+        }
+
+        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
+
+        if (!jsonElement.isJsonObject) {
+            return null
+        }
+
+        return jsonElement.asJsonObject.getAsJsonObjectOrNull("session")?.toPlayerSession(uuid)
     }
 
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles {

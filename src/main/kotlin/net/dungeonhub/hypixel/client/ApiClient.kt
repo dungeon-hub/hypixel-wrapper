@@ -8,10 +8,13 @@ import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview
+import net.dungeonhub.hypixel.entities.status.PlayerSession
 import java.util.*
 
 interface ApiClient {
     fun getPlayerData(uuid: UUID): HypixelPlayer?
+
+    fun getSession(uuid: UUID): PlayerSession?
 
     fun getHypixelLinkedDiscord(uuid: UUID): String? {
         return getPlayerData(uuid)?.socialMediaLinks?.entries?.firstOrNull { it.key == KnownSocialMediaType.Discord }?.value

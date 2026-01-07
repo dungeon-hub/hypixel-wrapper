@@ -15,6 +15,8 @@ import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.toSkyblockProfile
+import net.dungeonhub.hypixel.entities.status.PlayerSession
+import net.dungeonhub.hypixel.entities.status.toPlayerSession
 import net.dungeonhub.provider.GsonProvider
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Protocol
@@ -97,6 +99,18 @@ object TestHelper {
             val hypixelPlayerJson = readFile("player-data/${file.name}")
 
             GsonProvider.gson.fromJson(hypixelPlayerJson, JsonObject::class.java).toHypixelPlayer()
+        }.toList()
+    }
+
+    fun readAllPlayerSessions(): List<PlayerSession> {
+        val profilesDirectory = javaClass.classLoader.getResource("player-session/")!!.toURI()
+
+        return Files.list(Paths.get(profilesDirectory)).map { file ->
+            val sessionJson = readFile("player-session/${file.name}")
+
+            val uuid = UUID.fromString(file.name.replace(".json", ""))
+
+            GsonProvider.gson.fromJson(sessionJson, JsonObject::class.java).toPlayerSession(uuid)
         }.toList()
     }
 

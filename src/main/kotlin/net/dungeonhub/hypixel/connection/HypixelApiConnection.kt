@@ -9,6 +9,7 @@ import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.status.PlayerSession
 import net.dungeonhub.strategy.ApiClientStrategy
 import java.time.Duration
 import java.util.*
@@ -19,6 +20,7 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
         private set
 
     override fun getPlayerData(uuid: UUID): HypixelPlayer? = strategy.client.getPlayerData(uuid)
+    override fun getSession(uuid: UUID): PlayerSession? = strategy.client.getSession(uuid)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = strategy.client.getSkyblockProfiles(uuid)
     override fun getGuild(name: String): Guild? = strategy.client.getGuild(name)
     override fun getBingoData(uuid: UUID): SkyblockBingoData? = strategy.client.getBingoData(uuid)

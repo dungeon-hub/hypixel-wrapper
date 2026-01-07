@@ -3,10 +3,12 @@ package net.dungeonhub.hypixel.client
 import net.dungeonhub.cache.Cache
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.status.PlayerSession
 import java.util.*
 
 class StoringApiClient(val apiClient: ApiClient, val storage: ApiClientWithCache) : ApiClient {
     override fun getPlayerData(uuid: UUID): HypixelPlayer? = storeAndReturn(apiClient.getPlayerData(uuid), storage.playerDataCache)
+    override fun getSession(uuid: UUID): PlayerSession? = storeAndReturn(apiClient.getSession(uuid), storage.sessionCache)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = storeAndReturn(apiClient.getSkyblockProfiles(uuid), storage.skyblockProfilesCache)
     override fun getGuild(name: String) = storeAndReturn(apiClient.getGuild(name.lowercase()), storage.guildCache)
     override fun getBingoData(uuid: UUID) = storeAndReturn(apiClient.getBingoData(uuid), storage.bingoDataCache)
