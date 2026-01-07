@@ -14,6 +14,7 @@ class HypixelPlayer(
     val displayName: String,
     val firstLogin: Instant?,
     val lastLogin: Instant?,
+    val lastLogout: Instant?,
     val socialMediaLinks: Map<SocialMediaType, String>,
     val rank: Rank,
     val raw: JsonObject
@@ -29,6 +30,7 @@ fun JsonObject.toHypixelPlayer(): HypixelPlayer {
         getAsJsonPrimitive("displayname").asString,
         getAsJsonPrimitiveOrNull("firstLogin")?.asLong?.let { Instant.ofEpochMilli(it) },
         getAsJsonPrimitiveOrNull("lastLogin")?.asLong?.let { Instant.ofEpochMilli(it) },
+        getAsJsonPrimitiveOrNull("lastLogout")?.asLong?.let { Instant.ofEpochMilli(it) },
         getAsJsonObjectOrNull("socialMedia")?.getAsJsonObjectOrNull("links")?.entrySet()?.associate {
             KnownSocialMediaType.fromApiName(it.key) to it.value.asString
         } ?: emptyMap(),
