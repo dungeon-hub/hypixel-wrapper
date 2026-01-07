@@ -59,7 +59,7 @@ class DiskHistoryCache<T, K>(
             .mapNotNull { dir -> keyParser(dir.name)?.let(this::retrieveElement) }
     }
 
-    override fun store(value: T) {
+    override fun store(value: T, waitForInsertion: Boolean) {
         val key = keyFunction(value)
         invalidateEntry(key)
         val file = getDataFile(key)

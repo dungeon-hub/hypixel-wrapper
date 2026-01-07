@@ -55,7 +55,7 @@ class TestMongoCache {
         for (pair in rawData) {
             val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
 
-            apiClient.playerDataCache.store(player.toHypixelPlayer())
+            apiClient.playerDataCache.store(player.toHypixelPlayer(), waitForInsertion = true)
         }
 
         for (pair in rawData) {

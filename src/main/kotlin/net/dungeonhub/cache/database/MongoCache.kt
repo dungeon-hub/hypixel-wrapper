@@ -101,7 +101,7 @@ class MongoCache<T, K>(
         return stream.onClose { cursor.close() }
     }
 
-    override fun store(value: T) {
+    override fun store(value: T, waitForInsertion: Boolean) {
         val key = keyFunction(value)
         val serializedKey = keySerializer(key)
         val timestamp = Instant.now()
@@ -111,7 +111,8 @@ class MongoCache<T, K>(
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
         storeInMemoryCache(key, CacheElement(timestamp, value))
-        thread(start = true) { collection.insertOne(document) }
+        val insertionThread = thread(start = true) { collection.insertOne(document) }
+        if (waitForInsertion) insertionThread.join()
     }
 
     override fun invalidateEntry(key: K) {
