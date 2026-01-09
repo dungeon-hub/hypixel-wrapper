@@ -14,6 +14,7 @@ interface ApiClientWithCache : ApiClient {
     val sessionCache: Cache<PlayerSession, UUID>
     val skyblockProfilesCache: Cache<SkyblockProfiles, UUID>
     val guildCache: Cache<Guild, String>
+    val playerGuildCache: Cache<Guild, UUID>
     val bingoDataCache: Cache<SkyblockBingoData, UUID>
 
     fun <T : Any> isExpired(cache: Cache<T, UUID>, uuid: UUID, expiresAfterMinutes: Int = 5): Boolean {
@@ -40,6 +41,10 @@ interface ApiClientWithCache : ApiClient {
 
     override fun getGuild(name: String): Guild? {
         return guildCache.retrieve(name.lowercase())
+    }
+
+    override fun getPlayerGuild(uuid: UUID): Guild? {
+        return playerGuildCache.retrieve(uuid)
     }
 
     override fun getBingoData(uuid: UUID): SkyblockBingoData? {

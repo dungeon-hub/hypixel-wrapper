@@ -23,6 +23,7 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
     override fun getSession(uuid: UUID): PlayerSession? = client.getSession(uuid)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = client.getSkyblockProfiles(uuid)
     override fun getGuild(name: String): Guild? = client.getGuild(name)
+    override fun getPlayerGuild(uuid: UUID): Guild? = client.getPlayerGuild(uuid)
     override fun getBingoData(uuid: UUID): SkyblockBingoData? = client.getBingoData(uuid)
 
     var cacheExpiration: Int?

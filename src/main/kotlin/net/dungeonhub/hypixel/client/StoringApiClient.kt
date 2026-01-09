@@ -11,6 +11,7 @@ class StoringApiClient(val apiClient: ApiClient, val storage: ApiClientWithCache
     override fun getSession(uuid: UUID): PlayerSession? = storeAndReturn(apiClient.getSession(uuid), storage.sessionCache)
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = storeAndReturn(apiClient.getSkyblockProfiles(uuid), storage.skyblockProfilesCache)
     override fun getGuild(name: String) = storeAndReturn(apiClient.getGuild(name.lowercase()), storage.guildCache)
+    override fun getPlayerGuild(uuid: UUID) = storeAndReturn(apiClient.getPlayerGuild(uuid), storage.playerGuildCache)
     override fun getBingoData(uuid: UUID) = storeAndReturn(apiClient.getBingoData(uuid), storage.bingoDataCache)
 
     private fun <T, K> storeAndReturn(value: T?, cache: Cache<T, K>): T? {

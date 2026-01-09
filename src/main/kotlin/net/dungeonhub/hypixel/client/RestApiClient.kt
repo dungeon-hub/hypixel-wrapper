@@ -83,6 +83,25 @@ object RestApiClient : ApiClient, ResourceApiClient {
         return jsonElement.asJsonObject.getAsJsonObjectOrNull("guild")?.toGuild()
     }
 
+    override fun getPlayerGuild(uuid: UUID): Guild? {
+        val url = (API_PREFIX + "guild").toHttpUrl().newBuilder()
+            .addEncodedQueryParameter("player", uuid.toString()).build()
+
+        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
+
+        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
+            return null
+        }
+
+        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
+
+        if (!jsonElement.isJsonObject) {
+            return null
+        }
+
+        return jsonElement.asJsonObject.getAsJsonObjectOrNull("guild")?.toGuild(uuid)
+    }
+
     override fun getBingoData(uuid: UUID): SkyblockBingoData? {
         val url = (API_PREFIX + "skyblock/bingo").toHttpUrl().newBuilder()
             .addEncodedQueryParameter("uuid", uuid.toString()).build()

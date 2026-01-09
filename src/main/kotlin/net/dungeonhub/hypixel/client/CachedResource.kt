@@ -7,5 +7,6 @@ enum class CachedResource(
     PlayerSession("player-session"),
     SkyblockProfiles("skyblock-profiles"),
     Guilds("guilds"),
+    PlayerGuilds("player-guilds"),
     BingoData("bingo-data");
 }

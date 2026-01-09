@@ -45,6 +45,13 @@ class CacheApiClient(cacheType: CacheType? = null) : ApiClientWithCache {
         { it },
         cacheType
     )
+    override val playerGuildCache = buildCache(
+        CachedResource.PlayerGuilds,
+        object : TypeToken<CacheElement<Guild>>() {},
+        { it.playerUuid!! },
+        { UUID.fromString(it) },
+        cacheType
+    )
     override val bingoDataCache = buildCache(
         CachedResource.BingoData,
         object : TypeToken<CacheElement<SkyblockBingoData>>() {},

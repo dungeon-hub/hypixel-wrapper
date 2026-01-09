@@ -24,6 +24,8 @@ interface ApiClient {
 
     fun getGuild(name: String): Guild?
 
+    fun getPlayerGuild(uuid: UUID): Guild?
+
     fun getBingoData(uuid: UUID): SkyblockBingoData?
 
     fun getStatsOverview(uuid: UUID): ProfileStatsOverview? {
