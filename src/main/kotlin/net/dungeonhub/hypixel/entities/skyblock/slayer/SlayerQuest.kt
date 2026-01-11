@@ -7,8 +7,7 @@ class SlayerQuest(
     val type: SlayerType,
     val tier: Int,
     val startTime: Instant,
-    val completionState: Int,
-    val raw: JsonObject
+    val completionState: Int
 )
 
 fun JsonObject.toSlayerQuest(): SlayerQuest {
@@ -16,7 +15,6 @@ fun JsonObject.toSlayerQuest(): SlayerQuest {
         KnownSlayerType.fromApiName(getAsJsonPrimitive("type").asString),
         getAsJsonPrimitive("tier").asInt,
         Instant.ofEpochMilli(getAsJsonPrimitive("start_timestamp").asLong),
-        getAsJsonPrimitive("completion_state").asInt,
-        this
+        getAsJsonPrimitive("completion_state").asInt
     )
 }

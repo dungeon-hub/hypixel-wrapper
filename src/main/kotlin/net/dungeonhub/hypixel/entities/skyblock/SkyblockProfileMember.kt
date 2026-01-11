@@ -1,7 +1,6 @@
 package net.dungeonhub.hypixel.entities.skyblock
 
 import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import net.dungeonhub.hypixel.entities.inventory.toMemberInventoryData
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes.Companion.toCurrencyType
@@ -37,8 +36,7 @@ abstract class SkyblockProfileMember(
     open val leveling: MemberLeveling,
     open val playerData: MemberPlayerData?,
     open val playerStats: MemberPlayerStats?,
-    open val slayer: MemberSlayerData?,
-    open val raw: JsonObject
+    open val slayer: MemberSlayerData?
 )
 
 fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
@@ -59,8 +57,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                 it.value.asJsonObject.getAsJsonObjectOrNull("player_data")?.toPlayerData() ?: defaultPlayerData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("player_stats")?.toPlayerStats(),
                 it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
-                it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
-                it.value.asJsonObject
+                it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData()
             )
         }
 
@@ -72,8 +69,7 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
                 profileData,
                 it.value.asJsonObject.getAsJsonObjectOrNull("leveling")?.toLeveling()
                     ?: defaultLeveling,
-                it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData(),
-                it.value.asJsonObject
+                it.value.asJsonObject.getAsJsonObjectOrNull("slayer")?.toSlayerData()
             )
         }
 
@@ -100,14 +96,12 @@ fun JsonObject.loadProfileMembers(): List<SkyblockProfileMember> {
             it.value.asJsonObject.getAsJsonObjectOrNull("fairy_soul")?.toFairySoulData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("inventory")?.toMemberInventoryData(),
             it.value.asJsonObject.getAsJsonObjectOrNull("pets_data")?.toPetsData(),
-            it.value.asJsonObject.getAsJsonObjectOrNull("rift")?.toRiftData(),
-            it.value.asJsonObject
+            it.value.asJsonObject.getAsJsonObjectOrNull("rift")?.toRiftData()
         )
     }
 }
 
 private val defaultLeveling = MemberLeveling(
-    0,
-    JsonParser.parseString("{\"experience\":0}").asJsonObject
+    0
 )
-private val defaultPlayerData = MemberPlayerData(null, null, null, JsonObject())
+private val defaultPlayerData = MemberPlayerData(null, null, null)

@@ -16,8 +16,7 @@ class HypixelPlayer(
     val lastLogin: Instant?,
     val lastLogout: Instant?,
     val socialMediaLinks: Map<SocialMediaType, String>,
-    val rank: Rank,
-    val raw: JsonObject
+    val rank: Rank
 ) {
     val discordLink = socialMediaLinks[KnownSocialMediaType.Discord]
 }
@@ -34,7 +33,6 @@ fun JsonObject.toHypixelPlayer(): HypixelPlayer {
         getAsJsonObjectOrNull("socialMedia")?.getAsJsonObjectOrNull("links")?.entrySet()?.associate {
             KnownSocialMediaType.fromApiName(it.key) to it.value.asString
         } ?: emptyMap(),
-        KnownRank.fromPlayerObject(this),
-        this
+        KnownRank.fromPlayerObject(this)
     )
 }

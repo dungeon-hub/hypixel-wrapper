@@ -6,14 +6,12 @@ import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 
 class SlayerBossProgress(
     val claimedLevels: JsonObject,
-    val xp: Int?,
-    val raw: JsonObject
+    val xp: Int?
 )
 
 fun JsonObject.toSlayerProgress(): SlayerBossProgress {
     return SlayerBossProgress(
         getAsJsonObjectOrNull("claimed_levels") ?: JsonObject(),
-        getAsJsonPrimitiveOrNull("xp")?.asInt,
-        this
+        getAsJsonPrimitiveOrNull("xp")?.asInt
     )
 }

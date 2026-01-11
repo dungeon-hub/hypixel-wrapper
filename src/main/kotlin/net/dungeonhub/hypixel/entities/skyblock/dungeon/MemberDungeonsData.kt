@@ -15,8 +15,7 @@ class MemberDungeonsData(
     val treasures: JsonObject?,
     val raceSettings: JsonObject?,
     val lastRun: String?,
-    val secrets: Int?,
-    val raw: JsonObject
+    val secrets: Int?
 ) {
     val classAverage = CatacombsClass.entries.sumOf {
         levelFromExperience(classExperience[it] ?: 0.0)
@@ -121,7 +120,6 @@ fun JsonObject.toDungeonsData(): MemberDungeonsData {
         getAsJsonObjectOrNull("treasures"),
         getAsJsonObjectOrNull("dungeon_hub_race_settings"),
         getAsJsonPrimitiveOrNull("last_dungeon_run")?.asString,
-        getAsJsonPrimitiveOrNull("secrets")?.asInt,
-        this
+        getAsJsonPrimitiveOrNull("secrets")?.asInt
     )
 }

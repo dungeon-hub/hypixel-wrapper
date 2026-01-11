@@ -14,8 +14,7 @@ import java.time.Instant
 class MemberPlayerData(
     val experience: MutableMap<Skill, Double>?,
     val visitedZones: JsonArray?,
-    val lastDeath: Instant?,
-    val raw: JsonObject
+    val lastDeath: Instant?
 ) {
     val nonCosmeticExperience: Map<KnownSkill, Double>?
         get() {
@@ -42,8 +41,7 @@ fun JsonObject.toPlayerData(): MemberPlayerData {
         getAsJsonObjectOrNull("experience")?.entrySet()
             ?.associate { KnownSkill.fromApiName(it.key) to it.value.asDouble }?.toMutableMap(),
         getAsJsonArrayOrNull("visited_zones"),
-        getAsJsonPrimitiveOrNull("last_death")?.asLong?.fromSkyblockTime(),
-        this
+        getAsJsonPrimitiveOrNull("last_death")?.asLong?.fromSkyblockTime()
     )
 
     return memberData
