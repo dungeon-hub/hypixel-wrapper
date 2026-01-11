@@ -650,7 +650,7 @@ class TestSkyblockProfile {
             val allPetTypes = TestHelper.readAllSkyblockProfiles().parallel().flatMap { profiles ->
                 profiles.parallelStream().flatMap { profile ->
                     (profile.members.filterIsInstance<CurrentMember>().mapNotNull { it.petsData?.pets }
-                        .flatMap { it } + profile.members.filterIsInstance<CurrentMember>()
+                        .flatten() + profile.members.filterIsInstance<CurrentMember>()
                         .mapNotNull { it.riftData?.deadCats?.montezuma }).map { it.type }.stream()
                 }
             }.distinct().toList()

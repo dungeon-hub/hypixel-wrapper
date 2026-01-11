@@ -38,5 +38,5 @@ class CurrentMember(
         get() = currencies.entries.firstOrNull { it.key == KnownCurrencyTypes.Motes }?.value
 
     val allItems: List<InventoryContent>
-        get() = listOfNotNull(inventory?.allItems, riftData?.inventory?.allItems).flatMap { it }
+        get() = listOfNotNull(inventory?.allItems, riftData?.inventory?.allItems).flatten()
 }
