@@ -101,6 +101,19 @@ class MongoCache<T, K>(
         return stream.onClose { cursor.close() }
     }
 
+    fun storeCacheElement(element: CacheElement<T>) {
+        val key = keyFunction(element.value)
+        val serializedKey = keySerializer(key)
+        val timestamp = element.timeAdded
+        val valueElement = GsonProvider.gson.toJsonTree(element.value)
+        val document = Document()
+        document[KEY_FIELD] = serializedKey
+        document[TIMESTAMP_FIELD] = timestamp
+        document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
+        storeInMemoryCache(key, element)
+        collection.insertOne(document)
+    }
+
     override fun store(value: T, waitForInsertion: Boolean) {
         val key = keyFunction(value)
         val serializedKey = keySerializer(key)

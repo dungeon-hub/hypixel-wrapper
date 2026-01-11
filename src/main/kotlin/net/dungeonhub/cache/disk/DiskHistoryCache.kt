@@ -9,6 +9,7 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardCopyOption
+import java.time.DateTimeException
 import java.time.Instant
 import java.util.stream.Stream
 import kotlin.io.path.exists
@@ -42,9 +43,9 @@ class DiskHistoryCache<T, K>(
         return dir
     }
 
-    private fun getDataFile(key: K): Path = getDataDirectory(key).resolve("data.json")
+    fun getDataFile(key: K): Path = getDataDirectory(key).resolve("data.json")
 
-    private fun getHistoryFile(key: K, instant: Instant): Path =
+    fun getHistoryFile(key: K, instant: Instant): Path =
         getHistoryDirectory(key).resolve("${instant.toEpochMilli()}.json")
 
     override fun retrieveElement(key: K): CacheElement<T>? {
@@ -53,10 +54,38 @@ class DiskHistoryCache<T, K>(
         return GsonProvider.gson.fromJson(Files.readString(file), typeToken.type)
     }
 
-    override fun retrieveAllElements(): Stream<CacheElement<T>> {
+    fun retrieveAllHistoryKeys(): Stream<K> {
+        return Files.list(historyDirectory)
+            .filter { it.isDirectory() }
+            .mapNotNull { keyParser(it.name) }
+    }
+
+    fun retrieveAllHistoryElements(key: K): Stream<CacheElement<T>> {
+        return Files.list(getHistoryDirectory(key))
+            .filter { it.isRegularFile() }
+            .filter { file ->
+                file.name.removeSuffix(".json").toLongOrNull()?.let {
+                    try {
+                        Instant.ofEpochMilli(it)
+                    } catch (_: DateTimeException) {
+                        null
+                    }
+                } != null
+            }.mapNotNull { file ->
+                getHistoryFile(key, Instant.ofEpochMilli(file.name.removeSuffix(".json").toLong()))
+            }.mapNotNull { GsonProvider.gson.fromJson(Files.readString(it), typeToken.type) }
+    }
+
+    fun retrieveAllKeys(): Stream<K> {
         return Files.list(dataDirectory)
             .filter { it.isDirectory() }
-            .mapNotNull { dir -> keyParser(dir.name)?.let(this::retrieveElement) }
+            .mapNotNull { keyParser(it.name) }
+    }
+
+    override fun retrieveAllElements(): Stream<CacheElement<T>> {
+        return retrieveAllKeys().mapNotNull {
+            retrieveElement(it)
+        }
     }
 
     override fun store(value: T, waitForInsertion: Boolean) {
