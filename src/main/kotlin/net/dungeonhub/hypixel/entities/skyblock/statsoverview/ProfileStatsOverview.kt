@@ -5,16 +5,16 @@ import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import java.util.*
 
-class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember) {
+class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember, customStatsOverviewTypes: List<StatsOverviewType>? = null) {
     val uuid: UUID = profileMember.uuid
     val profileName: String = profile.cuteName ?: profile.profileId.toString()
 
-    val description: String = statsOverviewTypes.joinToString("\n") { type ->
+    val description: String = (customStatsOverviewTypes ?: statsOverviewTypes).joinToString("\n") { type ->
         type.value(profile, profileMember)
     }
 
     companion object {
-        val statsOverviewTypes: List<StatsOverviewType> = listOf(
+        val statsOverviewTypes: MutableList<StatsOverviewType> = mutableListOf(
             BuiltInStatsOverviewType.WitherBlades,
             BuiltInStatsOverviewType.Terminators,
             BuiltInStatsOverviewType.GoldenDragons,

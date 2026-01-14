@@ -8,6 +8,7 @@ import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.StatsOverviewType
 import net.dungeonhub.hypixel.entities.status.PlayerSession
 import java.util.*
 
@@ -28,7 +29,7 @@ interface ApiClient {
 
     fun getBingoData(uuid: UUID): SkyblockBingoData?
 
-    fun getStatsOverview(uuid: UUID): ProfileStatsOverview? {
+    fun getStatsOverview(uuid: UUID, statsOverviewTypes: List<StatsOverviewType>? = null): ProfileStatsOverview? {
         val profiles = getSkyblockProfiles(uuid)
             ?: return null
 
@@ -40,10 +41,10 @@ interface ApiClient {
 
         val member = selectedProfile.getCurrentMember(uuid) ?: return null
 
-        return getStatsOverview(selectedProfile, member)
+        return getStatsOverview(selectedProfile, member, statsOverviewTypes)
     }
 
-    fun getStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember): ProfileStatsOverview? {
-        return ProfileStatsOverview(profile, profileMember)
+    fun getStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember, statsOverviewTypes: List<StatsOverviewType>? = null): ProfileStatsOverview? {
+        return ProfileStatsOverview(profile, profileMember, statsOverviewTypes)
     }
 }
