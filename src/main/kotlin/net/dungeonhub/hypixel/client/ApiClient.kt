@@ -29,14 +29,13 @@ interface ApiClient {
 
     fun getBingoData(uuid: UUID): SkyblockBingoData?
 
-    fun getStatsOverview(uuid: UUID, statsOverviewTypes: List<StatsOverviewType>? = null): ProfileStatsOverview? {
+    fun getStatsOverview(uuid: UUID, selectedProfile: UUID? = null, statsOverviewTypes: List<StatsOverviewType>? = null): ProfileStatsOverview? {
         val profiles = getSkyblockProfiles(uuid)
             ?: return null
 
-        val selectedProfile = (
-                profiles.profiles.firstOrNull { it.selected == true }
-                    ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
-                )
+        val selectedProfile = profiles.profiles.firstOrNull { it.profileId == selectedProfile }
+            ?: profiles.profiles.firstOrNull { it.selected == true }
+            ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
             ?: return null
 
         val member = selectedProfile.getCurrentMember(uuid) ?: return null

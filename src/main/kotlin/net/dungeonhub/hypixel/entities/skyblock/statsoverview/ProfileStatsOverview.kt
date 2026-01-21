@@ -9,9 +9,9 @@ class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMembe
     val uuid: UUID = profileMember.uuid
     val profileName: String = profile.cuteName ?: profile.profileId.toString()
 
-    val description: String = (customStatsOverviewTypes ?: statsOverviewTypes).joinToString("\n") { type ->
+    val description: String = (customStatsOverviewTypes ?: statsOverviewTypes).mapNotNull { type ->
         type.value(profile, profileMember)
-    }
+    }.joinToString("\n")
 
     companion object {
         val statsOverviewTypes: MutableList<StatsOverviewType> = mutableListOf(
@@ -50,6 +50,7 @@ class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMembe
             }
         }.toMutableMap()
         var catacombsEmoji = "<:redstone_key:1330398890725478510>"
+        var notCompletedEmoji = "\u274C" // ❌
 
         var purseEmoji = "<:piggy_bank:1330399968221204560>"
         var bankEmoji = "<:personal_bank:1330399998512468018>"

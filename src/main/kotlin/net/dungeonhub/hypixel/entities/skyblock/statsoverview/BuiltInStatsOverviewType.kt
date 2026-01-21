@@ -10,6 +10,7 @@ import net.dungeonhub.hypixel.entities.inventory.items.special.WitherBlade
 import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.currencies.KnownCurrencyTypes
+import net.dungeonhub.hypixel.entities.skyblock.dungeon.KnownDungeonType
 import net.dungeonhub.hypixel.entities.skyblock.pet.KnownPetType
 import net.dungeonhub.hypixel.entities.skyblock.pet.Pet
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
@@ -17,6 +18,7 @@ import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOvervi
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.catacombsEmoji
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.goldenDragonEmoji
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.magicalPowerEmoji
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.notCompletedEmoji
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.purseEmoji
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.skillAverageEmoji
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.skyblockLevelEmoji
@@ -26,7 +28,7 @@ import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOvervi
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview.Companion.witherBladeEmoji
 import net.dungeonhub.hypixel.service.FormattingService
 
-enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfile, profileMember: CurrentMember) -> String) :
+enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfile, profileMember: CurrentMember) -> String?) :
     StatsOverviewType {
     Empty({ profile: SkyblockProfile, profileMember: CurrentMember ->
         ""
@@ -122,12 +124,33 @@ enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfil
         val catacombsLevel: Int = profileMember.dungeons?.catacombsLevel ?: 0
         val classAverage: Double = profileMember.dungeons?.classAverage ?: 0.0
 
+        val highestDungeonFloor = profileMember.dungeons?.dungeonTypes?.get(KnownDungeonType.Catacombs)?.highestTierCompleted ?: -1
+        val highestMasterFloor = profileMember.dungeons?.dungeonTypes?.get(KnownDungeonType.MasterCatacombs)?.highestTierCompleted ?: -1
+
+        val highestFloorDisplay = (if (highestDungeonFloor < 7) {
+            if (highestDungeonFloor < 0) {
+                "Entrance"
+            } else {
+                "F${highestDungeonFloor + 1}"
+            }
+        } else if (highestMasterFloor < 7) {
+            if (highestMasterFloor < 1) {
+                "M1"
+            } else {
+                "M${highestMasterFloor + 1}"
+            }
+        } else {
+            null
+        })?.let {
+            " ($notCompletedEmoji $it)"
+        } ?: ""
+
         "$catacombsEmoji Catacombs: $catacombsLevel (Class Average ${
             FormattingService.makeDoubleReadable(
                 classAverage,
                 2
             )
-        })"
+        })$highestFloorDisplay"
     }),
     Purse({ profile: SkyblockProfile, profileMember: CurrentMember ->
         val purse: String = profileMember.currencies[KnownCurrencyTypes.Coins]?.toLong()
@@ -147,5 +170,26 @@ enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfil
         }
 
         "$bankEmoji Bank: $bankMoney"
+    }),
+    MissingSlayerCompletions({ profile: SkyblockProfile, profileMember: CurrentMember ->
+        val highestTierKilled = profileMember.slayer?.slayerProgress?.map {
+            it.key to (it.value.bossKillsPerTier?.maxOfOrNull { slayerTier -> slayerTier.key } ?: 0)
+        }?.associate { it } ?: emptyMap()
+
+        val result = slayerEmojies.mapNotNull { (slayerType, slayerEmoji) ->
+            val highestTier = highestTierKilled.getOrDefault(slayerType, 0)
+
+            if(highestTier >= slayerType.maxBossTier) {
+                null
+            } else {
+                "$slayerEmoji T${highestTier + 1}"
+            }
+        }.joinToString(" | ")
+
+        if(result.isEmpty()) {
+            null
+        } else {
+            "Missing Kills: $result"
+        }
     })
 }
