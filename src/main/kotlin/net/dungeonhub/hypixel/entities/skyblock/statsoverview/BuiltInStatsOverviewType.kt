@@ -142,7 +142,7 @@ enum class BuiltInStatsOverviewType(override val value: (profile: SkyblockProfil
         } else {
             null
         })?.let {
-            " ($notCompletedEmoji $it)"
+            " ($notCompletedEmoji $it comp)"
         } ?: ""
 
         "$catacombsEmoji Catacombs: $catacombsLevel (Class Average ${
