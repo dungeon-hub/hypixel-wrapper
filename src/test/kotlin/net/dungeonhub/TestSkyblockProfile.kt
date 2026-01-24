@@ -1545,7 +1545,6 @@ class TestSkyblockProfile {
             AccessoryItemId.JunkTalisman,
             CosmeticItemId.BunnyCabinet,
             CosmeticItemId.BunnyTV,
-            CosmeticItemId.SpringBarnSkin,
             MiscItemId.BronzeBowl,
             MiscItemId.BronzeShipEngine,
             MiscItemId.BronzeShipHelm,
