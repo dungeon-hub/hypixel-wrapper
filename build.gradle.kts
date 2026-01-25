@@ -26,7 +26,7 @@ dependencies {
     api("me.nullicorn:Nedit:2.2.0")
 
     //HTTP Client
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp:5.2.1")
 
     //Logging
     implementation("org.slf4j:slf4j-api:2.0.17")
@@ -38,7 +38,7 @@ dependencies {
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:5.2.1")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
     testImplementation("io.mockk:mockk:1.14.2")
 }
