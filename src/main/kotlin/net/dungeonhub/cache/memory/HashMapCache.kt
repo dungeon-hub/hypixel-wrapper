@@ -12,7 +12,7 @@ class HashMapCache<T, K>(val keyFunction: (T) -> K) : Cache<T, K> {
 
     override fun retrieveAllElements(): Stream<CacheElement<T>> = cache.values.stream()
 
-    override fun store(value: T) {
+    override fun store(value: T, waitForInsertion: Boolean) {
         cache[keyFunction(value)] = CacheElement(timeAdded = Instant.now(), value = value)
     }
 

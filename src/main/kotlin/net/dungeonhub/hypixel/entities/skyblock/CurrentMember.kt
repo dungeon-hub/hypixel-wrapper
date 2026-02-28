@@ -1,6 +1,5 @@
 package net.dungeonhub.hypixel.entities.skyblock
 
-import com.google.gson.JsonObject
 import net.dungeonhub.hypixel.entities.inventory.InventoryContent
 import net.dungeonhub.hypixel.entities.inventory.MemberInventory
 import net.dungeonhub.hypixel.entities.skyblock.currencies.CurrencyType
@@ -30,9 +29,8 @@ class CurrentMember(
     val fairySoulData: FairySoulData?,
     val inventory: MemberInventory?,
     val petsData: MemberPetsData?,
-    val riftData: RiftData?,
-    override val raw: JsonObject
-) : SkyblockProfileMember(uuid, "current", profile, leveling, playerData, playerStats, slayer, raw) {
+    val riftData: RiftData?
+) : SkyblockProfileMember(uuid, "current", profile, leveling, playerData, playerStats, slayer) {
     val coins
         get() = currencies.entries.first { it.key == KnownCurrencyTypes.Coins }.value
 
@@ -40,5 +38,5 @@ class CurrentMember(
         get() = currencies.entries.firstOrNull { it.key == KnownCurrencyTypes.Motes }?.value
 
     val allItems: List<InventoryContent>
-        get() = listOfNotNull(inventory?.allItems, riftData?.inventory?.allItems).flatMap { it }
+        get() = listOfNotNull(inventory?.allItems, riftData?.inventory?.allItems).flatten()
 }

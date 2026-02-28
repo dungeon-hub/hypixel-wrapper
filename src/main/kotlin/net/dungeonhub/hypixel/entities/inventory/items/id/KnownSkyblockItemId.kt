@@ -48,7 +48,7 @@ interface KnownSkyblockItemId : SkyblockItemId {
             VanillaItemId.entries,
             WandItemId.entries,
             WeaponItemId.entries
-        ).flatMap { it }
+        ).flatten()
 
         fun fromApiName(apiName: String): SkyblockItemId {
             return entries.firstOrNull { it.apiName == apiName } ?: UnknownSkyblockItemId(apiName)

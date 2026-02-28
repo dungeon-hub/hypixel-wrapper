@@ -21,8 +21,8 @@ fun JsonObject.toGuildMember(ranks: List<GuildRank>): GuildMember {
     return GuildMember(
         getAsJsonPrimitive("uuid").asString.toUUID(),
         ranks.firstOrNull { it.name == getAsJsonPrimitive("rank").asString },
-        getAsJsonPrimitiveOrNull("joinedAt")?.asLong?.let { Instant.ofEpochMilli(it) },
-        getAsJsonPrimitiveOrNull("mutedAt")?.asLong?.takeIf { it != 0L }?.let { Instant.ofEpochMilli(it) },
+        getAsJsonPrimitiveOrNull("joined")?.asLong?.let { Instant.ofEpochMilli(it) },
+        getAsJsonPrimitiveOrNull("mutedTill")?.asLong?.takeIf { it != 0L }?.let { Instant.ofEpochMilli(it) },
         getAsJsonObjectOrNull("expHistory")?.entrySet()?.associate {
             LocalDate.parse(it.key) to it.value.asInt
         } ?: emptyMap(),

@@ -17,8 +17,7 @@ class SkyblockProfile(
     val communityUpgrades: JsonObject?,
     val cuteName: String?,
     val selected: Boolean?,
-    val gameMode: ProfileGameMode,
-    var raw: JsonElement
+    val gameMode: ProfileGameMode
 ) {
     val currentMembers
         get() = members.filterIsInstance<CurrentMember>()
@@ -36,8 +35,7 @@ fun JsonElement.toSkyblockProfile(): SkyblockProfile {
         asJsonObject.getAsJsonObjectOrNull("community_upgrades"),
         asJsonObject.getOrNull("cute_name")?.asString,
         asJsonObject.getOrNull("selected")?.asBoolean,
-        ProfileGameMode.fromApiName(asJsonObject.getAsJsonPrimitiveOrNull("game_mode")?.asString),
-        this
+        ProfileGameMode.fromApiName(asJsonObject.getAsJsonPrimitiveOrNull("game_mode")?.asString)
     )
 
     val totalSocialExperience = profile.members.sumOf { it.playerData?.experience?.get(KnownSkill.Social) ?: 0.0 }

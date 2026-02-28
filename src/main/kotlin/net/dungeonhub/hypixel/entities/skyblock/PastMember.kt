@@ -1,6 +1,5 @@
 package net.dungeonhub.hypixel.entities.skyblock
 
-import com.google.gson.JsonObject
 import net.dungeonhub.hypixel.entities.skyblock.misc.MemberPlayerData
 import net.dungeonhub.hypixel.entities.skyblock.pet.MemberPetsData
 import net.dungeonhub.hypixel.entities.skyblock.slayer.MemberSlayerData
@@ -14,6 +13,5 @@ class PastMember(
     override val playerData: MemberPlayerData,
     override val playerStats: MemberPlayerStats?,
     override val slayer: MemberSlayerData?,
-    val petsData: MemberPetsData?,
-    override val raw: JsonObject
-) : SkyblockProfileMember(uuid, "past", profile, leveling, playerData, playerStats, slayer, raw)
+    val petsData: MemberPetsData?
+) : SkyblockProfileMember(uuid, "past", profile, leveling, playerData, playerStats, slayer)

@@ -8,10 +8,14 @@ import net.dungeonhub.hypixel.entities.skyblock.CurrentMember
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.skyblock.statsoverview.ProfileStatsOverview
+import net.dungeonhub.hypixel.entities.skyblock.statsoverview.StatsOverviewType
+import net.dungeonhub.hypixel.entities.status.PlayerSession
 import java.util.*
 
 interface ApiClient {
     fun getPlayerData(uuid: UUID): HypixelPlayer?
+
+    fun getSession(uuid: UUID): PlayerSession?
 
     fun getHypixelLinkedDiscord(uuid: UUID): String? {
         return getPlayerData(uuid)?.socialMediaLinks?.entries?.firstOrNull { it.key == KnownSocialMediaType.Discord }?.value
@@ -21,24 +25,25 @@ interface ApiClient {
 
     fun getGuild(name: String): Guild?
 
+    fun getPlayerGuild(uuid: UUID): Guild?
+
     fun getBingoData(uuid: UUID): SkyblockBingoData?
 
-    fun getStatsOverview(uuid: UUID): ProfileStatsOverview? {
+    fun getStatsOverview(uuid: UUID, selectedProfile: UUID? = null, statsOverviewTypes: List<StatsOverviewType>? = null): ProfileStatsOverview? {
         val profiles = getSkyblockProfiles(uuid)
             ?: return null
 
-        val selectedProfile = (
-                profiles.profiles.firstOrNull { it.selected == true }
-                    ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
-                )
+        val selectedProfile = profiles.profiles.firstOrNull { it.profileId == selectedProfile }
+            ?: profiles.profiles.firstOrNull { it.selected == true }
+            ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
             ?: return null
 
         val member = selectedProfile.getCurrentMember(uuid) ?: return null
 
-        return getStatsOverview(selectedProfile, member)
+        return getStatsOverview(selectedProfile, member, statsOverviewTypes)
     }
 
-    fun getStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember): ProfileStatsOverview? {
-        return ProfileStatsOverview(profile, profileMember)
+    fun getStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember, statsOverviewTypes: List<StatsOverviewType>? = null): ProfileStatsOverview? {
+        return ProfileStatsOverview(profile, profileMember, statsOverviewTypes)
     }
 }

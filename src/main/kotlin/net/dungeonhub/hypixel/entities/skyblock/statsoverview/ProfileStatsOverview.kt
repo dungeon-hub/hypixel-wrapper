@@ -5,16 +5,16 @@ import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.hypixel.entities.skyblock.slayer.KnownSlayerType
 import java.util.*
 
-class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember) {
+class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMember, customStatsOverviewTypes: List<StatsOverviewType>? = null) {
     val uuid: UUID = profileMember.uuid
     val profileName: String = profile.cuteName ?: profile.profileId.toString()
 
-    val description: String = statsOverviewTypes.joinToString("\n") { type ->
+    val description: String = (customStatsOverviewTypes ?: statsOverviewTypes).mapNotNull { type ->
         type.value(profile, profileMember)
-    }
+    }.joinToString("\n")
 
     companion object {
-        val statsOverviewTypes: List<StatsOverviewType> = listOf(
+        val statsOverviewTypes: MutableList<StatsOverviewType> = mutableListOf(
             BuiltInStatsOverviewType.WitherBlades,
             BuiltInStatsOverviewType.Terminators,
             BuiltInStatsOverviewType.GoldenDragons,
@@ -50,6 +50,7 @@ class ProfileStatsOverview(profile: SkyblockProfile, profileMember: CurrentMembe
             }
         }.toMutableMap()
         var catacombsEmoji = "<:redstone_key:1330398890725478510>"
+        var notCompletedEmoji = "\u274C" // ❌
 
         var purseEmoji = "<:piggy_bank:1330399968221204560>"
         var bankEmoji = "<:personal_bank:1330399998512468018>"

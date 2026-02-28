@@ -8,9 +8,14 @@ import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 import net.hypixel.api.data.type.GameType
 import java.time.Instant
 import java.time.ZoneId
+import java.util.UUID
 
 class Guild(
     val id: String,
+    /**
+     * This value isn't present in the hypixel guild data; this is just set if this guild was requested through a player, for internal caching purposes
+     */
+    val playerUuid: UUID?,
     val name: String,
     val displayName: String,
     val description: String?,
@@ -32,7 +37,7 @@ class Guild(
         get() = ranks.filterIsInstance<CustomGuildRank>()
 }
 
-fun JsonObject.toGuild(): Guild {
+fun JsonObject.toGuild(playerUuid: UUID? = null): Guild {
     val ranks = (getAsJsonArrayOrNull("ranks")?.map { it.asJsonObject.toGuildRank() }?.sortedBy { it.priority }
         ?: emptyList()).toMutableList()
 
@@ -56,6 +61,7 @@ fun JsonObject.toGuild(): Guild {
 
     return Guild(
         id = getAsJsonPrimitive("_id").asString,
+        playerUuid = playerUuid,
         name = getAsJsonPrimitive("name_lower").asString,
         displayName = getAsJsonPrimitive("name").asString,
         description = getAsJsonPrimitiveOrNull("description")?.asString,

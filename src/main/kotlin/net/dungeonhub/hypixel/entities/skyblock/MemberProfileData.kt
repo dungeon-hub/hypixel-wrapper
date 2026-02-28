@@ -10,8 +10,7 @@ class MemberProfileData(
     val deletionNotice: JsonObject?,
     val coopInvitation: JsonObject?,
     val bankAccount: Double?,
-    val cookieBuffActive: Boolean,
-    val raw: JsonObject
+    val cookieBuffActive: Boolean
 )
 
 fun JsonObject.toMemberProfileData(): MemberProfileData {
@@ -20,7 +19,6 @@ fun JsonObject.toMemberProfileData(): MemberProfileData {
         getAsJsonObjectOrNull("deletion_notice"),
         getAsJsonObjectOrNull("coop_invitation"),
         getAsJsonPrimitiveOrNull("bank_account")?.asDouble,
-        getAsJsonPrimitiveOrNull("cookie_buff_active")?.asBoolean ?: false,
-        this
+        getAsJsonPrimitiveOrNull("cookie_buff_active")?.asBoolean ?: false
     )
 }

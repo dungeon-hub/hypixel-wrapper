@@ -5,13 +5,16 @@ import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
+import net.dungeonhub.hypixel.entities.status.PlayerSession
 import java.time.Instant
 import java.util.*
 
 interface ApiClientWithCache : ApiClient {
     val playerDataCache: Cache<HypixelPlayer, UUID>
+    val sessionCache: Cache<PlayerSession, UUID>
     val skyblockProfilesCache: Cache<SkyblockProfiles, UUID>
     val guildCache: Cache<Guild, String>
+    val playerGuildCache: Cache<Guild, UUID>
     val bingoDataCache: Cache<SkyblockBingoData, UUID>
 
     fun <T : Any> isExpired(cache: Cache<T, UUID>, uuid: UUID, expiresAfterMinutes: Int = 5): Boolean {
@@ -28,12 +31,20 @@ interface ApiClientWithCache : ApiClient {
         return playerDataCache.retrieve(uuid)
     }
 
+    override fun getSession(uuid: UUID): PlayerSession? {
+        return sessionCache.retrieve(uuid)
+    }
+
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
         return skyblockProfilesCache.retrieve(uuid)
     }
 
     override fun getGuild(name: String): Guild? {
         return guildCache.retrieve(name.lowercase())
+    }
+
+    override fun getPlayerGuild(uuid: UUID): Guild? {
+        return playerGuildCache.retrieve(uuid)
     }
 
     override fun getBingoData(uuid: UUID): SkyblockBingoData? {
