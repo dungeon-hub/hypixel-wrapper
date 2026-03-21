@@ -316,7 +316,7 @@ object GsonProvider {
 }
 
 fun JsonObject.getAsJsonObjectOrNull(memberName: String): JsonObject? {
-    return if (has(memberName)) {
+    return if (has(memberName) && get(memberName) !is JsonNull) {
         getAsJsonObject(memberName)
     } else {
         null
@@ -324,7 +324,7 @@ fun JsonObject.getAsJsonObjectOrNull(memberName: String): JsonObject? {
 }
 
 fun JsonObject.getAsJsonArrayOrNull(memberName: String): JsonArray? {
-    return if (has(memberName)) {
+    return if (has(memberName) && get(memberName) !is JsonNull) {
         getAsJsonArray(memberName)
     } else {
         null
