@@ -5,8 +5,7 @@ import net.dungeonhub.provider.getAsJsonObjectOrNull
 
 class MemberSlayerData(
     val activeSlayerQuest: SlayerQuest?,
-    val slayerProgress: Map<SlayerType, SlayerBossProgress>,
-    val raw: JsonObject
+    val slayerProgress: Map<SlayerType, SlayerBossProgress>
 )
 
 fun JsonObject.toSlayerData(): MemberSlayerData {
@@ -14,7 +13,6 @@ fun JsonObject.toSlayerData(): MemberSlayerData {
         getAsJsonObjectOrNull("slayer_quest")?.toSlayerQuest(),
         getAsJsonObjectOrNull("slayer_bosses")?.entrySet()?.associate {
             KnownSlayerType.fromApiName(it.key) to it.value.asJsonObject.toSlayerProgress()
-        } ?: emptyMap(),
-        this
+        } ?: emptyMap()
     )
 }

@@ -91,4 +91,8 @@ object MojangConnection {
 
         throw PlayerNotFoundException(uuid)
     }
+
+    fun UUID.fetchMinecraftName(): String {
+        return getNameByUUID(this)
+    }
 }

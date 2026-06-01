@@ -1,0 +1,265 @@
+{
+  "success": true,
+  "lastUpdated": 1751537668923,
+  "id": 43,
+  "name": "July 2025",
+  "start": 1751342400000,
+  "end": 1752552000000,
+  "modifier": "EXTREME",
+  "goals": [
+    {
+      "id": "gain_garden_copper",
+      "name": "Dilmun Trader",
+      "tiers": [
+        250000,
+        500000,
+        750000,
+        1000000,
+        1250000
+      ],
+      "progress": 305134,
+      "lore": "§7Collect §a1.2M §cCopper §7from Garden Visitors.",
+      "fullLore": [
+        "§7Collect §a1.2M §cCopper §7from Garden Visitors."
+      ]
+    },
+    {
+      "id": "consume_worm_cans",
+      "name": "Yummers",
+      "lore": "§7Open §a15 §aCans of Worms§7.",
+      "fullLore": [
+        "§7Open §a15 §aCans of Worms§7."
+      ],
+      "requiredAmount": 15
+    },
+    {
+      "id": "vacuum_pests",
+      "name": "Exterminator",
+      "lore": "§7Vacuum §a100 Pests§7.",
+      "fullLore": [
+        "§7Vacuum §a100 Pests§7."
+      ],
+      "requiredAmount": 100
+    },
+    {
+      "id": "spider_squisher",
+      "name": "Spider Squisher",
+      "lore": "§7Kill §a75 spiders §7in §a90 seconds§7. §8(Spiders on your private island do not count)",
+      "fullLore": [
+        "§7Kill §a75 spiders §7in §a90 seconds§7. §8(Spiders on your private island do not count)"
+      ]
+    },
+    {
+      "id": "stat_rift_time",
+      "name": "The Mirror Dimension",
+      "lore": "§7Reach §a1,000s §aф Rift Time§7.",
+      "fullLore": [
+        "§7Reach §a1,000s §aф Rift Time§7."
+      ],
+      "requiredAmount": 1000
+    },
+    {
+      "id": "kill_zealot_bruiser",
+      "name": "End All, Be Al",
+      "lore": "§7Defeat a §5Zealot Bruiser§7.",
+      "fullLore": [
+        "§7Defeat a §5Zealot Bruiser§7."
+      ]
+    },
+    {
+      "id": "fish_sea_creatures_rare",
+      "name": "Deep Sea Angler",
+      "tiers": [
+        100000,
+        200000,
+        300000,
+        400000,
+        500000
+      ],
+      "progress": 83370,
+      "lore": "§7Fish up §a500k §bSea Creatures§7 of §9Rare§7 or higher rarity.",
+      "fullLore": [
+        "§7Fish up §a500k §bSea Creatures§7 of §9Rare§7 or higher rarity."
+      ]
+    },
+    {
+      "id": "craft_item_runaans_bow",
+      "name": "Old School",
+      "lore": "§7Craft a §6Runaan's Bow§7.",
+      "fullLore": [
+        "§7Craft a §6Runaan's Bow§7."
+      ]
+    },
+    {
+      "id": "FIND_EXPERIMENT_PAIRS_20",
+      "name": "Pair Up!",
+      "lore": "§7Find §920 Pairs §7in the §9Experimentation Table§7.",
+      "fullLore": [
+        "§7Find §920 Pairs §7in the §9Experimentation Table§7."
+      ],
+      "requiredAmount": 20
+    },
+    {
+      "id": "find_dungeon_secrets_100",
+      "name": "Shh...",
+      "lore": "§7Find 100 Secrets in §5Dungeons§7.",
+      "fullLore": [
+        "§7Find 100 Secrets in §5Dungeons§7."
+      ],
+      "requiredAmount": 100
+    },
+    {
+      "id": "COLLECTION_LEVEL_2_50",
+      "name": "Collector",
+      "lore": "§7Get §e50§7 Collections to at least tier §e2§7.",
+      "fullLore": [
+        "§7Get §e50§7 Collections to at least tier §e2§7."
+      ],
+      "requiredAmount": 50
+    },
+    {
+      "id": "wear_armor_mithril",
+      "name": "Lighter than steel",
+      "lore": "§7Wear §a4 pieces §7of the §aMithril Equipment Set§7.",
+      "fullLore": [
+        "§7Wear §a4 pieces §7of the §aMithril Equipment Set§7."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "collect_exp_combat",
+      "name": "Skilled",
+      "tiers": [
+        500000000,
+        1000000000,
+        1500000000,
+        2000000000,
+        2500000000
+      ],
+      "progress": 924867781,
+      "lore": "§7Gain §b2.5B Combat§7 experience",
+      "fullLore": [
+        "§7Gain §b2.5B Combat§7 experience"
+      ]
+    },
+    {
+      "id": "ship_parts",
+      "name": "Oh Captain, My Captain",
+      "lore": "§7Upgrade §a2 §7Ship Parts to Bronze in your Ship.",
+      "fullLore": [
+        "§7Upgrade §a2 §7Ship Parts to Bronze in your Ship."
+      ],
+      "requiredAmount": 2
+    },
+    {
+      "id": "stat_mining_fortune",
+      "name": "Legal Duplication",
+      "lore": "§7Reach §6270 §6☘ Mining Fortune§7.",
+      "fullLore": [
+        "§7Reach §6270 §6☘ Mining Fortune§7."
+      ],
+      "requiredAmount": 270
+    },
+    {
+      "id": "forge_item",
+      "name": "Forgery",
+      "lore": "§7Forge a Drill",
+      "fullLore": [
+        "§7Forge a Drill"
+      ]
+    },
+    {
+      "id": "catch_treasure_outstanding",
+      "name": "Fisherman's Folly",
+      "lore": "§7Fish up an §d§lOUTSTANDING§7 treasure or junk.",
+      "fullLore": [
+        "§7Fish up an §d§lOUTSTANDING§7 treasure or junk."
+      ]
+    },
+    {
+      "id": "chocolate_collection",
+      "name": "Chocolatier",
+      "lore": "§7Collect a lifetime total of §625M Chocolate§7 in the §6Chocolate Factory§7.",
+      "fullLore": [
+        "§7Collect a lifetime total of §625M Chocolate§7 in the §6Chocolate Factory§7."
+      ],
+      "requiredAmount": 25000000
+    },
+    {
+      "id": "complete_mining_commissions",
+      "name": "Commissioned",
+      "tiers": [
+        50000,
+        100000,
+        150000,
+        200000,
+        250000
+      ],
+      "progress": 80645,
+      "lore": "§7Complete §e250k §7mining commissions.",
+      "fullLore": [
+        "§7Complete §e250k §7mining commissions."
+      ]
+    },
+    {
+      "id": "garden_visitors_50",
+      "name": "At your service",
+      "lore": "§7Complete 50 Garden Visitors' Offers",
+      "fullLore": [
+        "§7Complete 50 Garden Visitors' Offers"
+      ],
+      "requiredAmount": 50
+    },
+    {
+      "id": "solo_score_1",
+      "name": "Who needs friends?",
+      "lore": "§7Obtain a score of at least §a270 §7in §cCatacombs Floor I§7 without a party",
+      "fullLore": [
+        "§7Obtain a score of at least §a270 §7in §cCatacombs Floor I§7 without a party"
+      ]
+    },
+    {
+      "id": "wear_armor_backwater",
+      "name": "Bayou Bobbin'",
+      "lore": "§7Wear §a4 pieces §7of the §aBackwater Armor Set§7.",
+      "fullLore": [
+        "§7Wear §a4 pieces §7of the §aBackwater Armor Set§7."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "wear_accessories",
+      "name": "Bedazzled",
+      "lore": "§7Equip §a30 §7unique Accessories.",
+      "fullLore": [
+        "§7Equip §a30 §7unique Accessories."
+      ],
+      "requiredAmount": 30
+    },
+    {
+      "id": "consume_dwarven_cereal",
+      "name": "They're Prrrrrretty good",
+      "lore": "§7Consume §a4§7 boxes of Dwarven Cereal",
+      "fullLore": [
+        "§7Consume §a4§7 boxes of Dwarven Cereal"
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "coin_scavenger",
+      "name": "Scavenger",
+      "tiers": [
+        150000000,
+        300000000,
+        450000000,
+        600000000,
+        750000000
+      ],
+      "progress": 253493793,
+      "lore": "§7Loot §e750M Coins§7 through the Scavenger Enchantment",
+      "fullLore": [
+        "§7Loot §e750M Coins§7 through the Scavenger Enchantment"
+      ]
+    }
+  ]
+}

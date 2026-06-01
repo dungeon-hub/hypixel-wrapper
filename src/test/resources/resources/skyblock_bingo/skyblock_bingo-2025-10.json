@@ -1,0 +1,261 @@
+{
+  "success": true,
+  "lastUpdated": 1759486327249,
+  "id": 46,
+  "name": "October 2025",
+  "start": 1759291200000,
+  "end": 1759896000000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "loot_drop",
+      "name": "Lucky Looter",
+      "tiers": [
+        50000,
+        100000,
+        150000,
+        200000,
+        250000
+      ],
+      "progress": 236527,
+      "lore": "§7Loot §e250k §7drops with a chance of §e1% §7or lower",
+      "fullLore": [
+        "§7Loot §e250k §7drops with a chance of §e1% §7or lower"
+      ]
+    },
+    {
+      "id": "stat_strength",
+      "name": "Strongman",
+      "lore": "§7Reach §c120 §c❁ Strength§7.",
+      "fullLore": [
+        "§7Reach §c120 §c❁ Strength§7."
+      ],
+      "requiredAmount": 120
+    },
+    {
+      "id": "obtain_item_cheetah_talisman",
+      "name": "Cheetah",
+      "lore": "§7Obtain a §5Cheetah Talisman§7.",
+      "fullLore": [
+        "§7Obtain a §5Cheetah Talisman§7."
+      ]
+    },
+    {
+      "id": "craft_any_pet",
+      "name": "A Best Friend",
+      "lore": "§7Craft any pet.",
+      "fullLore": [
+        "§7Craft any pet."
+      ]
+    },
+    {
+      "id": "GET_SKILL_mining_20",
+      "name": "Miner",
+      "lore": "§7Obtain level §e20§7 in the §6Mining §7Skill.",
+      "fullLore": [
+        "§7Obtain level §e20§7 in the §6Mining §7Skill."
+      ]
+    },
+    {
+      "id": "UNLOCK_UNIQUE_COLLECTIONS_40",
+      "name": "Diversity",
+      "lore": "§7Unlock §e40 §7unique Collections.",
+      "fullLore": [
+        "§7Unlock §e40 §7unique Collections."
+      ],
+      "requiredAmount": 40
+    },
+    {
+      "id": "kill_dungeon_boss_catacombs_1",
+      "name": "Clown Collab",
+      "tiers": [
+        1000,
+        2000,
+        3000,
+        4000,
+        5000
+      ],
+      "progress": 4066,
+      "lore": "§7Defeat §cBonzo §a5,000 §7times.",
+      "fullLore": [
+        "§7Defeat §cBonzo §a5,000 §7times."
+      ]
+    },
+    {
+      "id": "collection_mithril_ore",
+      "name": "Mithril Collector",
+      "lore": "§7Reach §a30,000 §7Mithril Collection.",
+      "fullLore": [
+        "§7Reach §a30,000 §7Mithril Collection."
+      ],
+      "requiredAmount": 30000
+    },
+    {
+      "id": "UNLOCK_DUNGEON_CHEST_EMERALD",
+      "name": "Emerald Treasure",
+      "lore": "§7Unlock an §2Emerald§7 Dungeon Chest.",
+      "fullLore": [
+        "§7Unlock an §2Emerald§7 Dungeon Chest."
+      ]
+    },
+    {
+      "id": "collection_raw_fish:3",
+      "name": "Pufferfish Collector",
+      "lore": "§7Reach §a3,500 §7Pufferfish Collection.",
+      "fullLore": [
+        "§7Reach §a3,500 §7Pufferfish Collection."
+      ],
+      "requiredAmount": 3500
+    },
+    {
+      "id": "collect_powder_mithril",
+      "name": "Powder Collector",
+      "lore": "§7Collect 50,000 §2Mithril Powder§7.",
+      "fullLore": [
+        "§7Collect 50,000 §2Mithril Powder§7."
+      ],
+      "requiredAmount": 50000
+    },
+    {
+      "id": "craft_item_piggy_bank",
+      "name": "New Savings",
+      "lore": "§7Craft a §aPiggy Bank§7.",
+      "fullLore": [
+        "§7Craft a §aPiggy Bank§7."
+      ]
+    },
+    {
+      "id": "coin_scavenger",
+      "name": "Scavenger",
+      "tiers": [
+        50000000,
+        100000000,
+        150000000,
+        200000000,
+        250000000
+      ],
+      "progress": 143831707,
+      "lore": "§7Loot §e250M Coins§7 through the Scavenger Enchantment",
+      "fullLore": [
+        "§7Loot §e250M Coins§7 through the Scavenger Enchantment"
+      ]
+    },
+    {
+      "id": "summon_arachne",
+      "name": "Spider Queen",
+      "lore": "§7Summon §6Arachne§7.",
+      "fullLore": [
+        "§7Summon §6Arachne§7."
+      ]
+    },
+    {
+      "id": "stat_ferocity",
+      "name": "Ferocious",
+      "lore": "§7Reach §c3 §c⫽ Ferocity§7.",
+      "fullLore": [
+        "§7Reach §c3 §c⫽ Ferocity§7."
+      ],
+      "requiredAmount": 3
+    },
+    {
+      "id": "spawn_golden_goblin",
+      "name": "Strange Eggs",
+      "lore": "§7Spawn a §6Golden Goblin §7from a Goblin Egg.",
+      "fullLore": [
+        "§7Spawn a §6Golden Goblin §7from a Goblin Egg."
+      ]
+    },
+    {
+      "id": "bank_coins",
+      "name": "Meiser",
+      "lore": "§7Store §61,000,000 Coins §7in your Bank.",
+      "fullLore": [
+        "§7Store §61,000,000 Coins §7in your Bank."
+      ],
+      "requiredAmount": 1000000
+    },
+    {
+      "id": "slayer_level",
+      "name": "Slayer",
+      "lore": "§7Reach §aLevel 3 §7for any Slayer boss.",
+      "fullLore": [
+        "§7Reach §aLevel 3 §7for any Slayer boss."
+      ],
+      "requiredAmount": 0
+    },
+    {
+      "id": "kill_endermen",
+      "name": "Enderman Slayer",
+      "tiers": [
+        500000,
+        1000000,
+        1500000,
+        2000000,
+        2500000
+      ],
+      "progress": 1602818,
+      "lore": "§7Kill §a2.5M Endermen§7.",
+      "fullLore": [
+        "§7Kill §a2.5M Endermen§7."
+      ]
+    },
+    {
+      "id": "KILL_LOST_ADVENTURER",
+      "name": "A Lost Cause",
+      "lore": "§7Kill a §cLost Adventurer§7.",
+      "fullLore": [
+        "§7Kill a §cLost Adventurer§7."
+      ]
+    },
+    {
+      "id": "obtain_item_wedding_ring_2",
+      "name": "Love Is All Around",
+      "lore": "§7Obtain a §aMediocre Ring of Love§7.",
+      "fullLore": [
+        "§7Obtain a §aMediocre Ring of Love§7."
+      ]
+    },
+    {
+      "id": "fish_sea_creatures_timed",
+      "name": "Quick Reel",
+      "lore": "§7Summon 3 sea creatures within 75 seconds.",
+      "fullLore": [
+        "§7Summon 3 sea creatures within 75 seconds."
+      ]
+    },
+    {
+      "id": "stat_health",
+      "name": "Healthy",
+      "lore": "§7Reach §c250 §c❤ Health§7.",
+      "fullLore": [
+        "§7Reach §c250 §c❤ Health§7."
+      ],
+      "requiredAmount": 250
+    },
+    {
+      "id": "collection_sugar_cane",
+      "name": "Sugar Cane Collector",
+      "lore": "§7Reach §a300,000 §7Sugar Cane Collection.",
+      "fullLore": [
+        "§7Reach §a300,000 §7Sugar Cane Collection."
+      ],
+      "requiredAmount": 300000
+    },
+    {
+      "id": "break_block_crops",
+      "name": "Agricultural Revolution",
+      "tiers": [
+        30000000,
+        60000000,
+        90000000,
+        120000000,
+        150000000
+      ],
+      "progress": 169156603,
+      "lore": "§7Break §e150M Crop§7 Blocks.",
+      "fullLore": [
+        "§7Break §e150M Crop§7 Blocks."
+      ]
+    }
+  ]
+}

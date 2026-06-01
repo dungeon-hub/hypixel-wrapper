@@ -1,7 +1,7 @@
 package net.dungeonhub
 
 import com.google.gson.JsonObject
-import net.dungeonhub.hypixel.client.MemoryCacheApiClient
+import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.player.KnownRank
 import net.dungeonhub.hypixel.entities.player.KnownSocialMediaType
@@ -39,7 +39,7 @@ class TestPlayerData {
         }
 
         assertEquals(
-            (connection.strategy.client as MemoryCacheApiClient).playerDataCache.retrieveAllElements().count(),
+            (connection.strategy.client as CacheApiClient).playerDataCache.retrieveAllElements().count(),
             0
         )
 
@@ -60,7 +60,7 @@ class TestPlayerData {
         }
 
         assertEquals(
-            (connection.strategy.client as MemoryCacheApiClient).playerDataCache.retrieveAllElements().count(),
+            connection.strategy.client.playerDataCache.retrieveAllElements().count(),
             2
         )
     }

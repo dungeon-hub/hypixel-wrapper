@@ -1,0 +1,351 @@
+{
+  "success": true,
+  "lastUpdated": 1775212641661,
+  "id": 52,
+  "name": "April 2026",
+  "start": 1775016000000,
+  "end": 1776225600000,
+  "modifier": "SECRET",
+  "goals": [
+    {
+      "id": "SECRET_GLOBAL_52_1",
+      "name": "Good Will Hunting",
+      "tiers": [
+        5000,
+        10000,
+        15000,
+        20000,
+        25000
+      ],
+      "progress": 272868,
+      "lore": "§7Hunt §a25k§7 Mobs.",
+      "fullLore": [
+        "§7Hunt §a25k§7 Mobs."
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_1",
+      "name": "The Wailing",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eYou'll need to find and kill a specific mob for this goal.",
+        "",
+        "§eThe next hint will unlock in 10h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_2",
+      "name": "Se7en",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eVariety is the spice of life.",
+        "",
+        "§eThe next hint will unlock in 11h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_3",
+      "name": "Vanity Fair",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eNo items needed - just bring yourself.",
+        "",
+        "§eThe next hint will unlock in 12h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_4",
+      "name": "Crime and Punishment",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eYou do the crime, you do the time.",
+        "",
+        "§eThe next hint will unlock in 13h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_5",
+      "name": "The Call of the Wild",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eIncreasing your social circle will make this goal easier.",
+        "",
+        "§eThe next hint will unlock in 14h"
+      ]
+    },
+    {
+      "id": "SECRET_GLOBAL_52_2",
+      "name": "Lord of the Flies",
+      "tiers": [
+        1000,
+        2000,
+        3000,
+        4000,
+        5000
+      ],
+      "progress": 3682,
+      "lore": "§7Catch §a5k §2Pests§7 in §9Pest Traps§7, §5Mouse Traps§7, or §6Vermin Traps§7.",
+      "fullLore": [
+        "§7Catch §a5k §2Pests§7 in §9Pest Traps§7, §5Mouse Traps§7, or §6Vermin Traps§7."
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_6",
+      "name": "The Day of the Triffids",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThe mob needed to complete this goal doesn't spawn naturally.",
+        "",
+        "§eThe next hint will unlock in 15h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_7",
+      "name": "Gladiator",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThis location has been abandoned for quite some time.",
+        "",
+        "§eThe next hint will unlock in 16h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_8",
+      "name": "The Mad Hatter",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThis goal does not have to be completed in a particular location.",
+        "",
+        "§eThe next hint will unlock in 17h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_9",
+      "name": "Twenty Thousand Leagues Under the Sea",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eYou will need to be underwater to complete this goal.",
+        "",
+        "§eThe next hint will unlock in 18h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_10",
+      "name": "A Whack on the Side of the Head",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eYour target has a head. Bet you didn't know that!",
+        "",
+        "§eThe next hint will unlock in 19h"
+      ]
+    },
+    {
+      "id": "SECRET_GLOBAL_52_3",
+      "name": "Journey to the Center of the Earth",
+      "tiers": [
+        5000,
+        10000,
+        15000,
+        20000,
+        25000
+      ],
+      "progress": 71800,
+      "lore": "§7Complete §a25k §6Mining Commissions§7.",
+      "fullLore": [
+        "§7Complete §a25k §6Mining Commissions§7."
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_11",
+      "name": "Wuthering Heights",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eDon't think about it too much.",
+        "",
+        "§eThe next hint will unlock in 20h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_12",
+      "name": "The Lord of the Rings",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eWe've got to go deeper!",
+        "",
+        "§eThe next hint will unlock in 21h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_13",
+      "name": "Animal Farm",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThis goal involves lots of animals... duh!",
+        "",
+        "§eThe next hint will unlock in 22h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_14",
+      "name": "The Old Man and the Sea",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThis goal will take you to multiple islands.",
+        "",
+        "§eThe next hint will unlock in 23h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_15",
+      "name": "Fantastic Beasts and Where to Find Them",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eYou'll need to visit lots of different islands for this one!",
+        "",
+        "§eThe next hint will unlock in 24h"
+      ]
+    },
+    {
+      "id": "SECRET_GLOBAL_52_4",
+      "name": "The Lorax",
+      "tiers": [
+        5000,
+        10000,
+        15000,
+        20000,
+        25000
+      ],
+      "progress": 139905,
+      "lore": "§7Open §a25k §2Tree Gifts§7.",
+      "fullLore": [
+        "§7Open §a25k §2Tree Gifts§7."
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_16",
+      "name": "Frankenstein",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eA calculated mismatch is key.",
+        "",
+        "§eThe next hint will unlock in 25h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_17",
+      "name": "A Wrinkle in Time",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThis goal involves you doing the same thing across multiple dimensions.",
+        "",
+        "§eThe next hint will unlock in 26h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_18",
+      "name": "***** ****",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eThe weak and the strong.",
+        "",
+        "§eThe next hint will unlock in 27h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_19",
+      "name": "Beethoven",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eDon't worry, everybody starts somewhere!",
+        "",
+        "§eThe next hint will unlock in 28h"
+      ]
+    },
+    {
+      "id": "SECRET_GOAL_52_20",
+      "name": "Joker",
+      "lore": "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+      "fullLore": [
+        "§7This goal is currently §chidden§7! It will be revealed to you when you complete it.",
+        "",
+        "§a◉ Hint 1",
+        "§eBe sure to adhere to the dress code!",
+        "",
+        "§eThe next hint will unlock in 29h"
+      ]
+    },
+    {
+      "id": "SECRET_GLOBAL_52_5",
+      "name": "Treasure Island",
+      "tiers": [
+        5000,
+        10000,
+        15000,
+        20000,
+        25000
+      ],
+      "progress": 12170,
+      "lore": "§7Fish up §a25k§7 pieces of §2Junk §7in the §2Backwater Bayou§7.",
+      "fullLore": [
+        "§7Fish up §a25k§7 pieces of §2Junk §7in the §2Backwater Bayou§7."
+      ]
+    }
+  ]
+}

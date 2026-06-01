@@ -1,0 +1,264 @@
+{
+  "success": true,
+  "lastUpdated": 1754216108236,
+  "id": 44,
+  "name": "August 2025",
+  "start": 1754020800000,
+  "end": 1754625600000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "BLOW_CRYPTS",
+      "name": "KABOOM!",
+      "tiers": [
+        15000,
+        30000,
+        45000,
+        60000,
+        75000
+      ],
+      "progress": 31430,
+      "lore": "§7Blow up §e75k§7 Crypts in The Catacombs.",
+      "fullLore": [
+        "§7Blow up §e75k§7 Crypts in The Catacombs."
+      ]
+    },
+    {
+      "id": "wear_armor_angler",
+      "name": "Fisherman",
+      "lore": "§7Wear §a4 pieces §7of the §aAngler Armor Set§7.",
+      "fullLore": [
+        "§7Wear §a4 pieces §7of the §aAngler Armor Set§7."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "collection_gemstone_collection",
+      "name": "Gemstone Collector",
+      "lore": "§7Reach §a25,000 §7Gemstone Collection.",
+      "fullLore": [
+        "§7Reach §a25,000 §7Gemstone Collection."
+      ],
+      "requiredAmount": 25000
+    },
+    {
+      "id": "reforge_titanic",
+      "name": "Titanic Reforger",
+      "lore": "§7Apply the §9Titanic §7reforge to an item.",
+      "fullLore": [
+        "§7Apply the §9Titanic §7reforge to an item."
+      ]
+    },
+    {
+      "id": "kill_mobs_15000",
+      "name": "Exterminator",
+      "lore": "§7Kill §e15,000 §7mobs.",
+      "fullLore": [
+        "§7Kill §e15,000 §7mobs."
+      ],
+      "requiredAmount": 15000
+    },
+    {
+      "id": "craft_item_diamond_spreading",
+      "name": "Now We're In Business",
+      "lore": "§7Craft a §9Diamond Spreading§7.",
+      "fullLore": [
+        "§7Craft a §9Diamond Spreading§7."
+      ]
+    },
+    {
+      "id": "collect_exp_fishing",
+      "name": "Skilled",
+      "tiers": [
+        50000000,
+        100000000,
+        150000000,
+        200000000,
+        250000000
+      ],
+      "progress": 28813744,
+      "lore": "§7Gain §b250M Fishing§7 experience",
+      "fullLore": [
+        "§7Gain §b250M Fishing§7 experience"
+      ]
+    },
+    {
+      "id": "craft_item_medium_backpack",
+      "name": "Carry-On",
+      "lore": "§7Craft a §9Medium Backpack§7.",
+      "fullLore": [
+        "§7Craft a §9Medium Backpack§7."
+      ]
+    },
+    {
+      "id": "FIND_EXPERIMENT_PAIRS_3",
+      "name": "Pair Up!",
+      "lore": "§7Find §93 Pairs §7in the §9Experimentation Table§7.",
+      "fullLore": [
+        "§7Find §93 Pairs §7in the §9Experimentation Table§7."
+      ],
+      "requiredAmount": 3
+    },
+    {
+      "id": "collection_emerald",
+      "name": "Emerald Collector",
+      "lore": "§7Reach §a42,500 §7Emerald Collection.",
+      "fullLore": [
+        "§7Reach §a42,500 §7Emerald Collection."
+      ],
+      "requiredAmount": 42500
+    },
+    {
+      "id": "skill_average",
+      "name": "Skill Average",
+      "lore": "§7Reach a non-cosmetic Skill Average of §a14§7.",
+      "fullLore": [
+        "§7Reach a non-cosmetic Skill Average of §a14§7."
+      ],
+      "requiredAmount": 14
+    },
+    {
+      "id": "bestiary_level_5",
+      "name": "Collecting Data",
+      "lore": "§7Reach §3Bestiary §7Milestone 5§7.",
+      "fullLore": [
+        "§7Reach §3Bestiary §7Milestone 5§7."
+      ],
+      "requiredAmount": 5
+    },
+    {
+      "id": "kill_team_treasurite",
+      "name": "Let the StarFall",
+      "tiers": [
+        100000,
+        200000,
+        300000,
+        400000,
+        500000
+      ],
+      "progress": 112192,
+      "lore": "§7Kill §a500k Team Treasurite members§7.",
+      "fullLore": [
+        "§7Kill §a500k Team Treasurite members§7."
+      ]
+    },
+    {
+      "id": "obtain_ultimate_enchanted_book",
+      "name": "Ultimate Enchanter",
+      "lore": "§7Obtain an §dUltimate Enchanted §7Book§7.",
+      "fullLore": [
+        "§7Obtain an §dUltimate Enchanted §7Book§7."
+      ]
+    },
+    {
+      "id": "wear_unique_armor_4",
+      "name": "Fashionable",
+      "lore": "§7Wear §e4 §7unique Armor Sets.",
+      "fullLore": [
+        "§7Wear §e4 §7unique Armor Sets."
+      ],
+      "requiredAmount": 4
+    },
+    {
+      "id": "obtain_pets",
+      "name": "Pet Hoarder",
+      "lore": "§7Obtain §a3 §7unique Pets.",
+      "fullLore": [
+        "§7Obtain §a3 §7unique Pets."
+      ],
+      "requiredAmount": 3
+    },
+    {
+      "id": "obtain_item_cheetah_talisman",
+      "name": "Cheetah",
+      "lore": "§7Obtain a §5Cheetah Talisman§7.",
+      "fullLore": [
+        "§7Obtain a §5Cheetah Talisman§7."
+      ]
+    },
+    {
+      "id": "KILL_LOST_ADVENTURER",
+      "name": "A Lost Cause",
+      "lore": "§7Kill a §cLost Adventurer§7.",
+      "fullLore": [
+        "§7Kill a §cLost Adventurer§7."
+      ]
+    },
+    {
+      "id": "coin_scavenger",
+      "name": "Scavenger",
+      "tiers": [
+        50000000,
+        100000000,
+        150000000,
+        200000000,
+        250000000
+      ],
+      "progress": 659925980,
+      "lore": "§7Loot §e250M Coins§7 through the Scavenger Enchantment",
+      "fullLore": [
+        "§7Loot §e250M Coins§7 through the Scavenger Enchantment"
+      ]
+    },
+    {
+      "id": "GET_SKILL_farming_10",
+      "name": "Farmer",
+      "lore": "§7Obtain level §e10§7 in the §6Farming §7Skill.",
+      "fullLore": [
+        "§7Obtain level §e10§7 in the §6Farming §7Skill."
+      ]
+    },
+    {
+      "id": "craft_minions",
+      "name": "Minion Machine",
+      "lore": "§7Obtain §a25 §7unique Minions.",
+      "fullLore": [
+        "§7Obtain §a25 §7unique Minions."
+      ],
+      "requiredAmount": 25
+    },
+    {
+      "id": "collection_gold_ingot",
+      "name": "Gold Ingot Collector",
+      "lore": "§7Reach §a60,000 §7Gold Ingot Collection.",
+      "fullLore": [
+        "§7Reach §a60,000 §7Gold Ingot Collection."
+      ],
+      "requiredAmount": 60000
+    },
+    {
+      "id": "spider_relic",
+      "name": "Relic Researcher",
+      "lore": "§7Find 10 §fRelics §7in the Spider's Den.",
+      "fullLore": [
+        "§7Find 10 §fRelics §7in the Spider's Den."
+      ],
+      "requiredAmount": 10
+    },
+    {
+      "id": "stat_strength",
+      "name": "Strongman",
+      "lore": "§7Reach §c200 §c❁ Strength§7.",
+      "fullLore": [
+        "§7Reach §c200 §c❁ Strength§7."
+      ],
+      "requiredAmount": 200
+    },
+    {
+      "id": "kill_endermen",
+      "name": "Enderman Slayer",
+      "tiers": [
+        500000,
+        1000000,
+        1500000,
+        2000000,
+        2500000
+      ],
+      "progress": 6227357,
+      "lore": "§7Kill §a2.5M Endermen§7.",
+      "fullLore": [
+        "§7Kill §a2.5M Endermen§7."
+      ]
+    }
+  ]
+}

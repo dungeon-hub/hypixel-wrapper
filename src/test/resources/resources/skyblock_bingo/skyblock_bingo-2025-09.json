@@ -1,0 +1,259 @@
+{
+  "success": true,
+  "lastUpdated": 1756894269400,
+  "id": 45,
+  "name": "September 2025",
+  "start": 1756699200000,
+  "end": 1757304000000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "BLOW_CRYPTS",
+      "name": "KABOOM!",
+      "tiers": [
+        15000,
+        30000,
+        45000,
+        60000,
+        75000
+      ],
+      "progress": 9695,
+      "lore": "§7Blow up §e75k§7 Crypts in The Catacombs.",
+      "fullLore": [
+        "§7Blow up §e75k§7 Crypts in The Catacombs."
+      ]
+    },
+    {
+      "id": "SOLVE_FETCHUR",
+      "name": "Search And Rescue",
+      "lore": "§7Help §6Fetchur§7 find his item.",
+      "fullLore": [
+        "§7Help §6Fetchur§7 find his item."
+      ]
+    },
+    {
+      "id": "kill_mobs_10000",
+      "name": "Exterminator",
+      "lore": "§7Kill §e10,000 §7mobs.",
+      "fullLore": [
+        "§7Kill §e10,000 §7mobs."
+      ],
+      "requiredAmount": 10000
+    },
+    {
+      "id": "FIND_EXPERIMENT_PAIRS_1",
+      "name": "Pair Up!",
+      "lore": "§7Find §91 Pair §7in the §9Experimentation Table§7.",
+      "fullLore": [
+        "§7Find §91 Pair §7in the §9Experimentation Table§7."
+      ],
+      "requiredAmount": 1
+    },
+    {
+      "id": "collection_clay_ball",
+      "name": "Clay Ball Collector",
+      "lore": "§7Reach §a260,000 §7Clay Ball Collection.",
+      "fullLore": [
+        "§7Reach §a260,000 §7Clay Ball Collection."
+      ],
+      "requiredAmount": 260000
+    },
+    {
+      "id": "craft_item_large_enchanted_chest",
+      "name": "Extra Storage",
+      "lore": "§7Craft a §9Large Storage§7.",
+      "fullLore": [
+        "§7Craft a §9Large Storage§7."
+      ]
+    },
+    {
+      "id": "COLLECT_JACOB_TICKETS",
+      "name": "A Hard Day's Work",
+      "tiers": [
+        20000,
+        40000,
+        60000,
+        80000,
+        100000
+      ],
+      "progress": 27491,
+      "lore": "§7Collect §a100k §aJacob's Tickets§7 from Farming Events!",
+      "fullLore": [
+        "§7Collect §a100k §aJacob's Tickets§7 from Farming Events!"
+      ]
+    },
+    {
+      "id": "collection_mutton",
+      "name": "Raw Mutton Collector",
+      "lore": "§7Reach §a50,000 §7Raw Mutton Collection.",
+      "fullLore": [
+        "§7Reach §a50,000 §7Raw Mutton Collection."
+      ],
+      "requiredAmount": 50000
+    },
+    {
+      "id": "slayer_TWO_80",
+      "name": "Slaughterer",
+      "lore": "§7Kill any §atier II Slayer Boss §7within 80 seconds.",
+      "fullLore": [
+        "§7Kill any §atier II Slayer Boss §7within 80 seconds."
+      ]
+    },
+    {
+      "id": "collection_sulphur",
+      "name": "Gunpowder Collector",
+      "lore": "§7Reach §a45,000 §7Gunpowder Collection.",
+      "fullLore": [
+        "§7Reach §a45,000 §7Gunpowder Collection."
+      ],
+      "requiredAmount": 45000
+    },
+    {
+      "id": "wear_accessories",
+      "name": "Bedazzled",
+      "lore": "§7Equip §a22 §7unique Accessories.",
+      "fullLore": [
+        "§7Equip §a22 §7unique Accessories."
+      ],
+      "requiredAmount": 22
+    },
+    {
+      "id": "craft_item_piggy_bank",
+      "name": "New Savings",
+      "lore": "§7Craft a §aPiggy Bank§7.",
+      "fullLore": [
+        "§7Craft a §aPiggy Bank§7."
+      ]
+    },
+    {
+      "id": "pet_experience",
+      "name": "Pet ",
+      "tiers": [
+        500000000,
+        1000000000,
+        1500000000,
+        2000000000,
+        2500000000
+      ],
+      "progress": 5788185434,
+      "lore": "§7Gain §a2.5B §7Pet experience.",
+      "fullLore": [
+        "§7Gain §a2.5B §7Pet experience."
+      ]
+    },
+    {
+      "id": "reforge_warped",
+      "name": "Hyper Reforger",
+      "lore": "§7Apply the §9Hyper §7reforge to an item.",
+      "fullLore": [
+        "§7Apply the §9Hyper §7reforge to an item."
+      ]
+    },
+    {
+      "id": "OBTAIN_JACOB_BRONZE",
+      "name": "Podium Position",
+      "lore": "§7Obtain a §cBronze§7 or higher §cMedal§7 in Jacob's Farming Contest.",
+      "fullLore": [
+        "§7Obtain a §cBronze§7 or higher §cMedal§7 in Jacob's Farming Contest."
+      ]
+    },
+    {
+      "id": "brew_potion_level",
+      "name": "Trouble is Brewing...",
+      "lore": "§7Brew any level IV or higher potion.",
+      "fullLore": [
+        "§7Brew any level IV or higher potion."
+      ]
+    },
+    {
+      "id": "APPLY_DUNGEON_STARS_5",
+      "name": "I See Stars",
+      "lore": "§7Apply §65 Stars§7 to a dungeon item",
+      "fullLore": [
+        "§7Apply §65 Stars§7 to a dungeon item"
+      ]
+    },
+    {
+      "id": "visit_zones",
+      "name": "Sightseer",
+      "lore": "§7Visit 7 different §apublic islands§7.",
+      "fullLore": [
+        "§7Visit 7 different §apublic islands§7."
+      ],
+      "requiredAmount": 7
+    },
+    {
+      "id": "break_block_ores",
+      "name": "Operation: Ore",
+      "tiers": [
+        2000000,
+        4000000,
+        6000000,
+        8000000,
+        10000000
+      ],
+      "progress": 6919163,
+      "lore": "§7Break §e10M Ore§7 Blocks.",
+      "fullLore": [
+        "§7Break §e10M Ore§7 Blocks."
+      ]
+    },
+    {
+      "id": "obtain_item_wedding_ring_2",
+      "name": "Love Is All Around",
+      "lore": "§7Obtain a §aMediocre Ring of Love§7.",
+      "fullLore": [
+        "§7Obtain a §aMediocre Ring of Love§7."
+      ]
+    },
+    {
+      "id": "obtain_item_grand_exp_bottle",
+      "name": "Experienced",
+      "lore": "§7Obtain a §aGrand Experience Bottle§7.",
+      "fullLore": [
+        "§7Obtain a §aGrand Experience Bottle§7."
+      ]
+    },
+    {
+      "id": "obtain_pets",
+      "name": "Pet Hoarder",
+      "lore": "§7Obtain §a6 §7unique Pets.",
+      "fullLore": [
+        "§7Obtain §a6 §7unique Pets."
+      ],
+      "requiredAmount": 6
+    },
+    {
+      "id": "TARGET_PRACTICE",
+      "name": "Eagle-Eyed",
+      "lore": "§7Complete a timed §eTarget Practice§7.",
+      "fullLore": [
+        "§7Complete a timed §eTarget Practice§7."
+      ]
+    },
+    {
+      "id": "GET_SKILL_foraging_20",
+      "name": "Lumberjack",
+      "lore": "§7Obtain level §e20§7 in the §6Foraging §7Skill.",
+      "fullLore": [
+        "§7Obtain level §e20§7 in the §6Foraging §7Skill."
+      ]
+    },
+    {
+      "id": "collect_essence_spider",
+      "name": "Essence Of Spiders",
+      "tiers": [
+        200000,
+        400000,
+        600000,
+        800000,
+        1000000
+      ],
+      "progress": 258335,
+      "lore": "§7Collect §51M Spider Essence§7.",
+      "fullLore": [
+        "§7Collect §51M Spider Essence§7."
+      ]
+    }
+  ]
+}

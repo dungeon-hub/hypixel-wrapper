@@ -6,14 +6,12 @@ import net.dungeonhub.provider.getAsJsonPrimitiveOrNull
 //TODO complete mapping
 class DungeonData(
     val experience: Double?,
-    val highestTierCompleted: Int?,
-    val raw: JsonObject
+    val highestTierCompleted: Int?
 )
 
 fun JsonObject.toDungeonData(): DungeonData {
     return DungeonData(
         getAsJsonPrimitiveOrNull("experience")?.asDouble,
-        getAsJsonPrimitiveOrNull("highest_tier_completed")?.asInt,
-        this
+        getAsJsonPrimitiveOrNull("highest_tier_completed")?.asInt
     )
 }

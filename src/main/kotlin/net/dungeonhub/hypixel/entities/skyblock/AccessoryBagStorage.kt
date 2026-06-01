@@ -10,8 +10,7 @@ class AccessoryBagStorage(
     val upgradesPurchased: Int,
     val highestMagicalPower: Int,
     val unlockedPowers: List<String>,
-    val tuning: JsonObject?,
-    val raw: JsonObject
+    val tuning: JsonObject?
 )
 
 fun JsonObject.toAccessoryBagStorage(): AccessoryBagStorage {
@@ -20,7 +19,6 @@ fun JsonObject.toAccessoryBagStorage(): AccessoryBagStorage {
         getAsJsonPrimitiveOrNull("upgrades_purchased")?.asInt ?: 0,
         getAsJsonPrimitiveOrNull("highest_magical_power")?.asInt ?: 0,
         getAsJsonArrayOrNull("unlocked_powers")?.map { it.asString } ?: emptyList(),
-        getAsJsonObjectOrNull("tuning"),
-        this
+        getAsJsonObjectOrNull("tuning")
     )
 }

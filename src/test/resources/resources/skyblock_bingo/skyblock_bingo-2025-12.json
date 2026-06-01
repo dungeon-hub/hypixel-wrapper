@@ -1,0 +1,262 @@
+{
+  "success": true,
+  "lastUpdated": 1764756880054,
+  "id": 48,
+  "name": "December 2025",
+  "start": 1764565200000,
+  "end": 1765170000000,
+  "modifier": "NORMAL",
+  "goals": [
+    {
+      "id": "kill_slayer_spider",
+      "name": "Tarantula Broodfather",
+      "tiers": [
+        2000,
+        4000,
+        6000,
+        8000,
+        10000
+      ],
+      "progress": 12634,
+      "lore": "§7Kill §a10,000 Tarantula Broodfather §7of tier II §7or higher.",
+      "fullLore": [
+        "§7Kill §a10,000 Tarantula Broodfather §7of tier II §7or higher."
+      ]
+    },
+    {
+      "id": "KILL_TRAPPER_MOB",
+      "name": "Setting a Trap",
+      "lore": "§7Kill a §aTrapper Animal§7.",
+      "fullLore": [
+        "§7Kill a §aTrapper Animal§7."
+      ]
+    },
+    {
+      "id": "collection_slime_ball",
+      "name": "Slimeball Collector",
+      "lore": "§7Reach §a60,000 §7Slimeball Collection.",
+      "fullLore": [
+        "§7Reach §a60,000 §7Slimeball Collection."
+      ],
+      "requiredAmount": 60000
+    },
+    {
+      "id": "EQUIP_ROCK_COMMON",
+      "name": "Rock Solid",
+      "lore": "§7Equip a §fCommon §7or higher tiered §fRock Pet§7.",
+      "fullLore": [
+        "§7Equip a §fCommon §7or higher tiered §fRock Pet§7."
+      ]
+    },
+    {
+      "id": "consume_mushroomsoup_mystical",
+      "name": "Taking Flight",
+      "lore": "§7Consume a §bMystical Mushroom Soup§7.",
+      "fullLore": [
+        "§7Consume a §bMystical Mushroom Soup§7."
+      ]
+    },
+    {
+      "id": "slayer_TWO_80",
+      "name": "Slaughterer",
+      "lore": "§7Kill any §atier II Slayer Boss §7within 80 seconds.",
+      "fullLore": [
+        "§7Kill any §atier II Slayer Boss §7within 80 seconds."
+      ]
+    },
+    {
+      "id": "BLOW_CRYPTS",
+      "name": "KABOOM!",
+      "tiers": [
+        15000,
+        30000,
+        45000,
+        60000,
+        75000
+      ],
+      "progress": 14646,
+      "lore": "§7Blow up §e75k§7 Crypts in The Catacombs.",
+      "fullLore": [
+        "§7Blow up §e75k§7 Crypts in The Catacombs."
+      ]
+    },
+    {
+      "id": "collection_mutton",
+      "name": "Raw Mutton Collector",
+      "lore": "§7Reach §a50,000 §7Raw Mutton Collection.",
+      "fullLore": [
+        "§7Reach §a50,000 §7Raw Mutton Collection."
+      ],
+      "requiredAmount": 50000
+    },
+    {
+      "id": "stat_sea_creature_chance",
+      "name": "Sea Summoner",
+      "lore": "§7Reach §330% §3α Sea Creature Chance§7.",
+      "fullLore": [
+        "§7Reach §330% §3α Sea Creature Chance§7."
+      ],
+      "requiredAmount": 30
+    },
+    {
+      "id": "collection_ink_sack:4",
+      "name": "Lapis Lazuli Collector",
+      "lore": "§7Reach §a135,000 §7Lapis Lazuli Collection.",
+      "fullLore": [
+        "§7Reach §a135,000 §7Lapis Lazuli Collection."
+      ],
+      "requiredAmount": 135000
+    },
+    {
+      "id": "APPLY_DUNGEON_STARS_5",
+      "name": "I See Stars",
+      "lore": "§7Apply §65 Stars§7 to a dungeon item",
+      "fullLore": [
+        "§7Apply §65 Stars§7 to a dungeon item"
+      ]
+    },
+    {
+      "id": "KILL_LOST_ADVENTURER",
+      "name": "A Lost Cause",
+      "lore": "§7Kill a §cLost Adventurer§7.",
+      "fullLore": [
+        "§7Kill a §cLost Adventurer§7."
+      ]
+    },
+    {
+      "id": "kill_dungeon_boss_catacombs_1",
+      "name": "Clown Collab",
+      "tiers": [
+        1000,
+        2000,
+        3000,
+        4000,
+        5000
+      ],
+      "progress": 4118,
+      "lore": "§7Defeat §cBonzo §a5,000 §7times.",
+      "fullLore": [
+        "§7Defeat §cBonzo §a5,000 §7times."
+      ]
+    },
+    {
+      "id": "GET_SKILL_alchemy_14",
+      "name": "Brewer",
+      "lore": "§7Obtain level §e14§7 in the §6Alchemy §7Skill.",
+      "fullLore": [
+        "§7Obtain level §e14§7 in the §6Alchemy §7Skill."
+      ]
+    },
+    {
+      "id": "stat_walk_speed",
+      "name": "I Am Speed",
+      "lore": "§7Reach §f200 §f✦ Speed§7.",
+      "fullLore": [
+        "§7Reach §f200 §f✦ Speed§7."
+      ],
+      "requiredAmount": 200
+    },
+    {
+      "id": "bank_coins",
+      "name": "Meiser",
+      "lore": "§7Store §6250,000 Coins §7in your Bank.",
+      "fullLore": [
+        "§7Store §6250,000 Coins §7in your Bank."
+      ],
+      "requiredAmount": 250000
+    },
+    {
+      "id": "stat_health",
+      "name": "Healthy",
+      "lore": "§7Reach §c1,000 §c❤ Health§7.",
+      "fullLore": [
+        "§7Reach §c1,000 §c❤ Health§7."
+      ],
+      "requiredAmount": 1000
+    },
+    {
+      "id": "craft_minions",
+      "name": "Minion Machine",
+      "lore": "§7Obtain §a25 §7unique Minions.",
+      "fullLore": [
+        "§7Obtain §a25 §7unique Minions."
+      ],
+      "requiredAmount": 25
+    },
+    {
+      "id": "collect_exp_taming",
+      "name": "Skilled",
+      "tiers": [
+        150000000,
+        300000000,
+        450000000,
+        600000000,
+        750000000
+      ],
+      "progress": 1566359663,
+      "lore": "§7Gain §b750M Taming§7 experience",
+      "fullLore": [
+        "§7Gain §b750M Taming§7 experience"
+      ]
+    },
+    {
+      "id": "stat_strength",
+      "name": "Strongman",
+      "lore": "§7Reach §c140 §c❁ Strength§7.",
+      "fullLore": [
+        "§7Reach §c140 §c❁ Strength§7."
+      ],
+      "requiredAmount": 140
+    },
+    {
+      "id": "obtain_item_wedding_ring_2",
+      "name": "Love Is All Around",
+      "lore": "§7Obtain a §aMediocre Ring of Love§7.",
+      "fullLore": [
+        "§7Obtain a §aMediocre Ring of Love§7."
+      ]
+    },
+    {
+      "id": "obtain_level_6_enchanted_book",
+      "name": "Esteemed Enchanter",
+      "lore": "§7Obtain a Level VI Enchanted Book§7.",
+      "fullLore": [
+        "§7Obtain a Level VI Enchanted Book§7."
+      ]
+    },
+    {
+      "id": "slayer_level",
+      "name": "Slayer",
+      "lore": "§7Reach §aLevel 2 §7for any Slayer boss.",
+      "fullLore": [
+        "§7Reach §aLevel 2 §7for any Slayer boss."
+      ],
+      "requiredAmount": 0
+    },
+    {
+      "id": "wear_unique_armor_18",
+      "name": "Fashionable",
+      "lore": "§7Wear §e18 §7unique Armor Sets.",
+      "fullLore": [
+        "§7Wear §e18 §7unique Armor Sets."
+      ],
+      "requiredAmount": 18
+    },
+    {
+      "id": "harvest_crops",
+      "name": "Agricultural Revolution",
+      "tiers": [
+        2000000,
+        4000000,
+        6000000,
+        8000000,
+        10000000
+      ],
+      "progress": 32256684,
+      "lore": "§7Harvest §a10M §7crops.",
+      "fullLore": [
+        "§7Harvest §a10M §7crops."
+      ]
+    }
+  ]
+}

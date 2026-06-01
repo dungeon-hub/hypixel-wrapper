@@ -17,7 +17,7 @@ interface Cache<T, K> {
 
     fun retrieveAllElements(): Stream<CacheElement<T>>
 
-    fun store(value: T)
+    fun store(value: T, waitForInsertion: Boolean = false)
 
     fun invalidateEntry(key: K)
 }
