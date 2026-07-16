@@ -1,10 +1,13 @@
 package net.dungeonhub.cache.database
 
+import com.mongodb.ConnectionString
+import com.mongodb.MongoClientSettings
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoClients
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import org.bson.Document
+import java.util.concurrent.TimeUnit
 
 object MongoCacheProvider {
     private const val DEFAULT_DATABASE_NAME = "hypixel-wrapper-cache"
@@ -20,7 +23,12 @@ object MongoCacheProvider {
     private val client: MongoClient by lazy {
         val uri = connectionString
         require(!uri.isNullOrBlank()) { "Mongo cache requires HYPIXEL_API_CACHE_DATABASE_URI to be set" }
-        MongoClients.create(uri)
+        val settings = MongoClientSettings.builder()
+            .applyConnectionString(ConnectionString(uri))
+            .applyToClusterSettings { it.serverSelectionTimeout(5, TimeUnit.SECONDS) }
+            .applyToSocketSettings { it.connectTimeout(5, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS) }
+            .build()
+        MongoClients.create(settings)
     }
 
     private val database: MongoDatabase by lazy {

@@ -19,37 +19,30 @@ import net.dungeonhub.hypixel.entities.status.toPlayerSession
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.provider.getAsJsonObjectOrNull
 import okhttp3.HttpUrl.Companion.toHttpUrl
+import org.slf4j.LoggerFactory
 import java.util.*
+import java.util.concurrent.CompletionException
 
 object RestApiClient : ApiClient, ResourceApiClient {
     const val API_PREFIX = "https://api.hypixel.net/v2/"
 
+    private val logger = LoggerFactory.getLogger(RestApiClient::class.java)
+
     override fun getPlayerData(uuid: UUID): HypixelPlayer? {
-        val player = HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
-
-        if (player?.uuid == null) {
-            return null
+        return try {
+            val player = HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
+            if (player?.uuid == null) null else player.raw.toHypixelPlayer()
+        } catch (e: CompletionException) {
+            logger.warn("Failed to fetch player data for {}: {}", uuid, e.cause?.message ?: e.message)
+            null
         }
-
-        return player.raw.toHypixelPlayer()
     }
 
     override fun getSession(uuid: UUID): PlayerSession? {
         val url = (API_PREFIX + "status").toHttpUrl().newBuilder().addEncodedQueryParameter("uuid", uuid.toString()).build()
-
-        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
-
-        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
-            return null
+        return makeAuthenticatedRequest(url.toString()) { json ->
+            json.getAsJsonObjectOrNull("session")?.toPlayerSession(uuid)
         }
-
-        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
-
-        if (!jsonElement.isJsonObject) {
-            return null
-        }
-
-        return jsonElement.asJsonObject.getAsJsonObjectOrNull("session")?.toPlayerSession(uuid)
     }
 
     override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles {
@@ -62,80 +55,61 @@ object RestApiClient : ApiClient, ResourceApiClient {
     }
 
     fun fetchSkyblockProfiles(uuid: UUID): JsonArray? {
-        return HypixelConnection.hypixelApi.getSkyBlockProfiles(uuid).join().profiles
+        return try {
+            HypixelConnection.hypixelApi.getSkyBlockProfiles(uuid).join().profiles
+        } catch (e: CompletionException) {
+            logger.warn("Failed to fetch SkyBlock profiles for {}: {}", uuid, e.cause?.message ?: e.message)
+            null
+        }
     }
 
     override fun getGuild(name: String): Guild? {
         val url = (API_PREFIX + "guild").toHttpUrl().newBuilder().addEncodedQueryParameter("name", name).build()
-
-        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
-
-        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
-            return null
+        return makeAuthenticatedRequest(url.toString()) { json ->
+            json.getAsJsonObjectOrNull("guild")?.toGuild()
         }
-
-        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
-
-        if (!jsonElement.isJsonObject) {
-            return null
-        }
-
-        return jsonElement.asJsonObject.getAsJsonObjectOrNull("guild")?.toGuild()
     }
 
     override fun getPlayerGuild(uuid: UUID): Guild? {
         val url = (API_PREFIX + "guild").toHttpUrl().newBuilder()
             .addEncodedQueryParameter("player", uuid.toString()).build()
-
-        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
-
-        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
-            return null
+        return makeAuthenticatedRequest(url.toString()) { json ->
+            json.getAsJsonObjectOrNull("guild")?.toGuild(uuid)
         }
-
-        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
-
-        if (!jsonElement.isJsonObject) {
-            return null
-        }
-
-        return jsonElement.asJsonObject.getAsJsonObjectOrNull("guild")?.toGuild(uuid)
     }
 
     override fun getBingoData(uuid: UUID): SkyblockBingoData? {
         val url = (API_PREFIX + "skyblock/bingo").toHttpUrl().newBuilder()
             .addEncodedQueryParameter("uuid", uuid.toString()).build()
-
-        val response = HypixelConnection.makeAuthenticatedRequest(url.toString()).join()
-
-        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
-            return null
+        return makeAuthenticatedRequest(url.toString()) { json ->
+            json.toSkyblockBingoData(uuid)
         }
-
-        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
-
-        if (!jsonElement.isJsonObject) {
-            return null
-        }
-
-        return jsonElement.asJsonObject.toSkyblockBingoData(uuid)
     }
 
     override fun getCurrentBingoEvent(): CurrentBingoEvent? {
         val url = (API_PREFIX + "resources/skyblock/bingo").toHttpUrl()
-
-        val response = HypixelConnection.makeRequest(url.toString()).join()
-
-        if (response.statusCode != 200 || response.body.isNullOrBlank()) {
-            return null
+        return try {
+            val response = HypixelConnection.makeRequest(url.toString()).join()
+            if (response.statusCode != 200 || response.body.isNullOrBlank()) return null
+            val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
+            if (!jsonElement.isJsonObject) return null
+            jsonElement.asJsonObject.toCurrentBingoEvent()
+        } catch (e: CompletionException) {
+            logger.warn("Failed to fetch current bingo event: {}", e.cause?.message ?: e.message)
+            null
         }
+    }
 
-        val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
-
-        if (!jsonElement.isJsonObject) {
-            return null
+    private fun <T> makeAuthenticatedRequest(url: String, parse: (com.google.gson.JsonObject) -> T?): T? {
+        return try {
+            val response = HypixelConnection.makeAuthenticatedRequest(url).join()
+            if (response.statusCode != 200 || response.body.isNullOrBlank()) return null
+            val jsonElement = GsonProvider.gson.fromJson(response.body, JsonElement::class.java)
+            if (!jsonElement.isJsonObject) return null
+            parse(jsonElement.asJsonObject)
+        } catch (e: CompletionException) {
+            logger.warn("Failed to perform authenticated request to {}: {}", url, e.cause?.message ?: e.message)
+            null
         }
-
-        return jsonElement.asJsonObject.toCurrentBingoEvent()
     }
 }

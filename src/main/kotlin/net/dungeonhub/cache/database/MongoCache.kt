@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
+import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.model.Accumulators
 import com.mongodb.client.model.Aggregates
@@ -15,6 +16,7 @@ import net.dungeonhub.cache.Cache
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import org.bson.Document
+import org.slf4j.LoggerFactory
 import java.time.Duration
 import java.time.Instant
 import java.util.Date
@@ -39,19 +41,26 @@ class MongoCache<T, K>(
         }
     }
 
+    private val logger = LoggerFactory.getLogger(MongoCache::class.java)
+
     override fun retrieveElement(key: K): CacheElement<T>? {
         getFromMemoryCache(key)?.let { return it }
 
         val keyString = keySerializer(key)
-        val document = collection
-            .find(Filters.eq(KEY_FIELD, keyString))
-            .sort(Sorts.descending(TIMESTAMP_FIELD))
-            .first() ?: return null
-        val element = deserialize(document)
-        if (element != null) {
-            storeInMemoryCache(key, element)
+        return try {
+            val document = collection
+                .find(Filters.eq(KEY_FIELD, keyString))
+                .sort(Sorts.descending(TIMESTAMP_FIELD))
+                .first() ?: return null
+            val element = deserialize(document)
+            if (element != null) {
+                storeInMemoryCache(key, element)
+            }
+            element
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during retrieveElement for key {}: {}", keyString, mongoException.message)
+            null
         }
-        return element
     }
 
     override fun retrieveAllElements(): Stream<CacheElement<T>> {
@@ -61,7 +70,12 @@ class MongoCache<T, K>(
             Aggregates.replaceRoot("\$doc")
         )
 
-        val cursor = collection.aggregate(pipeline, Document::class.java).iterator()
+        val cursor = try {
+            collection.aggregate(pipeline, Document::class.java).iterator()
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during retrieveAllElements: {}", mongoException.message)
+            return Stream.empty()
+        }
 
         val iterator = object : Iterator<CacheElement<T>> {
             private var nextComputed = false
@@ -111,7 +125,11 @@ class MongoCache<T, K>(
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
         storeInMemoryCache(key, element)
-        collection.insertOne(document)
+        try {
+            collection.insertOne(document)
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during storeCacheElement for key {}: {}", serializedKey, mongoException.message)
+        }
     }
 
     override fun store(value: T, waitForInsertion: Boolean) {
@@ -124,13 +142,23 @@ class MongoCache<T, K>(
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
         storeInMemoryCache(key, CacheElement(timestamp, value))
-        val insertionThread = thread(start = true) { collection.insertOne(document) }
+        val insertionThread = thread(start = true) {
+            try {
+                collection.insertOne(document)
+            } catch (mongoException: MongoException) {
+                logger.warn("MongoDB unavailable during store for key {}: {}", serializedKey, mongoException.message)
+            }
+        }
         if (waitForInsertion) insertionThread.join()
     }
 
     override fun invalidateEntry(key: K) {
         val serializedKey = keySerializer(key)
-        collection.deleteMany(Filters.eq(KEY_FIELD, serializedKey))
+        try {
+            collection.deleteMany(Filters.eq(KEY_FIELD, serializedKey))
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during invalidateEntry for key {}: {}", serializedKey, mongoException.message)
+        }
         invalidateMemoryCache(key)
     }
 
