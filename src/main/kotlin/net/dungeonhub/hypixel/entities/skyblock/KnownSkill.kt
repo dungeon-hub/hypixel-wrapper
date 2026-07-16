@@ -137,8 +137,7 @@ enum class KnownSkill(
         ),
         true
     ),
-    //TODO why is isnt this the API??
-    /*Hunting("SKILL_HUNTING", 50)*/;
+    Hunting("SKILL_HUNTING", 50);
 
     enum class DeprecatedSkill(override val apiName: String) : Skill {
         Dungeoneering("SKILL_DUNGEONEERING");
