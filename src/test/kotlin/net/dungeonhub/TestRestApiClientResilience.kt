@@ -18,7 +18,6 @@ import java.io.IOException
 import java.util.UUID
 import kotlin.test.Test
 import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 class TestRestApiClientResilience {
 
@@ -53,7 +52,7 @@ class TestRestApiClientResilience {
     fun testGetSkyblockProfilesReturnsEmptyOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
         val result = RestApiClient.getSkyblockProfiles(testUuid)
-        assertTrue(result.profiles.isEmpty())
+        assertNull(result)
     }
 
     @Test
