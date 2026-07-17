@@ -73,10 +73,10 @@ object HypixelConnection : HypixelHttpClient {
             return null
         }
 
-        val limit = response.header("RateLimit-Limit")?.toInt()
-        val remaining = response.header("RateLimit-Remaining")?.toInt()
-        val reset = response.header("RateLimit-Reset")?.toInt()
-        return RateLimit(limit!!, remaining!!, reset!!)
+        val limit = response.header("RateLimit-Limit")?.toIntOrNull() ?: return null
+        val remaining = response.header("RateLimit-Remaining")?.toIntOrNull() ?: return null
+        val reset = response.header("RateLimit-Reset")?.toIntOrNull() ?: return null
+        return RateLimit(limit, remaining, reset)
     }
 
     fun getOnlineStatus(uuid: UUID): StatusReply.Session {

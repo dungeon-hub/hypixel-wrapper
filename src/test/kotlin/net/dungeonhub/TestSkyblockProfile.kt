@@ -564,9 +564,7 @@ class TestSkyblockProfile {
 
         val profiles = nullResponseClient.getSkyblockProfiles(uuid)
 
-        assertNotNull(profiles)
-        assertEquals(uuid, profiles.owner)
-        assertEquals(0, profiles.profiles.size)
+        assertNull(profiles)
     }
 
     @Test

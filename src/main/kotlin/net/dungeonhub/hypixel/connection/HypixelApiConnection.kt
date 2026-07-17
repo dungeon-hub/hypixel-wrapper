@@ -40,18 +40,32 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
             }
         }
 
+    var useStaleCache: Boolean
+        get() = (client as? FallbackApiClient)?.useStaleCache ?: false
+        set(value) {
+            (client as? FallbackApiClient)?.let { client = it.withStaleCache(value) }
+        }
+
     fun withStrategy(strategy: ApiClientStrategy): HypixelApiConnection {
         return HypixelApiConnection(strategy)
     }
 
     fun withCacheExpiration(cacheExpiration: Int): HypixelApiConnection {
         val connection = HypixelApiConnection(strategy)
+        connection.client = client
         connection.cacheExpiration = cacheExpiration
         return connection
     }
 
     fun withCacheExpiration(cacheExpiration: Duration): HypixelApiConnection {
         return withCacheExpiration(cacheExpiration.toMinutes().toInt())
+    }
+
+    fun withStaleCache(useStaleCache: Boolean = true): HypixelApiConnection {
+        val connection = HypixelApiConnection(strategy)
+        connection.client = client
+        connection.useStaleCache = useStaleCache
+        return connection
     }
 
     override fun getCurrentBingoEvent(): CurrentBingoEvent? {

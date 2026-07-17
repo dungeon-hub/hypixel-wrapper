@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
+import com.mongodb.MongoException
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.model.Accumulators
 import com.mongodb.client.model.Aggregates
@@ -15,13 +16,14 @@ import net.dungeonhub.cache.Cache
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import org.bson.Document
+import org.slf4j.LoggerFactory
 import java.time.Duration
 import java.time.Instant
 import java.util.Date
-import java.util.Spliterators
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Stream
-import java.util.stream.StreamSupport
-import kotlin.concurrent.thread
 
 class MongoCache<T, K>(
     collection: MongoCollection<Document>,
@@ -39,19 +41,26 @@ class MongoCache<T, K>(
         }
     }
 
+    private val logger = LoggerFactory.getLogger(MongoCache::class.java)
+
     override fun retrieveElement(key: K): CacheElement<T>? {
         getFromMemoryCache(key)?.let { return it }
 
         val keyString = keySerializer(key)
-        val document = collection
-            .find(Filters.eq(KEY_FIELD, keyString))
-            .sort(Sorts.descending(TIMESTAMP_FIELD))
-            .first() ?: return null
-        val element = deserialize(document)
-        if (element != null) {
-            storeInMemoryCache(key, element)
+        return try {
+            val document = collection
+                .find(Filters.eq(KEY_FIELD, keyString))
+                .sort(Sorts.descending(TIMESTAMP_FIELD))
+                .first() ?: return null
+            val element = deserialize(document)
+            if (element != null) {
+                storeInMemoryCache(key, element)
+            }
+            element
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during retrieveElement for key {}: {}", keyString, mongoException.message)
+            null
         }
-        return element
     }
 
     override fun retrieveAllElements(): Stream<CacheElement<T>> {
@@ -61,44 +70,17 @@ class MongoCache<T, K>(
             Aggregates.replaceRoot("\$doc")
         )
 
-        val cursor = collection.aggregate(pipeline, Document::class.java).iterator()
-
-        val iterator = object : Iterator<CacheElement<T>> {
-            private var nextComputed = false
-            private var nextValue: CacheElement<T>? = null
-
-            private fun computeNext() {
+        val elements = mutableListOf<CacheElement<T>>()
+        try {
+            collection.aggregate(pipeline, Document::class.java).iterator().use { cursor ->
                 while (cursor.hasNext()) {
-                    val doc = cursor.next()
-                    val element = deserialize(doc)
-                    if (element != null) {
-                        nextValue = element
-                        nextComputed = true
-                        return
-                    }
+                    deserialize(cursor.next())?.let { elements.add(it) }
                 }
-                nextValue = null
-                nextComputed = true
             }
-
-            override fun hasNext(): Boolean {
-                if (!nextComputed) computeNext()
-                return nextValue != null
-            }
-
-            override fun next(): CacheElement<T> {
-                if (!nextComputed) computeNext()
-                val result = nextValue ?: throw NoSuchElementException()
-                nextComputed = false
-                nextValue = null
-                return result
-            }
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during retrieveAllElements: {}", mongoException.message)
         }
-
-        val spliterator = Spliterators.spliteratorUnknownSize(iterator, 0)
-        val stream = StreamSupport.stream(spliterator, false)
-
-        return stream.onClose { cursor.close() }
+        return elements.stream()
     }
 
     fun storeCacheElement(element: CacheElement<T>) {
@@ -111,7 +93,11 @@ class MongoCache<T, K>(
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
         storeInMemoryCache(key, element)
-        collection.insertOne(document)
+        try {
+            collection.insertOne(document)
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during storeCacheElement for key {}: {}", serializedKey, mongoException.message)
+        }
     }
 
     override fun store(value: T, waitForInsertion: Boolean) {
@@ -124,13 +110,23 @@ class MongoCache<T, K>(
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
         storeInMemoryCache(key, CacheElement(timestamp, value))
-        val insertionThread = thread(start = true) { collection.insertOne(document) }
-        if (waitForInsertion) insertionThread.join()
+        val future = insertionExecutor.submit {
+            try {
+                collection.insertOne(document)
+            } catch (mongoException: MongoException) {
+                logger.warn("MongoDB unavailable during store for key {}: {}", serializedKey, mongoException.message)
+            }
+        }
+        if (waitForInsertion) future.get()
     }
 
     override fun invalidateEntry(key: K) {
         val serializedKey = keySerializer(key)
-        collection.deleteMany(Filters.eq(KEY_FIELD, serializedKey))
+        try {
+            collection.deleteMany(Filters.eq(KEY_FIELD, serializedKey))
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during invalidateEntry for key {}: {}", serializedKey, mongoException.message)
+        }
         invalidateMemoryCache(key)
     }
 
@@ -192,6 +188,13 @@ class MongoCache<T, K>(
         private const val KEY_FIELD = "key"
         private const val TIMESTAMP_FIELD = "timestamp"
         private const val VALUE_FIELD = "value"
+
+        private val threadCounter = AtomicInteger()
+        val insertionExecutor: ExecutorService = Executors.newFixedThreadPool(
+            2
+        ) { r ->
+            Thread(r, "mongo-cache-insert-${threadCounter.incrementAndGet()}").also { it.isDaemon = true }
+        }
     }
 
     private data class LocalCacheEntry<T>(val cachedAt: Instant, val element: CacheElement<T>)
