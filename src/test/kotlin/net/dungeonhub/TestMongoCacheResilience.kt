@@ -4,8 +4,10 @@ import com.google.gson.reflect.TypeToken
 import com.mongodb.MongoException
 import com.mongodb.MongoSocketReadTimeoutException
 import com.mongodb.ServerAddress
+import com.mongodb.client.AggregateIterable
 import com.mongodb.client.FindIterable
 import com.mongodb.client.MongoCollection
+import com.mongodb.client.MongoCursor
 import io.mockk.every
 import io.mockk.mockk
 import net.dungeonhub.cache.database.MongoCache
@@ -29,7 +31,11 @@ class TestMongoCacheResilience {
         every { faultyFind.first() } throws MongoException("server down")
         every { inner.find(any<Bson>()) } returns faultyFind
 
-        every { inner.aggregate(any<List<Bson>>(), Document::class.java) } throws MongoException("server down")
+        val faultyCursor = mockk<MongoCursor<Document>>()
+        every { faultyCursor.hasNext() } throws MongoException("server down")
+        val faultyAggregate = mockk<AggregateIterable<Document>>()
+        every { faultyAggregate.iterator() } returns faultyCursor
+        every { inner.aggregate(any<List<Bson>>(), Document::class.java) } returns faultyAggregate
         every { inner.insertOne(any<Document>()) } throws MongoException("server down")
         every { inner.deleteMany(any<Bson>()) } throws MongoException("server down")
 
@@ -52,10 +58,48 @@ class TestMongoCacheResilience {
     }
 
     @Test
-    fun testRetrieveAllElementsReturnsEmptyStreamWhenMongoDown() {
+    fun testRetrieveAllElementsReturnsEmptyStreamWhenCursorThrows() {
+        // cursor.hasNext() throws immediately — no elements yielded
         val cache = buildFaultyCache()
         assertDoesNotThrow {
             assertEquals(0, cache.retrieveAllElements().count())
+        }
+    }
+
+    @Test
+    fun testRetrieveAllElementsStopsGracefullyOnMidIterationFailure() {
+        // cursor succeeds on first hasNext()/next() then throws, verifying computeNext catches mid-stream
+        val goodDoc = Document().also {
+            it["key"] = "k"
+            it["timestamp"] = Instant.now()
+            it["value"] = "hello"
+        }
+        val cursor = mockk<MongoCursor<Document>>()
+        var callCount = 0
+        every { cursor.hasNext() } answers {
+            callCount++
+            if (callCount == 1) true else throw MongoException("connection lost mid-stream")
+        }
+        every { cursor.next() } returns goodDoc
+        every { cursor.close() } returns Unit
+        val aggregate = mockk<AggregateIterable<Document>>()
+        every { aggregate.iterator() } returns cursor
+
+        val inner = mockk<MongoCollection<Document>>(relaxed = true)
+        every { inner.aggregate(any<List<Bson>>(), Document::class.java) } returns aggregate
+        val outer = mockk<MongoCollection<Document>>()
+        every { outer.withDocumentClass(Document::class.java) } returns inner
+
+        val cache = MongoCache(
+            outer,
+            object : TypeToken<CacheElement<String>>() {},
+            { it }
+        )
+
+        assertDoesNotThrow {
+            // stream ends after the error; count may be 0 if the document fails to deserialize,
+            // but the important thing is no exception propagates
+            cache.retrieveAllElements().use { it.count() }
         }
     }
 

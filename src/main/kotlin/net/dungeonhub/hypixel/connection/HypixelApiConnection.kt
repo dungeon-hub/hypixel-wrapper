@@ -52,6 +52,7 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
 
     fun withCacheExpiration(cacheExpiration: Int): HypixelApiConnection {
         val connection = HypixelApiConnection(strategy)
+        connection.client = client
         connection.cacheExpiration = cacheExpiration
         return connection
     }
@@ -62,6 +63,7 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
 
     fun withStaleCache(useStaleCache: Boolean = true): HypixelApiConnection {
         val connection = HypixelApiConnection(strategy)
+        connection.client = client
         connection.useStaleCache = useStaleCache
         return connection
     }

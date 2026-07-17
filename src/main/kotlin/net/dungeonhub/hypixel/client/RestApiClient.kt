@@ -2,6 +2,7 @@ package net.dungeonhub.hypixel.client
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
+import com.google.gson.JsonSyntaxException
 import net.dungeonhub.hypixel.client.resources.ResourceApiClient
 import net.dungeonhub.hypixel.connection.HypixelConnection
 import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
@@ -39,7 +40,7 @@ object RestApiClient : ApiClient, ResourceApiClient {
     }
 
     override fun getSession(uuid: UUID): PlayerSession? {
-        val url = (API_PREFIX + "status").toHttpUrl().newBuilder().addEncodedQueryParameter("uuid", uuid.toString()).build()
+        val url = (API_PREFIX + "status").toHttpUrl().newBuilder().addQueryParameter("uuid", uuid.toString()).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.getAsJsonObjectOrNull("session")?.toPlayerSession(uuid)
         }
@@ -64,7 +65,7 @@ object RestApiClient : ApiClient, ResourceApiClient {
     }
 
     override fun getGuild(name: String): Guild? {
-        val url = (API_PREFIX + "guild").toHttpUrl().newBuilder().addEncodedQueryParameter("name", name).build()
+        val url = (API_PREFIX + "guild").toHttpUrl().newBuilder().addQueryParameter("name", name).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.getAsJsonObjectOrNull("guild")?.toGuild()
         }
@@ -72,7 +73,7 @@ object RestApiClient : ApiClient, ResourceApiClient {
 
     override fun getPlayerGuild(uuid: UUID): Guild? {
         val url = (API_PREFIX + "guild").toHttpUrl().newBuilder()
-            .addEncodedQueryParameter("player", uuid.toString()).build()
+            .addQueryParameter("player", uuid.toString()).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.getAsJsonObjectOrNull("guild")?.toGuild(uuid)
         }
@@ -80,7 +81,7 @@ object RestApiClient : ApiClient, ResourceApiClient {
 
     override fun getBingoData(uuid: UUID): SkyblockBingoData? {
         val url = (API_PREFIX + "skyblock/bingo").toHttpUrl().newBuilder()
-            .addEncodedQueryParameter("uuid", uuid.toString()).build()
+            .addQueryParameter("uuid", uuid.toString()).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.toSkyblockBingoData(uuid)
         }
@@ -97,6 +98,9 @@ object RestApiClient : ApiClient, ResourceApiClient {
         } catch (e: CompletionException) {
             logger.warn("Failed to fetch current bingo event: {}", e.cause?.message ?: e.message)
             null
+        } catch (e: JsonSyntaxException) {
+            logger.warn("Malformed JSON in bingo event response: {}", e.message)
+            null
         }
     }
 
@@ -109,6 +113,9 @@ object RestApiClient : ApiClient, ResourceApiClient {
             parse(jsonElement.asJsonObject)
         } catch (e: CompletionException) {
             logger.warn("Failed to perform authenticated request to {}: {}", url, e.cause?.message ?: e.message)
+            null
+        } catch (e: JsonSyntaxException) {
+            logger.warn("Malformed JSON from {}: {}", url, e.message)
             null
         }
     }

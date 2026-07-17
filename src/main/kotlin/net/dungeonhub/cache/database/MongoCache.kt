@@ -23,7 +23,8 @@ import java.util.Date
 import java.util.Spliterators
 import java.util.stream.Stream
 import java.util.stream.StreamSupport
-import kotlin.concurrent.thread
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class MongoCache<T, K>(
     collection: MongoCollection<Document>,
@@ -42,6 +43,7 @@ class MongoCache<T, K>(
     }
 
     private val logger = LoggerFactory.getLogger(MongoCache::class.java)
+    private val insertionExecutor: ExecutorService = Executors.newFixedThreadPool(2)
 
     override fun retrieveElement(key: K): CacheElement<T>? {
         getFromMemoryCache(key)?.let { return it }
@@ -82,14 +84,18 @@ class MongoCache<T, K>(
             private var nextValue: CacheElement<T>? = null
 
             private fun computeNext() {
-                while (cursor.hasNext()) {
-                    val doc = cursor.next()
-                    val element = deserialize(doc)
-                    if (element != null) {
-                        nextValue = element
-                        nextComputed = true
-                        return
+                try {
+                    while (cursor.hasNext()) {
+                        val doc = cursor.next()
+                        val element = deserialize(doc)
+                        if (element != null) {
+                            nextValue = element
+                            nextComputed = true
+                            return
+                        }
                     }
+                } catch (mongoException: MongoException) {
+                    logger.warn("MongoDB error mid-iteration in retrieveAllElements: {}", mongoException.message)
                 }
                 nextValue = null
                 nextComputed = true
@@ -142,14 +148,14 @@ class MongoCache<T, K>(
         document[TIMESTAMP_FIELD] = timestamp
         document[VALUE_FIELD] = jsonElementToBsonValue(valueElement)
         storeInMemoryCache(key, CacheElement(timestamp, value))
-        val insertionThread = thread(start = true) {
+        val future = insertionExecutor.submit {
             try {
                 collection.insertOne(document)
             } catch (mongoException: MongoException) {
                 logger.warn("MongoDB unavailable during store for key {}: {}", serializedKey, mongoException.message)
             }
         }
-        if (waitForInsertion) insertionThread.join()
+        if (waitForInsertion) future.get()
     }
 
     override fun invalidateEntry(key: K) {
