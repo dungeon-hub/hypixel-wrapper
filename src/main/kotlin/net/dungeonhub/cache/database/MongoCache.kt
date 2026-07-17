@@ -84,6 +84,7 @@ class MongoCache<T, K>(
             private var nextValue: CacheElement<T>? = null
 
             private fun computeNext() {
+                var found = false
                 try {
                     while (cursor.hasNext()) {
                         val doc = cursor.next()
@@ -91,15 +92,22 @@ class MongoCache<T, K>(
                         if (element != null) {
                             nextValue = element
                             nextComputed = true
+                            found = true
                             return
                         }
                     }
                 } catch (mongoException: MongoException) {
                     logger.warn("MongoDB error mid-iteration in retrieveAllElements: {}", mongoException.message)
+                } finally {
+                    if (!found) {
+                        // Cursor exhausted, Mongo error, or any unexpected exception — close here
+                        // so cleanup is guaranteed on every non-value-found exit, independently
+                        // of the stream's onClose (which only fires on stream.close()).
+                        runCatching { cursor.close() }
+                        nextValue = null
+                        nextComputed = true
+                    }
                 }
-                cursor.close()
-                nextValue = null
-                nextComputed = true
             }
 
             override fun hasNext(): Boolean {
