@@ -20,12 +20,10 @@ import org.slf4j.LoggerFactory
 import java.time.Duration
 import java.time.Instant
 import java.util.Date
-import java.util.Spliterators
-import java.util.stream.Stream
-import java.util.stream.StreamSupport
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.stream.Stream
 
 class MongoCache<T, K>(
     collection: MongoCollection<Document>,
@@ -72,62 +70,17 @@ class MongoCache<T, K>(
             Aggregates.replaceRoot("\$doc")
         )
 
-        val cursor = try {
-            collection.aggregate(pipeline, Document::class.java).iterator()
-        } catch (mongoException: MongoException) {
-            logger.warn("MongoDB unavailable during retrieveAllElements: {}", mongoException.message)
-            return Stream.empty()
-        }
-
-        val iterator = object : Iterator<CacheElement<T>> {
-            private var nextComputed = false
-            private var nextValue: CacheElement<T>? = null
-
-            private fun computeNext() {
-                var found = false
-                try {
-                    while (cursor.hasNext()) {
-                        val doc = cursor.next()
-                        val element = deserialize(doc)
-                        if (element != null) {
-                            nextValue = element
-                            nextComputed = true
-                            found = true
-                            return
-                        }
-                    }
-                } catch (mongoException: MongoException) {
-                    logger.warn("MongoDB error mid-iteration in retrieveAllElements: {}", mongoException.message)
-                } finally {
-                    if (!found) {
-                        // Cursor exhausted, Mongo error, or any unexpected exception — close here
-                        // so cleanup is guaranteed on every non-value-found exit, independently
-                        // of the stream's onClose (which only fires on stream.close()).
-                        runCatching { cursor.close() }
-                        nextValue = null
-                        nextComputed = true
-                    }
+        val elements = mutableListOf<CacheElement<T>>()
+        try {
+            collection.aggregate(pipeline, Document::class.java).iterator().use { cursor ->
+                while (cursor.hasNext()) {
+                    deserialize(cursor.next())?.let { elements.add(it) }
                 }
             }
-
-            override fun hasNext(): Boolean {
-                if (!nextComputed) computeNext()
-                return nextValue != null
-            }
-
-            override fun next(): CacheElement<T> {
-                if (!nextComputed) computeNext()
-                val result = nextValue ?: throw NoSuchElementException()
-                nextComputed = false
-                nextValue = null
-                return result
-            }
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during retrieveAllElements: {}", mongoException.message)
         }
-
-        val spliterator = Spliterators.spliteratorUnknownSize(iterator, 0)
-        val stream = StreamSupport.stream(spliterator, false)
-
-        return stream.onClose { cursor.close() }
+        return elements.stream()
     }
 
     fun storeCacheElement(element: CacheElement<T>) {
