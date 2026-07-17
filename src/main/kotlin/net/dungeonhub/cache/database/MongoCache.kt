@@ -25,6 +25,7 @@ import java.util.stream.Stream
 import java.util.stream.StreamSupport
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 
 class MongoCache<T, K>(
     collection: MongoCollection<Document>,
@@ -43,7 +44,6 @@ class MongoCache<T, K>(
     }
 
     private val logger = LoggerFactory.getLogger(MongoCache::class.java)
-    private val insertionExecutor: ExecutorService = Executors.newFixedThreadPool(2)
 
     override fun retrieveElement(key: K): CacheElement<T>? {
         getFromMemoryCache(key)?.let { return it }
@@ -97,6 +97,7 @@ class MongoCache<T, K>(
                 } catch (mongoException: MongoException) {
                     logger.warn("MongoDB error mid-iteration in retrieveAllElements: {}", mongoException.message)
                 }
+                cursor.close()
                 nextValue = null
                 nextComputed = true
             }
@@ -226,6 +227,13 @@ class MongoCache<T, K>(
         private const val KEY_FIELD = "key"
         private const val TIMESTAMP_FIELD = "timestamp"
         private const val VALUE_FIELD = "value"
+
+        private val threadCounter = AtomicInteger()
+        val insertionExecutor: ExecutorService = Executors.newFixedThreadPool(
+            2
+        ) { r ->
+            Thread(r, "mongo-cache-insert-${threadCounter.incrementAndGet()}").also { it.isDaemon = true }
+        }
     }
 
     private data class LocalCacheEntry<T>(val cachedAt: Instant, val element: CacheElement<T>)

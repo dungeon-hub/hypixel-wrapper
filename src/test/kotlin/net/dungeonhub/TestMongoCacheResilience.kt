@@ -33,6 +33,7 @@ class TestMongoCacheResilience {
 
         val faultyCursor = mockk<MongoCursor<Document>>()
         every { faultyCursor.hasNext() } throws MongoException("server down")
+        every { faultyCursor.close() } returns Unit
         val faultyAggregate = mockk<AggregateIterable<Document>>()
         every { faultyAggregate.iterator() } returns faultyCursor
         every { inner.aggregate(any<List<Bson>>(), Document::class.java) } returns faultyAggregate
@@ -99,7 +100,7 @@ class TestMongoCacheResilience {
         assertDoesNotThrow {
             // stream ends after the error; count may be 0 if the document fails to deserialize,
             // but the important thing is no exception propagates
-            cache.retrieveAllElements().use { it.count() }
+            assertEquals(1, cache.retrieveAllElements().use { it.count() })
         }
     }
 
