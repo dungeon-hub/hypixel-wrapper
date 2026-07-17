@@ -46,13 +46,12 @@ object RestApiClient : ApiClient, ResourceApiClient {
         }
     }
 
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles {
-        return SkyblockProfiles(
-            uuid,
-            fetchSkyblockProfiles(uuid)?.asList()?.map {
-                it.toSkyblockProfile()
-            } ?: emptyList()
-        )
+    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
+        return fetchSkyblockProfiles(uuid)?.asList()?.map {
+            it.toSkyblockProfile()
+        }?.let { profiles ->
+            SkyblockProfiles(uuid, profiles)
+        }
     }
 
     fun fetchSkyblockProfiles(uuid: UUID): JsonArray? {
