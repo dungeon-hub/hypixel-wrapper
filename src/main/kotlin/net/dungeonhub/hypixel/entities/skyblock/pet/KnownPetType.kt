@@ -21,6 +21,7 @@ enum class KnownPetType(override val apiName: String) : PetType {
     Enderman("ENDERMAN"),
     Endermite("ENDERMITE"),
     FlyingFish("FLYING_FISH"),
+    Frog("FROG"),
     FrostWisp("FROST_WISP"),
     Ghoul("GHOUL"),
     Giraffe("GIRAFFE"),

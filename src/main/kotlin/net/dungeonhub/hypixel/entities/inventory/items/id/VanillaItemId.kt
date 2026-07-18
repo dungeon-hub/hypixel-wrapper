@@ -23,6 +23,7 @@ enum class VanillaItemId(override val apiName: String, override val itemClass: (
     ArmorStand("ARMOR_STAND"),
     AzureBluet("RED_ROSE:3"),
     BakedPotato("BAKED_POTATO"),
+    Bamboo("BAMBOO"),
     BeaconBlock("BEACON"),
     Bed("BED"),
     BirchDoor("BIRCH_DOOR_ITEM"),
