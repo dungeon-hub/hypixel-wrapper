@@ -38,30 +38,30 @@ class TestDiskCache {
         )
 
         //Check if cache is empty
-        for (pair in rawData) {
-            assertNull(apiClient.getPlayerData(pair.first))
+        for ((first) in rawData) {
+            assertNull(apiClient.getPlayerData(first).valueOrNull)
         }
 
-        for (pair in links) {
-            assertNull(apiClient.getHypixelLinkedDiscord(pair.first))
+        for ((first) in links) {
+            assertNull(apiClient.getHypixelLinkedDiscord(first).valueOrNull)
         }
 
         assertEquals(0, apiClient.playerDataCache.retrieveAllElements().count())
 
         //Store example data in cache
-        for (pair in rawData) {
-            val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
+        for ((_, second) in rawData) {
+            val player = GsonProvider.gson.fromJson(second, JsonObject::class.java)
 
             apiClient.playerDataCache.store(player.toHypixelPlayer())
         }
 
         //Check if cache is filled
-        for (pair in rawData) {
-            assertNotNull(apiClient.getPlayerData(pair.first))
+        for ((first) in rawData) {
+            assertNotNull(apiClient.getPlayerData(first).valueOrNull)
         }
 
-        for (pair in links) {
-            assertEquals(pair.second, apiClient.getHypixelLinkedDiscord(pair.first))
+        for ((first, second) in links) {
+            assertEquals(second, apiClient.getHypixelLinkedDiscord(first).valueOrNull)
         }
 
         assertEquals(2, apiClient.playerDataCache.retrieveAllElements().count())

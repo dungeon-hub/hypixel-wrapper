@@ -22,13 +22,12 @@ class TestDungeonData {
 
     @Test
     fun testLevelCalculation() {
-        val experienceToLevel = mapOf<Double, Int>(
+        val experienceToLevel = mapOf(
             0.0 to 0,
             0.1 to 0,
             51.23 to 1,
             12700.0 to 13,
             12699.9 to 12,
-            12700.0 to 13,
             1569809641.0 to 55,
             45104.28232943482 to 16
         )

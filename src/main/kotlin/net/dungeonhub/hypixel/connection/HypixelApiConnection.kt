@@ -4,6 +4,7 @@ import net.dungeonhub.hypixel.client.ApiClient
 import net.dungeonhub.hypixel.client.FallbackApiClient
 import net.dungeonhub.hypixel.client.resources.ResourceApiClient
 import net.dungeonhub.hypixel.client.resources.StaticResourceApiClient
+import net.dungeonhub.hypixel.client.responses.ApiResponse
 import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
 import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
@@ -19,12 +20,12 @@ class HypixelApiConnection(val strategy: ApiClientStrategy = ApiClientStrategy.C
     var client = strategy.client
         private set
 
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? = client.getPlayerData(uuid)
-    override fun getSession(uuid: UUID): PlayerSession? = client.getSession(uuid)
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? = client.getSkyblockProfiles(uuid)
-    override fun getGuild(name: String): Guild? = client.getGuild(name)
-    override fun getPlayerGuild(uuid: UUID): Guild? = client.getPlayerGuild(uuid)
-    override fun getBingoData(uuid: UUID): SkyblockBingoData? = client.getBingoData(uuid)
+    override fun getPlayerData(uuid: UUID): ApiResponse<HypixelPlayer> = client.getPlayerData(uuid)
+    override fun getSession(uuid: UUID): ApiResponse<PlayerSession> = client.getSession(uuid)
+    override fun getSkyblockProfiles(uuid: UUID): ApiResponse<SkyblockProfiles> = client.getSkyblockProfiles(uuid)
+    override fun getGuild(name: String): ApiResponse<Guild> = client.getGuild(name)
+    override fun getPlayerGuild(uuid: UUID): ApiResponse<Guild> = client.getPlayerGuild(uuid)
+    override fun getBingoData(uuid: UUID): ApiResponse<SkyblockBingoData> = client.getBingoData(uuid)
 
     var cacheExpiration: Int?
         get() {

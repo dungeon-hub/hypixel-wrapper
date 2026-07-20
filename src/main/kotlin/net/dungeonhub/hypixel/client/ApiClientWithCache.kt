@@ -1,13 +1,17 @@
 package net.dungeonhub.hypixel.client
 
 import net.dungeonhub.cache.Cache
+import net.dungeonhub.hypixel.client.responses.ApiResponse
+import net.dungeonhub.hypixel.client.responses.DataOrigin
+import net.dungeonhub.hypixel.client.responses.Successful
+import net.dungeonhub.hypixel.client.responses.Unavailable
 import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.status.PlayerSession
-import java.time.Instant
 import java.util.*
+import kotlin.time.toKotlinInstant
 
 interface ApiClientWithCache : ApiClient {
     val playerDataCache: Cache<HypixelPlayer, UUID>
@@ -17,37 +21,27 @@ interface ApiClientWithCache : ApiClient {
     val playerGuildCache: Cache<Guild, UUID>
     val bingoDataCache: Cache<SkyblockBingoData, UUID>
 
-    fun <T : Any> isExpired(cache: Cache<T, UUID>, uuid: UUID, expiresAfterMinutes: Int = 5): Boolean {
-        return cache.retrieveElement(uuid)?.timeAdded?.plusSeconds(expiresAfterMinutes * 60L)?.isBefore(Instant.now())
-            ?: true
+    override fun getPlayerData(uuid: UUID): ApiResponse<HypixelPlayer> {
+        return playerDataCache.retrieveElement(uuid)?.let { Successful(it.value, DataOrigin.Cache, it.timeAdded.toKotlinInstant()) } ?: Unavailable()
     }
 
-    fun <T : Any> isExpired(cache: Cache<T, String>, name: String, expiresAfterMinutes: Int = 5): Boolean {
-        return cache.retrieveElement(name)?.timeAdded?.plusSeconds(expiresAfterMinutes * 60L)?.isBefore(Instant.now())
-            ?: true
+    override fun getSession(uuid: UUID): ApiResponse<PlayerSession> {
+        return sessionCache.retrieveElement(uuid)?.let { Successful(it.value, DataOrigin.Cache, it.timeAdded.toKotlinInstant()) } ?: Unavailable()
     }
 
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? {
-        return playerDataCache.retrieve(uuid)
+    override fun getSkyblockProfiles(uuid: UUID): ApiResponse<SkyblockProfiles> {
+        return skyblockProfilesCache.retrieveElement(uuid)?.let { Successful(it.value, DataOrigin.Cache, it.timeAdded.toKotlinInstant()) } ?: Unavailable()
     }
 
-    override fun getSession(uuid: UUID): PlayerSession? {
-        return sessionCache.retrieve(uuid)
+    override fun getGuild(name: String): ApiResponse<Guild> {
+        return guildCache.retrieveElement(name.lowercase())?.let { Successful(it.value, DataOrigin.Cache, it.timeAdded.toKotlinInstant()) } ?: Unavailable()
     }
 
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
-        return skyblockProfilesCache.retrieve(uuid)
+    override fun getPlayerGuild(uuid: UUID): ApiResponse<Guild> {
+        return playerGuildCache.retrieveElement(uuid)?.let { Successful(it.value, DataOrigin.Cache, it.timeAdded.toKotlinInstant()) } ?: Unavailable()
     }
 
-    override fun getGuild(name: String): Guild? {
-        return guildCache.retrieve(name.lowercase())
-    }
-
-    override fun getPlayerGuild(uuid: UUID): Guild? {
-        return playerGuildCache.retrieve(uuid)
-    }
-
-    override fun getBingoData(uuid: UUID): SkyblockBingoData? {
-        return bingoDataCache.retrieve(uuid)
+    override fun getBingoData(uuid: UUID): ApiResponse<SkyblockBingoData> {
+        return bingoDataCache.retrieveElement(uuid)?.let { Successful(it.value, DataOrigin.Cache, it.timeAdded.toKotlinInstant()) } ?: Unavailable()
     }
 }

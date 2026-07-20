@@ -18,12 +18,12 @@ import kotlin.test.*
 class TestGuild {
     @Test
     fun testGuildRequestParsing() {
-        assertNotNull(RestApiClient.getGuild("Freiheit"))
-        assertNotNull(RestApiClient.getGuild("Dungeon Hub"))
-        assertNotNull(RestApiClient.getGuild("DungeonHub"))
+        assertNotNull(RestApiClient.getGuild("Freiheit").valueOrNull)
+        assertNotNull(RestApiClient.getGuild("Dungeon Hub").valueOrNull)
+        assertNotNull(RestApiClient.getGuild("DungeonHub").valueOrNull)
 
-        assertNull(RestApiClient.getGuild("unknown guild"))
-        assertNull(RestApiClient.getGuild("abcdefghijklmnopqrstuvwxyz"))
+        assertNull(RestApiClient.getGuild("unknown guild").valueOrNull)
+        assertNull(RestApiClient.getGuild("abcdefghijklmnopqrstuvwxyz").valueOrNull)
     }
 
     @Test

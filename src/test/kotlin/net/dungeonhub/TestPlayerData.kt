@@ -30,38 +30,38 @@ class TestPlayerData {
         val connection = HypixelApiConnection(ApiClientStrategy.Cache)
 
         //Check if cache is empty
-        for (pair in rawData) {
-            assertNull(connection.getPlayerData(pair.first))
+        for ((first) in rawData) {
+            assertNull(connection.getPlayerData(first).valueOrNull)
         }
 
-        for (pair in links) {
-            assertNull(connection.getHypixelLinkedDiscord(pair.first))
+        for ((first) in links) {
+            assertNull(connection.getHypixelLinkedDiscord(first).valueOrNull)
         }
 
         assertEquals(
-            (connection.strategy.client as CacheApiClient).playerDataCache.retrieveAllElements().count(),
-            0
+            0,
+            (connection.strategy.client as CacheApiClient).playerDataCache.retrieveAllElements().count()
         )
 
         //Store example data in cache
-        for (pair in rawData) {
-            val player = GsonProvider.gson.fromJson(pair.second, JsonObject::class.java)
+        for ((_, second) in rawData) {
+            val player = GsonProvider.gson.fromJson(second, JsonObject::class.java)
 
             CacheApiClientProvider.client.playerDataCache.store(player.toHypixelPlayer())
         }
 
         //Check if cache is filled
-        for (pair in rawData) {
-            assertNotNull(connection.getPlayerData(pair.first))
+        for ((first) in rawData) {
+            assertNotNull(connection.getPlayerData(first).valueOrNull)
         }
 
-        for (pair in links) {
-            assertEquals(connection.getHypixelLinkedDiscord(pair.first), pair.second)
+        for ((first, second) in links) {
+            assertEquals(second, connection.getHypixelLinkedDiscord(first).valueOrNull)
         }
 
         assertEquals(
-            connection.strategy.client.playerDataCache.retrieveAllElements().count(),
-            2
+            2,
+            connection.strategy.client.playerDataCache.retrieveAllElements().count()
         )
     }
 

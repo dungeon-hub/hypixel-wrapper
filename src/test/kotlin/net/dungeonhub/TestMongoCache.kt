@@ -43,11 +43,11 @@ class TestMongoCache {
         )
 
         for (pair in rawData) {
-            assertNull(apiClient.getPlayerData(pair.first))
+            assertNull(apiClient.getPlayerData(pair.first).valueOrNull)
         }
 
         for (pair in links) {
-            assertNull(apiClient.getHypixelLinkedDiscord(pair.first))
+            assertNull(apiClient.getHypixelLinkedDiscord(pair.first).valueOrNull)
         }
 
         assertEquals(0, apiClient.playerDataCache.retrieveAllElements().count())
@@ -59,11 +59,11 @@ class TestMongoCache {
         }
 
         for (pair in rawData) {
-            assertNotNull(apiClient.getPlayerData(pair.first))
+            assertNotNull(apiClient.getPlayerData(pair.first).valueOrNull)
         }
 
         for (pair in links) {
-            assertEquals(pair.second, apiClient.getHypixelLinkedDiscord(pair.first))
+            assertEquals(pair.second, apiClient.getHypixelLinkedDiscord(pair.first).valueOrNull)
         }
 
         assertEquals(2, apiClient.playerDataCache.retrieveAllElements().count())

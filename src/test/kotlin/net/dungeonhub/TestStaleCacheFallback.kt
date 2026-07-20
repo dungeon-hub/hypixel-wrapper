@@ -26,7 +26,6 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class TestStaleCacheFallback {
-
     private val testUuid = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
 
     @BeforeEach
@@ -60,7 +59,7 @@ class TestStaleCacheFallback {
         val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = true)
 
         // REST is down, cache is expired — stale fallback should still return the data
-        assertNotNull(client.getPlayerData(testUuid))
+        assertNotNull(client.getPlayerData(testUuid).valueOrNull)
     }
 
     @Test
@@ -75,7 +74,7 @@ class TestStaleCacheFallback {
         val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = false)
 
         // REST is down, cache is expired, stale fallback disabled — should return null
-        assertNull(client.getPlayerData(testUuid))
+        assertNull(client.getPlayerData(testUuid).valueOrNull)
     }
 
     @Test
@@ -86,6 +85,6 @@ class TestStaleCacheFallback {
         val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = true)
 
         // No data in cache, REST returns null — result should be null, not an exception
-        assertNull(client.getPlayerData(testUuid))
+        assertNull(client.getPlayerData(testUuid).valueOrNull)
     }
 }

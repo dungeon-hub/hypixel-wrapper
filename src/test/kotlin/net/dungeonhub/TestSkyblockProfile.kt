@@ -3,6 +3,7 @@ package net.dungeonhub
 import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.client.RestApiClient
+import net.dungeonhub.hypixel.client.responses.ValueResponse
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
@@ -51,10 +52,10 @@ class TestSkyblockProfile {
 
             assertNotNull(profile)
 
-            assertEquals(profile.cuteName, profileNames[profile.profileId.toString()])
+            assertEquals(profileNames[profile.profileId.toString()], profile.cuteName)
         }
 
-        assertEquals(profiles.size, 3)
+        assertEquals(3, profiles.size)
     }
 
     @Test
@@ -562,7 +563,7 @@ class TestSkyblockProfile {
 
         assertNull(nullResponseClient.fetchSkyblockProfiles(uuid))
 
-        val profiles = nullResponseClient.getSkyblockProfiles(uuid)
+        val profiles = (nullResponseClient.getSkyblockProfiles(uuid) as? ValueResponse)?.valueOrNull
 
         assertNull(profiles)
     }
@@ -767,7 +768,7 @@ class TestSkyblockProfile {
 
         (apiConnection.client as CacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
 
-        val statsOverview = apiConnection.getStatsOverview(uuid)
+        val statsOverview = apiConnection.getStatsOverview(uuid).valueOrNull
 
         assertNotNull(statsOverview)
         assertEquals("Blueberry", statsOverview.profileName)

@@ -3,12 +3,12 @@ import net.thebugmc.gradle.sonatypepublisher.PublishingType
 plugins {
     id("java-library")
     id("net.thebugmc.gradle.sonatype-central-portal-publisher").version("1.2.3")
-    kotlin("jvm") version "2.1.0"
+    kotlin("jvm") version "2.3.10"
 }
 
 group = "net.dungeon-hub"
 val artifactId = "hypixel-wrapper"
-version = "0.7.4"
+version = "0.8.0"
 description = "A simple Kotlin wrapper for the Hypixel API, including a cache."
 
 repositories {
@@ -39,8 +39,8 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
-    testImplementation("io.mockk:mockk:1.14.6")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:6.3.0")
+    testImplementation("io.mockk:mockk:1.14.11")
 }
 
 centralPortal {
@@ -84,7 +84,7 @@ centralPortal {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(25)
     compilerOptions {
         freeCompilerArgs.add("-Xjvm-default=all")
     }
