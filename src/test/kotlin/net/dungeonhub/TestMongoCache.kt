@@ -128,8 +128,6 @@ class TestMongoCache {
         @JvmStatic
         @BeforeAll
         fun startEmbeddedMongo() {
-//            Assumptions.assumeFalse(System.getenv("CI") == "true", "Skipping embedded MongoDB tests in CI/CD environment due to an unknown incompatibility")
-
             val mongodConfig = Mongod.instance()
             val version = Version.Main.V8_2
 
