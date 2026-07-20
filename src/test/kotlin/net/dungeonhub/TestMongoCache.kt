@@ -1,13 +1,10 @@
 package net.dungeonhub
 
 import com.google.gson.JsonObject
-import de.flapdoodle.embed.mongo.MongodExecutable
-import de.flapdoodle.embed.mongo.MongodProcess
-import de.flapdoodle.embed.mongo.MongodStarter
-import de.flapdoodle.embed.mongo.config.MongodConfig
-import de.flapdoodle.embed.mongo.config.Net
 import de.flapdoodle.embed.mongo.distribution.Version
-import de.flapdoodle.embed.process.runtime.Network
+import de.flapdoodle.embed.mongo.transitions.Mongod
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
+import de.flapdoodle.reverse.TransitionWalker
 import net.dungeonhub.cache.CacheType
 import net.dungeonhub.cache.database.MongoCacheProvider
 import net.dungeonhub.hypixel.client.CacheApiClient
@@ -19,7 +16,6 @@ import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import org.junit.jupiter.api.*
-import java.net.InetAddress
 import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -127,29 +123,20 @@ class TestMongoCache {
     }
 
     companion object {
-        private lateinit var mongodExecutable: MongodExecutable
-        private var mongodProcess: MongodProcess? = null
+        private var running: TransitionWalker.ReachedState<RunningMongodProcess>? = null
 
         @JvmStatic
         @BeforeAll
         fun startEmbeddedMongo() {
-            Assumptions.assumeFalse(System.getenv("CI") == "true", "Skipping embedded MongoDB tests in CI/CD environment due to an unknown incompatibility")
+//            Assumptions.assumeFalse(System.getenv("CI") == "true", "Skipping embedded MongoDB tests in CI/CD environment due to an unknown incompatibility")
 
-            val port = Network.freeServerPort(InetAddress.getByName("localhost"))
-            val ipv6 = runCatching { Network.localhostIsIPv6() }.getOrDefault(false)
+            val mongodConfig = Mongod.instance()
+            val version = Version.Main.V8_2
 
-            val net = Net("127.0.0.1", port, ipv6)
+            running = mongodConfig.start(version)
+            val serverAddress = running?.current()?.serverAddress
 
-            val config = MongodConfig.builder()
-                .version(Version.Main.PRODUCTION)
-                .net(net)
-                .build()
-
-            val starter = MongodStarter.getDefaultInstance()
-            mongodExecutable = starter.prepare(config)
-            mongodProcess = mongodExecutable.start()
-
-            MongoCacheProvider.connectionString = "mongodb://localhost:$port"
+            MongoCacheProvider.connectionString = "mongodb://$serverAddress"
             MongoCacheProvider.databaseName = "test-${UUID.randomUUID()}"
             MongoCacheProvider.collectionPrefix = "test"
         }
@@ -159,8 +146,9 @@ class TestMongoCache {
         fun stopEmbeddedMongo() {
             cleanCollections()
 
-            runCatching { mongodProcess?.stop() }
-            runCatching { mongodExecutable.stop() }
+            if (running != null) { runCatching { running?.close() } }
+            running = null
+
             MongoCacheProvider.connectionString = null
         }
 

@@ -2,7 +2,7 @@ import net.thebugmc.gradle.sonatypepublisher.PublishingType
 
 plugins {
     id("java-library")
-    id("net.thebugmc.gradle.sonatype-central-portal-publisher").version("1.2.3")
+    id("net.thebugmc.gradle.sonatype-central-portal-publisher").version("1.2.4")
     kotlin("jvm") version "2.3.10"
 }
 
@@ -29,11 +29,11 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     //Logging
-    implementation("org.slf4j:slf4j-api:2.0.17")
+    implementation("org.slf4j:slf4j-api:2.0.18")
 
     //Database
-    implementation("org.mongodb:mongodb-driver-sync:5.1.0")
-    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.5.4")
+    implementation("org.mongodb:mongodb-driver-sync:5.9.0")
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.33.0")
 
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
