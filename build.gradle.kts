@@ -32,7 +32,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.17")
 
     //Database
-    implementation("org.mongodb:mongodb-driver-sync:5.1.0")
+    implementation("org.mongodb:mongodb-driver-sync:5.9.0")
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.5.4")
 
     //Testing
