@@ -3,7 +3,6 @@ package net.dungeonhub
 import com.google.gson.JsonArray
 import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.client.RestApiClient
-import net.dungeonhub.hypixel.client.responses.ValueResponse
 import net.dungeonhub.hypixel.connection.HypixelApiConnection
 import net.dungeonhub.hypixel.entities.inventory.GemstoneQuality
 import net.dungeonhub.hypixel.entities.inventory.ItemStack
@@ -563,7 +562,7 @@ class TestSkyblockProfile {
 
         assertNull(nullResponseClient.fetchSkyblockProfiles(uuid))
 
-        val profiles = (nullResponseClient.getSkyblockProfiles(uuid) as? ValueResponse)?.valueOrNull
+        val profiles = nullResponseClient.getSkyblockProfiles(uuid).valueOrNull
 
         assertNull(profiles)
     }

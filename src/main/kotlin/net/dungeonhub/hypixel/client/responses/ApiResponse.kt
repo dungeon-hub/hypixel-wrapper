@@ -6,5 +6,5 @@ sealed interface ApiResponse<out T> {
     fun asStale(): ApiResponse<T>
 
     val valueOrNull: T?
-        get() = (this as? ValueResponse)?.value
+        get() = (this as? ValueResponse<T>)?.value
 }

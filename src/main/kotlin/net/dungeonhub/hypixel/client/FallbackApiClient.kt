@@ -53,7 +53,9 @@ class FallbackApiClient(
             return fallbackData
         }
 
-        if(!useStaleCache) return fallbackData
+        if(!useStaleCache || cacheValue !is ValueResponse) {
+            return fallbackData
+        }
 
         return cacheValue.asStale()
     }

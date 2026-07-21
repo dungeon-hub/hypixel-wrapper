@@ -20,7 +20,7 @@ interface ApiClient {
 
     fun getHypixelLinkedDiscord(uuid: UUID): ApiResponse<String?> {
         return getPlayerData(uuid).map { playerData ->
-            return@map playerData.socialMediaLinks.entries.firstOrNull { it.key == KnownSocialMediaType.Discord }?.value
+            playerData.socialMediaLinks.entries.firstOrNull { it.key == KnownSocialMediaType.Discord }?.value
         }
     }
 
@@ -34,14 +34,14 @@ interface ApiClient {
 
     fun getStatsOverview(uuid: UUID, selectedProfile: UUID? = null, statsOverviewTypes: List<StatsOverviewType>? = null): ApiResponse<ProfileStatsOverview?> {
         return getSkyblockProfiles(uuid).map { profiles ->
-            val selectedProfile = profiles.profiles.firstOrNull { it.profileId == selectedProfile }
+            val selectedSkyblockProfile = profiles.profiles.firstOrNull { it.profileId == selectedProfile }
                 ?: profiles.profiles.firstOrNull { it.selected == true }
                 ?: profiles.profiles.maxByOrNull { it.getCurrentMember(uuid)?.leveling?.experience ?: 0 }
                 ?: return@map null
 
-            val member = selectedProfile.getCurrentMember(uuid) ?: return@map null
+            val member = selectedSkyblockProfile.getCurrentMember(uuid) ?: return@map null
 
-            return@map getStatsOverview(selectedProfile, member, statsOverviewTypes)
+            return@map getStatsOverview(selectedSkyblockProfile, member, statsOverviewTypes)
         }
     }
 

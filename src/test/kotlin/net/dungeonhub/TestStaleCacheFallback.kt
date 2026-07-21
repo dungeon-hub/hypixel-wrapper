@@ -56,7 +56,7 @@ class TestStaleCacheFallback {
         cache.playerDataCache.store(playerJson.toHypixelPlayer())
 
         // expiresAfterMinutes=0 forces the entry to be treated as expired immediately
-        val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = true)
+        val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = 0, useStaleCache = true)
 
         // REST is down, cache is expired — stale fallback should still return the data
         assertNotNull(client.getPlayerData(testUuid).valueOrNull)
