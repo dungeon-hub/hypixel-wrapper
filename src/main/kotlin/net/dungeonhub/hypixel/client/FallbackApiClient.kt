@@ -1,12 +1,16 @@
 package net.dungeonhub.hypixel.client
 
-import net.dungeonhub.cache.Cache
+import net.dungeonhub.hypixel.client.responses.ApiResponse
+import net.dungeonhub.hypixel.client.responses.Unavailable
+import net.dungeonhub.hypixel.client.responses.ValueResponse
 import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
 import net.dungeonhub.hypixel.entities.guild.Guild
 import net.dungeonhub.hypixel.entities.player.HypixelPlayer
 import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfiles
 import net.dungeonhub.hypixel.entities.status.PlayerSession
 import java.util.*
+import kotlin.time.Clock
+import kotlin.time.Duration.Companion.minutes
 
 class FallbackApiClient(
     val first: ApiClientWithCache,
@@ -14,35 +18,47 @@ class FallbackApiClient(
     val expiresAfterMinutes: Int = 5,
     val useStaleCache: Boolean = true
 ) : ApiClient {
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? =
-        (if (first.playerDataCache.isExpired(uuid)) null else first.getPlayerData(uuid))
-            ?: second.getPlayerData(uuid)
-            ?: if (useStaleCache) first.getPlayerData(uuid) else null
+    override fun getPlayerData(uuid: UUID): ApiResponse<HypixelPlayer> = handleFallback {
+        it.getPlayerData(uuid)
+    }
 
-    override fun getSession(uuid: UUID): PlayerSession? =
-        (if (first.sessionCache.isExpired(uuid)) null else first.getSession(uuid))
-            ?: second.getSession(uuid)
-            ?: if (useStaleCache) first.getSession(uuid) else null
+    override fun getSession(uuid: UUID): ApiResponse<PlayerSession> = handleFallback {
+        it.getSession(uuid)
+    }
 
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? =
-        (if (first.skyblockProfilesCache.isExpired(uuid)) null else first.getSkyblockProfiles(uuid))
-            ?: second.getSkyblockProfiles(uuid)
-            ?: if (useStaleCache) first.getSkyblockProfiles(uuid) else null
+    override fun getSkyblockProfiles(uuid: UUID): ApiResponse<SkyblockProfiles> = handleFallback {
+        it.getSkyblockProfiles(uuid)
+    }
 
-    override fun getGuild(name: String): Guild? =
-        (if (first.guildCache.isExpired(name.lowercase())) null else first.getGuild(name))
-            ?: second.getGuild(name)
-            ?: if (useStaleCache) first.getGuild(name) else null
+    override fun getGuild(name: String): ApiResponse<Guild> = handleFallback {
+        it.getGuild(name)
+    }
 
-    override fun getPlayerGuild(uuid: UUID): Guild? =
-        (if (first.playerGuildCache.isExpired(uuid)) null else first.getPlayerGuild(uuid))
-            ?: second.getPlayerGuild(uuid)
-            ?: if (useStaleCache) first.getPlayerGuild(uuid) else null
+    override fun getPlayerGuild(uuid: UUID): ApiResponse<Guild> = handleFallback {
+        it.getPlayerGuild(uuid)
+    }
 
-    override fun getBingoData(uuid: UUID): SkyblockBingoData? =
-        (if (first.bingoDataCache.isExpired(uuid)) null else first.getBingoData(uuid))
-            ?: second.getBingoData(uuid)
-            ?: if (useStaleCache) first.getBingoData(uuid) else null
+    override fun getBingoData(uuid: UUID): ApiResponse<SkyblockBingoData> = handleFallback {
+        it.getBingoData(uuid)
+    }
+
+    private fun <T: Any> handleFallback(loadFunction: (ApiClient) -> ApiResponse<T>): ApiResponse<T> {
+        val cacheValue = loadFunction(first)
+        if(cacheValue is ValueResponse && !cacheValue.isStale()) {
+            return cacheValue
+        }
+
+        val fallbackData = loadFunction(second)
+        if(fallbackData !is Unavailable) {
+            return fallbackData
+        }
+
+        if(!useStaleCache || cacheValue !is ValueResponse) {
+            return fallbackData
+        }
+
+        return cacheValue.asStale()
+    }
 
     fun withCacheExpiration(minutes: Int): FallbackApiClient =
         FallbackApiClient(first, second, minutes, useStaleCache)
@@ -50,11 +66,7 @@ class FallbackApiClient(
     fun withStaleCache(useStaleCache: Boolean = true): FallbackApiClient =
         FallbackApiClient(first, second, expiresAfterMinutes, useStaleCache)
 
-    private fun <T : Any> Cache<T, UUID>.isExpired(uuid: UUID): Boolean {
-        return first.isExpired(this, uuid, expiresAfterMinutes)
-    }
-
-    private fun <T : Any> Cache<T, String>.isExpired(name: String): Boolean {
-        return first.isExpired(this, name, expiresAfterMinutes)
+    private fun <T : Any> ValueResponse<T>.isStale(): Boolean {
+        return (timestamp + expiresAfterMinutes.minutes) < Clock.System.now()
     }
 }

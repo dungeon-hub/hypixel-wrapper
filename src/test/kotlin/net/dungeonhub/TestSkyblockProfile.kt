@@ -51,10 +51,10 @@ class TestSkyblockProfile {
 
             assertNotNull(profile)
 
-            assertEquals(profile.cuteName, profileNames[profile.profileId.toString()])
+            assertEquals(profileNames[profile.profileId.toString()], profile.cuteName)
         }
 
-        assertEquals(profiles.size, 3)
+        assertEquals(3, profiles.size)
     }
 
     @Test
@@ -562,7 +562,7 @@ class TestSkyblockProfile {
 
         assertNull(nullResponseClient.fetchSkyblockProfiles(uuid))
 
-        val profiles = nullResponseClient.getSkyblockProfiles(uuid)
+        val profiles = nullResponseClient.getSkyblockProfiles(uuid).valueOrNull
 
         assertNull(profiles)
     }
@@ -767,7 +767,7 @@ class TestSkyblockProfile {
 
         (apiConnection.client as CacheApiClient).skyblockProfilesCache.store(SkyblockProfiles(uuid, profile))
 
-        val statsOverview = apiConnection.getStatsOverview(uuid)
+        val statsOverview = apiConnection.getStatsOverview(uuid).valueOrNull
 
         assertNotNull(statsOverview)
         assertEquals("Blueberry", statsOverview.profileName)
