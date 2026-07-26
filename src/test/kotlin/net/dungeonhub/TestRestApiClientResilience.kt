@@ -39,7 +39,7 @@ class TestRestApiClientResilience {
     @Test
     fun testGetPlayerDataReturnsNullOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
-        assertNull(RestApiClient.getPlayerData(testUuid))
+        assertNull(RestApiClient.getPlayerData(testUuid).valueOrNull)
     }
 
     @Test
@@ -51,32 +51,32 @@ class TestRestApiClientResilience {
     @Test
     fun testGetSkyblockProfilesReturnsEmptyOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
-        val result = RestApiClient.getSkyblockProfiles(testUuid)
+        val result = RestApiClient.getSkyblockProfiles(testUuid).valueOrNull
         assertNull(result)
     }
 
     @Test
     fun testGetSessionReturnsNullOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
-        assertNull(RestApiClient.getSession(testUuid))
+        assertNull(RestApiClient.getSession(testUuid).valueOrNull)
     }
 
     @Test
     fun testGetGuildReturnsNullOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
-        assertNull(RestApiClient.getGuild("DungeonHub"))
+        assertNull(RestApiClient.getGuild("DungeonHub").valueOrNull)
     }
 
     @Test
     fun testGetPlayerGuildReturnsNullOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
-        assertNull(RestApiClient.getPlayerGuild(testUuid))
+        assertNull(RestApiClient.getPlayerGuild(testUuid).valueOrNull)
     }
 
     @Test
     fun testGetBingoDataReturnsNullOnIOException() {
         mockHttpClientThrows(IOException("simulated timeout"))
-        assertNull(RestApiClient.getBingoData(testUuid))
+        assertNull(RestApiClient.getBingoData(testUuid).valueOrNull)
     }
 
     @Test
@@ -90,7 +90,7 @@ class TestRestApiClientResilience {
     @Test
     fun testGetPlayerDataReturnsNullOn522() {
         mockHttpClientReturns("Bad Gateway".toMockResponse(code = 522, contentType = "text/plain"))
-        assertNull(RestApiClient.getPlayerData(testUuid))
+        assertNull(RestApiClient.getPlayerData(testUuid).valueOrNull)
     }
 
     @Test
@@ -102,19 +102,19 @@ class TestRestApiClientResilience {
     @Test
     fun testGetSessionReturnsNullOn522() {
         mockHttpClientReturns("Bad Gateway".toMockResponse(code = 522, contentType = "text/plain"))
-        assertNull(RestApiClient.getSession(testUuid))
+        assertNull(RestApiClient.getSession(testUuid).valueOrNull)
     }
 
     @Test
     fun testGetGuildReturnsNullOn522() {
         mockHttpClientReturns("Bad Gateway".toMockResponse(code = 522, contentType = "text/plain"))
-        assertNull(RestApiClient.getGuild("DungeonHub"))
+        assertNull(RestApiClient.getGuild("DungeonHub").valueOrNull)
     }
 
     @Test
     fun testGetBingoDataReturnsNullOn522() {
         mockHttpClientReturns("Bad Gateway".toMockResponse(code = 522, contentType = "text/plain"))
-        assertNull(RestApiClient.getBingoData(testUuid))
+        assertNull(RestApiClient.getBingoData(testUuid).valueOrNull)
     }
 
     // --- Missing rate-limit headers on 200 ---

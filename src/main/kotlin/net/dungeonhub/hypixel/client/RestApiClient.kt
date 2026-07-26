@@ -4,6 +4,10 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonSyntaxException
 import net.dungeonhub.hypixel.client.resources.ResourceApiClient
+import net.dungeonhub.hypixel.client.responses.ApiResponse
+import net.dungeonhub.hypixel.client.responses.DataOrigin
+import net.dungeonhub.hypixel.client.responses.Successful
+import net.dungeonhub.hypixel.client.responses.Unavailable
 import net.dungeonhub.hypixel.connection.HypixelConnection
 import net.dungeonhub.hypixel.entities.bingo.CurrentBingoEvent
 import net.dungeonhub.hypixel.entities.bingo.SkyblockBingoData
@@ -29,29 +33,29 @@ object RestApiClient : ApiClient, ResourceApiClient {
 
     private val logger = LoggerFactory.getLogger(RestApiClient::class.java)
 
-    override fun getPlayerData(uuid: UUID): HypixelPlayer? {
+    override fun getPlayerData(uuid: UUID): ApiResponse<HypixelPlayer> {
         return try {
             val player = HypixelConnection.hypixelApi.getPlayerByUuid(uuid).join().player
-            if (player?.uuid == null) null else player.raw.toHypixelPlayer()
-        } catch (e: CompletionException) {
-            logger.warn("Failed to fetch player data for {}: {}", uuid, e.cause?.message ?: e.message)
-            null
+            if (player?.uuid == null) Unavailable() else Successful(player.raw.toHypixelPlayer(), DataOrigin.RestApi)
+        } catch (exception: CompletionException) {
+            logger.warn("Failed to fetch player data for {}", uuid, exception)
+            return Unavailable(exception)
         }
     }
 
-    override fun getSession(uuid: UUID): PlayerSession? {
+    override fun getSession(uuid: UUID): ApiResponse<PlayerSession> {
         val url = (API_PREFIX + "status").toHttpUrl().newBuilder().addQueryParameter("uuid", uuid.toString()).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.getAsJsonObjectOrNull("session")?.toPlayerSession(uuid)
-        }
+        }?.let { Successful(it, DataOrigin.RestApi) } ?: Unavailable()
     }
 
-    override fun getSkyblockProfiles(uuid: UUID): SkyblockProfiles? {
+    override fun getSkyblockProfiles(uuid: UUID): ApiResponse<SkyblockProfiles> {
         return fetchSkyblockProfiles(uuid)?.asList()?.map {
             it.toSkyblockProfile()
         }?.let { profiles ->
             SkyblockProfiles(uuid, profiles)
-        }
+        }?.let { Successful(it, DataOrigin.RestApi) } ?: Unavailable()
     }
 
     fun fetchSkyblockProfiles(uuid: UUID): JsonArray? {
@@ -63,27 +67,27 @@ object RestApiClient : ApiClient, ResourceApiClient {
         }
     }
 
-    override fun getGuild(name: String): Guild? {
+    override fun getGuild(name: String): ApiResponse<Guild> {
         val url = (API_PREFIX + "guild").toHttpUrl().newBuilder().addQueryParameter("name", name).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.getAsJsonObjectOrNull("guild")?.toGuild()
-        }
+        }?.let { Successful(it, DataOrigin.RestApi) } ?: Unavailable()
     }
 
-    override fun getPlayerGuild(uuid: UUID): Guild? {
+    override fun getPlayerGuild(uuid: UUID): ApiResponse<Guild> {
         val url = (API_PREFIX + "guild").toHttpUrl().newBuilder()
             .addQueryParameter("player", uuid.toString()).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.getAsJsonObjectOrNull("guild")?.toGuild(uuid)
-        }
+        }?.let { Successful(it, DataOrigin.RestApi) } ?: Unavailable()
     }
 
-    override fun getBingoData(uuid: UUID): SkyblockBingoData? {
+    override fun getBingoData(uuid: UUID): ApiResponse<SkyblockBingoData> {
         val url = (API_PREFIX + "skyblock/bingo").toHttpUrl().newBuilder()
             .addQueryParameter("uuid", uuid.toString()).build()
         return makeAuthenticatedRequest(url.toString()) { json ->
             json.toSkyblockBingoData(uuid)
-        }
+        }?.let { Successful(it, DataOrigin.RestApi) } ?: Unavailable()
     }
 
     override fun getCurrentBingoEvent(): CurrentBingoEvent? {

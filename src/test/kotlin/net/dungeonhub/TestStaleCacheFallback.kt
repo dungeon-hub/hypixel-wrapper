@@ -8,6 +8,7 @@ import net.dungeonhub.cache.CacheType
 import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.client.FallbackApiClient
 import net.dungeonhub.hypixel.client.RestApiClient
+import net.dungeonhub.hypixel.client.responses.Stale
 import net.dungeonhub.hypixel.connection.HypixelConnection
 import net.dungeonhub.hypixel.entities.player.toHypixelPlayer
 import net.dungeonhub.provider.HttpClientProvider
@@ -22,11 +23,11 @@ import org.mockito.kotlin.mock
 import java.io.IOException
 import java.util.UUID
 import kotlin.test.Test
+import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class TestStaleCacheFallback {
-
     private val testUuid = UUID.fromString("39642ffc-a7fb-4d24-a1d4-916f4cad1d98")
 
     @BeforeEach
@@ -56,11 +57,12 @@ class TestStaleCacheFallback {
         )
         cache.playerDataCache.store(playerJson.toHypixelPlayer())
 
-        // expiresAfterMinutes=0 forces the entry to be treated as expired immediately
         val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = true)
 
         // REST is down, cache is expired — stale fallback should still return the data
-        assertNotNull(client.getPlayerData(testUuid))
+        val response = client.getPlayerData(testUuid)
+        assertIs<Stale<*>>(response)
+        assertNotNull(response.valueOrNull)
     }
 
     @Test
@@ -75,7 +77,7 @@ class TestStaleCacheFallback {
         val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = false)
 
         // REST is down, cache is expired, stale fallback disabled — should return null
-        assertNull(client.getPlayerData(testUuid))
+        assertNull(client.getPlayerData(testUuid).valueOrNull)
     }
 
     @Test
@@ -86,6 +88,6 @@ class TestStaleCacheFallback {
         val client = FallbackApiClient(cache, RestApiClient, expiresAfterMinutes = -1, useStaleCache = true)
 
         // No data in cache, REST returns null — result should be null, not an exception
-        assertNull(client.getPlayerData(testUuid))
+        assertNull(client.getPlayerData(testUuid).valueOrNull)
     }
 }
