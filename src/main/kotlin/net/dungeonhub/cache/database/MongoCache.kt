@@ -67,6 +67,10 @@ class MongoCache<T, K>(
     override fun retrieveElementAt(key: K, before: Instant?, after: Instant?): CacheElement<T>? {
         if (before != null && after != null && before.isBefore(after)) return null
 
+        val memoryElement = getFromMemoryCache(key)?.takeIf { element ->
+            (before == null || !element.timeAdded.isAfter(before)) &&
+                (after == null || !element.timeAdded.isBefore(after))
+        }
         val serializedKey = keySerializer(key)
         val filters = mutableListOf(Filters.eq(KEY_FIELD, serializedKey))
         before?.let { filters.add(Filters.lte(TIMESTAMP_FIELD, it)) }
@@ -77,11 +81,19 @@ class MongoCache<T, K>(
             Sorts.descending(TIMESTAMP_FIELD)
         }
 
-        return try {
+        val databaseElement = try {
             collection.find(Filters.and(filters)).sort(sort).first()?.let { deserialize(it) }
         } catch (mongoException: MongoException) {
             logger.warn("MongoDB unavailable during retrieveElementAt for key {}: {}", serializedKey, mongoException.message)
             null
+        }
+
+        return listOfNotNull(memoryElement, databaseElement).let { candidates ->
+            if (before == null && after != null) {
+                candidates.minByOrNull { it.timeAdded }
+            } else {
+                candidates.maxByOrNull { it.timeAdded }
+            }
         }
     }
 

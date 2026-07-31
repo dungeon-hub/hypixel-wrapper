@@ -122,8 +122,7 @@ class TestMongoCache {
         val cache = MongoCache(
             MongoCacheProvider.getCollection("historical-cache"),
             object : TypeToken<CacheElement<HistoricalValue>>() {},
-            { it.key },
-            memoryCacheSize = 0
+            { it.key }
         )
         cache.storeCacheElement(CacheElement(Instant.parse("2024-01-01T00:00:00Z"), HistoricalValue("profile", "first")))
         cache.storeCacheElement(CacheElement(Instant.parse("2024-01-02T00:00:00Z"), HistoricalValue("profile", "second")))
