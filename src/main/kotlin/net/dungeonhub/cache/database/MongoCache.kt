@@ -12,7 +12,7 @@ import com.mongodb.client.model.Accumulators
 import com.mongodb.client.model.Aggregates
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Sorts
-import net.dungeonhub.cache.Cache
+import net.dungeonhub.cache.HistoricalCache
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
 import org.bson.Document
@@ -32,7 +32,7 @@ class MongoCache<T, K>(
     private val keySerializer: (K) -> String = { it.toString() },
     private val memoryCacheSize: Int = 5,
     private val memoryCacheTtl: Duration? = null
-) : Cache<T, K> {
+) : HistoricalCache<T, K> {
     private val collection: MongoCollection<Document> = collection.withDocumentClass(Document::class.java)
     private val cacheLock = Any()
     private val secondLevelCache = object : LinkedHashMap<K, LocalCacheEntry<T>>(memoryCacheSize.coerceAtLeast(1), 0.75f, true) {
@@ -59,6 +59,28 @@ class MongoCache<T, K>(
             element
         } catch (mongoException: MongoException) {
             logger.warn("MongoDB unavailable during retrieveElement for key {}: {}", keyString, mongoException.message)
+            null
+        }
+    }
+
+
+    override fun retrieveElementAt(key: K, before: Instant?, after: Instant?): CacheElement<T>? {
+        if (before != null && after != null && before.isBefore(after)) return null
+
+        val serializedKey = keySerializer(key)
+        val filters = mutableListOf(Filters.eq(KEY_FIELD, serializedKey))
+        before?.let { filters.add(Filters.lte(TIMESTAMP_FIELD, it)) }
+        after?.let { filters.add(Filters.gte(TIMESTAMP_FIELD, it)) }
+        val sort = if (before == null && after != null) {
+            Sorts.ascending(TIMESTAMP_FIELD)
+        } else {
+            Sorts.descending(TIMESTAMP_FIELD)
+        }
+
+        return try {
+            collection.find(Filters.and(filters)).sort(sort).first()?.let { deserialize(it) }
+        } catch (mongoException: MongoException) {
+            logger.warn("MongoDB unavailable during retrieveElementAt for key {}: {}", serializedKey, mongoException.message)
             null
         }
     }
