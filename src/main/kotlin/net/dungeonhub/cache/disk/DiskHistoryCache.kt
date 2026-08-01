@@ -1,7 +1,7 @@
 package net.dungeonhub.cache.disk
 
 import com.google.gson.reflect.TypeToken
-import net.dungeonhub.cache.Cache
+import net.dungeonhub.cache.HistoricalCache
 import net.dungeonhub.cache.mapNotNull
 import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.provider.GsonProvider
@@ -22,7 +22,7 @@ class DiskHistoryCache<T, K>(
     private val typeToken: TypeToken<CacheElement<T>>,
     private val keyFunction: (T) -> K,
     private val keyParser: (String) -> K?
-) : Cache<T, K> {
+) : HistoricalCache<T, K> {
     private val dataDirectory: Path = Path.of(cacheDirectory, name)
     private val historyDirectory: Path = Path.of(cacheDirectory, "history", name)
 
@@ -52,6 +52,27 @@ class DiskHistoryCache<T, K>(
         val file = getDataFile(key)
         if (!file.isRegularFile()) return null
         return GsonProvider.gson.fromJson(Files.readString(file), typeToken.type)
+    }
+
+
+    override fun retrieveElementAt(key: K, before: Instant?, after: Instant?): CacheElement<T>? {
+        if (before != null && after != null && before.isBefore(after)) return null
+
+        val candidates = mutableListOf<CacheElement<T>>()
+        retrieveElement(key)?.let { candidates.add(it) }
+        retrieveAllHistoryElements(key).use { history ->
+            history.forEach { candidates.add(it) }
+        }
+
+        val filtered = candidates.asSequence()
+            .filter { before == null || !it.timeAdded.isAfter(before) }
+            .filter { after == null || !it.timeAdded.isBefore(after) }
+
+        return if (before == null && after != null) {
+            filtered.minByOrNull { it.timeAdded }
+        } else {
+            filtered.maxByOrNull { it.timeAdded }
+        }
     }
 
     fun retrieveAllHistoryKeys(): Stream<K> {

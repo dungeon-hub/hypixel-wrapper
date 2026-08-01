@@ -5,7 +5,10 @@ import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.mongo.transitions.Mongod
 import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess
 import de.flapdoodle.reverse.TransitionWalker
+import com.google.gson.reflect.TypeToken
 import net.dungeonhub.cache.CacheType
+import net.dungeonhub.cache.database.MongoCache
+import net.dungeonhub.cache.memory.CacheElement
 import net.dungeonhub.cache.database.MongoCacheProvider
 import net.dungeonhub.hypixel.client.CacheApiClient
 import net.dungeonhub.hypixel.client.CachedResource
@@ -16,6 +19,7 @@ import net.dungeonhub.hypixel.entities.skyblock.SkyblockProfile
 import net.dungeonhub.provider.GsonProvider
 import net.dungeonhub.service.TestHelper
 import org.junit.jupiter.api.*
+import java.time.Instant
 import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -112,6 +116,33 @@ class TestMongoCache {
         }
     }
 
+
+    @Test
+    fun testMongoHistoryCacheRetrievesValueBeforeOrAfterTimestamp() {
+        val cache = MongoCache(
+            MongoCacheProvider.getCollection("historical-cache"),
+            object : TypeToken<CacheElement<HistoricalValue>>() {},
+            { it.key }
+        )
+        cache.storeCacheElement(CacheElement(Instant.parse("2024-01-01T00:00:00Z"), HistoricalValue("profile", "first")))
+        cache.storeCacheElement(CacheElement(Instant.parse("2024-01-02T00:00:00Z"), HistoricalValue("profile", "second")))
+        cache.storeCacheElement(CacheElement(Instant.parse("2024-01-03T00:00:00Z"), HistoricalValue("profile", "third")))
+
+        assertEquals("second", cache.retrieveAt("profile", before = Instant.parse("2024-01-02T12:00:00Z"))?.payload)
+        assertEquals("second", cache.retrieveAt("profile", after = Instant.parse("2024-01-01T12:00:00Z"))?.payload)
+        assertEquals(
+            "second",
+            cache.retrieveAt(
+                "profile",
+                before = Instant.parse("2024-01-02T12:00:00Z"),
+                after = Instant.parse("2024-01-01T12:00:00Z")
+            )?.payload
+        )
+        assertNull(cache.retrieveAt("profile", before = Instant.parse("2023-12-31T23:59:59Z")))
+    }
+
+    data class HistoricalValue(val key: String, val payload: String)
+
     @BeforeEach
     fun cleanBefore() {
         cleanCollections()
@@ -157,6 +188,7 @@ class TestMongoCache {
             CachedResource.entries.forEach { resource ->
                 runCatching { MongoCacheProvider.getCollection(resource.resourceName).drop() }
             }
+            runCatching { MongoCacheProvider.getCollection("historical-cache").drop() }
         }
     }
 }
