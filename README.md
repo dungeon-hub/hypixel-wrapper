@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.dungeon-hub:hypixel-wrapper:latest.release")
+    implementation("net.dungeon-hub:hypixel-wrapper:[version]")
 }
 ```
 
@@ -35,7 +35,7 @@ dependencies {
 <dependency>
     <groupId>net.dungeon-hub</groupId>
     <artifactId>hypixel-wrapper</artifactId>
-    <version>[0,)</version>
+    <version>[version]</version>
 </dependency>
 ```
 
