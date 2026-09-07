@@ -33,7 +33,7 @@ dependencies {
 
     //Database
     implementation("org.mongodb:mongodb-driver-sync:5.11.0")
-    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.33.0")
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:5.0.0")
 
     //Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
