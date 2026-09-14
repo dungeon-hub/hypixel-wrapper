@@ -29,7 +29,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.4.0")
 
     //Logging
-    implementation("org.slf4j:slf4j-api:2.0.18")
+    implementation("org.slf4j:slf4j-api:2.0.19")
 
     //Database
     implementation("org.mongodb:mongodb-driver-sync:5.11.0")
