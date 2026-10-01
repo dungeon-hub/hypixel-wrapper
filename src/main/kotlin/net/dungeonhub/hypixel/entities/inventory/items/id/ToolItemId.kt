@@ -37,6 +37,7 @@ enum class ToolItemId(override val apiName: String, override val itemClass: ((Sk
     EuclidsWheatHoeRare("THEORETICAL_HOE_WHEAT_3", { FarmingTool(it.raw) }),
     EuclidsWheatHoeUncommon("THEORETICAL_HOE_WHEAT_2", { FarmingTool(it.raw) }),
     FarmersRod("FARMER_ROD", { FishingRod(it.raw) }),
+    FigHew("FIG_AXE", { FarmingTool(it.raw) }),
     FishingRod("FISHING_ROD", { FishingRod(it.raw) }),
     FlintShovel("FLINT_SHOVEL", { Gear(it.raw) }),
     FracturedMithrilPickaxe("FRACTURED_MITHRIL_PICKAXE", { MiningTool(it.raw) }),
